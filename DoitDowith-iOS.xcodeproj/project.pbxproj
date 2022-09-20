@@ -15,8 +15,11 @@
 		EE77D5E628D9D10C00057EF8 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5E528D9D10B00057EF8 /* More.storyboard */; };
 		EE77D5E828D9D11600057EF8 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5E728D9D11600057EF8 /* Calendar.storyboard */; };
 		EE77D5EA28D9D14000057EF8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5E928D9D14000057EF8 /* Home.storyboard */; };
-		EE77D5EE28D9D45100057EF8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5ED28D9D45100057EF8 /* Images.xcassets */; };
+		EE77D5EE28D9D45100057EF8 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5ED28D9D45100057EF8 /* Image.xcassets */; };
 		EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */; };
+		EE77D5F228D9D64A00057EF8 /* Calendar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */; };
+		EE77D5F428D9D65500057EF8 /* Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F328D9D65500057EF8 /* Home.xcassets */; };
+		EE77D5F628D9D65F00057EF8 /* More.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F528D9D65F00057EF8 /* More.xcassets */; };
 		EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEDA1728D9C05D000141ED /* AppDelegate.swift */; };
 		EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEDA1928D9C05D000141ED /* SceneDelegate.swift */; };
 		EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAEDA1D28D9C05D000141ED /* Main.storyboard */; };
@@ -35,8 +38,11 @@
 		EE77D5E528D9D10B00057EF8 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		EE77D5E728D9D11600057EF8 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		EE77D5E928D9D14000057EF8 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		EE77D5ED28D9D45100057EF8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EE77D5ED28D9D45100057EF8 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Calendar.xcassets; sourceTree = "<group>"; };
+		EE77D5F328D9D65500057EF8 /* Home.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Home.xcassets; sourceTree = "<group>"; };
+		EE77D5F528D9D65F00057EF8 /* More.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = More.xcassets; sourceTree = "<group>"; };
 		EEAEDA1428D9C05D000141ED /* DoitDowith-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DoitDowith-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAEDA1728D9C05D000141ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEAEDA1928D9C05D000141ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +142,10 @@
 			isa = PBXGroup;
 			children = (
 				EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */,
-				EE77D5ED28D9D45100057EF8 /* Images.xcassets */,
+				EE77D5ED28D9D45100057EF8 /* Image.xcassets */,
+				EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */,
+				EE77D5F328D9D65500057EF8 /* Home.xcassets */,
+				EE77D5F528D9D65F00057EF8 /* More.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -250,11 +259,14 @@
 			files = (
 				EE77D5EA28D9D14000057EF8 /* Home.storyboard in Resources */,
 				EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */,
-				EE77D5EE28D9D45100057EF8 /* Images.xcassets in Resources */,
+				EE77D5EE28D9D45100057EF8 /* Image.xcassets in Resources */,
 				EEAEDA2428D9C060000141ED /* LaunchScreen.storyboard in Resources */,
 				EE77D5E628D9D10C00057EF8 /* More.storyboard in Resources */,
 				EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */,
+				EE77D5F228D9D64A00057EF8 /* Calendar.xcassets in Resources */,
 				EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */,
+				EE77D5F428D9D65500057EF8 /* Home.xcassets in Resources */,
+				EE77D5F628D9D65F00057EF8 /* More.xcassets in Resources */,
 				EE77D5E828D9D11600057EF8 /* Calendar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
