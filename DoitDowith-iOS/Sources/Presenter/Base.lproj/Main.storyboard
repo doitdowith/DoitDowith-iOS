@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eAZ-n9-axd">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--HomeStoryboard-->
+        <scene sceneID="ybs-tD-vbl">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="HomeVC" storyboardName="Home" referencedIdentifier="HomeStoryboard" id="II6-It-LsH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Lf6-ro-d8u"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QhW-mO-tnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="546" y="-141"/>
+        </scene>
+        <!--CalendarStoryboard-->
+        <scene sceneID="GC6-Iy-NIT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" referencedIdentifier="CalendarStoryboard" id="u1K-P4-xn0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="sc4-1K-AH0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDf-0g-iwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="-247"/>
+        </scene>
+        <!--MoreStoryboard-->
+        <scene sceneID="yK4-Rk-zJ4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="More" referencedIdentifier="MoreStoryboard" id="rPK-Xo-Thy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eS7-ji-qaJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FbR-Qz-6si" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="543" y="-16"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="ikZ-4f-v51">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="eAZ-n9-axd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZVj-7l-TOk">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="u1K-P4-xn0" kind="relationship" relationship="viewControllers" id="5bn-5f-JQq"/>
+                        <segue destination="II6-It-LsH" kind="relationship" relationship="viewControllers" id="gc4-9B-Z2S"/>
+                        <segue destination="rPK-Xo-Thy" kind="relationship" relationship="viewControllers" id="RFE-hz-f0c"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GC1-Uj-FYl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-84.057971014492765" y="-140.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
