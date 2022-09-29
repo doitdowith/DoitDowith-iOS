@@ -9,8 +9,15 @@ import UIKit
 
 final class ChatRoomController: UIViewController {
   @IBOutlet weak var chatView: UITableView!
-  @IBOutlet weak var bottomInputView: UIView!
+  @IBOutlet weak var bottomModalView: UIView!
   @IBOutlet weak var messageTextField: UITextField!
+  @IBOutlet weak var modalButton: UIButton!
+  
+  private var isModalOpen = false
+  private weak var bottomModalViewBottomConstraint: NSLayoutConstraint?
+  private let defaultBottomConstraint: CGFloat = 98
+  
+  var viewModel: ChatRoomViewModelType?
   
   let model = [
     ChatModel(type: ChatType.send,
@@ -30,19 +37,53 @@ final class ChatRoomController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    registerMessageCell()
+    self.addKeyboardNotification()
+    self.registerMessageCell()
+    
+    for constraint in self.view.constraints where constraint.identifier == "InputViewBottom" {
+      self.bottomModalViewBottomConstraint = constraint
+    }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.isNavigationBarHidden = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.isNavigationBarHidden = false
+  }
+  /// 모달의 +버튼 클릭했을 때 실행되는 함수
+  @IBAction func didTapAddButton(_ sender: UIButton) {
+    var bottomHeight: CGFloat = 0
+    if isModalOpen {
+      self.modalButton.setImage(UIImage(named: "ic_plus"), for: .normal)
+      bottomHeight = self.defaultBottomConstraint
+    } else {
+      self.modalButton.setImage(UIImage(named: "ic_exit"), for: .normal)
+      bottomHeight = 0
+    }
+    isModalOpen.toggle()
+    UIView.animate(withDuration: 0.4) { [weak self] in
+      guard let self = self else { return }
+      self.bottomModalViewBottomConstraint?.constant = bottomHeight
+      self.view.layoutIfNeeded()
+    }
+  }
+  /// 뒤로가기 버튼을 클릭했을 때
+  @IBAction func didTapNavBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
   }
 }
 
-// MARK: - Configure Bottom Input View
 extension ChatRoomController {
+  // MARK: Configure Bottom Input View
   func configureBottomInputView() {
-    self.bottomInputView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
+    self.bottomModalView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
   }
-}
-
-// MARK: - Configure Chat View(Table View)
-extension ChatRoomController {
+  
+  // MARK: Configure Chat View(Table View)
   func registerMessageCell() {
     let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
     chatView.register(sendMessageCellNib,
@@ -51,31 +92,57 @@ extension ChatRoomController {
     chatView.register(receiveMessageCellNib,
                       forCellReuseIdentifier: ReceiveMessageCell.identifier)
   }
+  
+  // MARK: Notification Center
+  func addKeyboardNotification() {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillShow),
+                                           name: UIResponder.keyboardWillShowNotification,
+                                           object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillDown),
+                                           name: UIResponder.keyboardWillHideNotification,
+                                           object: nil)
+  }
+  
+  // MARK: Keyboard Notification Function
+  @objc func keyboardWillShow(_ notification: NSNotification) {
+    let height = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height ?? 0
+    let window = UIApplication.shared.windows.first
+    let bottom = window?.safeAreaInsets.bottom ?? 0
+    
+    UIView.animate(withDuration: 0.4) { [weak self] in
+      guard let self = self else { return }
+      self.bottomModalViewBottomConstraint?.constant = -height + self.defaultBottomConstraint + bottom
+    }
+  }
+  
+  @objc func keyboardWillDown(_ notification: NSNotification) {
+    UIView.animate(withDuration: 0.4) { [weak self] in
+      guard let self = self else { return }
+      self.bottomModalViewBottomConstraint?.constant = self.defaultBottomConstraint
+    }
+  }
 }
 
+// MARK: - UITextField Delegate
+extension ChatRoomController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    messageTextField.endEditing(true)
+    messageTextField.resignFirstResponder()
+    return true
+  }
+}
+
+// MARK: - TableView DataSource, Delegate
 extension ChatRoomController: UITableViewDelegate, UITableViewDataSource {
-  // MARK: TableView DataSource
+  // MARK: DataSource
   func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return model.count
-  }
-  
-  // Header
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 30
-  }
-  
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = MessageHeaderView()
-    view.configure(day: Date.now.formatted(format: "yyyy.mm.dd (E)"))
-    return view
-  }
-  
-  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return CGFloat.leastNormalMagnitude
   }
   
   // MARK: TableView Delegate
@@ -96,5 +163,20 @@ extension ChatRoomController: UITableViewDelegate, UITableViewDataSource {
       cell.configure(time: time, message: message)
       return cell
     }
+  }
+  
+  // MARK: Header DataSource
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 30
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = MessageHeaderView()
+    view.configure(day: Date.now.formatted(format: "yyyy.mm.dd (E)"))
+    return view
+  }
+  
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return CGFloat.leastNormalMagnitude
   }
 }
