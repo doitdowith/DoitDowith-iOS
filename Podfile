@@ -7,4 +7,13 @@ target 'DoitDowith-iOS' do
 
   # Pods for DoitDowith-iOS
   pod 'Kingfisher' 
+  pod 'StompClientLib'
+
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'NSObject+Rx'
+  pod 'RxDataSources'
+  pod 'Action'
+  pod 'Moya'
+  pod 'Moya/RxSwift'
 end
