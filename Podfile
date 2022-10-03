@@ -13,6 +13,7 @@ target 'DoitDowith-iOS' do
   pod 'RxCocoa'
   pod 'NSObject+Rx'
   pod 'RxDataSources'
+  pod 'RxViewController'
   pod 'Action'
   pod 'Moya'
   pod 'Moya/RxSwift'
