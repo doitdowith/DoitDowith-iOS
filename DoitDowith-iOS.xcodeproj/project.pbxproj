@@ -11,11 +11,10 @@
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
 		EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */; };
-		EE4F4D6928EAE73C000C2FE7 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6728EAE73C000C2FE7 /* ContentCell.swift */; };
-		EE4F4D6A28EAE73C000C2FE7 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D6828EAE73C000C2FE7 /* ContentCell.xib */; };
+		EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */; };
+		EE4F4D6A28EAE73C000C2FE7 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */; };
 		EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */; };
 		EE4F4D7328EAEF5E000C2FE7 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7228EAEF5E000C2FE7 /* CardModel.swift */; };
-		EE4F4D7528EAEF95000C2FE7 /* SectionOfCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7428EAEF95000C2FE7 /* SectionOfCardModel.swift */; };
 		EE4F4D7728EAF04F000C2FE7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */; };
 		EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D7828EB0357000C2FE7 /* homeMock.json */; };
 		EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A328E98543005F65AC /* ChatHeaderView.swift */; };
@@ -47,6 +46,8 @@
 		EE889E9728DD6A87005DE44B /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8E28DD6A87005DE44B /* Pretendard-Light.otf */; };
 		EE889E9828DD6A87005DE44B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8F28DD6A87005DE44B /* Pretendard-Medium.otf */; };
 		EE889E9928DD6A87005DE44B /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E9028DD6A87005DE44B /* Pretendard-ExtraLight.otf */; };
+		EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0C0B728ED390500282A30 /* ContentCell.swift */; };
+		EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEA0C0B828ED390500282A30 /* ContentCell.xib */; };
 		EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EEAEAD1528E91EF4004CA8BA /* mock.json */; };
 		EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */; };
 		EEAEAD1C28E9237E004CA8BA /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEAD1B28E9237E004CA8BA /* ChatService.swift */; };
@@ -66,11 +67,10 @@
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
-		EE4F4D6728EAE73C000C2FE7 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
-		EE4F4D6828EAE73C000C2FE7 /* ContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
+		EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		EE4F4D7228EAEF5E000C2FE7 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		EE4F4D7428EAEF95000C2FE7 /* SectionOfCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfCardModel.swift; sourceTree = "<group>"; };
 		EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		EE4F4D7828EB0357000C2FE7 /* homeMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeMock.json; sourceTree = "<group>"; };
 		EE5500A328E98543005F65AC /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
@@ -102,6 +102,8 @@
 		EE889E8E28DD6A87005DE44B /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		EE889E8F28DD6A87005DE44B /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		EE889E9028DD6A87005DE44B /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		EEA0C0B728ED390500282A30 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		EEA0C0B828ED390500282A30 /* ContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
 		EEAEAD1528E91EF4004CA8BA /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
 		EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfChatModel.swift; sourceTree = "<group>"; };
 		EEAEAD1B28E9237E004CA8BA /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
@@ -213,8 +215,10 @@
 		EE4F4D6D28EAEE61000C2FE7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE4F4D6728EAE73C000C2FE7 /* ContentCell.swift */,
-				EE4F4D6828EAE73C000C2FE7 /* ContentCell.xib */,
+				EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */,
+				EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */,
+				EEA0C0B728ED390500282A30 /* ContentCell.swift */,
+				EEA0C0B828ED390500282A30 /* ContentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				EE4F4D7228EAEF5E000C2FE7 /* CardModel.swift */,
-				EE4F4D7428EAEF95000C2FE7 /* SectionOfCardModel.swift */,
 				EE4F4D7828EB0357000C2FE7 /* homeMock.json */,
 			);
 			path = Model;
@@ -451,7 +454,8 @@
 				EE889E9328DD6A87005DE44B /* Pretendard-Thin.otf in Resources */,
 				EE889E9528DD6A87005DE44B /* Pretendard-ExtraBold.otf in Resources */,
 				EE6A2BDC28E4938E000656AA /* ChatHeaderView.xib in Resources */,
-				EE4F4D6A28EAE73C000C2FE7 /* ContentCell.xib in Resources */,
+				EE4F4D6A28EAE73C000C2FE7 /* CardCell.xib in Resources */,
+				EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */,
 				EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */,
 				EE6A2BD428E485C1000656AA /* SendMessageCell.xib in Resources */,
 				EE5500A828E9E61B005F65AC /* ChatHeaderCell.xib in Resources */,
@@ -533,7 +537,6 @@
 				EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */,
 				EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */,
 				EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */,
-				EE4F4D7528EAEF95000C2FE7 /* SectionOfCardModel.swift in Sources */,
 				EE6A2BD728E4893B000656AA /* ReceiveMessageCell.swift in Sources */,
 				EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */,
 				EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */,
@@ -543,13 +546,14 @@
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
 				EE4F4D7328EAEF5E000C2FE7 /* CardModel.swift in Sources */,
 				EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */,
-				EE4F4D6928EAE73C000C2FE7 /* ContentCell.swift in Sources */,
+				EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */,
 				EE77D5E428D9D0C100057EF8 /* CalendarViewController.swift in Sources */,
 				EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */,
 				EE6A2BD028E48474000656AA /* ChatRoomController.swift in Sources */,
 				EEAEAD1C28E9237E004CA8BA /* ChatService.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
+				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
 				EE5500A728E9E61B005F65AC /* ChatHeaderCell.swift in Sources */,
 				EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */,
 			);

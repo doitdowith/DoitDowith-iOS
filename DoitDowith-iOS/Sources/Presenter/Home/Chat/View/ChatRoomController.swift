@@ -22,8 +22,16 @@ final class ChatRoomController: UIViewController {
   private weak var bottomModalViewBottomConstraint: NSLayoutConstraint?
   private let defaultBottomConstraint: CGFloat = 98
   
-  var viewModel: ChatRoomViewModelType?
+  private let viewModel: ChatRoomViewModelType
   
+  init?(coder: NSCoder, viewModel: ChatRoomViewModelType) {
+    self.viewModel = viewModel
+    super.init(coder: coder)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder: viewModel:) has not been implemented")
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     self.registerNib()
@@ -60,8 +68,6 @@ final class ChatRoomController: UIViewController {
 
 extension ChatRoomController {
   func bind() {
-    guard let viewModel = viewModel else { return }
-    
     // MARK: Bind ViewWillAppear
     self.rx.viewWillAppear
       .map { _ in }
@@ -86,7 +92,7 @@ extension ChatRoomController {
       .subscribe(onNext: { message in
         self.messageTextField.rx.text.onNext("")
         self.messageTextField.resignFirstResponder()
-        viewModel.input.sendMessage.accept(message)
+        self.viewModel.input.sendMessage.accept(message)
       })
       .disposed(by: rx.disposeBag)
     

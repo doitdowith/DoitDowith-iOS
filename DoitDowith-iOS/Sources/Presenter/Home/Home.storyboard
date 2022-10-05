@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Pretendard-Black.otf">
+            <string>Pretendard-Black</string>
+        </array>
         <array key="Pretendard-Bold.otf">
             <string>Pretendard-Bold</string>
         </array>
@@ -20,7 +23,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--home-->
+        <!--홈-->
         <scene sceneID="CxU-eO-624">
             <objects>
                 <viewController id="SWA-Nj-e5l" customClass="HomeViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,41 +31,107 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K4C-9x-3RA">
-                                <rect key="frame" x="0.0" y="118" width="414" height="695"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K4C-9x-3RA">
+                                <rect key="frame" x="0.0" y="153" width="414" height="660"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qzR-uR-WGZ">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="D1Y-ep-Roe"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="contentCell" id="veh-Pu-TeA" customClass="ContentCell" customModule="DoitDowith_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="contentCell" id="veh-Pu-TeA" customClass="HomeView+CardCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ctf-N9-0hn">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwg-in-fSN" userLabel="Navigation View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두잇두윗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbd-HW-Wpv">
+                                        <rect key="frame" x="20" y="49" width="86.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Black" family="Pretendard" pointSize="25"/>
+                                        <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bell" translatesAutoresizingMaskIntoConstraints="NO" id="PgT-13-6jK">
+                                        <rect key="frame" x="370" y="50" width="28" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="5eG-Gm-EhH"/>
+                                            <constraint firstAttribute="height" constant="28" id="U1P-lu-WC3"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Mbd-HW-Wpv" firstAttribute="leading" secondItem="xwg-in-fSN" secondAttribute="leading" constant="20" id="1xY-5G-3Wa"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mbd-HW-Wpv" secondAttribute="bottom" constant="9" id="EVT-rK-bfZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="PgT-13-6jK" secondAttribute="trailing" constant="16" id="n1K-CV-u30"/>
+                                    <constraint firstItem="PgT-13-6jK" firstAttribute="centerY" secondItem="Mbd-HW-Wpv" secondAttribute="centerY" id="y2C-qz-Bh1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byh-GE-pUf">
+                                <rect key="frame" x="16" y="108" width="46" height="19"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Pretendard-Black" family="Pretendard" pointSize="16"/>
+                                <color key="textColor" red="0.2627450980392157" green="0.53333333329999999" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Will Do" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STe-8p-sqO">
+                                <rect key="frame" x="74" y="108" width="55.5" height="19"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Black" family="Pretendard" pointSize="16"/>
+                                <color key="textColor" red="0.26274509800000001" green="0.53333333329999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAQ-Io-ie4">
+                                <rect key="frame" x="141.5" y="108" width="40.5" height="19"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Black" family="Pretendard" pointSize="16"/>
+                                <color key="textColor" red="0.26274509800000001" green="0.53333333329999999" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NE5-yz-D1D" userLabel="Bottom Line">
+                                <rect key="frame" x="16" y="131" width="46" height="2"/>
+                                <color key="backgroundColor" red="0.26274509800000001" green="0.53333333329999999" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="02e-p5-L7b"/>
+                                    <constraint firstAttribute="width" constant="46" id="js0-Pj-aqV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="95s-2n-ErH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="dAQ-Io-ie4" firstAttribute="leading" secondItem="STe-8p-sqO" secondAttribute="trailing" constant="12" id="4Qa-j4-Z5X"/>
                             <constraint firstItem="K4C-9x-3RA" firstAttribute="leading" secondItem="95s-2n-ErH" secondAttribute="leading" id="6rV-Ab-TcQ"/>
                             <constraint firstItem="95s-2n-ErH" firstAttribute="bottom" secondItem="K4C-9x-3RA" secondAttribute="bottom" id="9ng-ds-bJW"/>
-                            <constraint firstItem="K4C-9x-3RA" firstAttribute="top" secondItem="95s-2n-ErH" secondAttribute="top" constant="30" id="K3P-4e-XI8"/>
+                            <constraint firstItem="Byh-GE-pUf" firstAttribute="top" secondItem="95s-2n-ErH" secondAttribute="top" constant="20" id="A6R-OV-1BY"/>
+                            <constraint firstItem="Byh-GE-pUf" firstAttribute="leading" secondItem="95s-2n-ErH" secondAttribute="leading" constant="16" id="BqB-a1-i26"/>
+                            <constraint firstItem="NE5-yz-D1D" firstAttribute="centerX" secondItem="Byh-GE-pUf" secondAttribute="centerX" id="GZm-gl-bZp"/>
+                            <constraint firstItem="dAQ-Io-ie4" firstAttribute="centerY" secondItem="STe-8p-sqO" secondAttribute="centerY" id="Lqp-RP-pKx"/>
+                            <constraint firstItem="STe-8p-sqO" firstAttribute="centerY" secondItem="Byh-GE-pUf" secondAttribute="centerY" id="Q5M-6U-Zx7"/>
+                            <constraint firstItem="NE5-yz-D1D" firstAttribute="top" secondItem="Byh-GE-pUf" secondAttribute="bottom" constant="4" id="SZ4-JQ-TUJ"/>
+                            <constraint firstItem="K4C-9x-3RA" firstAttribute="top" secondItem="NE5-yz-D1D" secondAttribute="bottom" constant="20" id="TrA-oR-g2H"/>
+                            <constraint firstItem="xwg-in-fSN" firstAttribute="top" secondItem="45U-LC-nUp" secondAttribute="top" id="U1a-Zx-TMz"/>
+                            <constraint firstItem="xwg-in-fSN" firstAttribute="bottom" secondItem="Byh-GE-pUf" secondAttribute="top" constant="-20" id="aSd-CR-R4p"/>
                             <constraint firstItem="95s-2n-ErH" firstAttribute="trailing" secondItem="K4C-9x-3RA" secondAttribute="trailing" id="cbx-E7-473"/>
+                            <constraint firstItem="STe-8p-sqO" firstAttribute="leading" secondItem="Byh-GE-pUf" secondAttribute="trailing" constant="12" id="gib-ff-rKf"/>
+                            <constraint firstItem="95s-2n-ErH" firstAttribute="trailing" secondItem="xwg-in-fSN" secondAttribute="trailing" id="jlu-cp-928"/>
+                            <constraint firstItem="xwg-in-fSN" firstAttribute="leading" secondItem="45U-LC-nUp" secondAttribute="leading" id="nNz-3K-gmt"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="aNa-xt-2uX"/>
-                    <navigationItem key="navigationItem" title="home" id="4XB-KC-Ydj"/>
+                    <navigationItem key="navigationItem" id="4XB-KC-Ydj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bottomLine" destination="NE5-yz-D1D" id="HKd-Z4-dtI"/>
+                        <outlet property="bottomLineTopConstraints" destination="SZ4-JQ-TUJ" id="Weo-Al-Y4D"/>
+                        <outlet property="buttonLineCenterXConstraints" destination="GZm-gl-bZp" id="AT2-eo-Np9"/>
+                        <outlet property="buttonLineWidthConstraints" destination="js0-Pj-aqV" id="iS2-e6-a4Q"/>
                         <outlet property="contentCollectionView" destination="K4C-9x-3RA" id="M2r-uc-0Rh"/>
+                        <outlet property="doingButton" destination="Byh-GE-pUf" id="M6z-3O-5EM"/>
+                        <outlet property="doneButton" destination="dAQ-Io-ie4" id="Mma-4F-asR"/>
+                        <outlet property="willdoButton" destination="STe-8p-sqO" id="VFp-st-9ZO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wxq-ci-vns" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -282,6 +351,7 @@
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="ic_back" width="28" height="28"/>
+        <image name="ic_bell" width="28" height="28"/>
         <image name="ic_camera" width="36" height="36"/>
         <image name="ic_nav" width="28" height="28"/>
         <image name="ic_photo" width="36" height="36"/>
