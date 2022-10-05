@@ -24,6 +24,9 @@ PODS:
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
+  - RxViewController (2.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - SocketRocket (0.6.0)
   - StompClientLib (1.4.1):
     - SocketRocket
@@ -37,6 +40,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxDataSources
   - RxSwift
+  - RxViewController
   - StompClientLib
 
 SPEC REPOS:
@@ -51,6 +55,7 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
+    - RxViewController
     - SocketRocket
     - StompClientLib
 
@@ -65,9 +70,10 @@ SPEC CHECKSUMS:
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
 
-PODFILE CHECKSUM: af69142ec65abf06829a193378162bca5d070d4b
+PODFILE CHECKSUM: 645eb771d700ba2398f385a2514f0a602b893fd7
 
 COCOAPODS: 1.11.3
