@@ -48,6 +48,14 @@ class ContentCell: UICollectionViewCell {
     section.interGroupSpacing = 14
     return UICollectionViewCompositionalLayout(section: section)
   }
+//  func moveVC() {
+//    let viewController = UIStoryboard(name: "Home",
+//                                      bundle: nil).instantiateViewController(identifier: "MissionRoomFirstVC",
+//                                                                             creator: { coder in
+//                                        MissionRoomFirstViewController(coder: coder)
+//                                      })
+//    self.navigationController?.pushViewController(viewController, animated: true)
+//  }
 }
 
 extension ContentCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -59,5 +67,7 @@ extension ContentCell: UICollectionViewDataSource, UICollectionViewDelegate {
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCell.identifier, for: indexPath) as? CardCell else { return UICollectionViewCell() }
     cell.configure(title: model[indexPath.row].title, subtitle: model[indexPath.row].subTitle)
     return cell
+  }
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
   }
 }

@@ -7,14 +7,13 @@
 
 import Foundation
 
-import Action
-import NSObject_Rx
 import RxCocoa
 import RxDataSources
 import RxSwift
 
 protocol HomeViewModelInput {
   var viewWillAppear: PublishRelay<Void> { get }
+  var indicatorPosition: BehaviorRelay<Int> { get }
 }
 
 protocol HomeViewModelOutput {
@@ -37,6 +36,7 @@ final class HomeViewModel: HomeViewModelInput,
   
   // Input
   let viewWillAppear: PublishRelay<Void>
+  let indicatorPosition: BehaviorRelay<Int>
   
   // Output
   let doingCardList: BehaviorRelay<[[CardModel]]>
@@ -44,6 +44,7 @@ final class HomeViewModel: HomeViewModelInput,
   
   init(service: HomeServiceProtocol) {
     let fetching = PublishRelay<Void>()
+    let indicatorIndexing = BehaviorRelay<Int>(value: 0)
     let activating = BehaviorRelay<Bool>(value: false)
     let doingCards = BehaviorRelay<[[CardModel]]>(value: [])
     
@@ -59,6 +60,7 @@ final class HomeViewModel: HomeViewModelInput,
     
     // Input
     self.viewWillAppear = fetching
+    self.indicatorPosition = indicatorIndexing
     
     // Output
     self.doingCardList = doingCards

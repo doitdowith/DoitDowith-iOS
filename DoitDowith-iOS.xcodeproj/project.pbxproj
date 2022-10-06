@@ -37,6 +37,10 @@
 		EE77D5F228D9D64A00057EF8 /* Calendar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */; };
 		EE77D5F428D9D65500057EF8 /* Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F328D9D65500057EF8 /* Home.xcassets */; };
 		EE77D5F628D9D65F00057EF8 /* More.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F528D9D65F00057EF8 /* More.xcassets */; };
+		EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */; };
+		EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */; };
+		EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */; };
+		EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */; };
 		EE889E9128DD6A87005DE44B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8828DD6A87005DE44B /* Pretendard-Regular.otf */; };
 		EE889E9228DD6A87005DE44B /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8928DD6A87005DE44B /* Pretendard-Black.otf */; };
 		EE889E9328DD6A87005DE44B /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8A28DD6A87005DE44B /* Pretendard-Thin.otf */; };
@@ -93,6 +97,10 @@
 		EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Calendar.xcassets; sourceTree = "<group>"; };
 		EE77D5F328D9D65500057EF8 /* Home.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Home.xcassets; sourceTree = "<group>"; };
 		EE77D5F528D9D65F00057EF8 /* More.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = More.xcassets; sourceTree = "<group>"; };
+		EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewController.swift; sourceTree = "<group>"; };
+		EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewController.swift; sourceTree = "<group>"; };
+		EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisionRoomSecondViewModel.swift; sourceTree = "<group>"; };
+		EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		EE889E8828DD6A87005DE44B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		EE889E8928DD6A87005DE44B /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
 		EE889E8A28DD6A87005DE44B /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
@@ -175,10 +183,9 @@
 		EE3EA1A228D9CCAB00CEFE36 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE7857FD28EDB3B600F8C309 /* MissionRoom */,
 				EE4F4D6228EAE5E3000C2FE7 /* Home */,
 				EE6A2BCE28E48463000656AA /* Chat */,
-				EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */,
-				EE77D5E928D9D14000057EF8 /* Home.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -215,6 +222,8 @@
 		EE4F4D6D28EAEE61000C2FE7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */,
+				EE77D5E928D9D14000057EF8 /* Home.storyboard */,
 				EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */,
 				EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */,
 				EEA0C0B728ED390500282A30 /* ContentCell.swift */,
@@ -249,6 +258,16 @@
 				EE255BB728EADB2F00DB555E /* View */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		EE7857FD28EDB3B600F8C309 /* MissionRoom */ = {
+			isa = PBXGroup;
+			children = (
+				EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */,
+				EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */,
+				EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */,
+			);
+			path = MissionRoom;
 			sourceTree = "<group>";
 		};
 		EE889E8728DD6A37005DE44B /* Font */ = {
@@ -362,6 +381,7 @@
 			children = (
 				EEC9EAEC28E49D07002918EA /* Date+Extension.swift */,
 				EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */,
+				EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -546,11 +566,15 @@
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
 				EE4F4D7328EAEF5E000C2FE7 /* CardModel.swift in Sources */,
 				EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */,
+				EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */,
 				EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */,
+				EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */,
 				EE77D5E428D9D0C100057EF8 /* CalendarViewController.swift in Sources */,
+				EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */,
 				EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */,
 				EE6A2BD028E48474000656AA /* ChatRoomController.swift in Sources */,
 				EEAEAD1C28E9237E004CA8BA /* ChatService.swift in Sources */,
+				EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
 				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
