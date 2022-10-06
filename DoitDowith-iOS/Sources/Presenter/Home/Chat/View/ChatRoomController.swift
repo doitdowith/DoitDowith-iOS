@@ -32,6 +32,7 @@ final class ChatRoomController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder: viewModel:) has not been implemented")
   }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.registerNib()

@@ -9,29 +9,43 @@ import UIKit
 
 import RxCocoa
 import RxSwift
-import RxViewController
 
+protocol ContentCellDelegate: AnyObject {
+  func contentCell(_ cell: UICollectionViewCell, didSelectCell: CardModel)
+}
 class ContentCell: UICollectionViewCell {
   static let identifier = "ContentCell"
+  
   @IBOutlet weak var cardCollectionView: UICollectionView!
-  var model: [CardModel] = []
+  weak var delegate: ContentCellDelegate?
+  
+  let disposeBag = DisposeBag()
+  let modelRelay = PublishRelay<[CardModel]>()
   
   override func awakeFromNib() {
     super.awakeFromNib()
     let cardCellNib = UINib(nibName: "CardCell", bundle: nil)
     self.cardCollectionView.register(cardCellNib,
-                                        forCellWithReuseIdentifier: CardCell.identifier)
+                                     forCellWithReuseIdentifier: CardCell.identifier)
+    
     self.cardCollectionView.collectionViewLayout = self.colletionViewLayout()
-    cardCollectionView.delegate = self
-    cardCollectionView.dataSource = self
+    
+    self.modelRelay
+      .bind(to: self.cardCollectionView.rx.items(cellIdentifier: CardCell.identifier,
+                                                 cellType: CardCell.self)) { _, element, cell in
+        cell.configure(title: element.title, subtitle: element.subTitle)
+      }
+                                                 .disposed(by: disposeBag)
+    
+    self.cardCollectionView.rx.modelSelected(CardModel.self)
+      .bind(onNext: { model in
+        print(model)
+        self.delegate?.contentCell(self, didSelectCell: model)
+      }).disposed(by: disposeBag)
   }
   
   override func prepareForReuse() {
     super.prepareForReuse()
-  }
-  
-  func configure(model: [CardModel]) {
-    self.model = model
   }
   
   func colletionViewLayout() -> UICollectionViewLayout {
@@ -42,22 +56,10 @@ class ContentCell: UICollectionViewCell {
     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                            heightDimension: .absolute(125))
     let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
-                                                   subitems: [item])
+                                                 subitems: [item])
     
     let section = NSCollectionLayoutSection(group: group)
     section.interGroupSpacing = 14
     return UICollectionViewCompositionalLayout(section: section)
-  }
-}
-
-extension ContentCell: UICollectionViewDataSource, UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return model.count
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCell.identifier, for: indexPath) as? CardCell else { return UICollectionViewCell() }
-    cell.configure(title: model[indexPath.row].title, subtitle: model[indexPath.row].subTitle)
-    return cell
   }
 }

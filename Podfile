@@ -14,7 +14,10 @@ target 'DoitDowith-iOS' do
   pod 'NSObject+Rx'
   pod 'RxDataSources'
   pod 'RxViewController'
+  pod 'RxGesture'
+  pod 'RxKeyboard'
   pod 'Action'
+
   pod 'Moya'
   pod 'Moya/RxSwift'
 end
