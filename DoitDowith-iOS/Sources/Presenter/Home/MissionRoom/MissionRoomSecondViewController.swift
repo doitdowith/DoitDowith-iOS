@@ -7,21 +7,34 @@
 
 import UIKit
 
+import NSObject_Rx
+import RxCocoa
+import RxSwift
+
 class MissionRoomSecondViewController: UIViewController {
+  @IBOutlet weak var backButton: UIImageView!
+  
   private let viewModel: MisionRoomSecondViewModelType
   
   override func viewDidLoad() {
     super.viewDidLoad()
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(true)
-    self.navigationController?.navigationBar.isHidden = true
-  }
-  
-  override func viewDidDisappear(_ animated: Bool) {
-    super.viewDidDisappear(animated)
-    self.navigationController?.navigationBar.isHidden = false
+    
+    Observable.merge([
+      rx.viewWillAppear.map { _ in true },
+      rx.viewWillDisappear.map { _ in false }])
+    .bind(onNext: { [weak navigationController] visible in
+      print(visible)
+      navigationController?.isNavigationBarHidden = visible
+    })
+    .disposed(by: rx.disposeBag)
+    
+    self.backButton.rx
+      .tapGesture()
+      .when(.recognized)
+      .bind(onNext: { [weak navigationController]_ in
+        navigationController?.popViewController(animated: true)
+      })
+      .disposed(by: rx.disposeBag)
   }
   
   init?(coder: NSCoder, viewModel: MisionRoomSecondViewModelType) {

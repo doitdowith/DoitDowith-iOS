@@ -12,7 +12,7 @@ import RxDataSources
 import RxSwift
 
 protocol HomeViewModelInput {
-  var viewWillAppear: PublishRelay<Void> { get }
+  var fetchCards: PublishRelay<Void> { get }
   var indicatorPosition: BehaviorRelay<Int> { get }
 }
 
@@ -35,7 +35,7 @@ final class HomeViewModel: HomeViewModelInput,
   var output: HomeViewModelOutput { return self }
   
   // Input
-  let viewWillAppear: PublishRelay<Void>
+  let fetchCards: PublishRelay<Void>
   let indicatorPosition: BehaviorRelay<Int>
   
   // Output
@@ -59,7 +59,7 @@ final class HomeViewModel: HomeViewModelInput,
       .disposed(by: disposeBag)
     
     // Input
-    self.viewWillAppear = fetching
+    self.fetchCards = fetching
     self.indicatorPosition = indicatorIndexing
     
     // Output

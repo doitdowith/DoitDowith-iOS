@@ -97,19 +97,24 @@ extension HomeViewController {
 extension HomeViewController {
   func bindViewWillAppear() {
     // 네비게이션 바 없애기
-    Observable
-      .merge(self.rx.viewWillAppear.asObservable(),
-             self.rx.viewWillDisappear.asObservable())
-      .withUnretained(self)
-      .bind(onNext: { vc, state in
-        guard let nav = vc.navigationController else { return }
-        nav.rx.isNavigationBarHidden.onNext(state)
-      })
-      .disposed(by: rx.disposeBag)
+    Observable.merge([
+      rx.viewWillAppear.map { _ in true },
+      rx.viewWillDisappear.map { _ in false }])
+    .bind(onNext: { [weak navigationController] visible in
+      navigationController?.isNavigationBarHidden = visible
+    })
+    .disposed(by: rx.disposeBag)
     
-    self.rx.viewWillAppear
-      .map { _ in }
-      .bind(to: viewModel.input.viewWillAppear)
+    let firstLoad = rx.viewWillAppear
+      .take(1)
+      .map { _ in () }
+    
+    let reload = self.contentCollectionView.refreshControl?.rx
+      .controlEvent(.valueChanged)
+      .map { _ in () } ?? Observable.just(())
+    
+    Observable.merge([firstLoad, reload])
+      .bind(to: viewModel.fetchCards)
       .disposed(by: rx.disposeBag)
   }
   
@@ -118,9 +123,10 @@ extension HomeViewController {
       .bind(to: self.contentCollectionView.rx.items(
         cellIdentifier: ContentCell.identifier,
         cellType: ContentCell.self)) { _, element, cell in
-          cell.configure(model: element)
+          cell.modelRelay.accept(element)
+          cell.delegate = self
         }
-      .disposed(by: rx.disposeBag)
+        .disposed(by: rx.disposeBag)
   }
   
   func bindPagingTabButton() {
@@ -153,5 +159,16 @@ extension HomeViewController {
         vc.slideNextPage(at: 2)
       })
       .disposed(by: rx.disposeBag)
+  }
+}
+
+extension HomeViewController: ContentCellDelegate {
+  func contentCell(_ cell: UICollectionViewCell, didSelectCell: CardModel) {
+    let viewController = UIStoryboard(name: "Home",
+                                      bundle: nil).instantiateViewController(identifier: "MissionRoomFirstVC",
+                                                                             creator: { coder in
+                                        MissionRoomFirstViewController(coder: coder)
+                                      })
+    self.navigationController?.pushViewController(viewController, animated: true)
   }
 }
