@@ -137,7 +137,12 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 0)
+        self.viewModel.input.buttonClickIndex.accept(0)
       })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.doingButtonColor
+      .drive(self.doingButton.rx.textColor)
       .disposed(by: rx.disposeBag)
     
     self.willdoButton.rx
@@ -147,7 +152,12 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 1)
+        self.viewModel.input.buttonClickIndex.accept(1)
       })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.willDoButtonColor
+      .drive(self.willdoButton.rx.textColor)
       .disposed(by: rx.disposeBag)
     
     self.doneButton.rx
@@ -157,7 +167,12 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 2)
+        self.viewModel.input.buttonClickIndex.accept(2)
       })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.doneButtonColor
+      .drive(self.doneButton.rx.textColor)
       .disposed(by: rx.disposeBag)
   }
 }

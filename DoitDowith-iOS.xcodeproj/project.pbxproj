@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
+		EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */; };
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
 		EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */; };
@@ -18,8 +19,6 @@
 		EE4F4D7728EAF04F000C2FE7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */; };
 		EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D7828EB0357000C2FE7 /* homeMock.json */; };
 		EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A328E98543005F65AC /* ChatHeaderView.swift */; };
-		EE5500A728E9E61B005F65AC /* ChatHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A528E9E61B005F65AC /* ChatHeaderCell.swift */; };
-		EE5500A828E9E61B005F65AC /* ChatHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE5500A628E9E61B005F65AC /* ChatHeaderCell.xib */; };
 		EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */; };
 		EE6A2BD028E48474000656AA /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6A2BCF28E48474000656AA /* ChatRoomController.swift */; };
 		EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6A2BD128E485C1000656AA /* SendMessageCell.swift */; };
@@ -50,6 +49,8 @@
 		EE889E9728DD6A87005DE44B /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8E28DD6A87005DE44B /* Pretendard-Light.otf */; };
 		EE889E9828DD6A87005DE44B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8F28DD6A87005DE44B /* Pretendard-Medium.otf */; };
 		EE889E9928DD6A87005DE44B /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E9028DD6A87005DE44B /* Pretendard-ExtraLight.otf */; };
+		EE8BE62E28F40747003686E3 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */; };
+		EE8BE63A28F4532C003686E3 /* StompManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BE63928F4532C003686E3 /* StompManager.swift */; };
 		EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0C0B728ED390500282A30 /* ContentCell.swift */; };
 		EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEA0C0B828ED390500282A30 /* ContentCell.xib */; };
 		EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EEAEAD1528E91EF4004CA8BA /* mock.json */; };
@@ -68,6 +69,7 @@
 		24691D147FCF764B27B270A4 /* Pods-DoitDowith-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DF2D234DA10A353A3131702 /* Pods-DoitDowith-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.release.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
@@ -78,8 +80,6 @@
 		EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		EE4F4D7828EB0357000C2FE7 /* homeMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeMock.json; sourceTree = "<group>"; };
 		EE5500A328E98543005F65AC /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
-		EE5500A528E9E61B005F65AC /* ChatHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderCell.swift; sourceTree = "<group>"; };
-		EE5500A628E9E61B005F65AC /* ChatHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatHeaderCell.xib; sourceTree = "<group>"; };
 		EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		EE6A2BCF28E48474000656AA /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		EE6A2BD128E485C1000656AA /* SendMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageCell.swift; sourceTree = "<group>"; };
@@ -110,6 +110,8 @@
 		EE889E8E28DD6A87005DE44B /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		EE889E8F28DD6A87005DE44B /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		EE889E9028DD6A87005DE44B /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
+		EE8BE63928F4532C003686E3 /* StompManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompManager.swift; sourceTree = "<group>"; };
 		EEA0C0B728ED390500282A30 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		EEA0C0B828ED390500282A30 /* ContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
 		EEAEAD1528E91EF4004CA8BA /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
@@ -156,8 +158,6 @@
 				EE6A2BD628E4893B000656AA /* ReceiveMessageCell.xib */,
 				EE6A2BDB28E4938E000656AA /* ChatHeaderView.xib */,
 				EE5500A328E98543005F65AC /* ChatHeaderView.swift */,
-				EE5500A528E9E61B005F65AC /* ChatHeaderCell.swift */,
-				EE5500A628E9E61B005F65AC /* ChatHeaderCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,6 +256,7 @@
 				EE255BBA28EADB4500DB555E /* Model */,
 				EE255BB928EADB4100DB555E /* ViewModel */,
 				EE255BB728EADB2F00DB555E /* View */,
+				EE8BE63928F4532C003686E3 /* StompManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -284,6 +285,14 @@
 				EE889E8A28DD6A87005DE44B /* Pretendard-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		EE8BE62C28F4072A003686E3 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		EEAEDA0B28D9C05D000141ED = {
@@ -340,6 +349,7 @@
 		EEC4991928D9C24B003AF6C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EE8BE62C28F4072A003686E3 /* Custom */,
 				EEC9EAF028E4A329002918EA /* Extension */,
 				EE889E8728DD6A37005DE44B /* Font */,
 				EEC4991828D9C200003AF6C4 /* Assets */,
@@ -382,6 +392,7 @@
 				EEC9EAEC28E49D07002918EA /* Date+Extension.swift */,
 				EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */,
 				EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */,
+				EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -478,7 +489,6 @@
 				EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */,
 				EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */,
 				EE6A2BD428E485C1000656AA /* SendMessageCell.xib in Resources */,
-				EE5500A828E9E61B005F65AC /* ChatHeaderCell.xib in Resources */,
 				EE77D5F428D9D65500057EF8 /* Home.xcassets in Resources */,
 				EE889E9428DD6A87005DE44B /* Pretendard-SemiBold.otf in Resources */,
 				EE77D5F628D9D65F00057EF8 /* More.xcassets in Resources */,
@@ -565,7 +575,9 @@
 				EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */,
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
 				EE4F4D7328EAEF5E000C2FE7 /* CardModel.swift in Sources */,
+				EE8BE63A28F4532C003686E3 /* StompManager.swift in Sources */,
 				EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */,
+				EE8BE62E28F40747003686E3 /* TextFieldWithPadding.swift in Sources */,
 				EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */,
 				EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */,
 				EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */,
@@ -578,7 +590,7 @@
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
 				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
-				EE5500A728E9E61B005F65AC /* ChatHeaderCell.swift in Sources */,
+				EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */,
 				EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

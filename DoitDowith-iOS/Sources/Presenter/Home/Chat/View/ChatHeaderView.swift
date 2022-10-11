@@ -7,20 +7,24 @@
 
 import UIKit
 
-class ChatHeaderView: UITableViewHeaderFooterView {
-  static let identifier: String = "ChatHeaderView"
-  
+class ChatHeaderView: UIView {
   @IBOutlet weak var dateLabel: UILabel!
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
+  override init(frame: CGRect) {
+    super.init(frame: frame)
   }
-  override func prepareForReuse() {
-    super.prepareForReuse()
-    self.dateLabel.text = ""
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    self.loadXib()
   }
-  func configure(day: String) {
-    print("here")
-    self.dateLabel.text = day
+  
+  private func loadXib() {
+    let identifier = String(describing: type(of: self))
+    let nibs = Bundle.main.loadNibNamed(identifier, owner: self, options: nil)
+    
+    guard let customView = nibs?.first as? UIView else { return }
+    customView.frame = self.bounds
+    self.addSubview(customView)
   }
 }
