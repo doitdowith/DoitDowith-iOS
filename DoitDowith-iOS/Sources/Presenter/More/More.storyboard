@@ -12,7 +12,8 @@
         <scene sceneID="AvC-HP-feT">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1h-nB-uIe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController id="EXe-pN-kVH" customClass="OtherNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoreStoryboard" automaticallyAdjustsScrollViewInsets="NO" id="EXe-pN-kVH" customClass="OtherNavigationController" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FSC-yD-Nl8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,7 +28,7 @@
         <!--더보기-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="MoreStoryboard" id="Y6W-OH-hqX" customClass="MoreViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="MoreViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0j1-JT-0IB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,10 +259,25 @@
             </objects>
             <point key="canvasLocation" x="35" y="94"/>
         </scene>
-        <!--View Controller-->
+        <!--Notice View Controller-->
+        <scene sceneID="fL8-1Q-sjb">
+            <objects>
+                <viewController id="eiB-6O-js3" customClass="NoticeViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Di-so-hHT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Cg-bL-kew"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FPn-OG-oW8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="844"/>
+        </scene>
+        <!--Friend List View Controller-->
         <scene sceneID="tmA-j4-3d0">
             <objects>
-                <viewController id="q34-cn-K91" sceneMemberID="viewController">
+                <viewController id="q34-cn-K91" customClass="FriendListViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e8G-SQ-qA4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,7 +338,7 @@
                                 <rect key="frame" x="16" y="205" width="382" height="608"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="68" id="45Y-Rs-MtE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="68" id="45Y-Rs-MtE" customClass="FriendListTableViewCell" customModule="DoitDowith_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="382" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="45Y-Rs-MtE" id="49Z-98-PYj">
@@ -377,9 +393,40 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94509803920000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="friendImage" destination="49d-DT-n57" id="RnT-e5-7QK"/>
+                                            <outlet property="friendNameLabel" destination="SBd-lZ-Ssn" id="JFz-QF-bih"/>
+                                            <outlet property="missionNumberLabel" destination="Tjl-U7-OMN" id="HX8-Xy-qbu"/>
+                                            <outlet property="numLabel" destination="4Xe-uJ-OpF" id="2sT-kP-7iy"/>
+                                            <outlet property="percentLabel" destination="Nf8-hc-4F7" id="sKB-tg-Tw4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="q34-cn-K91" id="PHb-cG-aAy"/>
+                                    <outlet property="delegate" destination="q34-cn-K91" id="Sk6-SM-n77"/>
+                                </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNi-La-zTy" userLabel="Add Button">
+                                <rect key="frame" x="347" y="746" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="7Ys-tb-2fa"/>
+                                    <constraint firstAttribute="height" constant="42" id="S41-RM-Af3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="ic_plus_blue"/>
+                                <connections>
+                                    <action selector="showModal:" destination="q34-cn-K91" eventType="touchUpInside" id="eCp-0b-OUI"/>
+                                    <segue destination="SNU-y8-gn6" kind="show" id="Gzh-ih-Qxe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="친구 n명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqR-go-6oH">
+                                <rect key="frame" x="50" y="205" width="58" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iDM-yg-Rgg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -391,22 +438,81 @@
                             <constraint firstItem="iDM-yg-Rgg" firstAttribute="bottom" secondItem="Yin-5f-im3" secondAttribute="bottom" id="EKi-wc-5fB"/>
                             <constraint firstItem="iDM-yg-Rgg" firstAttribute="trailing" secondItem="Yin-5f-im3" secondAttribute="trailing" constant="16" id="H9w-Ot-yn5"/>
                             <constraint firstItem="Yin-5f-im3" firstAttribute="leading" secondItem="iDM-yg-Rgg" secondAttribute="leading" constant="16" id="L4l-d1-n7U"/>
+                            <constraint firstItem="iDM-yg-Rgg" firstAttribute="trailing" secondItem="JNi-La-zTy" secondAttribute="trailing" constant="25" id="UvD-BY-Y26"/>
+                            <constraint firstItem="iDM-yg-Rgg" firstAttribute="bottom" secondItem="JNi-La-zTy" secondAttribute="bottom" constant="25" id="bE5-BA-79o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xr3-7n-o3A"/>
+                    <connections>
+                        <outlet property="tableView" destination="Yin-5f-im3" id="GM6-yc-hdg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ST3-Ae-7aa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="717" y="94"/>
         </scene>
+        <!--Modal View Controller-->
+        <scene sceneID="vRz-ni-6tC">
+            <objects>
+                <viewController id="SNU-y8-gn6" customClass="ModalViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UuQ-Za-hEc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPK-S9-hIB">
+                                <rect key="frame" x="87" y="368" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="P6g-nb-C0z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DN9-9T-WXk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbb-Tz-e6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1545" y="84"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yu9-SS-UMb">
+            <objects>
+                <viewController id="CcI-1N-fal" customClass="CSViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rec-gd-fPw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="H1S-U7-89K"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ezg-zK-vZ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="680" y="844"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="oqg-UQ-MjP">
+            <objects>
+                <viewController id="vva-jx-uRF" customClass="SettingViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sqC-eU-ldG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="XRd-oJ-jmg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PqR-1l-zT7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1328" y="844"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kMs-K5-WaU"/>
+        <segue reference="j0L-8M-6Kj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
         <image name="chevron.compact.right" catalog="system" width="64" height="128"/>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
+        <image name="ic_plus_blue" width="46" height="46"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
@@ -420,6 +526,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

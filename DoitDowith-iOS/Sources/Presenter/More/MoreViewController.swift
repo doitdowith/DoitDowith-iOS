@@ -42,6 +42,12 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
         tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.row {
+            case 0: self.navigationController?.pushViewController(NoticeViewController(), animated: true)
+            case 1: self.navigationController?.pushViewController(CSViewController(), animated: true)
+            case 2: self.navigationController?.pushViewController(SettingViewController(), animated: true)
+            default: break
+        }
         
     }
 }
