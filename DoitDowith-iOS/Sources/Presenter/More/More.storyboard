@@ -14,6 +14,12 @@
         <array key="Pretendard-Bold.otf">
             <string>Pretendard-Bold</string>
         </array>
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Other Navigation Controller-->
@@ -78,12 +84,12 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mh8-8H-Byb">
                                         <rect key="frame" x="171.5" y="134" width="39" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0zj-zg-cas">
-                                        <rect key="frame" x="115" y="158" width="152" height="20"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="0zj-zg-cas">
+                                        <rect key="frame" x="121" y="158" width="140" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두윗코드: SQW124A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmX-Rw-KVn">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
@@ -91,13 +97,19 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="iBx-6U-CKF"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="11"/>
+                                                <color key="textColor" red="0.50588238240000005" green="0.52549022440000004" blue="0.55686277149999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.on.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="842-Ez-lPS">
-                                                <rect key="frame" x="135" y="-1.5" width="17" height="23"/>
-                                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                                <rect key="frame" x="123" y="-1.5" width="17" height="23"/>
+                                                <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="17" id="KL8-az-NXP"/>
                                                 </constraints>
@@ -120,14 +132,14 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="참여 횟수" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1e-rI-6kP">
                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="14.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="12"/>
+                                                        <color key="textColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="m번" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UF-Cl-wcc">
                                                         <rect key="frame" x="0.0" y="22.5" width="89" height="16.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                                                        <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -140,14 +152,14 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="성공률" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75X-p0-DRD">
                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="14"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="12"/>
+                                                        <color key="textColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="90%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7r7-wZ-LUd">
                                                         <rect key="frame" x="0.0" y="22" width="89" height="17"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                                                        <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -166,8 +178,8 @@
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="친구">
-                                                            <fontDescription key="titleFontDescription" name="Optima-Regular" family="Optima" pointSize="12"/>
-                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                            <fontDescription key="titleFontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="12"/>
+                                                            <color key="baseForegroundColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <segue destination="q34-cn-K91" kind="show" id="j0L-8M-6Kj"/>
@@ -182,7 +194,8 @@
                                                         <color key="tintColor" systemColor="labelColor"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="32명">
-                                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <fontDescription key="titleFontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                                                            <color key="baseForegroundColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <segue destination="q34-cn-K91" kind="show" id="kMs-K5-WaU"/>
@@ -214,6 +227,12 @@
                                     <constraint firstAttribute="trailing" secondItem="qKL-Ma-c2E" secondAttribute="trailing" constant="14" id="vuD-IK-JmY"/>
                                     <constraint firstItem="x6i-gQ-XUl" firstAttribute="centerX" secondItem="zPZ-qv-0mW" secondAttribute="centerX" id="w6I-bD-aHY"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SEM-TU-z47">
                                 <rect key="frame" x="16" y="385" width="398" height="428"/>
@@ -227,17 +246,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.compact.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-Cx-z3L">
-                                                    <rect key="frame" x="352" y="15" width="21" height="14"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_back" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-Cx-z3L">
+                                                    <rect key="frame" x="349" y="10" width="24" height="24"/>
                                                     <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="JeE-55-xKh"/>
-                                                        <constraint firstAttribute="width" constant="21" id="k1R-Pp-oQh"/>
+                                                        <constraint firstAttribute="height" constant="24" id="JeE-55-xKh"/>
+                                                        <constraint firstAttribute="width" constant="24" id="k1R-Pp-oQh"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.transform.rotation.z">
+                                                            <real key="value" value="3.1400000000000001"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공지사항" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6I-XN-kxR">
-                                                    <rect key="frame" x="0.0" y="11.5" width="59" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="8" y="13" width="52" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -245,7 +269,7 @@
                                             <constraints>
                                                 <constraint firstItem="SQK-Cx-z3L" firstAttribute="centerY" secondItem="n0p-Sc-woZ" secondAttribute="centerY" id="OND-nV-hBc"/>
                                                 <constraint firstItem="R6I-XN-kxR" firstAttribute="centerY" secondItem="n0p-Sc-woZ" secondAttribute="centerY" id="Xln-n4-Rbp"/>
-                                                <constraint firstItem="R6I-XN-kxR" firstAttribute="leading" secondItem="n0p-Sc-woZ" secondAttribute="leading" id="aAV-B1-jWb"/>
+                                                <constraint firstItem="R6I-XN-kxR" firstAttribute="leading" secondItem="n0p-Sc-woZ" secondAttribute="leading" constant="8" id="ah3-pB-9Lx"/>
                                                 <constraint firstItem="SQK-Cx-z3L" firstAttribute="centerY" secondItem="n0p-Sc-woZ" secondAttribute="centerY" id="cmT-fc-FYa"/>
                                                 <constraint firstAttribute="trailing" secondItem="SQK-Cx-z3L" secondAttribute="trailing" constant="25" id="p4C-R0-jAN"/>
                                             </constraints>
@@ -343,6 +367,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vDa-HH-7dn"/>
+                    <connections>
+                        <outlet property="navigationView" destination="kmZ-Qc-UXG" id="0KQ-TM-gFk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPn-OG-oW8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -647,6 +674,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j1m-H4-Ayo"/>
+                    <connections>
+                        <outlet property="navigationView" destination="eyR-Hy-Me7" id="37m-KB-CYV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezg-zK-vZ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -706,6 +736,9 @@
                             <constraint firstItem="YBg-yB-IAl" firstAttribute="leading" secondItem="XRd-oJ-jmg" secondAttribute="leading" id="VfP-IV-PUO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="navigationView" destination="YBg-yB-IAl" id="8mg-EG-h5R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqR-1l-zT7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -717,7 +750,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
-        <image name="chevron.compact.right" catalog="system" width="64" height="128"/>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
         <image name="ic_back" width="28" height="28"/>
         <image name="ic_plus_blue" width="46" height="46"/>

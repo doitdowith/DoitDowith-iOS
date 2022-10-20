@@ -9,6 +9,7 @@ import UIKit
 
 class NoticeViewController: UIViewController {
     
+    @IBOutlet weak var navigationView : UIView!
     
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
@@ -17,7 +18,11 @@ class NoticeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // view.backgroundColor = .red
+        // 네비게이션 바 뷰 밑줄
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: navigationView.frame.size.height-1, width: navigationView.frame.width, height: 0.4)
+        border.backgroundColor = UIColor.systemGray.cgColor
+        navigationView.layer.addSublayer((border))
 
         // Do any additional setup after loading the view.
     }
