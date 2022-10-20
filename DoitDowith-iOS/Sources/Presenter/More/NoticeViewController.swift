@@ -8,9 +8,16 @@
 import UIKit
 
 class NoticeViewController: UIViewController {
+    
+    
+    @IBAction func goBack() {
+        self.navigationController?.popViewController(animated: true)
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // view.backgroundColor = .red
 
         // Do any additional setup after loading the view.
     }

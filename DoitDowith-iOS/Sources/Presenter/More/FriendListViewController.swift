@@ -9,6 +9,11 @@ import UIKit
 
 class FriendListViewController: UIViewController {
     
+    @IBAction func goBack() {
+        self.navigationController?.popViewController(animated: true)
+        }
+
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func showModal(_ sender: UIButton) {

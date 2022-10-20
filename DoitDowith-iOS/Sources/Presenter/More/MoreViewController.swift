@@ -13,11 +13,11 @@ class MoreViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //navigation bar 커스텀
-        self.title = "더보기"
     }
 }
 
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -43,9 +43,18 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         print("selected")
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
-            case 0: self.navigationController?.pushViewController(NoticeViewController(), animated: true)
-            case 1: self.navigationController?.pushViewController(CSViewController(), animated: true)
-            case 2: self.navigationController?.pushViewController(SettingViewController(), animated: true)
+            case 0:
+                let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "NoticeViewController")
+                self.navigationController?.pushViewController(pushVC!, animated: true)
+                 
+            case 1:
+                let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "CSViewController")
+                self.navigationController?.pushViewController(pushVC!, animated: true)
+                   
+            case 2:
+                let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController")
+                self.navigationController?.pushViewController(pushVC!, animated: true)
+                    
             default: break
         }
         
