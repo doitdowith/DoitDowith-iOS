@@ -8,35 +8,18 @@
 import Foundation
 
 import RxSwift
+import Alamofire
 
+// mock 데이터 가져오기위해 만든 간단한 api
 enum HomeErrorType: Error {
   case pathError
   case decodeError
 }
 protocol HomeServiceProtocol {
-  func fetchCardList() -> Observable<[CardModel]>
+  func fetchCardList() -> Observable<[Card]>
 }
 struct HomeService: HomeServiceProtocol {
-//  func fetch -> Observable<[SectionOfChatModel]> {
-//    return fetch().map {
-//      var section: [SectionOfChatModel] = []
-//      var items: [ChatModel] = []
-//      var prev = ""
-//      for model in $0 {
-//        if prev.isEmpty || prev == model.time.prefix(10) {
-//          prev = model.time
-//          items.append(model)
-//        } else {
-//          section.append(SectionOfChatModel(header: prev, items: items))
-//          items.removeAll()
-//          items.append(model)
-//          prev = model.time
-//        }
-//      }
-//      return section
-//    }
-//  }
-  func fetchCardList() -> Observable<[CardModel]> {
+  func fetchCardList() -> Observable<[Card]> {
     return Observable.create { emitter in
       guard let path = Bundle.main.path(forResource: "homeMock", ofType: "json") else {
         emitter.onError(HomeErrorType.pathError)
@@ -47,7 +30,7 @@ struct HomeService: HomeServiceProtocol {
         return Disposables.create()
       }
       let data = jsonString.data(using: .utf8)
-      guard let data = data, let result = try? JSONDecoder().decode([CardModel].self, from: data) else {
+      guard let data = data, let result = try? JSONDecoder().decode([Card].self, from: data) else {
         emitter.onCompleted()
         return Disposables.create()
       }

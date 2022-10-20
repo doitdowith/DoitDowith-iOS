@@ -9,6 +9,7 @@ import Foundation
 
 import RxCocoa
 import RxDataSources
+import RxRelay
 import RxSwift
 
 protocol HomeViewModelInput {
@@ -18,7 +19,7 @@ protocol HomeViewModelInput {
 }
 
 protocol HomeViewModelOutput {
-  var doingCardList: BehaviorRelay<[[CardModel]]> { get }
+  var doingCardList: BehaviorRelay<[[Card]]> { get }
   var activated: Driver<Bool> { get }
   var doingButtonColor: Driver<UIColor> { get }
   var willDoButtonColor: Driver<UIColor> { get }
@@ -44,7 +45,7 @@ final class HomeViewModel: HomeViewModelInput,
   let buttonClickIndex: BehaviorRelay<Int>
   
   // Output
-  let doingCardList: BehaviorRelay<[[CardModel]]>
+  let doingCardList: BehaviorRelay<[[Card]]>
   let activated: Driver<Bool>
   let doingButtonColor: Driver<UIColor>
   let willDoButtonColor: Driver<UIColor>
@@ -55,7 +56,7 @@ final class HomeViewModel: HomeViewModelInput,
     let indicatorIndexing = BehaviorRelay<Int>(value: 0)
     let buttonIndexing = BehaviorRelay<Int>(value: 0)
     let activating = BehaviorRelay<Bool>(value: false)
-    let doingCards = BehaviorRelay<[[CardModel]]>(value: [])
+    let doingCards = BehaviorRelay<[[Card]]>(value: [])
     
     fetching
       .do(onNext: { _ in activating.accept(true) })

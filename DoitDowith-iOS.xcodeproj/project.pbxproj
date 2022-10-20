@@ -8,14 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
+		EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */; };
+		EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */; };
+		EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */; };
+		EE1F58F528F6711B0046ED09 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58F328F6711B0046ED09 /* ColorCell.swift */; };
+		EE1F58F628F6711B0046ED09 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE1F58F428F6711B0046ED09 /* ColorCell.xib */; };
+		EE1F58FB28F688B30046ED09 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58FA28F688B30046ED09 /* TargetType.swift */; };
+		EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58FD28F689340046ED09 /* HttpHeaderField.swift */; };
+		EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */; };
+		EE1F590728F68B0D0046ED09 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F590628F68B0D0046ED09 /* HomeAPI.swift */; };
+		EE1F590928F68B280046ED09 /* CardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F590828F68B280046ED09 /* CardResponse.swift */; };
+		EE1F590F28F68BC00046ED09 /* CardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F590E28F68BC00046ED09 /* CardRequest.swift */; };
+		EE1F591128F68C0E0046ED09 /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F591028F68C0E0046ED09 /* HomeTarget.swift */; };
 		EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */; };
+		EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */; };
+		EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A078C28F8736A002C7E5D /* Friend.swift */; };
+		EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079228F87473002C7E5D /* FriendRequest.swift */; };
+		EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079428F87478002C7E5D /* FriendResponse.swift */; };
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
 		EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */; };
 		EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */; };
 		EE4F4D6A28EAE73C000C2FE7 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */; };
 		EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */; };
-		EE4F4D7328EAEF5E000C2FE7 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7228EAEF5E000C2FE7 /* CardModel.swift */; };
+		EE4F4D7328EAEF5E000C2FE7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7228EAEF5E000C2FE7 /* Card.swift */; };
 		EE4F4D7728EAF04F000C2FE7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */; };
 		EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D7828EB0357000C2FE7 /* homeMock.json */; };
 		EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A328E98543005F65AC /* ChatHeaderView.swift */; };
@@ -33,9 +49,6 @@
 		EE77D5EA28D9D14000057EF8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5E928D9D14000057EF8 /* Home.storyboard */; };
 		EE77D5EE28D9D45100057EF8 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5ED28D9D45100057EF8 /* Image.xcassets */; };
 		EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */; };
-		EE77D5F228D9D64A00057EF8 /* Calendar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */; };
-		EE77D5F428D9D65500057EF8 /* Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F328D9D65500057EF8 /* Home.xcassets */; };
-		EE77D5F628D9D65F00057EF8 /* More.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5F528D9D65F00057EF8 /* More.xcassets */; };
 		EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */; };
 		EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */; };
 		EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */; };
@@ -51,6 +64,7 @@
 		EE889E9928DD6A87005DE44B /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E9028DD6A87005DE44B /* Pretendard-ExtraLight.otf */; };
 		EE8BE62E28F40747003686E3 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */; };
 		EE8BE63A28F4532C003686E3 /* StompManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BE63928F4532C003686E3 /* StompManager.swift */; };
+		EE8FF3F328FD4BC200EB5FBC /* StompTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */; };
 		EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0C0B728ED390500282A30 /* ContentCell.swift */; };
 		EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEA0C0B828ED390500282A30 /* ContentCell.xib */; };
 		EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EEAEAD1528E91EF4004CA8BA /* mock.json */; };
@@ -60,7 +74,11 @@
 		EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEDA1928D9C05D000141ED /* SceneDelegate.swift */; };
 		EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAEDA1D28D9C05D000141ED /* Main.storyboard */; };
 		EEAEDA2428D9C060000141ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAEDA2228D9C060000141ED /* LaunchScreen.storyboard */; };
-		EEC4991D28D9C2C5003AF6C4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC4991C28D9C2C5003AF6C4 /* Model.swift */; };
+		EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC949DE28F7E1A300A9661F /* FriendProfileCell.swift */; };
+		EEC949E128F7E1A300A9661F /* FriendProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEC949DF28F7E1A300A9661F /* FriendProfileCell.xib */; };
+		EEC949E328F7F37100A9661F /* InviteModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC949E228F7F37100A9661F /* InviteModalViewController.swift */; };
+		EEC949E728F8083300A9661F /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC949E528F8083300A9661F /* FriendCell.swift */; };
+		EEC949E828F8083300A9661F /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEC949E628F8083300A9661F /* FriendCell.xib */; };
 		EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAEC28E49D07002918EA /* Date+Extension.swift */; };
 		EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -69,14 +87,30 @@
 		24691D147FCF764B27B270A4 /* Pods-DoitDowith-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DF2D234DA10A353A3131702 /* Pods-DoitDowith-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.release.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewModel.swift; sourceTree = "<group>"; };
+		EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomInformationModal.swift; sourceTree = "<group>"; };
+		EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModalViewModel.swift; sourceTree = "<group>"; };
+		EE1F58F328F6711B0046ED09 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		EE1F58F428F6711B0046ED09 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
+		EE1F58FA28F688B30046ED09 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		EE1F58FD28F689340046ED09 /* HttpHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHeaderField.swift; sourceTree = "<group>"; };
+		EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		EE1F590628F68B0D0046ED09 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
+		EE1F590828F68B280046ED09 /* CardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResponse.swift; sourceTree = "<group>"; };
+		EE1F590E28F68BC00046ED09 /* CardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRequest.swift; sourceTree = "<group>"; };
+		EE1F591028F68C0E0046ED09 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteModalViewModel.swift; sourceTree = "<group>"; };
+		EE3A078C28F8736A002C7E5D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		EE3A079228F87473002C7E5D /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
+		EE3A079428F87478002C7E5D /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		EE4F4D7228EAEF5E000C2FE7 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		EE4F4D7228EAEF5E000C2FE7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		EE4F4D7828EB0357000C2FE7 /* homeMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeMock.json; sourceTree = "<group>"; };
 		EE5500A328E98543005F65AC /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
@@ -94,9 +128,6 @@
 		EE77D5E928D9D14000057EF8 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		EE77D5ED28D9D45100057EF8 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Calendar.xcassets; sourceTree = "<group>"; };
-		EE77D5F328D9D65500057EF8 /* Home.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Home.xcassets; sourceTree = "<group>"; };
-		EE77D5F528D9D65F00057EF8 /* More.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = More.xcassets; sourceTree = "<group>"; };
 		EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewController.swift; sourceTree = "<group>"; };
 		EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewController.swift; sourceTree = "<group>"; };
 		EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisionRoomSecondViewModel.swift; sourceTree = "<group>"; };
@@ -112,6 +143,7 @@
 		EE889E9028DD6A87005DE44B /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		EE8BE63928F4532C003686E3 /* StompManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompManager.swift; sourceTree = "<group>"; };
+		EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompTarget.swift; sourceTree = "<group>"; };
 		EEA0C0B728ED390500282A30 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		EEA0C0B828ED390500282A30 /* ContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
 		EEAEAD1528E91EF4004CA8BA /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
@@ -123,7 +155,11 @@
 		EEAEDA1E28D9C05D000141ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEAEDA2328D9C060000141ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEAEDA2528D9C060000141ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EEC4991C28D9C2C5003AF6C4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		EEC949DE28F7E1A300A9661F /* FriendProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileCell.swift; sourceTree = "<group>"; };
+		EEC949DF28F7E1A300A9661F /* FriendProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendProfileCell.xib; sourceTree = "<group>"; };
+		EEC949E228F7F37100A9661F /* InviteModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteModalViewController.swift; sourceTree = "<group>"; };
+		EEC949E528F8083300A9661F /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		EEC949E628F8083300A9661F /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		EEC9EAEC28E49D07002918EA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,16 +184,81 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE1F58F928F688A10046ED09 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EE1F590428F68AFA0046ED09 /* APIs */,
+				EE1F58FC28F688BB0046ED09 /* Bases */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EE1F58FC28F688BB0046ED09 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				EE1F58FA28F688B30046ED09 /* TargetType.swift */,
+				EE1F58FD28F689340046ED09 /* HttpHeaderField.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		EE1F590128F68A3E0046ED09 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F4D7128EAEF54000C2FE7 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		EE1F590228F68A6B0046ED09 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F4D7228EAEF5E000C2FE7 /* Card.swift */,
+				EE4F4D7828EB0357000C2FE7 /* homeMock.json */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EE1F590328F68A710046ED09 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				EEAEAD1528E91EF4004CA8BA /* mock.json */,
+				EE6A2BD928E48ED8000656AA /* ChatModel.swift */,
+				EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		EE1F590428F68AFA0046ED09 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				EE8FF3F128FD4BB900EB5FBC /* Stomp */,
+				EE1F590528F68AFF0046ED09 /* Home */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		EE1F590528F68AFF0046ED09 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A079628F8747D002C7E5D /* Card */,
+				EE3A079128F8746D002C7E5D /* Friend */,
+				EE1F590628F68B0D0046ED09 /* HomeAPI.swift */,
+				EE1F591028F68C0E0046ED09 /* HomeTarget.swift */,
+				EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		EE255BB728EADB2F00DB555E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE8FF3F028FD38D900EB5FBC /* Xib */,
 				EE6A2BCF28E48474000656AA /* ChatRoomController.swift */,
 				EE6A2BD128E485C1000656AA /* SendMessageCell.swift */,
-				EE6A2BD228E485C1000656AA /* SendMessageCell.xib */,
 				EE6A2BD528E4893B000656AA /* ReceiveMessageCell.swift */,
-				EE6A2BD628E4893B000656AA /* ReceiveMessageCell.xib */,
-				EE6A2BDB28E4938E000656AA /* ChatHeaderView.xib */,
 				EE5500A328E98543005F65AC /* ChatHeaderView.swift */,
+				EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,24 +267,98 @@
 			isa = PBXGroup;
 			children = (
 				EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */,
+				EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		EE255BBA28EADB4500DB555E /* Model */ = {
+		EE3A078428F8707E002C7E5D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EEAEAD1528E91EF4004CA8BA /* mock.json */,
-				EE6A2BD928E48ED8000656AA /* ChatModel.swift */,
-				EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */,
+				EE3A078728F87093002C7E5D /* Xib */,
+				EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */,
+				EEC949E228F7F37100A9661F /* InviteModalViewController.swift */,
+				EEC949E528F8083300A9661F /* FriendCell.swift */,
+				EEC949DE28F7E1A300A9661F /* FriendProfileCell.swift */,
 			);
-			path = Model;
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3A078528F87084002C7E5D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */,
+				EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EE3A078728F87093002C7E5D /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				EEC949DF28F7E1A300A9661F /* FriendProfileCell.xib */,
+				EEC949E628F8083300A9661F /* FriendCell.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		EE3A078828F870B1002C7E5D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A078A28F870C0002C7E5D /* Xib */,
+				EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */,
+				EE1F58F328F6711B0046ED09 /* ColorCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE3A078928F870B4002C7E5D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EE3A078A28F870C0002C7E5D /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				EE1F58F428F6711B0046ED09 /* ColorCell.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		EE3A078B28F87356002C7E5D /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A078C28F8736A002C7E5D /* Friend.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		EE3A079128F8746D002C7E5D /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A079228F87473002C7E5D /* FriendRequest.swift */,
+				EE3A079428F87478002C7E5D /* FriendResponse.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		EE3A079628F8747D002C7E5D /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				EE1F590E28F68BC00046ED09 /* CardRequest.swift */,
+				EE1F590828F68B280046ED09 /* CardResponse.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		EE3EA1A228D9CCAB00CEFE36 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EE7857FD28EDB3B600F8C309 /* MissionRoom */,
+				EE7857FD28EDB3B600F8C309 /* InviteMissionFirst */,
+				EEC949E428F8078C00A9661F /* InviteMissionSecond */,
 				EE4F4D6228EAE5E3000C2FE7 /* Home */,
 				EE6A2BCE28E48463000656AA /* Chat */,
 			);
@@ -211,8 +386,6 @@
 		EE4F4D6228EAE5E3000C2FE7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */,
-				EE4F4D7128EAEF54000C2FE7 /* Model */,
 				EE4F4D6E28EAEE6E000C2FE7 /* ViewModel */,
 				EE4F4D6D28EAEE61000C2FE7 /* View */,
 			);
@@ -240,35 +413,32 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		EE4F4D7128EAEF54000C2FE7 /* Model */ = {
+		EE4F4D7128EAEF54000C2FE7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EE4F4D7228EAEF5E000C2FE7 /* CardModel.swift */,
-				EE4F4D7828EB0357000C2FE7 /* homeMock.json */,
+				EE3A078B28F87356002C7E5D /* Friend */,
+				EE1F590328F68A710046ED09 /* Chat */,
+				EE1F590228F68A6B0046ED09 /* Home */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EE6A2BCE28E48463000656AA /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				EEAEAD1B28E9237E004CA8BA /* ChatService.swift */,
-				EE255BBA28EADB4500DB555E /* Model */,
 				EE255BB928EADB4100DB555E /* ViewModel */,
 				EE255BB728EADB2F00DB555E /* View */,
-				EE8BE63928F4532C003686E3 /* StompManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		EE7857FD28EDB3B600F8C309 /* MissionRoom */ = {
+		EE7857FD28EDB3B600F8C309 /* InviteMissionFirst */ = {
 			isa = PBXGroup;
 			children = (
-				EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */,
-				EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */,
-				EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */,
+				EE3A078928F870B4002C7E5D /* ViewModel */,
+				EE3A078828F870B1002C7E5D /* View */,
 			);
-			path = MissionRoom;
+			path = InviteMissionFirst;
 			sourceTree = "<group>";
 		};
 		EE889E8728DD6A37005DE44B /* Font */ = {
@@ -293,6 +463,26 @@
 				EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		EE8FF3F028FD38D900EB5FBC /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				EE6A2BD228E485C1000656AA /* SendMessageCell.xib */,
+				EE6A2BD628E4893B000656AA /* ReceiveMessageCell.xib */,
+				EE6A2BDB28E4938E000656AA /* ChatHeaderView.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		EE8FF3F128FD4BB900EB5FBC /* Stomp */ = {
+			isa = PBXGroup;
+			children = (
+				EEAEAD1B28E9237E004CA8BA /* ChatService.swift */,
+				EE8BE63928F4532C003686E3 /* StompManager.swift */,
+				EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */,
+			);
+			path = Stomp;
 			sourceTree = "<group>";
 		};
 		EEAEDA0B28D9C05D000141ED = {
@@ -339,9 +529,6 @@
 			children = (
 				EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */,
 				EE77D5ED28D9D45100057EF8 /* Image.xcassets */,
-				EE77D5F128D9D64A00057EF8 /* Calendar.xcassets */,
-				EE77D5F328D9D65500057EF8 /* Home.xcassets */,
-				EE77D5F528D9D65F00057EF8 /* More.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -360,18 +547,11 @@
 		EEC4991A28D9C2A4003AF6C4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EE1F590128F68A3E0046ED09 /* Domain */,
+				EE1F58F928F688A10046ED09 /* Network */,
 				EEC4991E28D9C2E8003AF6C4 /* Presenter */,
-				EEC4991B28D9C2BD003AF6C4 /* Model */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		EEC4991B28D9C2BD003AF6C4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EEC4991C28D9C2C5003AF6C4 /* Model.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		EEC4991E28D9C2E8003AF6C4 /* Presenter */ = {
@@ -386,6 +566,15 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		EEC949E428F8078C00A9661F /* InviteMissionSecond */ = {
+			isa = PBXGroup;
+			children = (
+				EE3A078528F87084002C7E5D /* ViewModel */,
+				EE3A078428F8707E002C7E5D /* View */,
+			);
+			path = InviteMissionSecond;
+			sourceTree = "<group>";
+		};
 		EEC9EAF028E4A329002918EA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +582,7 @@
 				EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */,
 				EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */,
 				EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */,
+				EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -478,8 +668,9 @@
 				EE77D5E628D9D10C00057EF8 /* More.storyboard in Resources */,
 				EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */,
 				EE889E9628DD6A87005DE44B /* Pretendard-Bold.otf in Resources */,
-				EE77D5F228D9D64A00057EF8 /* Calendar.xcassets in Resources */,
+				EEC949E128F7E1A300A9661F /* FriendProfileCell.xib in Resources */,
 				EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */,
+				EE1F58F628F6711B0046ED09 /* ColorCell.xib in Resources */,
 				EE6A2BD828E4893B000656AA /* ReceiveMessageCell.xib in Resources */,
 				EE889E9828DD6A87005DE44B /* Pretendard-Medium.otf in Resources */,
 				EE889E9328DD6A87005DE44B /* Pretendard-Thin.otf in Resources */,
@@ -489,9 +680,8 @@
 				EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */,
 				EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */,
 				EE6A2BD428E485C1000656AA /* SendMessageCell.xib in Resources */,
-				EE77D5F428D9D65500057EF8 /* Home.xcassets in Resources */,
+				EEC949E828F8083300A9661F /* FriendCell.xib in Resources */,
 				EE889E9428DD6A87005DE44B /* Pretendard-SemiBold.otf in Resources */,
-				EE77D5F628D9D65F00057EF8 /* More.xcassets in Resources */,
 				EE77D5E828D9D11600057EF8 /* Calendar.storyboard in Resources */,
 				EE889E9728DD6A87005DE44B /* Pretendard-Light.otf in Resources */,
 			);
@@ -565,32 +755,50 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */,
+				EE1F590F28F68BC00046ED09 /* CardRequest.swift in Sources */,
 				EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */,
 				EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */,
 				EE6A2BD728E4893B000656AA /* ReceiveMessageCell.swift in Sources */,
 				EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */,
+				EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */,
 				EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */,
-				EEC4991D28D9C2C5003AF6C4 /* Model.swift in Sources */,
 				EE4F4D7728EAF04F000C2FE7 /* HomeService.swift in Sources */,
 				EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */,
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
-				EE4F4D7328EAEF5E000C2FE7 /* CardModel.swift in Sources */,
+				EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */,
+				EE4F4D7328EAEF5E000C2FE7 /* Card.swift in Sources */,
 				EE8BE63A28F4532C003686E3 /* StompManager.swift in Sources */,
 				EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */,
+				EE1F590928F68B280046ED09 /* CardResponse.swift in Sources */,
 				EE8BE62E28F40747003686E3 /* TextFieldWithPadding.swift in Sources */,
 				EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */,
 				EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */,
+				EEC949E728F8083300A9661F /* FriendCell.swift in Sources */,
 				EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */,
 				EE77D5E428D9D0C100057EF8 /* CalendarViewController.swift in Sources */,
+				EEC949E328F7F37100A9661F /* InviteModalViewController.swift in Sources */,
+				EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */,
 				EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */,
+				EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */,
+				EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */,
+				EE1F590728F68B0D0046ED09 /* HomeAPI.swift in Sources */,
+				EE1F58FB28F688B30046ED09 /* TargetType.swift in Sources */,
 				EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */,
+				EE8FF3F328FD4BC200EB5FBC /* StompTarget.swift in Sources */,
 				EE6A2BD028E48474000656AA /* ChatRoomController.swift in Sources */,
 				EEAEAD1C28E9237E004CA8BA /* ChatService.swift in Sources */,
+				EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */,
+				EE1F58F528F6711B0046ED09 /* ColorCell.swift in Sources */,
 				EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */,
+				EE1F591128F68C0E0046ED09 /* HomeTarget.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
+				EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
+				EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */,
+				EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */,
 				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
 				EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */,
+				EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */,
 				EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

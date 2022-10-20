@@ -11,9 +11,11 @@ import NSObject_Rx
 import RxCocoa
 import RxKeyboard
 import RxSwift
+import RxRelay
 import RxViewController
 
 final class ChatRoomController: UIViewController {
+  // MARK: Interface Builder
   @IBOutlet weak var chatView: UITableView!
   @IBOutlet weak var textfieldView: UIView!
   @IBOutlet weak var textfield: UITextField!
@@ -22,11 +24,15 @@ final class ChatRoomController: UIViewController {
   @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
   
+  // MARK: Constant
   private var isModalOpen = false
   private let defaultBottomConstraint: CGFloat = 98
   private var keyboardHeight: CGFloat = 0
+  
+  // MARK: Properties
   private let viewModel: ChatRoomViewModelType
   
+  // MARK: Initializer
   init?(coder: NSCoder, viewModel: ChatRoomViewModelType) {
     self.viewModel = viewModel
     super.init(coder: coder)
@@ -36,6 +42,7 @@ final class ChatRoomController: UIViewController {
     fatalError("init(coder: viewModel:) has not been implemented")
   }
   
+  // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     self.registerNib()
@@ -67,12 +74,51 @@ final class ChatRoomController: UIViewController {
   }
 }
 
+// MARK: Basic functions
 extension ChatRoomController {
   func bind() {
-    // Bind ViewWillAppear
+    self.bindChatView()
+    self.bindKeyboard()
+    self.bindLifeCycle()
+    self.bindMessageField()
+  }
+  
+  // Configure Bottom Input View
+  func configureBottomInputView() {
+    self.textfieldView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
+  }
+  
+  // Configure Chat View(Table View)
+  func registerNib() {
+    let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
+    chatView.register(sendMessageCellNib,
+                      forCellReuseIdentifier: SendMessageCell.identifier)
+    
+    let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
+    chatView.register(receiveMessageCellNib,
+                      forCellReuseIdentifier: ReceiveMessageCell.identifier)
+  }
+}
+
+// MARK: Bind functions
+extension ChatRoomController {
+  func bindLifeCycle() {
     self.rx.viewWillAppear
       .map { _ in }
       .bind(to: viewModel.input.viewWillAppear)
+      .disposed(by: rx.disposeBag)
+    
+    self.rx.viewWillAppear
+      .withLatestFrom(self.viewModel.output.lastPosition)
+      .withUnretained(self)
+      .bind(onNext: { (owner, arg1) in
+        let (row, section) = arg1
+        print(row, section)
+        owner.chatView.scrollToRow(at: IndexPath(row: row,
+                                                 section: section),
+                                   at: .bottom,
+                                   animated: true)
+      })
       .disposed(by: rx.disposeBag)
     
     Observable
@@ -82,25 +128,15 @@ extension ChatRoomController {
         nav.rx.isNavigationBarHidden.onNext(state)
       })
       .disposed(by: rx.disposeBag)
-    
-    // Bind ChatView(table view)
+  }
+  
+  func bindChatView() {
     self.chatView.rx
       .setDelegate(self)
       .disposed(by: rx.disposeBag)
     
     viewModel.output.messageList
       .drive(self.chatView.rx.items(dataSource: viewModel.output.dataSource))
-      .disposed(by: rx.disposeBag)
-    
-    RxKeyboard.instance.visibleHeight
-      .map { height in
-        if height > 0 {
-          return -height + UIApplication.safeAreaEdgeInsets.bottom
-        } else {
-          return 0
-        }
-      }
-      .drive(self.textfieldBottomConstraint.rx.constant)
       .disposed(by: rx.disposeBag)
     
     viewModel.output.lastPosition
@@ -112,23 +148,32 @@ extension ChatRoomController {
       .disposed(by: rx.disposeBag)
   }
   
-  // MARK: Configure Bottom Input View
-  func configureBottomInputView() {
-    self.textfieldView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
+  func bindMessageField() {
+    self.textfield.rx
+      .controlEvent(.editingDidEndOnExit)
+      .withLatestFrom(self.textfield.rx.text)
+      .bind(onNext: {
+        self.viewModel.input.sendMessage.accept($0)
+        self.textfield.rx.text.onNext("")
+      })
+      .disposed(by: rx.disposeBag)
   }
   
-  // MARK: Configure Chat View(Table View)
-  func registerNib() {
-    let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
-    chatView.register(sendMessageCellNib,
-                      forCellReuseIdentifier: SendMessageCell.identifier)
-    
-    let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
-    chatView.register(receiveMessageCellNib,
-                      forCellReuseIdentifier: ReceiveMessageCell.identifier)
+  func bindKeyboard() {
+    RxKeyboard.instance.visibleHeight
+      .map { height in
+        if height > 0 {
+          return -height + UIApplication.safeAreaEdgeInsets.bottom
+        } else {
+          return 0
+        }
+      }
+      .drive(self.textfieldBottomConstraint.rx.constant)
+      .disposed(by: rx.disposeBag)
   }
 }
-// MARK: - TableView DataSource, Delegate
+
+// MARK: TableView DataSource, Delegate
 extension ChatRoomController: UITableViewDelegate {
   // MARK: Header DataSource
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

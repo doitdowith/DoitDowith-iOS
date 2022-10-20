@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 protocol ContentCellDelegate: AnyObject {
-  func contentCell(_ cell: UICollectionViewCell, didSelectCell: CardModel)
+  func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card)
 }
 class ContentCell: UICollectionViewCell {
   static let identifier = "ContentCell"
@@ -20,7 +20,7 @@ class ContentCell: UICollectionViewCell {
   weak var delegate: ContentCellDelegate?
   
   let disposeBag = DisposeBag()
-  let modelRelay = PublishRelay<[CardModel]>()
+  let modelRelay = PublishRelay<[Card]>()
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -37,9 +37,8 @@ class ContentCell: UICollectionViewCell {
       }
                                                  .disposed(by: disposeBag)
     
-    self.cardCollectionView.rx.modelSelected(CardModel.self)
+    self.cardCollectionView.rx.modelSelected(Card.self)
       .bind(onNext: { model in
-        print(model)
         self.delegate?.contentCell(self, didSelectCell: model)
       }).disposed(by: disposeBag)
   }
