@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1824EDAF29019BDC007BA66B /* OtherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDAE29019BDC007BA66B /* OtherTableViewCell.swift */; };
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
 		EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */; };
 		EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1824EDAE29019BDC007BA66B /* OtherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTableViewCell.swift; sourceTree = "<group>"; };
 		24691D147FCF764B27B270A4 /* Pods-DoitDowith-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DF2D234DA10A353A3131702 /* Pods-DoitDowith-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.release.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */,
+				1824EDAE29019BDC007BA66B /* OtherTableViewCell.swift */,
 				EE77D5E528D9D10B00057EF8 /* More.storyboard */,
 			);
 			path = More;
@@ -778,6 +781,7 @@
 				EE77D5E428D9D0C100057EF8 /* CalendarViewController.swift in Sources */,
 				EEC949E328F7F37100A9661F /* InviteModalViewController.swift in Sources */,
 				EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */,
+				1824EDAF29019BDC007BA66B /* OtherTableViewCell.swift in Sources */,
 				EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */,
 				EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */,
 				EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */,
