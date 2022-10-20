@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatHeaderView" customModule="DoitDowith_iOS" customModuleProvider="target">
             <connections>
-                <outlet property="dateLabel" destination="dTf-jI-r6t" id="GZN-Qg-PDe"/>
+                <outlet property="dateLabel" destination="dTf-jI-r6t" id="BFw-J1-aBZ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

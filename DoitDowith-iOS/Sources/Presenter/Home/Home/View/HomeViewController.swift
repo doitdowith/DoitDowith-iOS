@@ -14,7 +14,7 @@ import RxSwift
 import RxViewController
 
 final class HomeViewController: UIViewController {
-  // MARK: - Interface Builder
+  // MARK: Interface Builder
   @IBOutlet weak var contentCollectionView: UICollectionView!
   @IBOutlet weak var doingButton: UILabel!
   @IBOutlet weak var willdoButton: UILabel!
@@ -24,31 +24,43 @@ final class HomeViewController: UIViewController {
   @IBOutlet weak var bottomLineWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var bottomLineLeadingConstraint: NSLayoutConstraint!
   
-  // MARK: - Constant
+  // MARK: Constant
   private let doingButtonLeftPadding: CGFloat = 16
   private let buttonSpacing: CGFloat = 12
   
-  // MARK: - Properties
+  // MARK: Properties
   var service: HomeServiceProtocol
   var viewModel: HomeViewModelType
   
-  // MARK: - Initializer
+  // MARK: Initializer
   required init?(coder: NSCoder) {
     self.service = HomeService()
     self.viewModel = HomeViewModel(service: service)
     super.init(coder: coder)
   }
   
-  // MARK: - Life Cycle
+  // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     self.registerNib()
     self.contentCollectionView.collectionViewLayout = self.colletionViewLayout()
-    self.bindViewModel()
+    self.bind()
+  }
+  
+  @IBAction func createMissionRoom(_ sender: UIButton) {
+    let missionRoomFirstViewModel: MissionRoomFirstViewModelType = MissionRoomFirstViewModel()
+    let viewController = UIStoryboard(name: "Home",
+                                      bundle: nil).instantiateViewController(identifier: "MissionRoomFirstVC",
+                                                                             creator: { coder in
+                                        MissionRoomFirstViewController(coder: coder,
+                                                                       viewModel: missionRoomFirstViewModel)
+                                      })
+    self.navigationController?.pushViewController(viewController, animated: true)
   }
 }
 
-// MARK: - Functions
+// MARK: - Basic functions
 extension HomeViewController {
   func registerNib() {
     let contentCellNib = UINib(nibName: "ContentCell", bundle: nil)
@@ -56,8 +68,8 @@ extension HomeViewController {
                                         forCellWithReuseIdentifier: ContentCell.identifier)
   }
   
-  func bindViewModel() {
-    self.bindViewWillAppear()
+  func bind() {
+    self.bindLifeCycle()
     self.bindContentCollectionView()
     self.bindPagingTabButton()
   }
@@ -93,9 +105,9 @@ extension HomeViewController {
   }
 }
 
-// MARK: - Bind ViewModel Function
+// MARK: - Bind functions
 extension HomeViewController {
-  func bindViewWillAppear() {
+  func bindLifeCycle() {
     // 네비게이션 바 없애기
     Observable.merge([
       rx.viewWillAppear.map { _ in true },
@@ -137,7 +149,12 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 0)
+        self.viewModel.input.buttonClickIndex.accept(0)
       })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.doingButtonColor
+      .drive(self.doingButton.rx.textColor)
       .disposed(by: rx.disposeBag)
     
     self.willdoButton.rx
@@ -147,7 +164,12 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 1)
+        self.viewModel.input.buttonClickIndex.accept(1)
       })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.willDoButtonColor
+      .drive(self.willdoButton.rx.textColor)
       .disposed(by: rx.disposeBag)
     
     self.doneButton.rx
@@ -157,18 +179,17 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 2)
+        self.viewModel.input.buttonClickIndex.accept(2)
       })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.doneButtonColor
+      .drive(self.doneButton.rx.textColor)
       .disposed(by: rx.disposeBag)
   }
 }
 
 extension HomeViewController: ContentCellDelegate {
-  func contentCell(_ cell: UICollectionViewCell, didSelectCell: CardModel) {
-    let viewController = UIStoryboard(name: "Home",
-                                      bundle: nil).instantiateViewController(identifier: "MissionRoomFirstVC",
-                                                                             creator: { coder in
-                                        MissionRoomFirstViewController(coder: coder)
-                                      })
-    self.navigationController?.pushViewController(viewController, animated: true)
+  func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card) {
   }
 }

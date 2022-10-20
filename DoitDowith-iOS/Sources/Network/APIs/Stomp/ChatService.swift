@@ -17,25 +17,6 @@ protocol ChatServiceProtocol {
   func fetchChatList() -> Observable<[ChatModel]>
 }
 struct ChatService: ChatServiceProtocol {
-//  func fetch -> Observable<[SectionOfChatModel]> {
-//    return fetch().map {
-//      var section: [SectionOfChatModel] = []
-//      var items: [ChatModel] = []
-//      var prev = ""
-//      for model in $0 {
-//        if prev.isEmpty || prev == model.time.prefix(10) {
-//          prev = model.time
-//          items.append(model)
-//        } else {
-//          section.append(SectionOfChatModel(header: prev, items: items))
-//          items.removeAll()
-//          items.append(model)
-//          prev = model.time
-//        }
-//      }
-//      return section
-//    }
-//  }
   func fetchChatList() -> Observable<[ChatModel]> {
     return Observable.create { emitter in
       guard let path = Bundle.main.path(forResource: "mock", ofType: "json") else {

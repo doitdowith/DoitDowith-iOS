@@ -11,11 +11,13 @@ import Action
 import NSObject_Rx
 import RxCocoa
 import RxDataSources
+import RxRelay
 import RxSwift
+import StompClientLib
 
 protocol ChatRoomViewModelInput {
   var viewWillAppear: PublishRelay<Void> { get }
-  var sendMessage: PublishRelay<String> { get }
+  var sendMessage: PublishRelay<String?> { get }
 }
 
 protocol ChatRoomViewModelOutput {
@@ -39,12 +41,14 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                ChatRoomViewModelOutput,
                                ChatRoomViewModelType {
   let disposeBag = DisposeBag()
+  let lib = StompClientLib()
+  
   var input: ChatRoomViewModelInput { return self }
   var output: ChatRoomViewModelOutput { return self }
   
   // Input
   let viewWillAppear: PublishRelay<Void>
-  let sendMessage: PublishRelay<String>
+  let sendMessage: PublishRelay<String?>
   
   // Output
   let messageList: Driver<[SectionOfChatModel]>
@@ -53,40 +57,46 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
   
-  init(id: Int, chatService: ChatServiceProtocol) {
+  init(id: Int, chatService: ChatServiceProtocol, stompManager: StompManagerProtocol) {
     let fetching = PublishRelay<Void>()
-    let message = PublishRelay<String>()
+    let message = PublishRelay<String?>()
     
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
-    
     message
-      .map { [ChatModel(id: id, name: "김영균", message: $0, time: Date.now.formatted())] }
+      .filter { $0 != nil }
+      .map { $0! }
+      .filter { !$0.isEmpty }
+      .do(onNext: { message in
+        stompManager.sendMessage(meesage: message)
+      })
+      .map { [ChatModel(id: 2, name: "김영균", message: $0, time: Date.now.formatted())] }
       .bind(onNext: allMessages.accept)
       .disposed(by: disposeBag)
     
+    self.viewWillAppear = fetching
+    self.sendMessage = message
+    self.messageList = allMessages
+      .scan([ChatModel](), accumulator: { prev, new in
+        return prev + new
+      })
+      .map { chat in
+        var section: [SectionOfChatModel] = []
+        chat.forEach { section.append(SectionOfChatModel(header: $0.time, items: [$0])) }
+        return section
+      }
+      .asDriver(onErrorJustReturn: [])
+    
     fetching
       .do(onNext: { _ in activating.accept(true) })
+        .do(onNext: { _ in stompManager.registerSocket() })
       .flatMap(chatService.fetchChatList)
       .do(onNext: { _ in activating.accept(false) })
       .do(onError: { err in error.accept(err) })
       .subscribe(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
         
-        self.viewWillAppear = fetching
-        self.sendMessage = message
-        self.messageList = allMessages
-        .scan([ChatModel](), accumulator: { prev, new in
-          return prev + new
-        })
-        .map { chat in
-          var section: [SectionOfChatModel] = []
-          chat.forEach { section.append(SectionOfChatModel(header: $0.time, items: [$0])) }
-          return section
-        }
-        .asDriver(onErrorJustReturn: [])
-    
     self.activated = activating
       .distinctUntilChanged()
       .asDriver(onErrorJustReturn: false)
@@ -94,7 +104,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     self.errorMessage = error
       .map { $0 as NSError }
       .asSignal(onErrorJustReturn: MyError.error as NSError)
-  
+    
     self.lastPosition = messageList
       .filter { !$0.isEmpty }
       .map { ($0[$0.endIndex - 1].items.count - 1, $0.count - 1) }

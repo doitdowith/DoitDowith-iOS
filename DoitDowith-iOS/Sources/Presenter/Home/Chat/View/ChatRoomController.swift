@@ -9,21 +9,30 @@ import UIKit
 
 import NSObject_Rx
 import RxCocoa
+import RxKeyboard
 import RxSwift
+import RxRelay
 import RxViewController
 
 final class ChatRoomController: UIViewController {
+  // MARK: Interface Builder
   @IBOutlet weak var chatView: UITableView!
-  @IBOutlet weak var bottomModalView: UIView!
-  @IBOutlet weak var messageTextField: UITextField!
+  @IBOutlet weak var textfieldView: UIView!
+  @IBOutlet weak var textfield: UITextField!
   @IBOutlet weak var modalButton: UIButton!
   
-  private var isModalOpen = false
-  private weak var bottomModalViewBottomConstraint: NSLayoutConstraint?
-  private let defaultBottomConstraint: CGFloat = 98
+  @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
   
+  // MARK: Constant
+  private var isModalOpen = false
+  private let defaultBottomConstraint: CGFloat = 98
+  private var keyboardHeight: CGFloat = 0
+  
+  // MARK: Properties
   private let viewModel: ChatRoomViewModelType
   
+  // MARK: Initializer
   init?(coder: NSCoder, viewModel: ChatRoomViewModelType) {
     self.viewModel = viewModel
     super.init(coder: coder)
@@ -33,17 +42,14 @@ final class ChatRoomController: UIViewController {
     fatalError("init(coder: viewModel:) has not been implemented")
   }
   
+  // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     self.registerNib()
     self.bind()
-    
-    for constraint in self.view.constraints where constraint.identifier == "InputViewBottom" {
-      self.bottomModalViewBottomConstraint = constraint
-    }
   }
   
-  /// 모달의 +버튼 클릭했을 때 실행되는 함수
+  // 모달의 +버튼 클릭했을 때 실행되는 함수
   // 액션도 뷰모델로 빼야하는데
   @IBAction func didTapAddButton(_ sender: UIButton) {
     var bottomHeight: CGFloat = 0
@@ -55,9 +61,10 @@ final class ChatRoomController: UIViewController {
       bottomHeight = 0
     }
     isModalOpen.toggle()
+    self.modalViewBottomConstraint.constant = bottomHeight
+    self.textfieldBottomConstraint.constant = bottomHeight - 98
     UIView.animate(withDuration: 0.4) { [weak self] in
       guard let self = self else { return }
-      self.bottomModalViewBottomConstraint?.constant = bottomHeight
       self.view.layoutIfNeeded()
     }
   }
@@ -67,15 +74,53 @@ final class ChatRoomController: UIViewController {
   }
 }
 
+// MARK: Basic functions
 extension ChatRoomController {
   func bind() {
-    // MARK: Bind ViewWillAppear
+    self.bindChatView()
+    self.bindKeyboard()
+    self.bindLifeCycle()
+    self.bindMessageField()
+  }
+  
+  // Configure Bottom Input View
+  func configureBottomInputView() {
+    self.textfieldView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
+  }
+  
+  // Configure Chat View(Table View)
+  func registerNib() {
+    let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
+    chatView.register(sendMessageCellNib,
+                      forCellReuseIdentifier: SendMessageCell.identifier)
+    
+    let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
+    chatView.register(receiveMessageCellNib,
+                      forCellReuseIdentifier: ReceiveMessageCell.identifier)
+  }
+}
+
+// MARK: Bind functions
+extension ChatRoomController {
+  func bindLifeCycle() {
     self.rx.viewWillAppear
       .map { _ in }
       .bind(to: viewModel.input.viewWillAppear)
       .disposed(by: rx.disposeBag)
     
-    // 네비게이션 바 없애기
+    self.rx.viewWillAppear
+      .withLatestFrom(self.viewModel.output.lastPosition)
+      .withUnretained(self)
+      .bind(onNext: { (owner, arg1) in
+        let (row, section) = arg1
+        print(row, section)
+        owner.chatView.scrollToRow(at: IndexPath(row: row,
+                                                 section: section),
+                                   at: .bottom,
+                                   animated: true)
+      })
+      .disposed(by: rx.disposeBag)
+    
     Observable
       .merge(self.rx.viewWillAppear.asObservable(), self.rx.viewWillDisappear.asObservable())
       .subscribe(onNext: { state in
@@ -83,21 +128,9 @@ extension ChatRoomController {
         nav.rx.isNavigationBarHidden.onNext(state)
       })
       .disposed(by: rx.disposeBag)
-    
-    // MARK: Bind Message Text Field
-    self.messageTextField.rx.controlEvent(.editingDidEndOnExit)
-      .withUnretained(self)
-      .withLatestFrom(messageTextField.rx.text)
-      .filter { $0 != nil && $0?.isEmpty == false }
-      .map { $0! }
-      .subscribe(onNext: { message in
-        self.messageTextField.rx.text.onNext("")
-        self.messageTextField.resignFirstResponder()
-        self.viewModel.input.sendMessage.accept(message)
-      })
-      .disposed(by: rx.disposeBag)
-    
-    // MARK: Bind ChatView(table view)
+  }
+  
+  func bindChatView() {
     self.chatView.rx
       .setDelegate(self)
       .disposed(by: rx.disposeBag)
@@ -106,72 +139,51 @@ extension ChatRoomController {
       .drive(self.chatView.rx.items(dataSource: viewModel.output.dataSource))
       .disposed(by: rx.disposeBag)
     
-        viewModel.output.lastPosition
-          .do(onNext: { row, section in
-            let indexPath = IndexPath(row: row, section: section)
-            self.chatView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-          })
-          .emit(onNext: { _ in })
-          .disposed(by: rx.disposeBag)
-    
-    // MARK: Bind keyboard notification
-    /// viewmodel로 빼야되긴함.
-    let keyboardWillShowObservable =
-    NotificationCenter.default.rx
-      .notification(UIResponder.keyboardWillShowNotification)
-      .map {
-        ($0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-         as? NSValue)?.cgRectValue.height ?? 0
-      }
-      .map { height in
-        return -height + self.defaultBottomConstraint + 34 // 34 수정해야하
-      }
-    
-    let keyboardWillHideObservable =
-    NotificationCenter.default.rx
-      .notification(UIResponder.keyboardWillHideNotification)
-      .map { _ -> CGFloat in self.defaultBottomConstraint }
-    
-    Observable
-      .merge(keyboardWillShowObservable, keyboardWillHideObservable)
-      .do(onNext: { self.bottomModalViewBottomConstraint?.constant = $0 })
-      .subscribe(onNext: { _ in })
+    viewModel.output.lastPosition
+      .do(onNext: { row, section in
+        let indexPath = IndexPath(row: row, section: section)
+        self.chatView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+      })
+      .emit(onNext: { _ in })
       .disposed(by: rx.disposeBag)
   }
   
-  // MARK: Configure Bottom Input View
-  func configureBottomInputView() {
-    self.bottomModalView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
+  func bindMessageField() {
+    self.textfield.rx
+      .controlEvent(.editingDidEndOnExit)
+      .withLatestFrom(self.textfield.rx.text)
+      .bind(onNext: {
+        self.viewModel.input.sendMessage.accept($0)
+        self.textfield.rx.text.onNext("")
+      })
+      .disposed(by: rx.disposeBag)
   }
   
-  // MARK: Configure Chat View(Table View)
-  func registerNib() {
-    let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
-    chatView.register(sendMessageCellNib,
-                      forCellReuseIdentifier: SendMessageCell.identifier)
-    let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
-    chatView.register(receiveMessageCellNib,
-                      forCellReuseIdentifier: ReceiveMessageCell.identifier)
-    let chatHeaderViewNib = UINib(nibName: "ChatHeaderCell", bundle: nil)
-    chatView.register(chatHeaderViewNib, forHeaderFooterViewReuseIdentifier: ChatHeaderView.identifier)
+  func bindKeyboard() {
+    RxKeyboard.instance.visibleHeight
+      .map { height in
+        if height > 0 {
+          return -height + UIApplication.safeAreaEdgeInsets.bottom
+        } else {
+          return 0
+        }
+      }
+      .drive(self.textfieldBottomConstraint.rx.constant)
+      .disposed(by: rx.disposeBag)
   }
 }
 
-// MARK: - TableView DataSource, Delegate
+// MARK: TableView DataSource, Delegate
 extension ChatRoomController: UITableViewDelegate {
   // MARK: Header DataSource
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 10
   }
   
-  //  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-  //    guard let header = tableView.dequeueReusableHeaderFooterView(
-  //      withIdentifier: ChatHeaderView.identifier) as? ChatHeaderView
-  //    else { return UIView() }
-  //    header.configure(day: "3")
-  //    print("good")
-  //    return header
-  //  }
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = ChatHeaderView()
+    return view
+  }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return CGFloat.leastNormalMagnitude
