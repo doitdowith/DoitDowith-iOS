@@ -8,9 +8,18 @@
 import UIKit
 
 class ModalViewController: UIViewController {
+    
+    @IBOutlet weak var mainView: UIView!
+    
+    @IBAction func goBack() {
+        self.navigationController?.popViewController(animated: true)
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.mainView.alpha = 0.2
+        self.view.sendSubviewToBack(mainView)
 
         // Do any additional setup after loading the view.
     }
