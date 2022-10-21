@@ -72,6 +72,11 @@ final class ChatRoomController: UIViewController {
   @IBAction func didTapNavBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
   }
+  @IBAction func showInformationModal(_ sender: UIButton) {
+    let informationModal = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "InformationModal")
+    informationModal.modalPresentationStyle = .overCurrentContext
+    self.present(informationModal, animated: false)
+  }
 }
 
 // MARK: Basic functions

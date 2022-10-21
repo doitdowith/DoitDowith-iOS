@@ -16,9 +16,17 @@ final class MissionRoomFirstViewController: UIViewController {
   // MARK: Interface Builder
   @IBOutlet weak var backButton: UIImageView!
   @IBOutlet weak var missionColorView: UICollectionView!
+  @IBOutlet weak var nameTextField: UITextField!
+  @IBOutlet weak var descriptionTextField: UITextField!
+  @IBOutlet weak var nextPageButton: UIButton!
   
   @IBAction func didTapNextPageButton(_ sender: UIButton) {
     let missionRoomSecondViewModel: MissionRoomSecondViewModelType = MisionRoomSecondViewModel()
+    self.viewModel.output.passData
+      .do(onNext: { print($0) })
+      .bind(to: missionRoomSecondViewModel.input.passedData)
+      .disposed(by: rx.disposeBag)
+    
     let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(
       identifier: "MissionRoomSecondVC",
       creator: { coder in
@@ -61,7 +69,9 @@ extension MissionRoomFirstViewController {
   func bind() {
     self.bindLifeCycle()
     self.bindBackButton()
-    self.bindMissionColoView()
+    self.bindMissionColorView()
+    self.bindNameTextField()
+    self.bindDescriptionTextField()
   }
   
   func collectionViewLayout() -> UICollectionViewLayout {
@@ -99,12 +109,54 @@ extension MissionRoomFirstViewController {
       .disposed(by: rx.disposeBag)
   }
   
-  func bindMissionColoView() {
+  func bindMissionColorView() {
     self.viewModel.output.missionColors
       .bind(to: self.missionColorView.rx.items(cellIdentifier: ColorCell.identifier,
                                                cellType: ColorCell.self)) { _, color, cell in
         cell.backgroundColor = color
       }
-                                               .disposed(by: rx.disposeBag)
+      .disposed(by: rx.disposeBag)
+    
+    Observable
+      .zip(self.missionColorView.rx.itemSelected, self.missionColorView.rx.modelSelected(UIColor.self))
+      .withUnretained(self)
+      .bind(onNext: { owner, arg in
+        let indexPath = arg.0
+        let color = arg.1
+        print(color)
+        owner.viewModel.input.currentMissionColor.accept(color.accessibilityName)
+      })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindNameTextField() {
+    self.nameTextField.rx.text
+      .debounce(.seconds(1), scheduler: MainScheduler.instance)
+      .filter { $0 != nil }
+      .map { $0! }
+      .filter { !$0.isEmpty }
+      .withUnretained(self)
+      .bind(onNext: { owner, text in
+        print("name: ", text)
+        owner.viewModel.input.currentMissionName.accept(text)
+      })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindDescriptionTextField() {
+    self.descriptionTextField.rx.text
+      .debounce(.seconds(1), scheduler: MainScheduler.instance)
+      .filter { $0 != nil }
+      .map { $0! }
+      .filter { !$0.isEmpty }
+      .withUnretained(self)
+      .bind(onNext: { owner, text in
+        print("des: ", text)
+        owner.viewModel.input.currentMissionDetail.accept(text)
+      })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindNextPageButton() {
   }
 }

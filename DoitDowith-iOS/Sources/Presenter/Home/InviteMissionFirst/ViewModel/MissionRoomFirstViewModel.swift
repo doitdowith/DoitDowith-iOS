@@ -11,14 +11,21 @@ import RxCocoa
 import RxRelay
 import RxSwift
 
+struct FirstRoomPassData {
+  let name: String
+  let description: String
+  let color: String
+}
+
 protocol MissionRoomFirstViewModelInput {
   var currentMissionName: PublishRelay<String> { get }
   var currentMissionDetail: PublishRelay<String> { get }
-  var currentMissionColor: PublishRelay<Int> { get }
+  var currentMissionColor: PublishRelay<String> { get }
 }
 
 protocol MissionRoomFirstViewModelOutput {
   var missionColors: BehaviorRelay<[UIColor]> { get }
+  var passData: Observable<FirstRoomPassData> { get }
 }
 
 protocol MissionRoomFirstViewModelType {
@@ -36,15 +43,21 @@ final class MissionRoomFirstViewModel: MissionRoomFirstViewModelInput,
   // Input
   let currentMissionName: PublishRelay<String>
   let currentMissionDetail: PublishRelay<String>
-  let currentMissionColor: PublishRelay<Int>
+  let currentMissionColor: PublishRelay<String>
   
   // Output
   let missionColors: BehaviorRelay<[UIColor]>
+  let passData: Observable<FirstRoomPassData>
   
   init() {
     self.currentMissionName = PublishRelay<String>()
     self.currentMissionDetail = PublishRelay<String>()
-    self.currentMissionColor = PublishRelay<Int>()
+    self.currentMissionColor = PublishRelay<String>()
+    
+    self.passData = Observable
+      .zip(self.currentMissionName.asObservable(), self.currentMissionDetail.asObservable(), self.currentMissionColor.asObservable())
+      .map { FirstRoomPassData(name: $0.0, description: $0.1, color: $0.2) }
+      .do(onNext: { print($0) })
     
     let colors = BehaviorRelay<[UIColor]>(value: [UIColor(red: 253/255, green: 236/255, blue: 236/255, alpha: 1),
                                                   UIColor(red: 253/255, green: 243/255, blue: 232/255, alpha: 1),
