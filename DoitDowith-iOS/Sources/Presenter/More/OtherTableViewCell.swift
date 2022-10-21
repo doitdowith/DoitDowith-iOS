@@ -11,7 +11,6 @@ class OtherTableViewCell: UITableViewCell {
     
     @IBOutlet weak var otherLabel: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

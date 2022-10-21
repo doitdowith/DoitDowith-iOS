@@ -8,7 +8,6 @@
 import UIKit
 
 class ModalViewController: UIViewController {
-    
     @IBOutlet weak var mainView: UIView!
     
     @IBAction func goBack() {
@@ -24,7 +23,6 @@ class ModalViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -34,5 +32,4 @@ class ModalViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

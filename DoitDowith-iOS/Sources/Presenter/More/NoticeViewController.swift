@@ -9,7 +9,7 @@ import UIKit
 
 class NoticeViewController: UIViewController {
     
-    @IBOutlet weak var navigationView : UIView!
+    @IBOutlet weak var navigationView: UIView!
     
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
@@ -27,7 +27,6 @@ class NoticeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -37,5 +36,4 @@ class NoticeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

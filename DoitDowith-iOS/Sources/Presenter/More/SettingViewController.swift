@@ -8,14 +8,11 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-    
-    @IBOutlet weak var navigationView : UIView!
+    @IBOutlet weak var navigationView: UIView!
 
-    
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
         }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +23,9 @@ class SettingViewController: UIViewController {
         border.backgroundColor = UIColor.systemGray.cgColor
         navigationView.layer.addSublayer((border))
 
-
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -40,5 +35,4 @@ class SettingViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

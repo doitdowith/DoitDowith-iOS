@@ -13,20 +13,17 @@ class FriendListViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         }
 
-    
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func showModal(_ sender: UIButton) {
     }
   
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -36,7 +33,6 @@ class FriendListViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
