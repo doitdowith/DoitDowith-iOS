@@ -43,6 +43,7 @@
 		EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D7828EB0357000C2FE7 /* homeMock.json */; };
 		EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A328E98543005F65AC /* ChatHeaderView.swift */; };
 		EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */; };
+		EE66961E290183C300ECFC9A /* MissionRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE66961D290183C300ECFC9A /* MissionRoomRequest.swift */; };
 		EE6A2BD028E48474000656AA /* ChatRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6A2BCF28E48474000656AA /* ChatRoomController.swift */; };
 		EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6A2BD128E485C1000656AA /* SendMessageCell.swift */; };
 		EE6A2BD428E485C1000656AA /* SendMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE6A2BD228E485C1000656AA /* SendMessageCell.xib */; };
@@ -129,6 +130,7 @@
 		EE4F4D7828EB0357000C2FE7 /* homeMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeMock.json; sourceTree = "<group>"; };
 		EE5500A328E98543005F65AC /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
 		EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
+		EE66961D290183C300ECFC9A /* MissionRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomRequest.swift; sourceTree = "<group>"; };
 		EE6A2BCF28E48474000656AA /* ChatRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomController.swift; sourceTree = "<group>"; };
 		EE6A2BD128E485C1000656AA /* SendMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageCell.swift; sourceTree = "<group>"; };
 		EE6A2BD228E485C1000656AA /* SendMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageCell.xib; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		EE1F590528F68AFF0046ED09 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE66961B290183AB00ECFC9A /* MissionRoom */,
 				EE3A079628F8747D002C7E5D /* Card */,
 				EE3A079128F8746D002C7E5D /* Friend */,
 				EE1F590628F68B0D0046ED09 /* HomeAPI.swift */,
@@ -442,6 +445,14 @@
 				EE1F590228F68A6B0046ED09 /* Home */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EE66961B290183AB00ECFC9A /* MissionRoom */ = {
+			isa = PBXGroup;
+			children = (
+				EE66961D290183C300ECFC9A /* MissionRoomRequest.swift */,
+			);
+			path = MissionRoom;
 			sourceTree = "<group>";
 		};
 		EE6A2BCE28E48463000656AA /* Chat */ = {
@@ -827,6 +838,7 @@
 				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
 				EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */,
 				EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */,
+				EE66961E290183C300ECFC9A /* MissionRoomRequest.swift in Sources */,
 				EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
