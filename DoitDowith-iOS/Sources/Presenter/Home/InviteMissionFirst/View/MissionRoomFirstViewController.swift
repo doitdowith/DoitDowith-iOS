@@ -23,7 +23,6 @@ final class MissionRoomFirstViewController: UIViewController {
   @IBAction func didTapNextPageButton(_ sender: UIButton) {
     let missionRoomSecondViewModel: MissionRoomSecondViewModelType = MisionRoomSecondViewModel()
     self.viewModel.output.passData
-      .do(onNext: { print($0) })
       .bind(to: missionRoomSecondViewModel.input.passedData)
       .disposed(by: rx.disposeBag)
     
@@ -56,6 +55,10 @@ final class MissionRoomFirstViewController: UIViewController {
     self.missionColorView.collectionViewLayout = self.collectionViewLayout()
     self.bind()
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
 }
 
 // MARK: - Basic Functions
@@ -72,6 +75,7 @@ extension MissionRoomFirstViewController {
     self.bindMissionColorView()
     self.bindNameTextField()
     self.bindDescriptionTextField()
+    self.bindNextPageButton()
   }
   
   func collectionViewLayout() -> UICollectionViewLayout {
@@ -111,19 +115,17 @@ extension MissionRoomFirstViewController {
   
   func bindMissionColorView() {
     self.viewModel.output.missionColors
-      .bind(to: self.missionColorView.rx.items(cellIdentifier: ColorCell.identifier,
-                                               cellType: ColorCell.self)) { _, color, cell in
+      .drive(self.missionColorView.rx.items(cellIdentifier: ColorCell.identifier,
+                                            cellType: ColorCell.self)) { _, color, cell in
         cell.backgroundColor = color
       }
-      .disposed(by: rx.disposeBag)
+                                            .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.missionColorView.rx.itemSelected, self.missionColorView.rx.modelSelected(UIColor.self))
       .withUnretained(self)
       .bind(onNext: { owner, arg in
-        let indexPath = arg.0
         let color = arg.1
-        print(color)
         owner.viewModel.input.currentMissionColor.accept(color.accessibilityName)
       })
       .disposed(by: rx.disposeBag)
@@ -131,13 +133,9 @@ extension MissionRoomFirstViewController {
   
   func bindNameTextField() {
     self.nameTextField.rx.text
-      .debounce(.seconds(1), scheduler: MainScheduler.instance)
-      .filter { $0 != nil }
       .map { $0! }
-      .filter { !$0.isEmpty }
       .withUnretained(self)
       .bind(onNext: { owner, text in
-        print("name: ", text)
         owner.viewModel.input.currentMissionName.accept(text)
       })
       .disposed(by: rx.disposeBag)
@@ -145,18 +143,23 @@ extension MissionRoomFirstViewController {
   
   func bindDescriptionTextField() {
     self.descriptionTextField.rx.text
-      .debounce(.seconds(1), scheduler: MainScheduler.instance)
-      .filter { $0 != nil }
       .map { $0! }
-      .filter { !$0.isEmpty }
       .withUnretained(self)
       .bind(onNext: { owner, text in
-        print("des: ", text)
         owner.viewModel.input.currentMissionDetail.accept(text)
       })
       .disposed(by: rx.disposeBag)
   }
   
   func bindNextPageButton() {
+    self.viewModel.output.buttonEnabled
+      .drive(self.nextPageButton.rx.isUserInteractionEnabled)
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.buttonColor
+      .drive(onNext: {
+        self.nextPageButton.setTitleColor($0, for: .normal)
+      })
+      .disposed(by: rx.disposeBag)
   }
 }
