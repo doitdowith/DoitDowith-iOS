@@ -59,7 +59,7 @@
 		EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */; };
 		EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */; };
 		EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */; };
-		EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */; };
+		EE78580328EDB62300F8C309 /* MissionRoomSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */; };
 		EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */; };
 		EE889E9128DD6A87005DE44B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8828DD6A87005DE44B /* Pretendard-Regular.otf */; };
 		EE889E9228DD6A87005DE44B /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8928DD6A87005DE44B /* Pretendard-Black.otf */; };
@@ -146,7 +146,7 @@
 		EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE7857FE28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewController.swift; sourceTree = "<group>"; };
 		EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewController.swift; sourceTree = "<group>"; };
-		EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MisionRoomSecondViewModel.swift; sourceTree = "<group>"; };
+		EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewModel.swift; sourceTree = "<group>"; };
 		EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		EE889E8828DD6A87005DE44B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		EE889E8928DD6A87005DE44B /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 		EE3A078528F87084002C7E5D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EE78580228EDB62300F8C309 /* MisionRoomSecondViewModel.swift */,
+				EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */,
 				EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */,
 			);
 			path = ViewModel;
@@ -815,7 +815,7 @@
 				EEC949E328F7F37100A9661F /* InviteModalViewController.swift in Sources */,
 				EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */,
 				1824EDAF29019BDC007BA66B /* OtherTableViewCell.swift in Sources */,
-				EE78580328EDB62300F8C309 /* MisionRoomSecondViewModel.swift in Sources */,
+				EE78580328EDB62300F8C309 /* MissionRoomSecondViewModel.swift in Sources */,
 				EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */,
 				EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */,
 				EE1F590728F68B0D0046ED09 /* HomeAPI.swift in Sources */,

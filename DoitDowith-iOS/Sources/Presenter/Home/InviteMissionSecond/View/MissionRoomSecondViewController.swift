@@ -18,6 +18,8 @@ final class MissionRoomSecondViewController: UIViewController {
   @IBOutlet weak var backButton: UIImageView!
   @IBOutlet weak var friendCollectionView: UICollectionView!
   @IBOutlet weak var makeButton: UIButton!
+  @IBOutlet weak var dateTextfield: UITextField!
+  @IBOutlet weak var certificateCountTextField: UITextField!
   
   @IBAction func didTapCompleteButton(_ sender: UIButton) {
     let charRoomService = ChatService()
@@ -33,6 +35,12 @@ final class MissionRoomSecondViewController: UIViewController {
   }
   
   // MARK: Properties
+  private lazy var datePicker: UIDatePicker = {
+    let picker = UIDatePicker()
+    picker.preferredDatePickerStyle = .wheels
+    picker.datePickerMode = .date
+    return picker
+  }()
   private let viewModel: MissionRoomSecondViewModelType
   
   // MARK: Initializers
@@ -50,7 +58,12 @@ final class MissionRoomSecondViewController: UIViewController {
     super.viewDidLoad()
     self.friendCollectionView.collectionViewLayout = self.collectionViewLayout()
     self.registerCells()
+    self.configureDatePicker()
     self.bind()
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
   }
 }
 
@@ -60,6 +73,9 @@ extension MissionRoomSecondViewController {
     self.bindLifeCylce()
     self.bindBackButton()
     self.bindFriendCollectionView()
+    self.bindMakeButton()
+    self.bindDateTextField()
+    self.bindCertificateCountTextField()
   }
   
   func registerCells() {
@@ -128,5 +144,62 @@ extension MissionRoomSecondViewController {
         }
       }
       .disposed(by: rx.disposeBag)
+  }
+  
+  func bindMakeButton() {
+    self.viewModel.output.buttonEnabled
+      .drive(self.makeButton.rx.isUserInteractionEnabled)
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.buttonColor
+      .drive(self.makeButton.rx.backgroundColor)
+      .disposed(by: rx.disposeBag)
+    
+    self.makeButton.layer.cornerRadius = 2
+    self.makeButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+  }
+  
+  func bindDateTextField() {
+    self.dateTextfield.rx.text
+      .map { $0! }
+      .withUnretained(self)
+      .bind(onNext: { owner, text in
+        owner.viewModel.input.missionStartDate.accept(text)
+      })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindCertificateCountTextField() {
+    self.certificateCountTextField.rx.text
+      .map { $0! }
+      .withUnretained(self)
+      .bind(onNext: { owner, text in
+        owner.viewModel.input.missionCertificateCount.accept(text)
+      })
+      .disposed(by: rx.disposeBag)
+  }
+}
+
+// MARK: DatePicker functions
+extension MissionRoomSecondViewController {
+  func configureDatePicker() {
+    self.dateTextfield.inputView = self.datePicker
+    self.dateTextfield.inputAccessoryView = self.createDoneButton()
+  }
+  
+  func createDoneButton() -> UIToolbar {
+    let toolbar = UIToolbar()
+    toolbar.sizeToFit()
+    
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                     target: nil,
+                                     action: #selector(donePressed))
+    toolbar.setItems([doneButton], animated: true)
+    return toolbar
+  }
+  
+  @objc func donePressed() {
+    self.dateTextfield.rx.text.onNext("\(self.datePicker.date.formatted(format: "yy-MM-dd"))")
+    self.view.endEditing(true)
   }
 }

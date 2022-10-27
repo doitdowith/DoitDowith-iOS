@@ -24,7 +24,9 @@ protocol MissionRoomFirstViewModelInput {
 }
 
 protocol MissionRoomFirstViewModelOutput {
-  var missionColors: BehaviorRelay<[UIColor]> { get }
+  var buttonEnabled: Driver<Bool> { get }
+  var buttonColor: Driver<UIColor> { get }
+  var missionColors: Driver<[UIColor]> { get }
   var passData: Observable<FirstRoomPassData> { get }
 }
 
@@ -34,8 +36,8 @@ protocol MissionRoomFirstViewModelType {
 }
 
 final class MissionRoomFirstViewModel: MissionRoomFirstViewModelInput,
-                                 MissionRoomFirstViewModelOutput,
-                                 MissionRoomFirstViewModelType {
+                                       MissionRoomFirstViewModelOutput,
+                                       MissionRoomFirstViewModelType {
   var disposeBag = DisposeBag()
   var input: MissionRoomFirstViewModelInput { return self }
   var output: MissionRoomFirstViewModelOutput { return self }
@@ -46,7 +48,9 @@ final class MissionRoomFirstViewModel: MissionRoomFirstViewModelInput,
   let currentMissionColor: PublishRelay<String>
   
   // Output
-  let missionColors: BehaviorRelay<[UIColor]>
+  let buttonEnabled: Driver<Bool>
+  let buttonColor: Driver<UIColor>
+  let missionColors: Driver<[UIColor]>
   let passData: Observable<FirstRoomPassData>
   
   init() {
@@ -54,18 +58,37 @@ final class MissionRoomFirstViewModel: MissionRoomFirstViewModelInput,
     self.currentMissionDetail = PublishRelay<String>()
     self.currentMissionColor = PublishRelay<String>()
     
-    self.passData = Observable
-      .zip(self.currentMissionName.asObservable(), self.currentMissionDetail.asObservable(), self.currentMissionColor.asObservable())
-      .map { FirstRoomPassData(name: $0.0, description: $0.1, color: $0.2) }
-      .do(onNext: { print($0) })
-    
     let colors = BehaviorRelay<[UIColor]>(value: [UIColor(red: 253/255, green: 236/255, blue: 236/255, alpha: 1),
                                                   UIColor(red: 253/255, green: 243/255, blue: 232/255, alpha: 1),
                                                   UIColor(red: 245/255, green: 247/255, blue: 229/255, alpha: 1),
                                                   UIColor(red: 229/255, green: 243/255, blue: 251/255, alpha: 1),
                                                   UIColor(red: 235/255, green: 235/255, blue: 252/255, alpha: 1),
                                                   UIColor(red: 255/255, green: 237/255, blue: 250/255, alpha: 1)])
-  
-    self.missionColors = colors
+    
+    let enable = Observable
+      .combineLatest(currentMissionName,
+                     currentMissionDetail,
+                     currentMissionColor)
+      .map { (name, detail, _) -> Bool in
+        return !name.isEmpty && !detail.isEmpty
+      }
+    
+    self.buttonEnabled = enable.asDriver(onErrorJustReturn: false)
+    self.buttonColor = enable.map { can -> UIColor in
+      if can {
+        return UIColor(red: 67/255, green: 136/255, blue: 238/255, alpha: 1)
+      } else {
+        return UIColor(red: 186/255, green: 211/255, blue: 249/255, alpha: 1)
+      }
+    }.asDriver(onErrorJustReturn: UIColor(red: 186/255,
+                                          green: 211/255,
+                                          blue: 249/255,
+                                          alpha: 1))
+    self.missionColors = colors.asDriver(onErrorJustReturn: [UIColor]())
+    self.passData = Observable
+      .zip(self.currentMissionName.asObservable(),
+           self.currentMissionDetail.asObservable(),
+           self.currentMissionColor.asObservable())
+      .map { FirstRoomPassData(name: $0.0, description: $0.1, color: $0.2) }
   }
 }
