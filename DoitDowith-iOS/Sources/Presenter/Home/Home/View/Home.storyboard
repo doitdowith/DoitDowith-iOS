@@ -737,7 +737,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruP-yX-UUL" userLabel="Modal View">
-                                <rect key="frame" x="0.0" y="812" width="375" height="700"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="700"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvW-Jh-nbm">
                                         <rect key="frame" x="152" y="12" width="71" height="3"/>
@@ -748,34 +748,39 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8e-wv-Ztl">
-                                        <rect key="frame" x="24" y="46" width="73" height="25.666666666666671"/>
+                                        <rect key="frame" x="24" y="46" width="73" height="24.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="21"/>
                                         <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-3U-8sM">
-                                        <rect key="frame" x="24.000000000000014" y="83.666666666666629" width="244.33333333333337" height="31.333333333333329"/>
+                                        <rect key="frame" x="24.000000000000014" y="82.666666666666657" width="244.33333333333337" height="31.333333333333329"/>
                                         <string key="text">미션은 2인 이상 참여 가능하며,
 4명 이상 초대 시 선착순으로 입장이 마감됩니다!</string>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
                                         <color key="textColor" red="0.93725490196078431" green="0.33725490196078434" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <searchBar contentMode="redraw" placeholder="검색창" translatesAutoresizingMaskIntoConstraints="NO" id="hya-Ko-Kgc">
-                                        <rect key="frame" x="16" y="136" width="343" height="42"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="검색창" translatesAutoresizingMaskIntoConstraints="NO" id="hya-Ko-Kgc">
+                                        <rect key="frame" x="16" y="135" width="343" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="fR5-e6-Obh"/>
                                         </constraints>
+                                        <offsetWrapper key="searchTextPositionAdjustment" horizontal="10" vertical="0.0"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구 10명" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bg-d5-UHL">
-                                        <rect key="frame" x="24" y="198" width="48" height="14"/>
+                                        <rect key="frame" x="24" y="197" width="48" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piH-f5-fEQ" userLabel="select button">
-                                        <rect key="frame" x="254.66666666666663" y="198" width="14" height="14"/>
+                                        <rect key="frame" x="253.66666666666663" y="197" width="14" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14" id="0BY-17-p1C"/>
                                             <constraint firstAttribute="width" constant="14" id="l5w-xd-FTx"/>
@@ -788,13 +793,13 @@
                                         </buttonConfiguration>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="참여 가능 친구만" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2k-oc-dsn">
-                                        <rect key="frame" x="272.66666666666669" y="198" width="78.333333333333314" height="14"/>
+                                        <rect key="frame" x="271.66666666666669" y="197" width="79.333333333333314" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" red="0.66274509800000003" green="0.68627450980000004" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x5b-Jo-9H1">
-                                        <rect key="frame" x="16" y="225" width="343" height="459"/>
+                                        <rect key="frame" x="16" y="224" width="343" height="460"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZT-oS-LaA">
@@ -848,7 +853,7 @@
                             <constraint firstItem="dbW-Md-ZHA" firstAttribute="trailing" secondItem="ruP-yX-UUL" secondAttribute="trailing" id="Cgo-x3-a0u"/>
                             <constraint firstItem="ruP-yX-UUL" firstAttribute="leading" secondItem="dbW-Md-ZHA" secondAttribute="leading" id="Hf1-23-UYf"/>
                             <constraint firstItem="5EH-Qa-ydG" firstAttribute="top" secondItem="U6l-Ny-Ocx" secondAttribute="top" id="JFF-pY-2rE"/>
-                            <constraint firstItem="ruP-yX-UUL" firstAttribute="bottom" secondItem="U6l-Ny-Ocx" secondAttribute="bottom" constant="700" id="R8r-bN-oyF"/>
+                            <constraint firstItem="ruP-yX-UUL" firstAttribute="bottom" secondItem="U6l-Ny-Ocx" secondAttribute="bottom" id="R8r-bN-oyF"/>
                         </constraints>
                     </view>
                     <connections>
@@ -857,6 +862,7 @@
                         <outlet property="contentViewHeightConstraint" destination="uMq-yS-qZX" id="vub-38-BXo"/>
                         <outlet property="dimmedView" destination="5EH-Qa-ydG" id="Ab6-BJ-3Da"/>
                         <outlet property="friendListTableView" destination="x5b-Jo-9H1" id="I4K-9W-8Be"/>
+                        <outlet property="searchbar" destination="hya-Ko-Kgc" id="0Kr-Sa-a5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa4-8e-tjL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1012,7 +1018,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpo-CF-rEy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2967" y="1643"/>
+            <point key="canvasLocation" x="2927" y="1546"/>
         </scene>
     </scenes>
     <resources>

@@ -37,18 +37,4 @@ extension ReceiveMessageCell {
     receiveMessageTextView.text = message
     receiveTimeLabel.text = time
   }
-  
-  func addTipView() {
-    let path = CGMutablePath()
-    path.move(to: CGPoint(x: 0, y: 0)) // 시작 위치
-    path.addLine(to: CGPoint(x: -6.5, y: 0))
-    path.addLine(to: CGPoint(x: 0, y: 6.5))
-    path.addLine(to: CGPoint(x: 0, y: 0))
-    let shape = CAShapeLayer()
-    shape.cornerRadius = 2
-    shape.path = path
-    shape.fillColor = UIColor.white.cgColor
-    self.messageView.layer.insertSublayer(shape, at: 0)
-    self.messageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-  }
 }

@@ -13,9 +13,11 @@ enum ErrorType: Error {
   case pathError
   case decodeError
 }
+
 protocol ChatServiceProtocol {
   func fetchChatList() -> Observable<[ChatModel]>
 }
+
 struct ChatService: ChatServiceProtocol {
   func fetchChatList() -> Observable<[ChatModel]> {
     return Observable.create { emitter in
@@ -28,11 +30,11 @@ struct ChatService: ChatServiceProtocol {
         return Disposables.create()
       }
       let data = jsonString.data(using: .utf8)
-      guard let data = data, let result = try? JSONDecoder().decode([ChatModel].self, from: data) else {
-        emitter.onCompleted()
+      guard let data = data, let result = try? JSONDecoder().decode(ChatResponse.self, from: data) else {
+        emitter.onError(MyError.error)
         return Disposables.create()
       }
-      emitter.onNext(result)
+      emitter.onNext(result.toDomain)
       emitter.onCompleted()
       return Disposables.create()
     }

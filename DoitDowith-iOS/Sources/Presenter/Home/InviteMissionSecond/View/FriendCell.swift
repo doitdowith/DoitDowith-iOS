@@ -20,5 +20,15 @@ class FriendCell: UITableViewCell {
   
   override func prepareForReuse() {
     super.prepareForReuse()
+    self.profileImage.image = nil
+    self.nameLabel.text = ""
+    self.inviteStateLabel.text = ""
+  }
+}
+
+extension FriendCell {
+  func configure(name: String, state: String) {
+    self.nameLabel.text = name
+    self.inviteStateLabel.text = state
   }
 }

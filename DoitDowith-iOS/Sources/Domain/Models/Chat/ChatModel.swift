@@ -9,14 +9,24 @@ import Foundation
 
 import RxDataSources
 
-struct ChatModel: Codable {
+enum MessageType {
+  case receiveMessageWithProfile
+  case receiveMessage
+  case sendMessageWithTip
+  case sendMessage  
+}
+struct ChatModel {
+  var type: MessageType
   var memberId: Int
+  var image: String
   var name: String
   var message: String
   var time: String
   
-  init(id: Int, name: String, message: String, time: String) {
+  init(type: MessageType, id: Int, image: String, name: String, message: String, time: String) {
+    self.type = type
     self.memberId = id
+    self.image = image
     self.name = name
     self.message = message
     self.time = time

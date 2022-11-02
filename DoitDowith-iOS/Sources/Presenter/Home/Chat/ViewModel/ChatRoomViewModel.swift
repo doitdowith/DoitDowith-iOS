@@ -64,6 +64,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
+    
     message
       .filter { $0 != nil }
       .map { $0! }
@@ -71,7 +72,12 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .do(onNext: { message in
         stompManager.sendMessage(meesage: message)
       })
-      .map { [ChatModel(id: 2, name: "김영균", message: $0, time: Date.now.formatted())] }
+      .map { [ChatModel(type: .sendMessage,
+                        id: 0,
+                        image: "",
+                        name: "",
+                        message: $0,
+                        time: Date.now.formatted())] }
       .bind(onNext: allMessages.accept)
       .disposed(by: disposeBag)
     
@@ -83,27 +89,42 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       })
       .map { chat in
         var section: [SectionOfChatModel] = []
-        chat.forEach { section.append(SectionOfChatModel(header: $0.time, items: [$0])) }
+        var row: [ChatModel] = []
+        var currentTime: String = ""
+        for message in chat {
+          if currentTime.isEmpty || currentTime == message.time {
+            row.append(message)
+            currentTime = message.time
+          } else {
+            section.append(SectionOfChatModel(header: currentTime, items: row))
+            row = []
+            row.append(message)
+            currentTime = message.time
+          }
+        }
+        if !row.isEmpty {
+          section.append(SectionOfChatModel(header: currentTime, items: row))
+        }
         return section
       }
       .asDriver(onErrorJustReturn: [])
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
-        .do(onNext: { _ in stompManager.registerSocket() })
+    // .do(onNext: { _ in stompManager.registerSocket() })
       .flatMap(chatService.fetchChatList)
       .do(onNext: { _ in activating.accept(false) })
-      .do(onError: { err in error.accept(err) })
-      .subscribe(onNext: { allMessages.accept($0) })
-      .disposed(by: disposeBag)
-        
-    self.activated = activating
-      .distinctUntilChanged()
-      .asDriver(onErrorJustReturn: false)
-    
-    self.errorMessage = error
-      .map { $0 as NSError }
-      .asSignal(onErrorJustReturn: MyError.error as NSError)
+        .do(onError: { err in error.accept(err) })
+        .subscribe(onNext: { allMessages.accept($0) })
+        .disposed(by: disposeBag)
+          
+          self.activated = activating
+          .distinctUntilChanged()
+          .asDriver(onErrorJustReturn: false)
+          
+          self.errorMessage = error
+          .map { $0 as NSError }
+          .asSignal(onErrorJustReturn: MyError.error as NSError)
     
     self.lastPosition = messageList
       .filter { !$0.isEmpty }
@@ -112,19 +133,39 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     
     self.dataSource = RxTableViewSectionedReloadDataSource<SectionOfChatModel>(
       configureCell: { _, tableView, indexPath, item in
-        if item.memberId == id {
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
-                                                         for: indexPath) as? SendMessageCell else {
+        switch item.type {
+        case .receiveMessageWithProfile:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageWithProfileCell.identifier,
+                                                         for: indexPath) as? ReceiveMessageWithProfileCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description, message: item.message)
+          cell.configure(image: item.image,
+                         name: item.name,
+                         message: item.message,
+                         time: item.time)
           return cell
-        } else {
+        case .receiveMessage:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageCell.identifier,
                                                          for: indexPath) as? ReceiveMessageCell else {
             return UITableViewCell()
           }
           cell.configure(time: item.time.suffix(7).description, message: item.message)
+          return cell
+        case .sendMessageWithTip:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
+                                                         for: indexPath) as? SendMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(7).description, message: item.message)
+          cell.addTipView()
+          return cell
+        case .sendMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
+                                                         for: indexPath) as? SendMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(7).description, message: item.message)
+          
           return cell
         }
       })

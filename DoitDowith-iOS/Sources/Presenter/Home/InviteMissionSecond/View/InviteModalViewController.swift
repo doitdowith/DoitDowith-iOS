@@ -17,6 +17,7 @@ final class InviteModalViewController: UIViewController {
   @IBOutlet weak var dimmedView: UIView!
   @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var friendListTableView: UITableView!
+  @IBOutlet weak var searchbar: UISearchBar!
   
   @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
@@ -34,12 +35,22 @@ final class InviteModalViewController: UIViewController {
     super.viewDidLoad()
     self.registerCells()
     self.configureModalView()
+    self.configureSearchbar()
     self.bind()
   }
 }
 
 // MARK: Basic Functions
 extension InviteModalViewController {
+  func configureSearchbar() {
+    self.searchbar.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+    self.searchbar.searchTextField.backgroundColor = UIColor(red: 247/255,
+                                                             green: 247/255,
+                                                             blue: 247/255,
+                                                             alpha: 1)
+    self.searchbar.searchTextField.font = UIFont(name: "Pretendard-Medium", size: 13)
+    self.searchbar.layer.borderWidth = 0
+  }
   func configureModalView() {
     self.contentView.layer.applySketchShadow(alpha: 0.08, x: 0, y: 0, blur: 4, spread: 0)
     self.contentView.layer.cornerRadius = 24
@@ -54,7 +65,9 @@ extension InviteModalViewController {
   func bind() {
     self.bindLifeCycle()
     self.bindDimmedView()
-    self.bindContentView()}
+    self.bindContentView()
+    self.bindFriendListTableView()
+  }
 }
 
 // MARK: Bind Functions
@@ -101,6 +114,9 @@ extension InviteModalViewController {
         self.animateContentView()
       })
       .disposed(by: rx.disposeBag)
+  }
+  
+  func bindFriendListTableView() {    
   }
 }
 

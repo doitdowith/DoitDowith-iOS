@@ -45,7 +45,7 @@ final class ChatRoomController: UIViewController {
   // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.registerNib()
+    self.register()
     self.bind()
   }
   
@@ -72,6 +72,7 @@ final class ChatRoomController: UIViewController {
   @IBAction func didTapNavBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
   }
+  
   @IBAction func showInformationModal(_ sender: UIButton) {
     let informationModal = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "InformationModal")
     informationModal.modalPresentationStyle = .overCurrentContext
@@ -94,7 +95,7 @@ extension ChatRoomController {
   }
   
   // Configure Chat View(Table View)
-  func registerNib() {
+  func register() {
     let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
     chatView.register(sendMessageCellNib,
                       forCellReuseIdentifier: SendMessageCell.identifier)
@@ -102,6 +103,12 @@ extension ChatRoomController {
     let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
     chatView.register(receiveMessageCellNib,
                       forCellReuseIdentifier: ReceiveMessageCell.identifier)
+    
+    let receiveMessageWithProfileCellNib = UINib(nibName: "ReceiveMessageWithProfileCell", bundle: nil)
+    chatView.register(receiveMessageWithProfileCellNib,
+                      forCellReuseIdentifier: ReceiveMessageWithProfileCell.identifier)
+    
+    chatView.register(DateView.self, forHeaderFooterViewReuseIdentifier: DateView.identifier)
   }
 }
 
@@ -182,11 +189,16 @@ extension ChatRoomController {
 extension ChatRoomController: UITableViewDelegate {
   // MARK: Header DataSource
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 10
+    return 35
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = ChatHeaderView()
+    guard let header = chatView.dequeueReusableHeaderFooterView(withIdentifier: DateView.identifier) as? DateView else {
+      return UIView()
+    }
+    header.configure(date: "2021.10.31 (목)")
+    let view = UIView()
+    view.backgroundColor = .red
     return view
   }
   
