@@ -36,6 +36,8 @@
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
 		EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */; };
+		EE45707E2914006100B13DF3 /* CertificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45707D2914006100B13DF3 /* CertificationViewModel.swift */; };
+		EE4570802914093100B13DF3 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45707F2914093100B13DF3 /* ImageCell.swift */; };
 		EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */; };
 		EE4F4D6A28EAE73C000C2FE7 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */; };
 		EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */; };
@@ -76,6 +78,7 @@
 		EE8BE62E28F40747003686E3 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */; };
 		EE8BE63A28F4532C003686E3 /* StompManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BE63928F4532C003686E3 /* StompManager.swift */; };
 		EE8FF3F328FD4BC200EB5FBC /* StompTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */; };
+		EE9EA67E2913D67B00F4E656 /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EA67D2913D67B00F4E656 /* CertificationViewController.swift */; };
 		EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0C0B728ED390500282A30 /* ContentCell.swift */; };
 		EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEA0C0B828ED390500282A30 /* ContentCell.xib */; };
 		EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EEAEAD1528E91EF4004CA8BA /* mock.json */; };
@@ -126,6 +129,8 @@
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		EE45707D2914006100B13DF3 /* CertificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewModel.swift; sourceTree = "<group>"; };
+		EE45707F2914093100B13DF3 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		EE4F4D6828EAE73C000C2FE7 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +171,7 @@
 		EE8BE62D28F40747003686E3 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		EE8BE63928F4532C003686E3 /* StompManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompManager.swift; sourceTree = "<group>"; };
 		EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompTarget.swift; sourceTree = "<group>"; };
+		EE9EA67D2913D67B00F4E656 /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		EEA0C0B728ED390500282A30 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		EEA0C0B828ED390500282A30 /* ContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCell.xib; sourceTree = "<group>"; };
 		EEAEAD1528E91EF4004CA8BA /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
@@ -383,6 +389,7 @@
 		EE3EA1A228D9CCAB00CEFE36 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE9EA67C2913D5E400F4E656 /* Certification */,
 				EE7857FD28EDB3B600F8C309 /* InviteMissionFirst */,
 				EEC949E428F8078C00A9661F /* InviteMissionSecond */,
 				EE4F4D6228EAE5E3000C2FE7 /* Home */,
@@ -532,6 +539,16 @@
 				EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */,
 			);
 			path = Stomp;
+			sourceTree = "<group>";
+		};
+		EE9EA67C2913D5E400F4E656 /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+				EE9EA67D2913D67B00F4E656 /* CertificationViewController.swift */,
+				EE45707D2914006100B13DF3 /* CertificationViewModel.swift */,
+				EE45707F2914093100B13DF3 /* ImageCell.swift */,
+			);
+			path = Certification;
 			sourceTree = "<group>";
 		};
 		EEAEDA0B28D9C05D000141ED = {
@@ -814,6 +831,7 @@
 				EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */,
 				1824EDB32901A7C5007BA66B /* CSViewController.swift in Sources */,
 				EE4F4D7728EAF04F000C2FE7 /* HomeService.swift in Sources */,
+				EE9EA67E2913D67B00F4E656 /* CertificationViewController.swift in Sources */,
 				EE63629B2912115900A78758 /* ReceiveMessageWithProfileCell.swift in Sources */,
 				EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */,
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
@@ -831,6 +849,7 @@
 				EE77D5E428D9D0C100057EF8 /* CalendarViewController.swift in Sources */,
 				EE23A853291001BC0050175C /* DateView.swift in Sources */,
 				1824EDB12901A7B6007BA66B /* NoticeViewController.swift in Sources */,
+				EE4570802914093100B13DF3 /* ImageCell.swift in Sources */,
 				EEC949E328F7F37100A9661F /* InviteModalViewController.swift in Sources */,
 				EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */,
 				1824EDAF29019BDC007BA66B /* OtherTableViewCell.swift in Sources */,
@@ -854,6 +873,7 @@
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
 				EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */,
 				EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */,
+				EE45707E2914006100B13DF3 /* CertificationViewModel.swift in Sources */,
 				1824EDB92901AB31007BA66B /* FriendListTableViewCell.swift in Sources */,
 				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
 				EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */,
