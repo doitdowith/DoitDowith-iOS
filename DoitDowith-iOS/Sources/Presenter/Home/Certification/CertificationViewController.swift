@@ -63,6 +63,8 @@ class CertificationViewController: UIViewController {
     camera.delegate = self
     self.present(camera, animated: true)
   }
+  
+  @IBAction func completeButtomDidTap(_ sender: UIButton) { }
 }
 
 // MARK: Bind function
@@ -73,6 +75,7 @@ extension CertificationViewController {
     self.bindKeyboard()
     self.bindImageCollectionView()
     self.bindBackgroundView()
+    self.bindCertificationTextView()
   }
   
   func bindLifeCycle() {
@@ -104,7 +107,6 @@ extension CertificationViewController {
   
   func bindImageCollectionView() {
     self.viewModel.output.images
-      .debug()
       .drive(self.imageCollectionView.rx.items(cellIdentifier: ImageCell.identifier,
                                                cellType: ImageCell.self)) { _, element, cell in
         cell.configure(image: element)
@@ -118,6 +120,38 @@ extension CertificationViewController {
       .bind(onNext: { owner, _ in
         owner.view.endEditing(true)
       })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindCertificationTextView() {
+    self.certificationTextView.rx.didBeginEditing
+      .withLatestFrom(self.certificationTextView.rx.text)
+      .filter { $0 != nil && $0! == "인증 글을 작성해보세요!" }
+      .bind(onNext: { _ in
+        self.certificationTextView.text = nil
+        self.certificationTextView.textColor = UIColor(red: 29/255, green: 29/255, blue: 29/255, alpha: 1)
+      })
+      .disposed(by: rx.disposeBag)
+    
+    self.certificationTextView.rx.didEndEditing
+      .withLatestFrom(self.certificationTextView.rx.text)
+      .filter { $0 == nil || $0!.isEmpty }
+      .bind(onNext: { _ in
+        self.certificationTextView.text = "인증 글을 작성해보세요!"
+        self.certificationTextView.textColor = UIColor(red: 169/255, green: 175/255, blue: 185/255, alpha: 1)
+      })
+      .disposed(by: rx.disposeBag)
+  
+    self.certificationTextView.rx.text
+      .map { $0 != "인증 글을 작성해보세요!" && !$0!.isEmpty }
+      .bind(onNext: {
+        self.completeButton.rx.isUserInteractionEnabled.onNext($0)
+        self.viewModel.input.completeButtonEnabled.accept($0)
+      })
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.completeButtonColor
+      .drive(onNext: { self.completeButton.setTitleColor($0, for: .normal) })
       .disposed(by: rx.disposeBag)
   }
 }
