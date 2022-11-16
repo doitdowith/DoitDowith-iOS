@@ -191,5 +191,11 @@ extension HomeViewController {
 
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card) {
+    let vm: CertificationViewModelType = CertificationViewModel()
+    let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(
+      identifier: "CertificationVC") { coder in
+      CertificationViewController(coder: coder, viewModel: vm)
+    }
+    navigationController?.pushViewController(vc, animated: true)
   }
 }
