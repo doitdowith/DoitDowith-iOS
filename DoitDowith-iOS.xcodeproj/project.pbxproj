@@ -95,6 +95,8 @@
 		EEC949E828F8083300A9661F /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEC949E628F8083300A9661F /* FriendCell.xib */; };
 		EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAEC28E49D07002918EA /* Date+Extension.swift */; };
 		EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */; };
+		EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE46C102924B0D90030A15E /* UIColor+.swift */; };
+		EEE46C132924B4A00030A15E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE46C122924B4A00030A15E /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +192,8 @@
 		EEC949E628F8083300A9661F /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		EEC9EAEC28E49D07002918EA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		EEE46C102924B0D90030A15E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		EEE46C122924B4A00030A15E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +599,7 @@
 			children = (
 				EE77D5EF28D9D4A400057EF8 /* Assets.xcassets */,
 				EE77D5ED28D9D45100057EF8 /* Image.xcassets */,
+				EEE46C122924B4A00030A15E /* Colors.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -649,6 +654,7 @@
 				EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */,
 				EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */,
 				EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */,
+				EEE46C102924B0D90030A15E /* UIColor+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 				EEC949E828F8083300A9661F /* FriendCell.xib in Resources */,
 				EE63629C2912115900A78758 /* ReceiveMessageWithProfileCell.xib in Resources */,
 				EE889E9428DD6A87005DE44B /* Pretendard-SemiBold.otf in Resources */,
+				EEE46C132924B4A00030A15E /* Colors.xcassets in Resources */,
 				EE77D5E828D9D11600057EF8 /* Calendar.storyboard in Resources */,
 				EE889E9728DD6A87005DE44B /* Pretendard-Light.otf in Resources */,
 			);
@@ -867,6 +874,7 @@
 				EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */,
 				EE1F58F528F6711B0046ED09 /* ColorCell.swift in Sources */,
 				EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */,
+				EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */,
 				EE1F591128F68C0E0046ED09 /* HomeTarget.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
 				EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */,
