@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SendImageMessageCell" id="KGk-i7-Jjw" customClass="SendImageMessageCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xZF-SI-uxa">
+                        <rect key="frame" x="160" y="3" width="192" height="144"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="144" id="MnL-BZ-cvo"/>
+                            <constraint firstAttribute="width" constant="192" id="wND-w9-FEv"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xV8-pp-EBl">
+                        <rect key="frame" x="160" y="147" width="192" height="36"/>
+                        <color key="backgroundColor" name="PrimaryColor4"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 24:59" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnF-Pd-fXi">
+                        <rect key="frame" x="100.66666666666667" y="166.66666666666666" width="51.333333333333329" height="13.333333333333343"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="11"/>
+                        <color key="textColor" name="CoolGray2"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="xV8-pp-EBl" secondAttribute="bottom" id="2Aj-zS-ICT"/>
+                    <constraint firstItem="xZF-SI-uxa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="2va-VF-8ix"/>
+                    <constraint firstAttribute="bottom" secondItem="FnF-Pd-fXi" secondAttribute="bottom" constant="3" id="L8D-uO-I1J"/>
+                    <constraint firstItem="xV8-pp-EBl" firstAttribute="leading" secondItem="xZF-SI-uxa" secondAttribute="leading" id="ZLw-0N-hc5"/>
+                    <constraint firstItem="xV8-pp-EBl" firstAttribute="top" secondItem="xZF-SI-uxa" secondAttribute="bottom" id="jXw-rt-JnO"/>
+                    <constraint firstItem="xV8-pp-EBl" firstAttribute="trailing" secondItem="xZF-SI-uxa" secondAttribute="trailing" id="mqg-M8-iO4"/>
+                    <constraint firstAttribute="trailing" secondItem="xZF-SI-uxa" secondAttribute="trailing" constant="23" id="uim-3b-JNZ"/>
+                    <constraint firstItem="xV8-pp-EBl" firstAttribute="leading" secondItem="FnF-Pd-fXi" secondAttribute="trailing" constant="8" id="xMH-SQ-2xf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="FnF-Pd-fXi" id="4YU-6Z-QqH"/>
+                <outlet property="sendImageView" destination="xZF-SI-uxa" id="yBx-Rz-lky"/>
+                <outlet property="sendMessageView" destination="xV8-pp-EBl" id="fol-Gi-Pmd"/>
+            </connections>
+            <point key="canvasLocation" x="9.9236641221374047" y="20.774647887323944"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="CoolGray2">
+            <color red="0.66299998760223389" green="0.68599998950958252" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryColor4">
+            <color red="0.72899997234344482" green="0.82700002193450928" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

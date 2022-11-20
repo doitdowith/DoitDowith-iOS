@@ -12,8 +12,10 @@ import RxDataSources
 enum MessageType {
   case receiveMessageWithProfile
   case receiveMessage
+  case receiveImageMessage
   case sendMessageWithTip
-  case sendMessage  
+  case sendMessage
+  case sendImageMessage
 }
 struct ChatModel {
   var type: MessageType

@@ -15,6 +15,8 @@
 		1824EDB92901AB31007BA66B /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDB82901AB31007BA66B /* FriendListTableViewCell.swift */; };
 		1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDBA2901B0AF007BA66B /* ModalViewController.swift */; };
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
+		EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */; };
+		EE05C25429266C4000FAA844 /* SendImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */; };
 		EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */; };
 		EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */; };
 		EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */; };
@@ -45,6 +47,8 @@
 		EE4F4D7728EAF04F000C2FE7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */; };
 		EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D7828EB0357000C2FE7 /* homeMock.json */; };
 		EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A328E98543005F65AC /* ChatHeaderView.swift */; };
+		EE557F2529266649005685EC /* ReceiveImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */; };
+		EE557F2629266649005685EC /* ReceiveImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE557F2429266649005685EC /* ReceiveImageMessageCell.xib */; };
 		EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */; };
 		EE63629B2912115900A78758 /* ReceiveMessageWithProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */; };
 		EE63629C2912115900A78758 /* ReceiveMessageWithProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE63629A2912115900A78758 /* ReceiveMessageWithProfileCell.xib */; };
@@ -110,6 +114,8 @@
 		24691D147FCF764B27B270A4 /* Pods-DoitDowith-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DF2D234DA10A353A3131702 /* Pods-DoitDowith-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.release.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageMessageCell.swift; sourceTree = "<group>"; };
+		EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendImageMessageCell.xib; sourceTree = "<group>"; };
 		EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewModel.swift; sourceTree = "<group>"; };
 		EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomInformationModal.swift; sourceTree = "<group>"; };
 		EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModalViewModel.swift; sourceTree = "<group>"; };
@@ -140,6 +146,8 @@
 		EE4F4D7628EAF04F000C2FE7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		EE4F4D7828EB0357000C2FE7 /* homeMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeMock.json; sourceTree = "<group>"; };
 		EE5500A328E98543005F65AC /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
+		EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveImageMessageCell.swift; sourceTree = "<group>"; };
+		EE557F2429266649005685EC /* ReceiveImageMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiveImageMessageCell.xib; sourceTree = "<group>"; };
 		EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveMessageWithProfileCell.swift; sourceTree = "<group>"; };
 		EE63629A2912115900A78758 /* ReceiveMessageWithProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiveMessageWithProfileCell.xib; sourceTree = "<group>"; };
@@ -295,6 +303,8 @@
 				EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */,
 				EE23A852291001BC0050175C /* DateView.swift */,
 				EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */,
+				EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */,
+				EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -531,6 +541,8 @@
 				EE6A2BD228E485C1000656AA /* SendMessageCell.xib */,
 				EE6A2BD628E4893B000656AA /* ReceiveMessageCell.xib */,
 				EE63629A2912115900A78758 /* ReceiveMessageWithProfileCell.xib */,
+				EE557F2429266649005685EC /* ReceiveImageMessageCell.xib */,
+				EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -732,6 +744,7 @@
 				EE77D5EA28D9D14000057EF8 /* Home.storyboard in Resources */,
 				EE889E9128DD6A87005DE44B /* Pretendard-Regular.otf in Resources */,
 				EE889E9928DD6A87005DE44B /* Pretendard-ExtraLight.otf in Resources */,
+				EE557F2629266649005685EC /* ReceiveImageMessageCell.xib in Resources */,
 				EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */,
 				EE77D5EE28D9D45100057EF8 /* Image.xcassets in Resources */,
 				EEAEDA2428D9C060000141ED /* LaunchScreen.storyboard in Resources */,
@@ -751,6 +764,7 @@
 				EEA0C0BA28ED390500282A30 /* ContentCell.xib in Resources */,
 				EE77D5F028D9D4A400057EF8 /* Assets.xcassets in Resources */,
 				EE6A2BD428E485C1000656AA /* SendMessageCell.xib in Resources */,
+				EE05C25429266C4000FAA844 /* SendImageMessageCell.xib in Resources */,
 				EEC949E828F8083300A9661F /* FriendCell.xib in Resources */,
 				EE63629C2912115900A78758 /* ReceiveMessageWithProfileCell.xib in Resources */,
 				EE889E9428DD6A87005DE44B /* Pretendard-SemiBold.otf in Resources */,
@@ -832,6 +846,7 @@
 				EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */,
 				EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */,
 				EE6A2BD728E4893B000656AA /* ReceiveMessageCell.swift in Sources */,
+				EE557F2529266649005685EC /* ReceiveImageMessageCell.swift in Sources */,
 				EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */,
 				1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */,
 				EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */,
@@ -882,6 +897,7 @@
 				EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */,
 				EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */,
 				EE45707E2914006100B13DF3 /* CertificationViewModel.swift in Sources */,
+				EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */,
 				1824EDB92901AB31007BA66B /* FriendListTableViewCell.swift in Sources */,
 				EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */,
 				EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */,

@@ -33,6 +33,8 @@ class CertificationViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.bind()
+    self.addAction()
+    self.addStyle()
   }
   
   // MARK: Interface Builder
@@ -42,6 +44,12 @@ class CertificationViewController: UIViewController {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var completeButton: UIButton!
   @IBOutlet weak var backgroundView: UIView!
+  
+  @IBOutlet weak var modalBackgroundView: UIView!
+  @IBOutlet weak var modalView: UIView!
+  @IBOutlet weak var deleteButton: UIButton!
+  @IBOutlet weak var cancelButton: UIButton!
+  @IBOutlet weak var closeButton: UIButton!
   
   @IBOutlet weak var buttonViewBottomConstraint: NSLayoutConstraint!
   
@@ -92,8 +100,8 @@ extension CertificationViewController {
     self.backButton.rx
       .tapGesture()
       .when(.recognized)
-      .bind(onNext: { [weak navigationController]_ in
-        navigationController?.popViewController(animated: true)
+      .bind(onNext: { [weak self]_ in
+        self?.animateOpenModal()
       })
       .disposed(by: rx.disposeBag)
   }
@@ -111,7 +119,7 @@ extension CertificationViewController {
                                                cellType: ImageCell.self)) { _, element, cell in
         cell.configure(image: element)
       }
-      .disposed(by: rx.disposeBag)
+                                               .disposed(by: rx.disposeBag)
   }
   
   func bindBackgroundView() {
@@ -129,7 +137,7 @@ extension CertificationViewController {
       .filter { $0 != nil && $0! == "인증 글을 작성해보세요!" }
       .bind(onNext: { _ in
         self.certificationTextView.text = nil
-        self.certificationTextView.textColor = UIColor(red: 29/255, green: 29/255, blue: 29/255, alpha: 1)
+        self.certificationTextView.textColor = .black
       })
       .disposed(by: rx.disposeBag)
     
@@ -138,10 +146,10 @@ extension CertificationViewController {
       .filter { $0 == nil || $0!.isEmpty }
       .bind(onNext: { _ in
         self.certificationTextView.text = "인증 글을 작성해보세요!"
-        self.certificationTextView.textColor = UIColor(red: 169/255, green: 175/255, blue: 185/255, alpha: 1)
+        self.certificationTextView.textColor = .coolGray2
       })
       .disposed(by: rx.disposeBag)
-  
+    
     self.certificationTextView.rx.text
       .map { $0 != "인증 글을 작성해보세요!" && !$0!.isEmpty }
       .bind(onNext: {
@@ -184,7 +192,8 @@ extension CertificationViewController: PHPickerViewControllerDelegate {
 // MARK: UIImagePickerController Delegate
 extension CertificationViewController: UIImagePickerControllerDelegate,
                                        UINavigationControllerDelegate {
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
     if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
       self.viewModel.input.selectedImages.accept([image])
     }
@@ -192,5 +201,67 @@ extension CertificationViewController: UIImagePickerControllerDelegate,
   }
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true)
+  }
+}
+
+// MARK: Action function
+extension CertificationViewController {
+  func addAction() {
+    self.closeButton.addTarget(self,
+                               action: #selector(animateCloseModal),
+                               for: .touchUpInside)
+    self.cancelButton.addTarget(self,
+                                action: #selector(animateCloseModal),
+                                for: .touchUpInside)
+    self.deleteButton.addTarget(self,
+                                action: #selector(closeModalAndNavigation),
+                                for: .touchUpInside)
+  }
+  
+  func animateOpenModal() {
+    self.view.layoutIfNeeded()
+    self.modalBackgroundView.isHidden = false
+    UIView.animate(withDuration: 0.3) {
+      self.view.layoutIfNeeded()
+    }
+  }
+  
+  @objc func animateCloseModal() {
+    self.view.layoutIfNeeded()
+    self.modalBackgroundView.isHidden = true
+    UIView.animate(withDuration: 0.3) {
+      self.view.layoutIfNeeded()
+    }
+  }
+  
+  @objc func closeModalAndNavigation() {
+    self.view.layoutIfNeeded()
+    self.modalBackgroundView.isHidden = true
+    UIView.animate(withDuration: 0.3) {
+      self.view.layoutIfNeeded()
+    } completion: { _ in
+      self.navigationController?.popViewController(animated: true)
+    }
+  }
+}
+
+// MARK: Style function
+extension CertificationViewController {
+  func addStyle() {
+    self.modalView.layer.applySketchShadow(color: UIColor(red: 108/255,
+                                                          green: 123/255,
+                                                          blue: 137/255,
+                                                          alpha: 0.22),
+                                           x: 0,
+                                           y: 0,
+                                           blur: 12,
+                                           spread: 0)
+    self.modalView.layer.cornerRadius = 8
+    
+    self.deleteButton.layer.borderWidth = 1
+    self.deleteButton.layer.cornerRadius = 2
+    self.deleteButton.layer.borderColor = UIColor.lightGray3.cgColor
+    
+    self.cancelButton.layer.cornerRadius = 2
   }
 }

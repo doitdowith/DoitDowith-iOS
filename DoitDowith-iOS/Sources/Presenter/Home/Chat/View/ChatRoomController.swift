@@ -20,6 +20,7 @@ final class ChatRoomController: UIViewController {
   @IBOutlet weak var textfieldView: UIView!
   @IBOutlet weak var textfield: UITextField!
   @IBOutlet weak var modalButton: UIButton!
+  @IBOutlet weak var certificateButton: UIButton!
   
   @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
@@ -46,6 +47,7 @@ final class ChatRoomController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.register()
+    self.applyShadow()
     self.bind()
   }
   
@@ -78,6 +80,15 @@ final class ChatRoomController: UIViewController {
     informationModal.modalPresentationStyle = .overCurrentContext
     self.present(informationModal, animated: false)
   }
+  
+  @IBAction func certificateButtonDidTap(_ sender: UIButton) {
+    let vm: CertificationViewModelType = CertificationViewModel()
+    let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(
+      identifier: "CertificationVC") { coder in
+        CertificationViewController(coder: coder, viewModel: vm)
+      }
+    navigationController?.pushViewController(vc, animated: true)
+  }
 }
 
 // MARK: Basic functions
@@ -89,9 +100,10 @@ extension ChatRoomController {
     self.bindMessageField()
   }
   
-  // Configure Bottom Input View
-  func configureBottomInputView() {
+  func applyShadow() {
     self.textfieldView.layer.applySketchShadow(alpha: 0.08, x: 2, y: 2, blur: 4, spread: 0)
+    self.certificateButton.layer.applySketchShadow(alpha: 0.16, x: 1, y: 1, blur: 2, spread: 0)
+    self.certificateButton.layer.cornerRadius = 21
   }
   
   // Configure Chat View(Table View)
@@ -100,6 +112,10 @@ extension ChatRoomController {
     chatView.register(sendMessageCellNib,
                       forCellReuseIdentifier: SendMessageCell.identifier)
     
+    let sendImageMessageCellNib = UINib(nibName: "SendImageMessageCell", bundle: nil)
+    chatView.register(sendImageMessageCellNib,
+                      forCellReuseIdentifier: SendImageMessageCell.identifier)
+    
     let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
     chatView.register(receiveMessageCellNib,
                       forCellReuseIdentifier: ReceiveMessageCell.identifier)
@@ -107,6 +123,10 @@ extension ChatRoomController {
     let receiveMessageWithProfileCellNib = UINib(nibName: "ReceiveMessageWithProfileCell", bundle: nil)
     chatView.register(receiveMessageWithProfileCellNib,
                       forCellReuseIdentifier: ReceiveMessageWithProfileCell.identifier)
+    
+    let receiveImageMessageCellNib = UINib(nibName: "ReceiveImageMessageCell", bundle: nil)
+    chatView.register(receiveImageMessageCellNib,
+                      forCellReuseIdentifier: ReceiveImageMessageCell.identifier)
     
     chatView.register(DateView.self, forHeaderFooterViewReuseIdentifier: DateView.identifier)
   }
@@ -157,8 +177,8 @@ extension ChatRoomController {
         self.chatView.scrollToRow(at: indexPath, at: .bottom, animated: false)
       })
       .emit(onNext: { _ in })
-      .disposed(by: rx.disposeBag)
-  }
+        .disposed(by: rx.disposeBag)
+        }
   
   func bindMessageField() {
     self.textfield.rx
@@ -197,9 +217,7 @@ extension ChatRoomController: UITableViewDelegate {
       return UIView()
     }
     header.configure(date: "2021.10.31 (목)")
-    let view = UIView()
-    view.backgroundColor = .red
-    return view
+    return header
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

@@ -16,8 +16,8 @@ final class MissionRoomFirstViewController: UIViewController {
   // MARK: Interface Builder
   @IBOutlet weak var backButton: UIImageView!
   @IBOutlet weak var missionColorView: UICollectionView!
-  @IBOutlet weak var nameTextField: UITextField!
-  @IBOutlet weak var descriptionTextField: UITextField!
+  @IBOutlet weak var nameTextField: UITextFieldWithPadding!
+  @IBOutlet weak var descriptionTextField: UITextFieldWithPadding!
   @IBOutlet weak var nextPageButton: UIButton!
   
   @IBAction func didTapNextPageButton(_ sender: UIButton) {
