@@ -11,6 +11,7 @@ import NSObject_Rx
 import RxCocoa
 import RxGesture
 import RxSwift
+import RxViewController
 
 final class InviteModalViewController: UIViewController {
   // MARK: Interface Builder
@@ -43,13 +44,6 @@ final class InviteModalViewController: UIViewController {
 // MARK: Basic Functions
 extension InviteModalViewController {
   func configureSearchbar() {
-    self.searchbar.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-    self.searchbar.searchTextField.backgroundColor = UIColor(red: 247/255,
-                                                             green: 247/255,
-                                                             blue: 247/255,
-                                                             alpha: 1)
-    self.searchbar.searchTextField.font = UIFont(name: "Pretendard-Medium", size: 13)
-    self.searchbar.layer.borderWidth = 0
   }
   func configureModalView() {
     self.contentView.layer.applySketchShadow(alpha: 0.08, x: 0, y: 0, blur: 4, spread: 0)
@@ -116,7 +110,7 @@ extension InviteModalViewController {
       .disposed(by: rx.disposeBag)
   }
   
-  func bindFriendListTableView() {    
+  func bindFriendListTableView() {
   }
 }
 

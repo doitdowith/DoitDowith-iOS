@@ -13,14 +13,14 @@ class DateView: UITableViewHeaderFooterView {
     let label = UILabel()
     label.textAlignment = .left
     label.font = UIFont(name: "Pretendard-Regular", size: 11)
-    label.textColor = UIColor(red: 169/255, green: 175/255, blue: 185/255, alpha: 1)
+    label.textColor = UIColor.coolGray2
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   private var separateLine: UIView = {
     let line = UIView()
-    line.backgroundColor = UIColor(red: 218/255, green: 223/255, blue: 236/255, alpha: 1)
+    line.backgroundColor = UIColor.primaryColor5
     line.translatesAutoresizingMaskIntoConstraints = false
     return line
   }()
@@ -45,15 +45,15 @@ extension DateView {
     self.dateLabel.text = date
   }
   func configureContents() {
-    contentView.addSubview(dateLabel)
-    contentView.addSubview(separateLine)
+    addSubview(dateLabel)
+    addSubview(separateLine)
     
     NSLayoutConstraint.activate([
-      self.dateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      self.dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+      self.dateLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+      self.dateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18),
       self.separateLine.centerYAnchor.constraint(equalTo: self.dateLabel.centerYAnchor),
       self.separateLine.leadingAnchor.constraint(equalTo: self.dateLabel.trailingAnchor, constant: 10),
-      self.separateLine.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      self.separateLine.trailingAnchor.constraint(equalTo: self.trailingAnchor),
       self.separateLine.heightAnchor.constraint(equalToConstant: 0.5)
     ])
   }

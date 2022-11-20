@@ -165,7 +165,20 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
             return UITableViewCell()
           }
           cell.configure(time: item.time.suffix(7).description, message: item.message)
-          
+          return cell
+        case .sendImageMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageMessageCell.identifier,
+                                                         for: indexPath) as? SendImageMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(7).description, message: item.message, image: UIImage.add)
+          return cell
+        case .receiveImageMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageMessageCell.identifier,
+                                                         for: indexPath) as? ReceiveImageMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(7).description, message: item.message, image: UIImage.add)
           return cell
         }
       })

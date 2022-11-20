@@ -18,8 +18,8 @@ final class MissionRoomSecondViewController: UIViewController {
   @IBOutlet weak var backButton: UIImageView!
   @IBOutlet weak var friendCollectionView: UICollectionView!
   @IBOutlet weak var makeButton: UIButton!
-  @IBOutlet weak var dateTextfield: UITextField!
-  @IBOutlet weak var certificateCountTextField: UITextField!
+  @IBOutlet weak var dateTextfield: UITextFieldWithPadding!
+  @IBOutlet weak var certificateCountTextField: UITextFieldWithPadding!
   
   @IBAction func didTapCompleteButton(_ sender: UIButton) {
     let charRoomService = ChatService()
@@ -99,7 +99,6 @@ extension MissionRoomSecondViewController {
   func action1() {
     let inviteModal = UIStoryboard(name: "Home",
                                    bundle: nil).instantiateViewController(withIdentifier: "InviteModalVC")
-    
     inviteModal.modalPresentationStyle = .overCurrentContext
     self.present(inviteModal, animated: false)
   }

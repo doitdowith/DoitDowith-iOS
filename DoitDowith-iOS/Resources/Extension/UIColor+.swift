@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension UIColor {
-
   @nonobjc class var lightGray: UIColor {
     return UIColor(red: 247.0 / 255.0, green: 247.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
   }
@@ -53,5 +52,4 @@ extension UIColor {
   @nonobjc class var primaryColor2: UIColor {
     return UIColor(red: 67.0 / 255.0, green: 136.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
   }
-
 }
