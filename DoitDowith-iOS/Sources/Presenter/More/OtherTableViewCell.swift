@@ -8,7 +8,6 @@
 import UIKit
 
 class OtherTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var otherLabel: UILabel!
     
     override func awakeFromNib() {

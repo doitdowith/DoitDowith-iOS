@@ -8,7 +8,6 @@
 import UIKit
 
 class FriendListViewController: UIViewController {
-    
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
         }

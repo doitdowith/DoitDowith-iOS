@@ -8,7 +8,6 @@
 import UIKit
 
 class CSViewController: UIViewController {
-    
     @IBOutlet weak var navigationView: UIView!
 
     @IBAction func goBack() {

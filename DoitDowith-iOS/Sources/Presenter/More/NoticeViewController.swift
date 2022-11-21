@@ -7,8 +7,7 @@
 
 import UIKit
 
-class NoticeViewController: UIViewController {
-    
+class NoticeViewController: UIViewController {    
     @IBOutlet weak var navigationView: UIView!
     
     @IBAction func goBack() {

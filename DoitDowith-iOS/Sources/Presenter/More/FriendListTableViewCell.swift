@@ -8,7 +8,6 @@
 import UIKit
 
 class FriendListTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var numLabel: UILabel!
     @IBOutlet weak var missionNumberLabel: UILabel!
     @IBOutlet weak var percentLabel: UILabel!
