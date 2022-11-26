@@ -15,9 +15,11 @@ enum HomeErrorType: Error {
   case pathError
   case decodeError
 }
+
 protocol HomeServiceProtocol {
   func fetchCardList() -> Observable<[Card]>
 }
+
 struct HomeService: HomeServiceProtocol {
   func fetchCardList() -> Observable<[Card]> {
     return Observable.create { emitter in

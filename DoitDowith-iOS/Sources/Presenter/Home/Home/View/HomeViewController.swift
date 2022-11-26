@@ -191,14 +191,20 @@ extension HomeViewController {
 
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card) {
-    let charRoomService = ChatService()
-    let stompManager = StompManager(targetId: 1, senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e", connectType: .room)
-    let chatRoomViewModel = ChatRommViewModel(id: 1,
-                                              chatService: charRoomService,
-                                              stompManager: stompManager)
-    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
+    //    let charRoomService = ChatService()
+    //    let stompManager = StompManager(targetId: 1, senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e", connectType: .room)
+    //    let chatRoomViewModel = ChatRommViewModel(id: 1,
+    //                                              chatService: charRoomService,
+    //                                              stompManager: stompManager)
+    //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
+    //                                                                                           creator: { coder in
+    //      ChatRoomController(coder: coder, viewModel: chatRoomViewModel)
+    //    })
+    //    self.navigationController?.pushViewController(viewController, animated: true)
+    let vm = CertificationBoardViewModel(service: HomeAPI())
+    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "CertificationBoardVC",
                                                                                            creator: { coder in
-      ChatRoomController(coder: coder, viewModel: chatRoomViewModel)
+      CertificationBoardViewController(coder: coder, viewModel: vm)
     })
     self.navigationController?.pushViewController(viewController, animated: true)
   }

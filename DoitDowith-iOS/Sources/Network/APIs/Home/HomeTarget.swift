@@ -13,6 +13,7 @@ enum HomeTarget {
   case getDoingCards(CardRequest)
   case getFriendList(FriendRequest)
   case kakao(CardRequest)
+  case getCertificatePostList(CertificateBoardRequest)
 }
 
 extension HomeTarget: TargetType {
@@ -25,6 +26,7 @@ extension HomeTarget: TargetType {
     case .getDoingCards: return .get
     case .getFriendList: return .get
     case .kakao: return .get
+    case .getCertificatePostList: return .get
     }
   }
   
@@ -33,6 +35,7 @@ extension HomeTarget: TargetType {
     case .getDoingCards(let request): return "/doing\(request.id)"
     case .getFriendList(let request): return "/friends\(request.id)"
     case .kakao: return "/oauth2/authorization/kakao"
+    case .getCertificatePostList(let request): return "/board\(request.id)"
     }
   }
   
@@ -41,6 +44,7 @@ extension HomeTarget: TargetType {
     case .getDoingCards(let request): return .body(request)
     case .getFriendList(let request): return .body(request)
     case .kakao(let request): return .body(request)
+    case .getCertificatePostList(let request): return .body(request)
     }
   }
 }

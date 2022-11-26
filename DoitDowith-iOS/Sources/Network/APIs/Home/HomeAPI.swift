@@ -14,6 +14,7 @@ import RxSwift
 protocol HomeAPIProtocol {
   func getDoingCard(request: CardRequest) -> Single<[Card]>
   func getFriendList(request: FriendRequest) -> Single<[Friend]>
+  func getCertificatePostList(request: CertificateBoardRequest) -> Single<[CertificationPost]>
 }
 
 class HomeAPI: HomeAPIProtocol {
@@ -28,8 +29,8 @@ class HomeAPI: HomeAPIProtocol {
             single(.success(response.toDomain))
           case .failure(let error):
             single(.failure(error))
+          }
         }
-    }
       return Disposables.create()
     }
   }
@@ -43,8 +44,23 @@ class HomeAPI: HomeAPIProtocol {
             single(.success(response.toDomain))
           case .failure(let error):
             single(.failure(error))
+          }
         }
+      return Disposables.create()
     }
+  }
+  
+  func getCertificatePostList(request: CertificateBoardRequest) -> RxSwift.Single<[CertificationPost]> {
+    return Single.create { single in
+      AF.request(HomeTarget.getCertificatePostList(request))
+        .responseDecodable { (response: AFDataResponse<CertificateBoardResponse>) in
+          switch response.result {
+          case .success(let response):
+            single(.success(response.toDomain))
+          case .failure(let error):
+            single(.failure(error))
+          }
+        }
       return Disposables.create()
     }
   }
