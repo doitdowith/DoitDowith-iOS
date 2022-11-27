@@ -101,3 +101,9 @@ extension CertificationBoardViewController {
     return layout
   }
 }
+
+extension CertificationBoardViewController: CertifiactionPostCellDelegate {
+  func certificationPostCell(_ voteButtonDidTap: UIButton) {
+    // 
+  }
+}

@@ -81,6 +81,9 @@
                             <fontDescription key="titleFontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
                             <color key="baseForegroundColor" name="CoolGray4"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="voteButtonDidTap:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aiR-iN-qXL"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ql0-GI-vXW">
                         <rect key="frame" x="187.66666666666663" y="113.66666666666667" width="187.33333333333337" height="50.333333333333329"/>

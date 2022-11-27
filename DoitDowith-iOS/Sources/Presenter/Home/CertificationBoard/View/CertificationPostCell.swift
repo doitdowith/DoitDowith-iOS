@@ -9,13 +9,12 @@ import UIKit
 import Kingfisher
 import RxDataSources
 
+protocol CertifiactionPostCellDelegate: AnyObject {
+  func certificationPostCell(_ voteButtonDidTap: UIButton)
+}
 class CertificationPostCell: UICollectionViewCell {
   static let identifier: String = "CertificationPostCell"
-  
-  @IBOutlet weak var profileImage: UIImageView!
-  @IBOutlet weak var nickName: UILabel!
-  @IBOutlet weak var uploadTime: UILabel!
-  @IBOutlet weak var certificateText: UILabel!
+  weak var delegate: CertifiactionPostCellDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -26,6 +25,16 @@ class CertificationPostCell: UICollectionViewCell {
                                               blur: 2,
                                               spread: 0)
     self.profileImage.layer.cornerRadius = 18
+  }
+  
+  // MARK: Interface Builder
+  @IBOutlet weak var profileImage: UIImageView!
+  @IBOutlet weak var nickName: UILabel!
+  @IBOutlet weak var uploadTime: UILabel!
+  @IBOutlet weak var certificateText: UILabel!
+  
+  @IBAction func voteButtonDidTap(_ sender: UIButton) {
+    self.delegate?.certificationPostCell(sender)
   }
   
   override func prepareForReuse() {

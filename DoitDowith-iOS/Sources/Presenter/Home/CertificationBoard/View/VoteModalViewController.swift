@@ -1,71 +1,62 @@
 //
-//  InviteModalViewController.swift
+//  VoteModalViewController.swift
 //  DoitDowith-iOS
 //
-//  Created by 김영균 on 2022/10/13.
+//  Created by 김영균 on 2022/11/27.
 //
 
 import UIKit
 
-import NSObject_Rx
 import RxCocoa
-import RxGesture
 import RxSwift
+import RxGesture
 import RxViewController
+import NSObject_Rx
 
-final class InviteModalViewController: UIViewController {
-  // MARK: Interface Builder
-  @IBOutlet weak var dimmedView: UIView!
-  @IBOutlet weak var contentView: UIView!
-  @IBOutlet weak var friendListTableView: UITableView!
-  @IBOutlet weak var searchbar: UISearchBar!
-  
-  @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
-  
+class VoteModalViewController: UIViewController {
   // MARK: Constant
-  private var currentViewHeight: CGFloat = 700
-  
+  private var currentViewHeight: CGFloat = 380
   private let dimmedAlpha: CGFloat = 0.8
-  private let modalViewHeight: CGFloat = 700
-  private let criticalHeight: CGFloat = 500
-  private let dissmissHeight: CGFloat = 350
+  private let modalViewHeight: CGFloat = 380
+  private let criticalHeight: CGFloat = 300
+  private let dissmissHeight: CGFloat = 200
   
   // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.registerCells()
-    self.configureModalView()
-    self.configureSearchbar()
+    self.configuration()
     self.bind()
   }
+  
+  @IBOutlet weak var dimmedView: UIView!
+  @IBOutlet weak var contentView: UIView!
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var userNameLabel: UILabel!
+  @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
 }
 
-// MARK: Basic Functions
-extension InviteModalViewController {
-  func configureSearchbar() {
+extension VoteModalViewController {
+  func configuration() {
+    self.configureModalView()
   }
+  
   func configureModalView() {
     self.contentView.layer.applySketchShadow(alpha: 0.08, x: 0, y: 0, blur: 4, spread: 0)
     self.contentView.layer.cornerRadius = 24
+    self.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
   }
-  
-  func registerCells() {
-    let friendCellNib = UINib(nibName: "FriendCell", bundle: nil)
-    self.friendListTableView.register(friendCellNib,
-                                      forCellReuseIdentifier: FriendCell.identifier)
-  }
-  
+}
+
+// MARK: Bind function
+extension VoteModalViewController {
   func bind() {
     self.bindLifeCycle()
     self.bindDimmedView()
     self.bindContentView()
-    self.bindFriendListTableView()
   }
-}
-
-// MARK: Bind Functions
-extension InviteModalViewController {
+  
   func bindContentView() {
     self.contentView.rx.panGesture()
       .when(.changed)
@@ -109,13 +100,10 @@ extension InviteModalViewController {
       })
       .disposed(by: rx.disposeBag)
   }
-  
-  func bindFriendListTableView() {
-  }
 }
 
-// MARK: Animate Functions
-extension InviteModalViewController {
+// MARK: Animate Function
+extension VoteModalViewController {
   func animateDimmedView() {
     self.dimmedView.alpha = 0
     UIView.animate(withDuration: 0.4) { [weak self] in
