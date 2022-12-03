@@ -66,14 +66,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPZ-qv-0mW">
                                 <rect key="frame" x="16" y="109" width="382" height="271"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-Ma-c2E">
-                                        <rect key="frame" x="346" y="16.5" width="22" height="17.5"/>
-                                        <color key="tintColor" systemColor="systemGrayColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="N9D-GB-83D"/>
-                                            <constraint firstAttribute="width" constant="22" id="gNi-ng-xd0"/>
-                                        </constraints>
-                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z6n-aB-vvU">
                                         <rect key="frame" x="139.5" y="21.5" width="103" height="102"/>
                                         <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -214,7 +206,6 @@
                                     <constraint firstAttribute="trailing" secondItem="v4q-O2-YfU" secondAttribute="trailing" constant="15" id="0FA-gu-2aL"/>
                                     <constraint firstAttribute="height" constant="271" id="1zg-xf-KlU"/>
                                     <constraint firstItem="0zj-zg-cas" firstAttribute="centerX" secondItem="zPZ-qv-0mW" secondAttribute="centerX" id="A1i-Ce-JyT"/>
-                                    <constraint firstItem="qKL-Ma-c2E" firstAttribute="top" secondItem="zPZ-qv-0mW" secondAttribute="top" constant="14" id="FWD-Ra-3Cb"/>
                                     <constraint firstItem="mh8-8H-Byb" firstAttribute="centerX" secondItem="zPZ-qv-0mW" secondAttribute="centerX" id="JRt-qU-Phi"/>
                                     <constraint firstItem="v4q-O2-YfU" firstAttribute="leading" secondItem="zPZ-qv-0mW" secondAttribute="leading" constant="14" id="Ptm-9a-SkA"/>
                                     <constraint firstItem="Z6n-aB-vvU" firstAttribute="centerX" secondItem="zPZ-qv-0mW" secondAttribute="centerX" id="Q6C-xN-63z"/>
@@ -224,7 +215,6 @@
                                     <constraint firstItem="0zj-zg-cas" firstAttribute="top" secondItem="mh8-8H-Byb" secondAttribute="bottom" constant="6" id="hRy-X1-CiI"/>
                                     <constraint firstItem="v4q-O2-YfU" firstAttribute="top" secondItem="0zj-zg-cas" secondAttribute="bottom" constant="15" id="qwF-1B-s4V"/>
                                     <constraint firstItem="mh8-8H-Byb" firstAttribute="top" secondItem="Z6n-aB-vvU" secondAttribute="bottom" constant="10" id="rYB-nu-yIp"/>
-                                    <constraint firstAttribute="trailing" secondItem="qKL-Ma-c2E" secondAttribute="trailing" constant="14" id="vuD-IK-JmY"/>
                                     <constraint firstItem="x6i-gQ-XUl" firstAttribute="centerX" secondItem="zPZ-qv-0mW" secondAttribute="centerX" id="w6I-bD-aHY"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -864,7 +854,6 @@
         <image name="icClose" width="28" height="28"/>
         <image name="ic_back" width="28" height="28"/>
         <image name="ic_plus_blue" width="46" height="46"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -877,9 +866,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
