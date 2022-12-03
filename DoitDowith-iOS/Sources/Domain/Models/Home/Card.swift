@@ -6,8 +6,25 @@
 //
 
 import Foundation
+import RxDataSources
 
-struct Card: Codable {
+enum CardType: Int {
+  case doing = 1,
+       willdo = 2,
+       done = 3
+}
+struct CardList: Equatable, IdentifiableType {
+  var type: CardType
+  var data: [Card]
+  var identity: String
+  
+  init(type: CardType, data: [Card]) {
+    self.type = type
+    self.data = data
+    self.identity = "\(Date.now.timeIntervalSinceReferenceDate)"
+  }
+}
+struct Card: Equatable {
   var section: Int
   var title: String
   var subTitle: String

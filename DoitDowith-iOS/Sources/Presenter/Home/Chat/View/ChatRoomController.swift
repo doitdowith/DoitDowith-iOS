@@ -26,6 +26,7 @@ final class ChatRoomController: UIViewController {
   @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
   
   // MARK: Constant
+  static let identifier: String = "ChatRoomVC"
   private var isModalOpen = false
   private let defaultBottomConstraint: CGFloat = 98
   private var keyboardHeight: CGFloat = 0
@@ -72,7 +73,7 @@ final class ChatRoomController: UIViewController {
   }
   /// 뒤로가기 버튼을 클릭했을 때
   @IBAction func didTapNavBackButton(_ sender: UIButton) {
-    self.navigationController?.popViewController(animated: true)
+    self.navigationController?.popToRootViewController(animated: true)
   }
   
   @IBAction func showInformationModal(_ sender: UIButton) {

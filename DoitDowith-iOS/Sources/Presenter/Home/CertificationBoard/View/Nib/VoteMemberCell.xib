@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VoteMemberCell" id="gTV-IL-0wX" customClass="VoteMemberCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gRk-2f-cwo">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="gRk-2f-cwo" secondAttribute="height" multiplier="1:1" id="y2L-mn-fsN"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IR-wE-ZEp">
+                        <rect key="frame" x="62" y="16.666666666666668" width="36.333333333333343" height="17.000000000000004"/>
+                        <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" name="DarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pcI-Nq-xNL">
+                        <rect key="frame" x="334" y="7" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="pcI-Nq-xNL" secondAttribute="height" multiplier="1:1" id="zCx-LY-AUg"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="9IR-wE-ZEp" firstAttribute="centerY" secondItem="gRk-2f-cwo" secondAttribute="centerY" id="0VR-aF-xPc"/>
+                <constraint firstItem="9IR-wE-ZEp" firstAttribute="leading" secondItem="gRk-2f-cwo" secondAttribute="trailing" constant="12" id="8aW-Yr-Ntg"/>
+                <constraint firstItem="gRk-2f-cwo" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Aif-Cv-GiW"/>
+                <constraint firstAttribute="trailing" secondItem="pcI-Nq-xNL" secondAttribute="trailing" id="Hhg-Je-PLG"/>
+                <constraint firstItem="gRk-2f-cwo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Qtt-l5-KVO"/>
+                <constraint firstAttribute="bottom" secondItem="pcI-Nq-xNL" secondAttribute="bottom" constant="7" id="cep-eS-pjN"/>
+                <constraint firstItem="gRk-2f-cwo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="csS-tY-bfP"/>
+                <constraint firstItem="pcI-Nq-xNL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="7" id="fgh-9q-MjR"/>
+                <constraint firstItem="pcI-Nq-xNL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9IR-wE-ZEp" secondAttribute="trailing" id="wAY-bA-ZMw"/>
+                <constraint firstAttribute="bottom" secondItem="gRk-2f-cwo" secondAttribute="bottom" id="x0Y-oi-00Y"/>
+            </constraints>
+            <connections>
+                <outlet property="emojiImage" destination="pcI-Nq-xNL" id="Gc8-vG-zrb"/>
+                <outlet property="nickName" destination="9IR-wE-ZEp" id="rpa-bs-epD"/>
+                <outlet property="profileImage" destination="gRk-2f-cwo" id="Ug4-6y-es4"/>
+            </connections>
+            <point key="canvasLocation" x="-56" y="21"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="DarkGray">
+            <color red="0.18799999356269836" green="0.20800000429153442" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
