@@ -17,6 +17,9 @@
         <array key="Pretendard-Medium.otf">
             <string>Pretendard-Medium</string>
         </array>
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
         <array key="Pretendard-SemiBold.otf">
             <string>Pretendard-SemiBold</string>
         </array>
@@ -347,12 +350,20 @@
                                     <constraint firstAttribute="height" constant="61" id="yJI-vf-JYq"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공지사항이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4v-tT-09V">
+                                <rect key="frame" x="124" y="436" width="166" height="24"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="20"/>
+                                <color key="textColor" red="0.50588238240000005" green="0.52549022440000004" blue="0.55686277149999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Cg-bL-kew"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Cg-bL-kew" firstAttribute="trailing" secondItem="kmZ-Qc-UXG" secondAttribute="trailing" id="2xC-Fc-664"/>
+                            <constraint firstItem="P4v-tT-09V" firstAttribute="centerY" secondItem="7Di-so-hHT" secondAttribute="centerY" id="XwB-Ea-59p"/>
                             <constraint firstItem="kmZ-Qc-UXG" firstAttribute="top" secondItem="6Cg-bL-kew" secondAttribute="top" id="mYr-UA-ao3"/>
+                            <constraint firstItem="P4v-tT-09V" firstAttribute="centerX" secondItem="7Di-so-hHT" secondAttribute="centerX" id="nXa-hM-lv2"/>
                             <constraint firstItem="kmZ-Qc-UXG" firstAttribute="leading" secondItem="7Di-so-hHT" secondAttribute="leading" id="u01-zE-lZx"/>
                         </constraints>
                     </view>
