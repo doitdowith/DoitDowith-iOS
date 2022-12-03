@@ -9,11 +9,34 @@ import UIKit
 
 import NSObject_Rx
 import RxCocoa
+import RxDataSources
 import RxGesture
 import RxSwift
 import RxViewController
 
+typealias HomeDataSource = RxCollectionViewSectionedAnimatedDataSource<HomeSectionModel>
 final class HomeViewController: UIViewController {
+  // MARK: Constant
+  private let doingButtonLeftPadding: CGFloat = 16
+  private let buttonSpacing: CGFloat = 12
+  
+  // MARK: Properties
+  var viewModel: HomeViewModelType
+  
+  // MARK: Initializer
+  required init?(coder: NSCoder) {
+    self.viewModel = HomeViewModel(service: HomeAPI())
+    super.init(coder: coder)
+  }
+  
+  // MARK: Life Cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.registerNib()
+    self.contentCollectionView.collectionViewLayout = self.colletionViewLayout()
+    self.bind()
+  }
+  
   // MARK: Interface Builder
   @IBOutlet weak var contentCollectionView: UICollectionView!
   @IBOutlet weak var doingButton: UILabel!
@@ -24,39 +47,14 @@ final class HomeViewController: UIViewController {
   @IBOutlet weak var bottomLineWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var bottomLineLeadingConstraint: NSLayoutConstraint!
   
-  // MARK: Constant
-  private let doingButtonLeftPadding: CGFloat = 16
-  private let buttonSpacing: CGFloat = 12
-  
-  // MARK: Properties
-  var service: HomeServiceProtocol
-  var viewModel: HomeViewModelType
-  
-  // MARK: Initializer
-  required init?(coder: NSCoder) {
-    self.service = HomeService()
-    self.viewModel = HomeViewModel(service: service)
-    super.init(coder: coder)
-  }
-  
-  // MARK: Life Cycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    self.registerNib()
-    self.contentCollectionView.collectionViewLayout = self.colletionViewLayout()
-    self.bind()
-  }
-  
   @IBAction func createMissionRoom(_ sender: UIButton) {
-    let missionRoomFirstViewModel: MissionRoomFirstViewModelType = MissionRoomFirstViewModel()
-    let viewController = UIStoryboard(name: "Home",
-                                      bundle: nil).instantiateViewController(identifier: "MissionRoomFirstVC",
-                                                                             creator: { coder in
-                                        MissionRoomFirstViewController(coder: coder,
-                                                                       viewModel: missionRoomFirstViewModel)
-                                      })
-    self.navigationController?.pushViewController(viewController, animated: true)
+    let vm: MissionRoomFirstViewModelType = MissionRoomFirstViewModel()
+    let vc = UIStoryboard(name: "Home",
+                          bundle: nil).instantiateViewController(identifier: MissionRoomFirstViewController.identifier,
+                                                                 creator: { coder in
+                            MissionRoomFirstViewController(coder: coder, viewModel: vm)
+                          })
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 
@@ -84,7 +82,7 @@ extension HomeViewController {
                                                  subitems: [item])
     
     let section = NSCollectionLayoutSection(group: group)
-    section.orthogonalScrollingBehavior = .paging
+    section.orthogonalScrollingBehavior = .groupPaging
     section.visibleItemsInvalidationHandler = ({ [weak self] (_, point, _) in
       guard let self = self else { return }
       if point.x <= 0 {
@@ -131,14 +129,9 @@ extension HomeViewController {
   }
   
   func bindContentCollectionView() {
-    self.viewModel.output.doingCardList
-      .bind(to: self.contentCollectionView.rx.items(
-        cellIdentifier: ContentCell.identifier,
-        cellType: ContentCell.self)) { _, element, cell in
-          cell.modelRelay.accept(element)
-          cell.delegate = self
-        }
-        .disposed(by: rx.disposeBag)
+    self.viewModel.output.cardList
+      .drive(contentCollectionView.rx.items(dataSource: self.dataSource()))
+      .disposed(by: rx.disposeBag)
   }
   
   func bindPagingTabButton() {
@@ -191,21 +184,38 @@ extension HomeViewController {
 
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card) {
-    //    let charRoomService = ChatService()
-    //    let stompManager = StompManager(targetId: 1, senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e", connectType: .room)
-    //    let chatRoomViewModel = ChatRommViewModel(id: 1,
-    //                                              chatService: charRoomService,
-    //                                              stompManager: stompManager)
-    //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
+    let service = ChatService()
+    let stompManager = StompManager(targetId: 1,
+                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
+                                    connectType: .room)
+    let vm = ChatRommViewModel(id: 1,
+                               chatService: service,
+                               stompManager: stompManager)
+    let vc = UIStoryboard(name: "Home",
+                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
+                                                                 creator: { coder in
+                            ChatRoomController(coder: coder, viewModel: vm)
+                          })
+    self.navigationController?.pushViewController(vc, animated: true)
+    //    let vm = CertificationBoardViewModel(service: HomeAPI())
+    //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "CertificationBoardVC",
     //                                                                                           creator: { coder in
-    //      ChatRoomController(coder: coder, viewModel: chatRoomViewModel)
+    //      CertificationBoardViewController(coder: coder, viewModel: vm)
     //    })
     //    self.navigationController?.pushViewController(viewController, animated: true)
-    let vm = CertificationBoardViewModel(service: HomeAPI())
-    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "CertificationBoardVC",
-                                                                                           creator: { coder in
-      CertificationBoardViewController(coder: coder, viewModel: vm)
-    })
-    self.navigationController?.pushViewController(viewController, animated: true)
+  }
+}
+
+extension HomeViewController {
+  func dataSource() -> HomeDataSource {
+    return HomeDataSource { _, collectionView, indexPath, item in
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier,
+                                                          for: indexPath) as? ContentCell else {
+        return UICollectionViewCell()
+      }
+      cell.modelRelay.accept(item.data)
+      cell.delegate = self
+      return cell
+    }
   }
 }

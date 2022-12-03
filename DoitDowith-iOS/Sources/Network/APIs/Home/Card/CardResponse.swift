@@ -21,7 +21,9 @@ struct CardData: Decodable {
 extension CardResponse {
     var toDomain: [Card] {
       return data.map { data in
-        return Card(section: data.section, title: data.title, subTitle: data.subTitle)
+        return Card(section: data.section,
+                    title: data.title,
+                    subTitle: data.subTitle)
       }
     }
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 import RxCocoa
+import RxDataSources
 import RxSwift
 import RxViewController
 import NSObject_Rx
@@ -15,7 +16,7 @@ import NSObject_Rx
 class CertificationBoardViewController: UIViewController {
   var viewModel: CertificationBoardViewModelType
   
-  init?(coder: NSCoder, viewModel: CertificationBoardViewModel) {
+  init?(coder: NSCoder, viewModel: CertificationBoardViewModelType) {
     self.viewModel = viewModel
     super.init(coder: coder)
   }
@@ -57,7 +58,7 @@ extension CertificationBoardViewController {
   
   func bindCertificationBoardView() {
     self.viewModel.output.certificatePostList
-      .drive(certificationBoardView.rx.items(dataSource: self.viewModel.output.dataSource))
+      .drive(certificationBoardView.rx.items(dataSource: self.dataSource()))
       .disposed(by: rx.disposeBag)
   }
   
@@ -100,10 +101,51 @@ extension CertificationBoardViewController {
     let layout = UICollectionViewCompositionalLayout(section: section)
     return layout
   }
+  
+  typealias PostSectionModel = AnimatableSectionModel<Int, CertificationPost>
+  private func dataSource() -> RxCollectionViewSectionedAnimatedDataSource<PostSectionModel> {
+    return RxCollectionViewSectionedAnimatedDataSource<PostSectionModel> { _, collectionView, indexPath, post in
+      switch post.postType {
+      case.ImagePost:
+        guard let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: CertificationPostWithImageCell.identifier,
+          for: indexPath) as? CertificationPostWithImageCell else {
+          return UICollectionViewCell()
+        }
+        cell.configure(with: post)
+        cell.delegate = self
+        return cell
+      case .TextPost:
+        guard let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: CertificationPostCell.identifier,
+          for: indexPath) as? CertificationPostCell else {
+          return UICollectionViewCell()
+        }
+        cell.configure(with: post)
+        cell.delegate = self
+        return cell
+      }
+    }
+  }
 }
 
-extension CertificationBoardViewController: CertifiactionPostCellDelegate {
+extension CertificationBoardViewController: CertifiactionPostCellDelegate,
+                                            CertificationPostWithImageCellDelegate {
+  func presentVoteModal() {
+    let vm = VoteResultViewModel(service: HomeAPI())
+    let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "VoteResultVC") { coder in
+      VoteResultViewController(coder: coder, viewModel: vm)
+    }
+    vc.modalPresentationStyle = .overCurrentContext
+    self.present(vc, animated: false)
+  }
   func certificationPostCell(_ voteButtonDidTap: UIButton) {
-    // 
+    print("hello")
+    presentVoteModal()
+  }
+  
+  func certificationPostWithImageCell(_ voteButtonDidTap: UIButton) {
+    print("imageCell")
+    presentVoteModal()
   }
 }

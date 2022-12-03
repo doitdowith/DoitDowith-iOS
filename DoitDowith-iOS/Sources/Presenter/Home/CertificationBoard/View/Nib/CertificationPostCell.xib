@@ -82,7 +82,7 @@
                             <color key="baseForegroundColor" name="CoolGray4"/>
                         </buttonConfiguration>
                         <connections>
-                            <action selector="voteButtonDidTap:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aiR-iN-qXL"/>
+                            <action selector="voteButtonDidTap:" destination="gTV-IL-0wX" eventType="touchUpInside" id="MoP-iK-ewJ"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ql0-GI-vXW">

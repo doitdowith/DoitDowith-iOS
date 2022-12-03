@@ -6,12 +6,16 @@
 //
 
 import UIKit
-import Kingfisher
+
+import RxCocoa
+import RxSwift
 import RxDataSources
+import Kingfisher
 
 protocol CertifiactionPostCellDelegate: AnyObject {
   func certificationPostCell(_ voteButtonDidTap: UIButton)
 }
+
 class CertificationPostCell: UICollectionViewCell {
   static let identifier: String = "CertificationPostCell"
   weak var delegate: CertifiactionPostCellDelegate?

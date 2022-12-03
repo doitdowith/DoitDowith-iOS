@@ -21,7 +21,6 @@ protocol CertificationBoardViewModelInput {
 protocol CertificationBoardViewModelOutput {
   var activated: Driver<Bool> { get }
   var certificatePostList: Driver<[PostSectionModel]> { get }
-  var dataSource: RxCollectionViewSectionedAnimatedDataSource<PostSectionModel> { get }
 }
 
 protocol CertificationBoardViewModelType {
@@ -40,12 +39,17 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
   
   let activated: Driver<Bool>
   let certificatePostList: Driver<[PostSectionModel]>
-  let dataSource: RxCollectionViewSectionedAnimatedDataSource<PostSectionModel>
   
   init(service: HomeAPIProtocol) {
     let fetching = PublishRelay<Void>()
     let activating = BehaviorRelay<Bool>(value: false)
-    let allPosts = BehaviorRelay<[PostSectionModel]>(value: [])
+    let allPosts = BehaviorRelay<[PostSectionModel]>(value: [
+      PostSectionModel(model: 0, items: [CertificationPost(postType: .TextPost,
+                                                           nickName: "ㅎㅇ",
+                                                           uploadTime: Date().addingTimeInterval(123),
+                                                           certificateText: "ㅎㅇㅎㅇㅎㅇ")]
+                      )
+    ])
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
@@ -61,26 +65,7 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
     self.fetchPosts = fetching
     // Output
     self.certificatePostList = allPosts.asDriver(onErrorJustReturn: [])
-    self.dataSource = RxCollectionViewSectionedAnimatedDataSource<PostSectionModel> { _, collectionView, indexPath, post in
-      switch post.postType {
-      case.ImagePost:
-        guard let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: CertificationPostWithImageCell.identifier,
-          for: indexPath) as? CertificationPostWithImageCell else {
-          return UICollectionViewCell()
-        }
-        cell.configure(with: post)
-        return cell
-      case .TextPost:
-        guard let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: CertificationPostCell.identifier,
-          for: indexPath) as? CertificationPostCell else {
-          return UICollectionViewCell()
-        }
-        cell.configure(with: post)
-        return cell
-      }
-    }
+    
     self.activated = activating
       .distinctUntilChanged()
       .asDriver(onErrorJustReturn: false)

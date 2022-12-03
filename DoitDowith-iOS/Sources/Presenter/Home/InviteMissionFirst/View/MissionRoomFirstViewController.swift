@@ -13,6 +13,7 @@ import RxSwift
 import RxRelay
 
 final class MissionRoomFirstViewController: UIViewController {
+  static let identifier: String = "MissionRoomFirstVC"
   // MARK: Interface Builder
   @IBOutlet weak var backButton: UIImageView!
   @IBOutlet weak var missionColorView: UICollectionView!

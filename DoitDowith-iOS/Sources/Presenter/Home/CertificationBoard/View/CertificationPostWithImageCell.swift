@@ -6,17 +6,29 @@
 //
 
 import UIKit
-import Kingfisher
+
+import RxCocoa
+import RxSwift
 import RxDataSources
+import Kingfisher
+
+protocol CertificationPostWithImageCellDelegate: AnyObject {
+  func certificationPostWithImageCell(_ voteButtonDidTap: UIButton)
+}
 
 class CertificationPostWithImageCell: UICollectionViewCell {
   static let identifier: String = "CertificationPostWithImageCell"
+  weak var delegate: CertificationPostWithImageCellDelegate?
   
   @IBOutlet weak var profileImage: UIImageView!
   @IBOutlet weak var nickName: UILabel!
   @IBOutlet weak var uploadTime: UILabel!
   @IBOutlet weak var certificateImage: UIImageView!
   @IBOutlet weak var certificateText: UILabel!
+  
+  @IBAction func voteButtonDidTap(_ sender: UIButton) {
+    self.delegate?.certificationPostWithImageCell(sender)
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()
