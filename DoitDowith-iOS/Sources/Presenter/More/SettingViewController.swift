@@ -13,6 +13,9 @@ class SettingViewController: UIViewController {
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
         }
+    @IBAction func logout() {
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
