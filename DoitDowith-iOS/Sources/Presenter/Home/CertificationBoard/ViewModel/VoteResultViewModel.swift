@@ -86,7 +86,7 @@ class VoteResultViewModel: VoteResultViewModelInput,
     
     // Output
     self.voteMemberList = voteMembers.asDriver(onErrorJustReturn: [])
-    self.voteMemberViewDataSource = VoteDataSource { dataSource, collectionView, indexPath, item in
+    self.voteMemberViewDataSource = VoteDataSource { _, collectionView, indexPath, item in
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VoteResultContentViewCell.identifier,
                                                           for: indexPath) as? VoteResultContentViewCell else {
         return UICollectionViewCell()
