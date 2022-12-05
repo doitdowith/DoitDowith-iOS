@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -84,14 +85,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="0zj-zg-cas">
-                                        <rect key="frame" x="121" y="158" width="140" height="20"/>
+                                        <rect key="frame" x="146.5" y="158" width="89.5" height="17"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두윗코드: SQW124A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmX-Rw-KVn">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="iBx-6U-CKF"/>
-                                                </constraints>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두윗코드:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmX-Rw-KVn">
+                                                <rect key="frame" x="0.0" y="0.0" width="41" height="17"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="11"/>
                                                 <color key="textColor" red="0.50588238240000005" green="0.52549022440000004" blue="0.55686277149999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -102,17 +99,31 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.on.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="842-Ez-lPS">
-                                                <rect key="frame" x="123" y="-1.5" width="17" height="23"/>
-                                                <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wtf!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a33-Vx-gaW">
+                                                <rect key="frame" x="44" y="0.0" width="25.5" height="17"/>
+                                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="11"/>
+                                                <color key="textColor" red="0.50588238240000005" green="0.52549022440000004" blue="0.55686277149999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6V-EO-jK8">
+                                                <rect key="frame" x="72.5" y="0.0" width="17" height="17"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="17" id="KL8-az-NXP"/>
+                                                    <constraint firstAttribute="width" constant="17" id="G19-Bj-ixC"/>
+                                                    <constraint firstAttribute="height" constant="17" id="Ux6-NH-M64"/>
                                                 </constraints>
-                                            </imageView>
+                                                <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="">
+                                                    <imageReference key="image" image="doc.on.clipboard" catalog="system" symbolScale="small"/>
+                                                </buttonConfiguration>
+                                            </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="P6V-EO-jK8" firstAttribute="leading" secondItem="a33-Vx-gaW" secondAttribute="trailing" constant="3" id="8jW-cR-75I"/>
+                                        </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4q-O2-YfU">
-                                        <rect key="frame" x="14" y="193" width="353" height="1"/>
+                                        <rect key="frame" x="14" y="190" width="353" height="1"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         <constraints>
@@ -120,7 +131,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6i-gQ-XUl">
-                                        <rect key="frame" x="57.5" y="210" width="267" height="39"/>
+                                        <rect key="frame" x="57.5" y="207" width="267" height="39"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2de-1Q-u5N">
                                                 <rect key="frame" x="0.0" y="0.0" width="89" height="39"/>
@@ -299,6 +310,8 @@
                     <navigationItem key="navigationItem" id="UE4-HD-eeC"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnCode" destination="P6V-EO-jK8" id="CTZ-Bj-h0z"/>
+                        <outlet property="doitCode" destination="a33-Vx-gaW" id="gAP-3K-2Qu"/>
                         <outlet property="tableView" destination="SEM-TU-z47" id="aq8-Sw-stg"/>
                     </connections>
                 </viewController>

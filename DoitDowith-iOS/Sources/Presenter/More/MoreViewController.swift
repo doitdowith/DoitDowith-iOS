@@ -6,12 +6,28 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var btnCode: UIButton!
+    @IBOutlet weak var doitCode: UILabel!
+
+    let bag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        btnCode.rx.tap
+                    .bind(onNext: {
+                        UIPasteboard.general.string = self.doitCode.text
+                    }).disposed(by: bag)
+
+                if let storedString = UIPasteboard.general.string {
+                    print(storedString)
+                }
         // Do any additional setup after loading the view.
     }
 }
