@@ -14,7 +14,6 @@ class SettingViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         }
     @IBAction func logout() {
-        
     }
 
     override func viewDidLoad() {
