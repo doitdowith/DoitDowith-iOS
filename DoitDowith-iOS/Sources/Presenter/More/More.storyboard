@@ -414,24 +414,22 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="e0t-c9-mgk">
-                                        <rect key="frame" x="92" y="16" width="140" height="60"/>
+                                        <rect key="frame" x="92" y="16" width="89.5" height="54"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lha-zx-ZsE">
-                                                <rect key="frame" x="0.0" y="0.0" width="39" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="39" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="Oba-PL-2rB"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                                                 <color key="textColor" red="0.11372549830000001" green="0.11372549830000001" blue="0.11372549830000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="OWe-kE-bLN">
-                                                <rect key="frame" x="0.0" y="38" width="140" height="22"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rpc-Xn-BIb">
+                                                <rect key="frame" x="0.0" y="37" width="89.5" height="17"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두윗코드: SQW124A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZA0-YY-e5C">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="22"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="2MS-MJ-ENN"/>
-                                                            <constraint firstAttribute="height" constant="22" id="JIt-km-dp8"/>
-                                                        </constraints>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두윗코드:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbV-LI-e43">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="17"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="11"/>
                                                         <color key="textColor" red="0.50588238240000005" green="0.52549022440000004" blue="0.55686277149999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -442,14 +440,28 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.on.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FA9-Gg-fUr">
-                                                        <rect key="frame" x="123" y="-1.5" width="17" height="25"/>
-                                                        <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wtf!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRd-ci-tCG">
+                                                        <rect key="frame" x="44" y="0.0" width="25.5" height="17"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="11"/>
+                                                        <color key="textColor" red="0.50588238240000005" green="0.52549022440000004" blue="0.55686277149999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjV-Bj-oiN">
+                                                        <rect key="frame" x="72.5" y="0.0" width="17" height="17"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="17" id="8ll-yg-gTa"/>
+                                                            <constraint firstAttribute="width" constant="17" id="gle-Oe-TRO"/>
+                                                            <constraint firstAttribute="height" constant="17" id="m3O-u1-Pdt"/>
                                                         </constraints>
-                                                    </imageView>
+                                                        <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="">
+                                                            <imageReference key="image" image="doc.on.clipboard" catalog="system" symbolScale="small"/>
+                                                        </buttonConfiguration>
+                                                    </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="LjV-Bj-oiN" firstAttribute="leading" secondItem="dRd-ci-tCG" secondAttribute="trailing" constant="3" id="iDi-FV-siN"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -459,7 +471,6 @@
                                     <constraint firstItem="e0t-c9-mgk" firstAttribute="top" secondItem="fic-4F-Wnb" secondAttribute="top" constant="16" id="1aa-RC-lb3"/>
                                     <constraint firstItem="h8y-Fw-jaj" firstAttribute="leading" secondItem="fic-4F-Wnb" secondAttribute="leading" constant="16" id="AKh-FE-BMF"/>
                                     <constraint firstAttribute="bottom" secondItem="h8y-Fw-jaj" secondAttribute="bottom" constant="16" id="AUS-uQ-BhW"/>
-                                    <constraint firstAttribute="bottom" secondItem="e0t-c9-mgk" secondAttribute="bottom" constant="16" id="Dnp-O0-klS"/>
                                     <constraint firstAttribute="height" constant="92" id="J0R-3H-VG4"/>
                                     <constraint firstItem="e0t-c9-mgk" firstAttribute="leading" secondItem="h8y-Fw-jaj" secondAttribute="trailing" constant="16" id="TzP-Us-Nhb"/>
                                     <constraint firstItem="h8y-Fw-jaj" firstAttribute="top" secondItem="fic-4F-Wnb" secondAttribute="top" constant="16" id="j4U-le-4gY"/>
@@ -621,6 +632,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="xr3-7n-o3A"/>
                     <connections>
+                        <outlet property="btnCode" destination="LjV-Bj-oiN" id="dIj-G9-Zpz"/>
+                        <outlet property="doitCode" destination="dRd-ci-tCG" id="igs-pA-SuI"/>
                         <outlet property="tableView" destination="Yin-5f-im3" id="GM6-yc-hdg"/>
                     </connections>
                 </viewController>

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FriendListViewController: UIViewController {
     @IBAction func goBack() {
@@ -16,9 +18,23 @@ class FriendListViewController: UIViewController {
     
     @IBAction func showModal(_ sender: UIButton) {
     }
+    
+    @IBOutlet weak var btnCode: UIButton!
+    @IBOutlet weak var doitCode: UILabel!
+
+    let bag = DisposeBag()
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnCode.rx.tap
+                    .bind(onNext: {
+                        UIPasteboard.general.string = self.doitCode.text
+                    }).disposed(by: bag)
+
+                if let storedString = UIPasteboard.general.string {
+                    print(storedString)
+                }
 
         // Do any additional setup after loading the view.
     }
