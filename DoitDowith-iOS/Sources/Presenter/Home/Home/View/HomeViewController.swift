@@ -22,10 +22,9 @@ final class HomeViewController: UIViewController {
   
   // MARK: Properties
   var viewModel: HomeViewModelType
-  
   // MARK: Initializer
   required init?(coder: NSCoder) {
-    self.viewModel = HomeViewModel(service: HomeAPI())
+    self.viewModel = HomeViewModel()
     super.init(coder: coder)
   }
   
@@ -64,6 +63,9 @@ extension HomeViewController {
     let contentCellNib = UINib(nibName: "ContentCell", bundle: nil)
     self.contentCollectionView.register(contentCellNib,
                                         forCellWithReuseIdentifier: ContentCell.identifier)
+    let emptyCellNib = UINib(nibName: "EmptyCardCell", bundle: nil)
+    self.contentCollectionView.register(emptyCellNib,
+                                        forCellWithReuseIdentifier: EmptyCardCell.identifier)
   }
   
   func bind() {
@@ -87,10 +89,17 @@ extension HomeViewController {
       guard let self = self else { return }
       if point.x <= 0 {
         self.bottomLineLeadingConstraint.constant = (self.doingButton.left - self.doingButtonLeftPadding)
+        self.bottomLineWidthConstraint.constant = self.doingButton.width
       } else if point.x <= screenWidth {
-        self.bottomLineLeadingConstraint.constant = (self.doingButton.width + self.buttonSpacing) / screenWidth * point.x
+        self.bottomLineLeadingConstraint.constant =
+        (self.doingButton.width + self.buttonSpacing) / screenWidth * point.x
+        self.bottomLineWidthConstraint.constant =
+        self.doingButton.width + (self.willdoButton.width - self.doingButton.width) / screenWidth * point.x
       } else if point.x <= screenWidth * 2 {
-        self.bottomLineLeadingConstraint.constant = (self.willdoButton.width + self.buttonSpacing) / screenWidth * point.x - 10
+        self.bottomLineLeadingConstraint.constant =
+        (self.willdoButton.width + self.buttonSpacing) / screenWidth * point.x - 10
+        self.bottomLineWidthConstraint.constant =
+        self.willdoButton.width + ((self.doneButton.width - self.willdoButton.width) / (screenWidth * 2) * point.x)
       }
     })
     return UICollectionViewCompositionalLayout(section: section)
@@ -142,7 +151,7 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 0)
-        self.viewModel.input.buttonClickIndex.accept(0)
+        self.viewModel.input.indicatorIndex.accept(0)
       })
       .disposed(by: rx.disposeBag)
     
@@ -157,7 +166,7 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 1)
-        self.viewModel.input.buttonClickIndex.accept(1)
+        self.viewModel.input.indicatorIndex.accept(1)
       })
       .disposed(by: rx.disposeBag)
     
@@ -172,7 +181,7 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 2)
-        self.viewModel.input.buttonClickIndex.accept(2)
+        self.viewModel.input.indicatorIndex.accept(2)
       })
       .disposed(by: rx.disposeBag)
     
@@ -194,10 +203,10 @@ extension HomeViewController: ContentCellDelegate {
     let vc = UIStoryboard(name: "Home",
                           bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
                                                                  creator: { coder in
-                            ChatRoomController(coder: coder, viewModel: vm)
+                            ChatRoomController(coder: coder, roomId: 1, viewModel: vm)
                           })
     self.navigationController?.pushViewController(vc, animated: true)
-    //    let vm = CertificationBoardViewModel(service: HomeAPI())
+    //    let vm = CertificationBoardViewModel()
     //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "CertificationBoardVC",
     //                                                                                           creator: { coder in
     //      CertificationBoardViewController(coder: coder, viewModel: vm)
@@ -209,13 +218,22 @@ extension HomeViewController: ContentCellDelegate {
 extension HomeViewController {
   func dataSource() -> HomeDataSource {
     return HomeDataSource { _, collectionView, indexPath, item in
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier,
-                                                          for: indexPath) as? ContentCell else {
-        return UICollectionViewCell()
+      switch item.type {
+      case .none:
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCardCell.identifier,
+                                                            for: indexPath) as? EmptyCardCell else {
+          return UICollectionViewCell()
+        }
+        return cell
+      case .doing, .willdo, .done:
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier,
+                                                            for: indexPath) as? ContentCell else {
+          return UICollectionViewCell()
+        }
+        cell.modelRelay.accept(item.data)
+        cell.delegate = self
+        return cell
       }
-      cell.modelRelay.accept(item.data)
-      cell.delegate = self
-      return cell
     }
   }
 }

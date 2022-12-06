@@ -14,8 +14,13 @@ import RxViewController
 import RxKeyboard
 import NSObject_Rx
 
+protocol CertificationViewControllerDelegate: AnyObject {
+  func certificationViewController(_ certificateMessage: ChatModel)
+}
 class CertificationViewController: UIViewController {
   // MARK: Constant
+  weak var delegate: CertificationViewControllerDelegate?
+  var selectedImage: UIImage?
   private let safeAreaBottomSize = UIApplication.safeAreaEdgeInsets.bottom
   private let viewModel: CertificationViewModelType
   
@@ -72,7 +77,21 @@ class CertificationViewController: UIViewController {
     self.present(camera, animated: true)
   }
   
-  @IBAction func completeButtomDidTap(_ sender: UIButton) { }
+  @IBAction func completeButtomDidTap(_ sender: UIButton) {
+    guard let image = selectedImage else { return }
+    self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
+                                                         name: "",
+                                                         message: .text("인증 메세지 테스트"),
+                                                         image: .image(image),
+                                                         time: Date.now.formatted(format: "YY-MM-dd")))
+    self.navigationController?.popViewController(animated: true)
+  }
+  
+  func resignTextViewResponder() {
+    if certificationTextView.isFirstResponder {
+      certificationTextView.resignFirstResponder()
+    }
+  }
 }
 
 // MARK: Bind function
@@ -100,8 +119,10 @@ extension CertificationViewController {
     self.backButton.rx
       .tapGesture()
       .when(.recognized)
-      .bind(onNext: { [weak self]_ in
-        self?.animateOpenModal()
+      .withUnretained(self)
+      .bind(onNext: { owner, _ in
+        owner.resignTextViewResponder()
+        owner.animateOpenModal()
       })
       .disposed(by: rx.disposeBag)
   }
@@ -168,22 +189,23 @@ extension CertificationViewController {
 extension CertificationViewController: PHPickerViewControllerDelegate {
   func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
     picker.dismiss(animated: true)
-    var images: [UIImage] = []
+    var selectImages: [UIImage] = []
     let group = DispatchGroup()
     for result in results where result.itemProvider.canLoadObject(ofClass: UIImage.self) {
       group.enter()
       result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
         defer { group.leave() }
         if let image = image as? UIImage {
-          images.append(image)
+          selectImages.append(image)
         } else {
           print("Could not load image", error?.localizedDescription ?? "")
         }
       }
     }
     group.notify(queue: .main) {
-      if !images.isEmpty {
-        self.viewModel.input.selectedImages.accept(images)
+      if !selectImages.isEmpty {
+        self.selectedImage = selectImages[0]
+        self.viewModel.input.selectedImages.accept(selectImages)
       }
     }
   }

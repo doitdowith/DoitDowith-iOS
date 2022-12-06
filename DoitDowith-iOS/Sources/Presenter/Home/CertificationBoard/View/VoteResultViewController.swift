@@ -103,7 +103,6 @@ extension VoteResultViewController {
   
   func bindVoteMemberListView() {
     self.viewModel.output.voteMemberList
-      .do { print($0) }
       .drive(self.voteMemberListView.rx.items(dataSource: self.viewModel.output.voteMemberViewDataSource))
       .disposed(by: rx.disposeBag)
   }

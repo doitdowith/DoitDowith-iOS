@@ -13,11 +13,12 @@ import RxCocoa
 import RxDataSources
 import RxRelay
 import RxSwift
+import RealmSwift
 import StompClientLib
 
 protocol ChatRoomViewModelInput {
   var viewWillAppear: PublishRelay<Void> { get }
-  var sendMessage: PublishRelay<String?> { get }
+  var sendMessage: PublishRelay<[ChatModel]> { get }
 }
 
 protocol ChatRoomViewModelOutput {
@@ -48,7 +49,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   
   // Input
   let viewWillAppear: PublishRelay<Void>
-  let sendMessage: PublishRelay<String?>
+  let sendMessage: PublishRelay<[ChatModel]>
   
   // Output
   let messageList: Driver<[SectionOfChatModel]>
@@ -59,26 +60,15 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   
   init(id: Int, chatService: ChatServiceProtocol, stompManager: StompManagerProtocol) {
     let fetching = PublishRelay<Void>()
-    let message = PublishRelay<String?>()
+    let message = PublishRelay<[ChatModel]>()
     
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
     
     message
-      .filter { $0 != nil }
-      .map { $0! }
-      .filter { !$0.isEmpty }
-      .do(onNext: { message in
-        stompManager.sendMessage(meesage: message)
-      })
-      .map { [ChatModel(type: .sendMessage,
-                        id: 0,
-                        image: "",
-                        name: "",
-                        message: $0,
-                        time: Date.now.formatted())] }
-      .bind(onNext: allMessages.accept)
+      .do(onNext: { chatService.sendMessage(roomId: id, message: $0.first!) })
+      .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
     
     self.viewWillAppear = fetching
@@ -111,20 +101,22 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
-    // .do(onNext: { _ in stompManager.registerSocket() })
-      .flatMap(chatService.fetchChatList)
+      // .do(onNext: { _ in stompManager.registerSocket() })
+        .flatMap { _ in
+          return chatService.fetchChatList(roomId: id)
+        }
       .do(onNext: { _ in activating.accept(false) })
-        .do(onError: { err in error.accept(err) })
-        .subscribe(onNext: { allMessages.accept($0) })
-        .disposed(by: disposeBag)
-          
-          self.activated = activating
-          .distinctUntilChanged()
-          .asDriver(onErrorJustReturn: false)
-          
-          self.errorMessage = error
-          .map { $0 as NSError }
-          .asSignal(onErrorJustReturn: MyError.error as NSError)
+      .do(onError: { err in error.accept(err) })
+      .subscribe(onNext: { allMessages.accept($0) })
+      .disposed(by: disposeBag)
+        
+        self.activated = activating
+        .distinctUntilChanged()
+        .asDriver(onErrorJustReturn: false)
+        
+        self.errorMessage = error
+        .map { $0 as NSError }
+        .asSignal(onErrorJustReturn: MyError.error as NSError)
     
     self.lastPosition = messageList
       .filter { !$0.isEmpty }
@@ -139,7 +131,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                                          for: indexPath) as? ReceiveMessageWithProfileCell else {
             return UITableViewCell()
           }
-          cell.configure(image: item.image,
+          cell.configure(image: item.profileImage!,
                          name: item.name,
                          message: item.message,
                          time: item.time)
@@ -171,14 +163,18 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                                          for: indexPath) as? SendImageMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description, message: item.message, image: UIImage.add)
+          cell.configure(time: item.time.suffix(7).description,
+                         message: item.message,
+                         image: item.image!)
           return cell
         case .receiveImageMessage:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageMessageCell.identifier,
                                                          for: indexPath) as? ReceiveImageMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description, message: item.message, image: UIImage.add)
+          cell.configure(time: item.time.suffix(7).description,
+                         message: item.message,
+                         image: item.image!)
           return cell
         }
       })

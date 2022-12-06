@@ -42,10 +42,9 @@ extension ChatResponse {
         }
       }
       return ChatModel(type: type,
-                       id: data.memberId,
-                       image: data.image,
+                       profileImage: .url(data.image),
                        name: data.name,
-                       message: data.message,
+                       message: .text(data.message),
                        time: data.time)
     }
   }

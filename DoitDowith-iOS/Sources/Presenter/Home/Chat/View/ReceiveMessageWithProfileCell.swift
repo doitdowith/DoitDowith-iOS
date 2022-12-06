@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ReceiveMessageWithProfileCell: UITableViewCell {
   static let identifier: String = "ReceiveMessageWithProfileCell"
@@ -35,10 +36,21 @@ class ReceiveMessageWithProfileCell: UITableViewCell {
 }
 
 extension ReceiveMessageWithProfileCell {
-  func configure(image: String, name: String, message: String, time: String) {
-    profileImageView.image = UIImage(systemName: image)
+  func configure(image: Image, name: String, message: Message, time: String) {
+    switch image {
+    case .url(let model):
+      profileImageView.setImage(with: model)
+    case .image(let model):
+      profileImageView.image = model
+    }
+    
+    switch message {
+    case .text(let model):
+      receiveMessageTextView.text = model
+    case .image:
+      break
+    }
     nameLabel.text = name
-    receiveMessageTextView.text = message
     receiveTimeLabel.text = time
   }
   

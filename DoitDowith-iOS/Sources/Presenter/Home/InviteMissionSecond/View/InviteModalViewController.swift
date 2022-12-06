@@ -19,17 +19,52 @@ final class InviteModalViewController: UIViewController {
   @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var friendListTableView: UITableView!
   @IBOutlet weak var searchbar: UISearchBar!
+  @IBOutlet weak var friendNumber: UILabel!
+  @IBOutlet weak var filterButton: UIButton!
   
   @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
   
+  @IBAction func completeButtonDidTap(_ sender: UIButton) {
+    var filtered: [Friend] = []
+    let friendlist = viewModel.output.frieindList.value
+    for (i, friend) in friendlist.enumerated() where selectedCell[i] {
+      let temp = Friend(id: friend.id,
+                        url: friend.url,
+                        state: .ing,
+                        name: friend.name)
+      filtered.append(temp)
+    }
+    parentViewModel.input.missionFriendList.accept(filtered)
+    animateDismissView()
+  }
+  
   // MARK: Constant
+  static let identifier: String = "InviteModalVC"
   private var currentViewHeight: CGFloat = 700
   
   private let dimmedAlpha: CGFloat = 0.8
   private let modalViewHeight: CGFloat = 700
   private let criticalHeight: CGFloat = 500
   private let dissmissHeight: CGFloat = 350
+  private let filterButtonTapCount: Int = 0
+  
+  private var selectedCell: [Bool]
+  private let viewModel: InviteModalViewModelType
+  private let parentViewModel: MissionRoomSecondViewModelType
+  // MARK: Initializers
+  init?(coder: NSCoder,
+        viewModel: InviteModalViewModelType,
+        parentViewModel: MissionRoomSecondViewModelType) {
+    self.viewModel = viewModel
+    self.parentViewModel = parentViewModel
+    self.selectedCell = Array(repeating: false, count: viewModel.frieindList.value.count)
+    super.init(coder: coder)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: Life Cycle
   override func viewDidLoad() {
@@ -61,11 +96,22 @@ extension InviteModalViewController {
     self.bindDimmedView()
     self.bindContentView()
     self.bindFriendListTableView()
+    self.bindFriendNumberLabel()
   }
 }
 
 // MARK: Bind Functions
 extension InviteModalViewController {
+  func bindFriendNumberLabel() {
+    self.viewModel.output.friendNumber
+      .map { "친구 \($0)명" }
+      .drive(self.friendNumber.rx.text)
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindFilterButton() {
+  }
+  
   func bindContentView() {
     self.contentView.rx.panGesture()
       .when(.changed)
@@ -111,6 +157,36 @@ extension InviteModalViewController {
   }
   
   func bindFriendListTableView() {
+    Observable.zip(friendListTableView.rx.modelSelected(Friend.self),
+               friendListTableView.rx.itemSelected)
+    .bind { [weak self] model, indexPath in
+      self?.friendListTableView.deselectRow(at: indexPath, animated: true)
+      if let cell = self?.friendListTableView.cellForRow(at: indexPath) as? FriendCell {
+        switch cell.state {
+        case .success:
+          cell.inviteStateLabel.text = "선택함"
+          cell.state = .ing
+          self?.selectedCell[indexPath.row].toggle()
+        case .ing:
+          cell.inviteStateLabel.text = "초대 가능"
+          cell.state = .success
+          self?.selectedCell[indexPath.row].toggle()
+        default:
+          break
+        }
+      }
+    }
+    .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.frieindList
+      .bind(to: self.friendListTableView.rx.items(cellIdentifier: FriendCell.identifier,
+                                                      cellType: FriendCell.self)) { _, element, cell in
+        cell.configure(url: element.url,
+                       name: element.name,
+                       state: element.state)
+        cell.selectionStyle = .none
+      }
+     .disposed(by: rx.disposeBag)
   }
 }
 

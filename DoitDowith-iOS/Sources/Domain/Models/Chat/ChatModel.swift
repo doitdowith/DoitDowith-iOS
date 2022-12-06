@@ -7,30 +7,33 @@
 
 import Foundation
 
+import RealmSwift
 import RxDataSources
 
-enum MessageType {
-  case receiveMessageWithProfile
-  case receiveMessage
-  case receiveImageMessage
-  case sendMessageWithTip
-  case sendMessage
-  case sendImageMessage
+enum MessageType: Int {
+  case receiveMessageWithProfile = 0
+  case receiveMessage = 1
+  case receiveImageMessage = 2
+  case sendMessageWithTip = 3
+  case sendMessage = 4
+  case sendImageMessage = 5
 }
+
+enum Image {
+  case image(UIImage)
+  case url(String)
+}
+
+enum Message {
+  case image(UIImage)
+  case text(String)
+}
+
 struct ChatModel {
   var type: MessageType
-  var memberId: Int
-  var image: String
+  var profileImage: Image?
   var name: String
-  var message: String
+  var message: Message
+  var image: Image?
   var time: String
-  
-  init(type: MessageType, id: Int, image: String, name: String, message: String, time: String) {
-    self.type = type
-    self.memberId = id
-    self.image = image
-    self.name = name
-    self.message = message
-    self.time = time
-  }
 }

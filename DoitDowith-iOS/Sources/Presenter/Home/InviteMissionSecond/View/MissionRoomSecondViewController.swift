@@ -22,14 +22,18 @@ final class MissionRoomSecondViewController: UIViewController {
   @IBOutlet weak var certificateCountTextField: UITextFieldWithPadding!
   
   @IBAction func didTapCompleteButton(_ sender: UIButton) {
-    let charRoomService = ChatService()
-    let stompManager = StompManager(targetId: 1, senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e", connectType: .room)
+    let service = ChatService()
+    let stompManager = StompManager(targetId: 1,
+                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
+                                    connectType: .room)
+    
+    // service.createChatRoom(roomId: 1)
     let chatRoomViewModel = ChatRommViewModel(id: 1,
-                                              chatService: charRoomService,
+                                              chatService: service,
                                               stompManager: stompManager)
     let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
                                                                                            creator: { coder in
-      ChatRoomController(coder: coder, viewModel: chatRoomViewModel)
+      ChatRoomController(coder: coder, roomId: 1, viewModel: chatRoomViewModel)
     })
     self.navigationController?.pushViewController(viewController, animated: true)
   }
@@ -41,7 +45,8 @@ final class MissionRoomSecondViewController: UIViewController {
     picker.datePickerMode = .date
     return picker
   }()
-  private let viewModel: MissionRoomSecondViewModelType
+  
+   let viewModel: MissionRoomSecondViewModelType
   
   // MARK: Initializers
   init?(coder: NSCoder, viewModel: MissionRoomSecondViewModelType) {
@@ -97,8 +102,11 @@ extension MissionRoomSecondViewController {
   }
   
   func action1() {
+    let vm = InviteModalViewModel(memberId: 1)
     let inviteModal = UIStoryboard(name: "Home",
-                                   bundle: nil).instantiateViewController(withIdentifier: "InviteModalVC")
+                                   bundle: nil).instantiateViewController(identifier: InviteModalViewController.identifier) { coder in
+      InviteModalViewController(coder: coder, viewModel: vm, parentViewModel: self.viewModel)
+    }
     inviteModal.modalPresentationStyle = .overCurrentContext
     self.present(inviteModal, animated: false)
   }
@@ -127,18 +135,21 @@ extension MissionRoomSecondViewController {
   }
   
   func bindFriendCollectionView() {
+    self.friendCollectionView.allowsMultipleSelection = true
     self.viewModel.output.model
-      .bind(to: self.friendCollectionView.rx.items(cellIdentifier: FriendProfileCell.identifier,
-                                                   cellType: FriendProfileCell.self)) { _, color, cell in
-        cell.backgroundColor = color
+      .debug()
+      .map { $0 + ["https://www.pngfind.com/pngs/m/52-523304_plus-sign-icon-png-plus-icon-png-transparent.png"] }
+      .drive(self.friendCollectionView.rx.items(cellIdentifier: FriendProfileCell.identifier,
+                                                cellType: FriendProfileCell.self)) { _, item, cell in
+        cell.configure(url: item)
       }
-                                                   .disposed(by: rx.disposeBag)
+      .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.friendCollectionView.rx.itemSelected,
-           self.friendCollectionView.rx.modelSelected(UIColor.self))
+           self.friendCollectionView.rx.modelSelected(String.self))
       .bind { [unowned self] indexPath, _ in
-        if indexPath.row == self.viewModel.output.model.value.count - 1 {
+        if indexPath.row == self.friendCollectionView.numberOfItems(inSection: 0) - 1 {
           self.action1()
         }
       }

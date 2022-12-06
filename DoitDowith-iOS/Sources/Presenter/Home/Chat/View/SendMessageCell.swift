@@ -29,8 +29,13 @@ class SendMessageCell: UITableViewCell {
 
 // Configure
 extension SendMessageCell {
-  func configure(time: String, message: String) {
-    sendMessageTextView.text = message
+  func configure(time: String, message: Message) {
+    switch message {
+    case .text(let model):
+      sendMessageTextView.text = model
+    case .image:
+      break
+    }
     sendTimeLabel.text = time
   }
   
@@ -43,7 +48,7 @@ extension SendMessageCell {
     let shape = CAShapeLayer()
     shape.cornerRadius = 2
     shape.path = path
-    shape.fillColor = UIColor(red: 186/255, green: 211/255, blue: 249/255, alpha: 1).cgColor
+    shape.fillColor = UIColor.primaryColor4.cgColor
     self.messageView.layer.insertSublayer(shape, at: 0)
     self.messageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
   }

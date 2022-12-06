@@ -22,16 +22,16 @@ final class MissionRoomFirstViewController: UIViewController {
   @IBOutlet weak var nextPageButton: UIButton!
   
   @IBAction func didTapNextPageButton(_ sender: UIButton) {
-    let missionRoomSecondViewModel: MissionRoomSecondViewModelType = MisionRoomSecondViewModel()
+    let vm: MissionRoomSecondViewModelType = MisionRoomSecondViewModel()
     self.viewModel.output.passData
-      .bind(to: missionRoomSecondViewModel.input.passedData)
+      .bind(to: vm.input.passedData)
       .disposed(by: rx.disposeBag)
     
     let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(
       identifier: "MissionRoomSecondVC",
       creator: { coder in
         MissionRoomSecondViewController(coder: coder,
-                                        viewModel: missionRoomSecondViewModel)
+                                        viewModel: vm)
       })
     self.navigationController?.pushViewController(viewController, animated: true)
   }
@@ -120,10 +120,11 @@ extension MissionRoomFirstViewController {
                                             cellType: ColorCell.self)) { _, color, cell in
         cell.backgroundColor = color
       }
-                                            .disposed(by: rx.disposeBag)
+      .disposed(by: rx.disposeBag)
     
     Observable
-      .zip(self.missionColorView.rx.itemSelected, self.missionColorView.rx.modelSelected(UIColor.self))
+      .zip(self.missionColorView.rx.itemSelected,
+           self.missionColorView.rx.modelSelected(UIColor.self))
       .withUnretained(self)
       .bind(onNext: { owner, arg in
         let color = arg.1

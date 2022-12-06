@@ -57,13 +57,21 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K4C-9x-3RA">
                                 <rect key="frame" x="0.0" y="210" width="375" height="519"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="D1Y-ep-Roe"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="contentCell" id="veh-Pu-TeA" customClass="CardCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContentCell" id="veh-Pu-TeA" customClass="CardCell" customModule="DoitDowith_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ctf-N9-0hn">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="EmptyCardCell" id="inX-MK-uE7" customClass="EmptyCardCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="65" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bdj-ZY-eoo">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
@@ -1164,7 +1172,7 @@
                                         <color key="textColor" name="CoolGray2"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x5b-Jo-9H1">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="68" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x5b-Jo-9H1">
                                         <rect key="frame" x="16" y="237" width="343" height="427"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
@@ -1181,6 +1189,9 @@
                                             <fontDescription key="titleFontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
                                             <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="completeButtonDidTap:" destination="p89-12-ooU" eventType="touchUpInside" id="GnI-na-ijG"/>
+                                        </connections>
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="검색창" translatesAutoresizingMaskIntoConstraints="NO" id="zz3-a9-4Zb">
                                         <rect key="frame" x="16" y="134" width="343" height="56"/>
@@ -1234,13 +1245,15 @@
                         <outlet property="contentViewBottomConstraint" destination="R8r-bN-oyF" id="kpu-Fc-uyA"/>
                         <outlet property="contentViewHeightConstraint" destination="uMq-yS-qZX" id="vub-38-BXo"/>
                         <outlet property="dimmedView" destination="5EH-Qa-ydG" id="Ab6-BJ-3Da"/>
+                        <outlet property="filterButton" destination="piH-f5-fEQ" id="TdS-YB-ZAb"/>
                         <outlet property="friendListTableView" destination="x5b-Jo-9H1" id="I4K-9W-8Be"/>
+                        <outlet property="friendNumber" destination="6Bg-d5-UHL" id="0PO-m0-0Te"/>
                         <outlet property="searchbar" destination="zz3-a9-4Zb" id="rl3-La-xSb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa4-8e-tjL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="1546"/>
+            <point key="canvasLocation" x="2237.5999999999999" y="1545.8128078817736"/>
         </scene>
         <!--Chat Room Information Modal-->
         <scene sceneID="Nwp-As-crB">
@@ -1333,7 +1346,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="icClose"/>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-8J-aJR">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-8J-aJR">
                                         <rect key="frame" x="16" y="196" width="318" height="401"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>

@@ -13,5 +13,5 @@ struct MissionRoomRequest: Encodable {
   let color: String
   let date: String
   let certificationCount: Int
-  let members: [String]
+  let members: [Friend]
 }

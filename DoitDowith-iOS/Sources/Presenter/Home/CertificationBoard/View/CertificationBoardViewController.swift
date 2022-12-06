@@ -132,7 +132,7 @@ extension CertificationBoardViewController {
 extension CertificationBoardViewController: CertifiactionPostCellDelegate,
                                             CertificationPostWithImageCellDelegate {
   func presentVoteModal() {
-    let vm = VoteResultViewModel(service: HomeAPI())
+    let vm = VoteResultViewModel()
     let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "VoteResultVC") { coder in
       VoteResultViewController(coder: coder, viewModel: vm)
     }
@@ -140,12 +140,10 @@ extension CertificationBoardViewController: CertifiactionPostCellDelegate,
     self.present(vc, animated: false)
   }
   func certificationPostCell(_ voteButtonDidTap: UIButton) {
-    print("hello")
     presentVoteModal()
   }
   
   func certificationPostWithImageCell(_ voteButtonDidTap: UIButton) {
-    print("imageCell")
     presentVoteModal()
   }
 }

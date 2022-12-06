@@ -46,11 +46,11 @@ class CertificationViewModel: CertificationViewModelInput,
     self.images = selectedImages.asDriver(onErrorJustReturn: [])
     self.completeButtonColor = completeButtonEnabled.map { (can) -> UIColor in
       if can {
-        return UIColor(red: 67/255, green: 136/255, blue: 238/255, alpha: 1)
+        return .primaryColor2
       } else {
-        return UIColor(red: 186/255, green: 211/255, blue: 249/255, alpha: 1)
+        return .primaryColor4
       }
     }
-    .asDriver(onErrorJustReturn: UIColor(red: 186/255, green: 211/255, blue: 249/255, alpha: 1))
+    .asDriver(onErrorJustReturn: .primaryColor4)
   }  
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo" translatesAutoresizingMaskIntoConstraints="NO" id="GpF-U8-Rxn">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo" translatesAutoresizingMaskIntoConstraints="NO" id="GpF-U8-Rxn">
                         <rect key="frame" x="14" y="12" width="48" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="MPc-B5-ZQ3"/>
@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mX4-er-uFL">
-                        <rect key="frame" x="73.5" y="36" width="48" height="17"/>
+                        <rect key="frame" x="77" y="36" width="48" height="17"/>
                         <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
                         <color key="textColor" red="0.18823529411764706" green="0.20784313725490194" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -42,10 +42,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.94117647058823528" green="0.94509803921568625" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="mX4-er-uFL" firstAttribute="centerX" secondItem="1FO-Yw-7wz" secondAttribute="centerX" id="UH0-jz-oL7"/>
                     <constraint firstItem="GpF-U8-Rxn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="X4Y-ck-q9G"/>
                     <constraint firstItem="GpF-U8-Rxn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="b64-g6-QIX"/>
                     <constraint firstItem="1FO-Yw-7wz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="cKx-lB-mnK"/>
+                    <constraint firstItem="mX4-er-uFL" firstAttribute="leading" secondItem="1FO-Yw-7wz" secondAttribute="leading" id="dKF-uI-4WZ"/>
                     <constraint firstItem="1FO-Yw-7wz" firstAttribute="leading" secondItem="GpF-U8-Rxn" secondAttribute="trailing" constant="15" id="k42-wu-dbQ"/>
                     <constraint firstAttribute="bottom" secondItem="GpF-U8-Rxn" secondAttribute="bottom" constant="12" id="m1N-8Q-7tq"/>
                     <constraint firstItem="mX4-er-uFL" firstAttribute="top" secondItem="1FO-Yw-7wz" secondAttribute="bottom" constant="6" id="q3p-37-jtR"/>
