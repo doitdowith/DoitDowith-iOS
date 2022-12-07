@@ -48,14 +48,14 @@ extension FriendCell {
     self.nameLabel.text = name
     self.state = state
     switch state {
-    case .success:
-      self.inviteStateLabel.text = "초대 가능"
+    case .can:
+      self.inviteStateLabel.text = State.can.rawValue
       self.inviteStateLabel.textColor = UIColor(red: 95/255,
                                                 green: 212/255,
                                                 blue: 156/255,
                                                 alpha: 1)
     case .fail:
-      self.inviteStateLabel.text = "이미 한 팀이에요"
+      self.inviteStateLabel.text = State.fail.rawValue
       self.inviteStateLabel.textColor = UIColor(red: 112/255,
                                                 green: 165/255,
                                                 blue: 244/255,

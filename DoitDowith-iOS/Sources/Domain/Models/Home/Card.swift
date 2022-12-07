@@ -14,6 +14,7 @@ enum CardType: Int {
        willdo = 2,
        done = 3
 }
+
 struct CardList: Equatable, IdentifiableType {
   var type: CardType
   var data: [Card]

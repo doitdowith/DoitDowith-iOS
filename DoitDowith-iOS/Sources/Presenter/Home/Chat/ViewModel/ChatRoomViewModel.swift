@@ -58,7 +58,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
   
-  init(id: Int, chatService: ChatServiceProtocol, stompManager: StompManagerProtocol) {
+  init(id: Int, service: ChatServiceProtocol, stompManager: StompManagerProtocol) {
     let fetching = PublishRelay<Void>()
     let message = PublishRelay<[ChatModel]>()
     
@@ -67,7 +67,6 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let error = PublishRelay<Error>()
     
     message
-      .do(onNext: { chatService.sendMessage(roomId: id, message: $0.first!) })
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
     
@@ -103,7 +102,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .do(onNext: { _ in activating.accept(true) })
       // .do(onNext: { _ in stompManager.registerSocket() })
         .flatMap { _ in
-          return chatService.fetchChatList(roomId: id)
+          return service.fetchChatList(roomId: id)
         }
       .do(onNext: { _ in activating.accept(false) })
       .do(onError: { err in error.accept(err) })

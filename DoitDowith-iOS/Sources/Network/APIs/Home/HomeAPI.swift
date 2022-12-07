@@ -22,6 +22,7 @@ protocol HomeAPIProtocol {
 
 class HomeAPI {
   static let shared = HomeAPI()
+  
   private init() { }
   
   func getDoingCard(request: CardRequest) -> Single<[Card]> {

@@ -9,6 +9,7 @@ import UIKit
 
 import Action
 import NSObject_Rx
+import RealmSwift
 import RxCocoa
 import RxSwift
 import RxRelay
@@ -23,13 +24,14 @@ final class MissionRoomSecondViewController: UIViewController {
   
   @IBAction func didTapCompleteButton(_ sender: UIButton) {
     let service = ChatService()
-    let stompManager = StompManager(targetId: 1,
+    let roomId = service.createChatRoom()
+    let stompManager = StompManager(targetId: roomId,
                                     senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
                                     connectType: .room)
     
-    // service.createChatRoom(roomId: 1)
-    let chatRoomViewModel = ChatRommViewModel(id: 1,
-                                              chatService: service,
+    
+    let chatRoomViewModel = ChatRommViewModel(id: roomId,
+                                              service: service,
                                               stompManager: stompManager)
     let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
                                                                                            creator: { coder in

@@ -17,17 +17,20 @@ enum ErrorType: Error {
 protocol ChatServiceProtocol {
   func fetchChatList(roomId: Int) -> Observable<[ChatModel]>
   func sendMessage(roomId: Int, message: ChatModel)
-  func createChatRoom(roomId: Int)
+  func createChatRoom() -> Int
 }
 
 class ChatService: ChatServiceProtocol {
   let realm = try! Realm()
   
-  func createChatRoom(roomId: Int) {
-    let chatroom = ChatRoom(id: roomId)
+  func createChatRoom() -> Int {
+    let chatroom = ChatRoom()
+    let roomId = chatroom.incrementID()
+    chatroom.roomId = roomId
     try? realm.write {
       realm.add(chatroom)
     }
+    return roomId
   }
   
   func sendMessage(roomId: Int, message: ChatModel) {
