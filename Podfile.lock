@@ -4,6 +4,7 @@ PODS:
     - RxSwift (~> 6.0)
   - Alamofire (5.6.4)
   - Differentiator (5.0.0)
+  - FSCalendar (2.8.4)
   - Kingfisher (7.4.1)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -44,6 +45,7 @@ PODS:
 
 DEPENDENCIES:
   - Action
+  - FSCalendar
   - Kingfisher
   - Moya
   - Moya/RxSwift
@@ -62,6 +64,7 @@ SPEC REPOS:
     - Action
     - Alamofire
     - Differentiator
+    - FSCalendar
     - Kingfisher
     - Moya
     - "NSObject+Rx"
@@ -81,6 +84,7 @@ SPEC CHECKSUMS:
   Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
@@ -96,6 +100,6 @@ SPEC CHECKSUMS:
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
 
-PODFILE CHECKSUM: 7d810e2a1572264ea699e44ff0f4889d1ee6bff4
+PODFILE CHECKSUM: 993995dd92313a2903f52be8c4ec03a4b08e0f08
 
 COCOAPODS: 1.11.3

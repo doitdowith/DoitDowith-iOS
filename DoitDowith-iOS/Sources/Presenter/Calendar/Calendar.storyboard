@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Black.otf">
+            <string>Pretendard-Black</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--달력-->
         <scene sceneID="s0d-6b-0kx">
@@ -15,19 +20,125 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7F-lj-n7w" userLabel="Navigation View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="달력" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t64-JZ-rXQ">
+                                        <rect key="frame" x="20" y="15" width="44" height="30"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Black" family="Pretendard" pointSize="25"/>
+                                        <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="t64-JZ-rXQ" firstAttribute="leading" secondItem="k7F-lj-n7w" secondAttribute="leading" constant="20" id="1Dh-uJ-2xe"/>
+                                    <constraint firstAttribute="height" constant="54" id="63m-3v-OtO"/>
+                                    <constraint firstAttribute="bottom" secondItem="t64-JZ-rXQ" secondAttribute="bottom" constant="9" id="xH0-L4-xu6"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-nR-6dj" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="98" width="414" height="715"/>
+                                <color key="backgroundColor" red="0.96862745289999996" green="0.96862745289999996" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="headerHeight">
+                                        <real key="value" value="60"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="titleTextSize">
+                                        <real key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="weekdayTextSize">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="headerTitleTextSize">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
+                                        <color key="value" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
+                                        <color key="value" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="weekdayHeight">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleDefaultColor">
+                                        <color key="value" red="0.66274511810000003" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="headerDateFormat" value="MM월"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderType" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="nil" keyPath="today"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelection" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKD-oN-Fv7">
+                                <rect key="frame" x="20" y="118" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="G8d-sy-cwg"/>
+                                    <constraint firstAttribute="width" constant="25" id="OjJ-Wb-Q9J"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="lessthan" catalog="system" title="">
+                                    <color key="baseForegroundColor" red="0.109803915" green="0.11372549830000001" blue="0.109803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="prevBtnTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="i2a-XN-OLM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bk-WQ-v6d">
+                                <rect key="frame" x="369" y="118" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="P6s-b6-Obs"/>
+                                    <constraint firstAttribute="width" constant="25" id="eU8-SQ-TCc"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="greaterthan" catalog="system" title="">
+                                    <color key="baseForegroundColor" red="0.109803915" green="0.11372549830000001" blue="0.109803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextBtnTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="AdG-k0-PR1"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JKD-oN-Fv7" firstAttribute="top" secondItem="k7F-lj-n7w" secondAttribute="bottom" constant="20" id="0fz-pi-CND"/>
+                            <constraint firstItem="0bk-WQ-v6d" firstAttribute="top" secondItem="k7F-lj-n7w" secondAttribute="bottom" constant="20" id="3Pa-OM-7AY"/>
+                            <constraint firstItem="NdA-nR-6dj" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="6gK-ws-4sc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="NdA-nR-6dj" secondAttribute="bottom" id="Auw-zh-2ks"/>
+                            <constraint firstItem="NdA-nR-6dj" firstAttribute="top" secondItem="k7F-lj-n7w" secondAttribute="bottom" id="Fua-n2-5JC"/>
+                            <constraint firstItem="k7F-lj-n7w" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Jjr-fL-0yn"/>
+                            <constraint firstItem="k7F-lj-n7w" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Zde-95-icv"/>
+                            <constraint firstItem="JKD-oN-Fv7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="agd-6O-Xa7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0bk-WQ-v6d" secondAttribute="trailing" constant="20" id="ipa-HV-mBA"/>
+                            <constraint firstItem="NdA-nR-6dj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="w1H-G8-rzh"/>
+                            <constraint firstItem="k7F-lj-n7w" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xsp-fD-WON"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="달력" image="calendar" catalog="system" id="R3i-BT-dua"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="calendarView" destination="NdA-nR-6dj" id="B7c-T1-SzA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="94"/>
+            <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
         </scene>
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="greaterthan" catalog="system" width="128" height="111"/>
+        <image name="lessthan" catalog="system" width="128" height="111"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
