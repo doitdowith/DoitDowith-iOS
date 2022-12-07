@@ -9,7 +9,6 @@ import UIKit
 import FSCalendar
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
-    
     let dateFormatter = DateFormatter()
     
     @IBOutlet weak var calendarView: FSCalendar!
@@ -66,6 +65,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendarView.register(CustomCell.self,
                               forCellReuseIdentifier: CustomCell.identifier)
         print("dd")
+        
+        calendarView.calendarHeaderView.backgroundColor = UIColor.white
+        calendarView.calendarWeekdayView.backgroundColor = UIColor.white
 
         // Do any additional setup after loading the view.
     }
@@ -76,4 +78,3 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }
-

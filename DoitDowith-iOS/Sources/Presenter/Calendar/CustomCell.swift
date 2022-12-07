@@ -17,7 +17,6 @@ class CustomCell: FSCalendarCell {
         return view
     }();
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(stackView)
@@ -41,8 +40,9 @@ extension CustomCell {
             let label = UILabel()
             label.text = event
             label.backgroundColor = colors[index]
+            label.textColor = UIColor(r: 72, g: 75, b: 80)
+            label.font = label.font.withSize(9)
             self.stackView.addArrangedSubview(label)
         }
     }
 }
-
