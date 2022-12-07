@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
         <array key="Pretendard-Regular.otf">
             <string>Pretendard-Regular</string>
         </array>
@@ -32,15 +35,29 @@
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xV8-pp-EBl">
                         <rect key="frame" x="160" y="147" width="192" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9A-RN-PR3">
+                                <rect key="frame" x="145.66666666666669" y="10.333333333333343" width="32.333333333333343" height="15.666666666666664"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
+                                <color key="textColor" name="DarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" name="PrimaryColor4"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Q9A-RN-PR3" secondAttribute="trailing" constant="14" id="3sB-Pp-eUo"/>
+                            <constraint firstItem="Q9A-RN-PR3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xV8-pp-EBl" secondAttribute="leading" constant="32" id="Dah-rM-Cok"/>
+                            <constraint firstItem="Q9A-RN-PR3" firstAttribute="centerY" secondItem="xV8-pp-EBl" secondAttribute="centerY" id="V1b-5N-OTZ"/>
+                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 24:59" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnF-Pd-fXi">
-                        <rect key="frame" x="100.66666666666667" y="166.66666666666666" width="51.333333333333329" height="13.333333333333343"/>
+                        <rect key="frame" x="100.66666666666667" y="167" width="51.333333333333329" height="13"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="11"/>
                         <color key="textColor" name="CoolGray2"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" name="LightGray"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="xV8-pp-EBl" secondAttribute="bottom" id="2Aj-zS-ICT"/>
                     <constraint firstItem="xZF-SI-uxa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="2va-VF-8ix"/>
@@ -56,6 +73,7 @@
             <connections>
                 <outlet property="dateLabel" destination="FnF-Pd-fXi" id="4YU-6Z-QqH"/>
                 <outlet property="sendImageView" destination="xZF-SI-uxa" id="yBx-Rz-lky"/>
+                <outlet property="sendMessage" destination="Q9A-RN-PR3" id="hDa-7X-bkn"/>
                 <outlet property="sendMessageView" destination="xV8-pp-EBl" id="fol-Gi-Pmd"/>
             </connections>
             <point key="canvasLocation" x="9.9236641221374047" y="20.774647887323944"/>
@@ -64,6 +82,12 @@
     <resources>
         <namedColor name="CoolGray2">
             <color red="0.66299998760223389" green="0.68599998950958252" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DarkGray">
+            <color red="0.18799999356269836" green="0.20800000429153442" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryColor4">
             <color red="0.72899997234344482" green="0.82700002193450928" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

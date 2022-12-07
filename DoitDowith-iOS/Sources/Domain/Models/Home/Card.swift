@@ -9,7 +9,8 @@ import Foundation
 import RxDataSources
 
 enum CardType: Int {
-  case doing = 1,
+  case none = 0,
+       doing = 1,
        willdo = 2,
        done = 3
 }

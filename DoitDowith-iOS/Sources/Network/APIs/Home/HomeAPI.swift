@@ -16,10 +16,13 @@ protocol HomeAPIProtocol {
   func getFriendList(request: FriendRequest) -> Single<[Friend]>
   func getCertificatePostList(request: CertificateBoardRequest) -> Single<[CertificationPost]>
   func getVoteMemberList(request: VoteMemberListRequest) -> Single<[VoteMember]>
+  
+  func postChatRoom(request: MissionRoomRequest)
 }
 
-class HomeAPI: HomeAPIProtocol {
-  init() { }
+class HomeAPI {
+  static let shared = HomeAPI()
+  private init() { }
   
   func getDoingCard(request: CardRequest) -> Single<[Card]> {
     return Single.create { single in
@@ -51,7 +54,7 @@ class HomeAPI: HomeAPIProtocol {
     }
   }
   
-  func getCertificatePostList(request: CertificateBoardRequest) -> RxSwift.Single<[CertificationPost]> {
+  func getCertificatePostList(request: CertificateBoardRequest) -> Single<[CertificationPost]> {
     return Single.create { single in
       AF.request(HomeTarget.getCertificatePostList(request))
         .responseDecodable { (response: AFDataResponse<CertificateBoardResponse>) in
@@ -79,5 +82,17 @@ class HomeAPI: HomeAPIProtocol {
         }
       return Disposables.create()
     }
+  }
+  
+  func postChatRoom(request: MissionRoomRequest) {
+    AF.request(HomeTarget.postChatRoom(request))
+      .responseDecodable { (response: AFDataResponse<MissionRoomResponse>) in
+        switch response.result {
+        case .success(let response):
+          print(response)
+        case .failure(let error):
+          print(error.localizedDescription)
+        }
+      }
   }
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 import NSObject_Rx
+import RealmSwift
 import RxCocoa
 import RxKeyboard
 import RxSwift
@@ -27,6 +28,7 @@ final class ChatRoomController: UIViewController {
   
   // MARK: Constant
   static let identifier: String = "ChatRoomVC"
+  private var roomId: Int
   private var isModalOpen = false
   private let defaultBottomConstraint: CGFloat = 98
   private var keyboardHeight: CGFloat = 0
@@ -35,7 +37,8 @@ final class ChatRoomController: UIViewController {
   private let viewModel: ChatRoomViewModelType
   
   // MARK: Initializer
-  init?(coder: NSCoder, viewModel: ChatRoomViewModelType) {
+  init?(coder: NSCoder, roomId: Int, viewModel: ChatRoomViewModelType) {
+    self.roomId = roomId
     self.viewModel = viewModel
     super.init(coder: coder)
   }
@@ -88,6 +91,7 @@ final class ChatRoomController: UIViewController {
       identifier: "CertificationVC") { coder in
         CertificationViewController(coder: coder, viewModel: vm)
       }
+    vc.delegate = self
     navigationController?.pushViewController(vc, animated: true)
   }
 }
@@ -146,7 +150,6 @@ extension ChatRoomController {
       .withUnretained(self)
       .bind(onNext: { (owner, arg1) in
         let (row, section) = arg1
-        print(row, section)
         owner.chatView.scrollToRow(at: IndexPath(row: row,
                                                  section: section),
                                    at: .bottom,
@@ -177,7 +180,7 @@ extension ChatRoomController {
         let indexPath = IndexPath(row: row, section: section)
         self.chatView.scrollToRow(at: indexPath, at: .bottom, animated: false)
       })
-      .emit(onNext: { _ in })
+        .emit(onNext: { _ in })
         .disposed(by: rx.disposeBag)
         }
   
@@ -185,9 +188,14 @@ extension ChatRoomController {
     self.textfield.rx
       .controlEvent(.editingDidEndOnExit)
       .withLatestFrom(self.textfield.rx.text)
-      .bind(onNext: {
-        self.viewModel.input.sendMessage.accept($0)
-        self.textfield.rx.text.onNext("")
+      .withUnretained(self)
+      .bind(onNext: { owner, text in
+        owner.viewModel.input.sendMessage.accept([ChatModel(type: .sendMessage,
+                                                            name: "",
+                                                            message: .text(text!.description),
+                                                            time: Date.now.formatted(format: "hh:mm"))])
+        
+        owner.textfield.rx.text.onNext("")
       })
       .disposed(by: rx.disposeBag)
   }
@@ -223,5 +231,11 @@ extension ChatRoomController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return CGFloat.leastNormalMagnitude
+  }
+}
+
+extension ChatRoomController: CertificationViewControllerDelegate {
+  func certificationViewController(_ certificateMessage: ChatModel) {
+    viewModel.input.sendMessage.accept([certificateMessage])
   }
 }

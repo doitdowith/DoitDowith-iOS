@@ -11,10 +11,13 @@ import Alamofire
 
 enum HomeTarget {
   case getDoingCards(CardRequest)
+  case getWillDoCards(CardRequest)
+  case getDoneCards(CardRequest)
   case getFriendList(FriendRequest)
   case kakao(CardRequest)
   case getCertificatePostList(CertificateBoardRequest)
   case getVoteMemberList(VoteMemberListRequest)
+  case postChatRoom(MissionRoomRequest)
 }
 
 extension HomeTarget: TargetType {
@@ -24,31 +27,41 @@ extension HomeTarget: TargetType {
   
   var method: HTTPMethod {
     switch self {
-    case .getDoingCards: return .get
-    case .getFriendList: return .get
-    case .kakao: return .get
-    case .getCertificatePostList: return .get
-    case .getVoteMemberList: return .get
+    case
+        .getDoingCards,
+        .getWillDoCards,
+        .getDoneCards,
+        .getFriendList,
+        .kakao,
+        .getCertificatePostList,
+        .getVoteMemberList: return .get
+    case .postChatRoom: return .post
     }
   }
   
   var path: String {
     switch self {
     case .getDoingCards(let request): return "/doing\(request.id)"
+    case .getWillDoCards(let request): return "/willdo\(request.id)"
+    case .getDoneCards(let request): return "/done\(request.id)"
     case .getFriendList(let request): return "/friends\(request.id)"
     case .kakao: return "/oauth2/authorization/kakao"
     case .getCertificatePostList(let request): return "/board\(request.id)"
     case .getVoteMemberList(let request): return "/board/vote\(request.id)"
+    case .postChatRoom: return "/room"
     }
   }
   
   var parameters: RequestParams {
     switch self {
-    case .getDoingCards(let request): return .body(request)
+    case .getDoingCards(let request),
+        .getWillDoCards(let request),
+        .getDoneCards(let request): return .body(request)
     case .getFriendList(let request): return .body(request)
     case .kakao(let request): return .body(request)
     case .getCertificatePostList(let request): return .body(request)
     case .getVoteMemberList(let request): return .body(request)
+    case .postChatRoom(let request): return .body(request)
     }
   }
 }

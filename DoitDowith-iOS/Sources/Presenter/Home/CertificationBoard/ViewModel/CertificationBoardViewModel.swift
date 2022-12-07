@@ -40,7 +40,7 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
   let activated: Driver<Bool>
   let certificatePostList: Driver<[PostSectionModel]>
   
-  init(service: HomeAPIProtocol) {
+  init() {
     let fetching = PublishRelay<Void>()
     let activating = BehaviorRelay<Bool>(value: false)
     let allPosts = BehaviorRelay<[PostSectionModel]>(value: [
@@ -54,7 +54,7 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
     fetching
       .do(onNext: { _ in activating.accept(true) })
       .flatMap { _ -> Single<[CertificationPost]> in
-        return service.getCertificatePostList(request: CertificateBoardRequest(id: 1))
+        return HomeAPI.shared.getCertificatePostList(request: CertificateBoardRequest(id: 1))
       }
       .do(onNext: { _ in activating.accept(false) })
       .map { [PostSectionModel(model: 0, items: $0)] }

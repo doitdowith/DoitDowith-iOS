@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmptyCardCell" id="gTV-IL-0wX" customClass="EmptyCardCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="471"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="471" height="471"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOM-Up-KZ6">
+                        <rect key="frame" x="0.0" y="0.0" width="471" height="471"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-img" translatesAutoresizingMaskIntoConstraints="NO" id="mW4-ie-wku">
+                                <rect key="frame" x="50" y="0.0" width="371" height="371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mW4-ie-wku" secondAttribute="height" multiplier="1:1" id="4a3-Mh-Lm5"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="LightGray"/>
+                        <constraints>
+                            <constraint firstItem="mW4-ie-wku" firstAttribute="top" secondItem="fOM-Up-KZ6" secondAttribute="top" id="NRa-d9-v9p"/>
+                            <constraint firstAttribute="trailing" secondItem="mW4-ie-wku" secondAttribute="trailing" constant="50" id="TG8-09-dRm"/>
+                            <constraint firstItem="mW4-ie-wku" firstAttribute="leading" secondItem="fOM-Up-KZ6" secondAttribute="leading" constant="50" id="ybf-Wd-ZDQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="fOM-Up-KZ6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="TWz-Tm-ylJ"/>
+                <constraint firstAttribute="bottom" secondItem="fOM-Up-KZ6" secondAttribute="bottom" id="dP6-a8-N7H"/>
+                <constraint firstItem="fOM-Up-KZ6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oeB-ei-tbH"/>
+                <constraint firstAttribute="trailing" secondItem="fOM-Up-KZ6" secondAttribute="trailing" id="wAD-1h-o8n"/>
+            </constraints>
+            <size key="customSize" width="471" height="471"/>
+            <connections>
+                <outlet property="backgroundView" destination="fOM-Up-KZ6" id="QQx-kE-Usi"/>
+            </connections>
+            <point key="canvasLocation" x="193.12977099236642" y="0.35211267605633806"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="home-img" width="272" height="285"/>
+        <namedColor name="LightGray">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

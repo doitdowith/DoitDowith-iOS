@@ -33,8 +33,13 @@ class ReceiveMessageCell: UITableViewCell {
 
 // Configure
 extension ReceiveMessageCell {
-  func configure(time: String, message: String) {
-    receiveMessageTextView.text = message
+  func configure(time: String, message: Message) {
+    switch message {
+    case .text(let model):
+      receiveMessageTextView.text = model
+    case .image:
+      break
+    }
     receiveTimeLabel.text = time
   }
 }

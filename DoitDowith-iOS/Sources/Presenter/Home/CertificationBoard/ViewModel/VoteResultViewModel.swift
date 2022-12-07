@@ -46,7 +46,7 @@ class VoteResultViewModel: VoteResultViewModelInput,
   let a = "https://wikiimg.tojsiabtv.com/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/1200px-Noto_Emoji_KitKat_263a.svg.png"
   let b = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Twemoji_1f600.svg/1200px-Twemoji_1f600.svg.png"
   
-  init(service: HomeAPIProtocol) {
+  init() {
     let c: [VoteMember] = [.init(type: 0, profileImageUrl: a, nickName: "김1", emojiUrl: b),
                            .init(type: 0, profileImageUrl: a, nickName: "김2", emojiUrl: b),
                            .init(type: 0, profileImageUrl: a, nickName: "김3", emojiUrl: b),
@@ -70,7 +70,7 @@ class VoteResultViewModel: VoteResultViewModelInput,
         fetching
           .do(onNext: { _ in activating.accept(true) })
           .flatMap { _ -> Single<[VoteMember]> in
-            return service.getVoteMemberList(request: VoteMemberListRequest(id: 1))
+            return HomeAPI.shared.getVoteMemberList(request: VoteMemberListRequest(id: 1))
           }
           .do(onNext: { _ in activating.accept(false) })
             .map { members -> [VoteSectionModel] in

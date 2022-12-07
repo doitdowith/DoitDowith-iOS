@@ -13,6 +13,7 @@ class SendImageMessageCell: UITableViewCell {
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var sendMessageView: UIView!
   @IBOutlet weak var sendImageView: UIImageView!
+  @IBOutlet weak var sendMessage: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -38,8 +39,20 @@ class SendImageMessageCell: UITableViewCell {
 }
 
 extension SendImageMessageCell {
-  func configure(time: String, message: String, image: UIImage) {
+  func configure(time: String, message: Message, image: Image) {
+    switch image {
+    case .url(let model):
+      sendImageView.setImage(with: model)
+    case .image(let model):
+      sendImageView.image = model
+    }
+    
+    switch message {
+    case .text(let model):
+      sendMessage.text = model
+    case .image:
+      break
+    }
     self.dateLabel.text = time
-    self.sendImageView.image = image
   }
 }

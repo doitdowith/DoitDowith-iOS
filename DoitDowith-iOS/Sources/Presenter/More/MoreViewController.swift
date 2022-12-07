@@ -56,7 +56,6 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:

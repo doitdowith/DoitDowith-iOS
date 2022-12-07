@@ -8,35 +8,70 @@
 import Foundation
 
 import RxSwift
+import RealmSwift
 
 enum ErrorType: Error {
-  case pathError
-  case decodeError
+  case Error
 }
 
 protocol ChatServiceProtocol {
-  func fetchChatList() -> Observable<[ChatModel]>
+  func fetchChatList(roomId: Int) -> Observable<[ChatModel]>
+  func sendMessage(roomId: Int, message: ChatModel)
+  func createChatRoom(roomId: Int)
 }
 
-struct ChatService: ChatServiceProtocol {
-  func fetchChatList() -> Observable<[ChatModel]> {
+class ChatService: ChatServiceProtocol {
+  let realm = try! Realm()
+  
+  func createChatRoom(roomId: Int) {
+    let chatroom = ChatRoom(id: roomId)
+    try? realm.write {
+      realm.add(chatroom)
+    }
+  }
+  
+  func sendMessage(roomId: Int, message: ChatModel) {
+    try! realm.write {
+      let chatrooms = realm.objects(ChatRoom.self)
+      let chatroom = chatrooms.first { $0.roomId == roomId }
+      switch message.message {
+      case .text(let m):
+        chatroom?.items.append(Chat(type: message.type.rawValue,
+                                    name: message.name,
+                                    message: m))
+      case .image:
+        break
+      }
+    }
+  }
+  
+  func fetchChatList(roomId: Int) -> Observable<[ChatModel]> {
     return Observable.create { emitter in
-      guard let path = Bundle.main.path(forResource: "mock", ofType: "json") else {
-        emitter.onError(ErrorType.pathError)
+      print(Realm.Configuration.defaultConfiguration.fileURL)
+      let realmChat = self.realm.objects(ChatRoom.self).sorted(byKeyPath: "roomId")
+      let chatrooms: [ChatRoom] = self.convertToArray(results: realmChat)
+      guard let chatroom = chatrooms.first(where: { $0.roomId == roomId }) else {
+        emitter.onError(ErrorType.Error)
         return Disposables.create()
       }
-      guard let jsonString = try? String(contentsOfFile: path) else {
-        emitter.onError(ErrorType.decodeError)
-        return Disposables.create()
+      let items = chatroom.items
+      print(chatroom, items)
+      let chatModel: [ChatModel] = items.map { elem in
+        return ChatModel(type: .init(rawValue: elem.type) ?? .sendMessage,
+                         name: elem.name,
+                         message: .text(elem.message),
+                         time: elem.time.formatted(format: "hh:mm"))
       }
-      let data = jsonString.data(using: .utf8)
-      guard let data = data, let result = try? JSONDecoder().decode(ChatResponse.self, from: data) else {
-        emitter.onError(MyError.error)
-        return Disposables.create()
-      }
-      emitter.onNext(result.toDomain)
+      emitter.onNext(chatModel)
       emitter.onCompleted()
       return Disposables.create()
     }
+  }
+  private func convertToArray<R>(results: Results<R>) -> [R] where R: Object {
+      var arrayOfResults: [R] = []
+      for result in results {
+          arrayOfResults.append(result)
+      }
+      return arrayOfResults
   }
 }

@@ -14,6 +14,11 @@ PODS:
     - RxSwift (~> 6.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
+  - Realm (10.33.0):
+    - Realm/Headers (= 10.33.0)
+  - Realm/Headers (10.33.0)
+  - RealmSwift (10.33.0):
+    - Realm (= 10.33.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -43,6 +48,7 @@ DEPENDENCIES:
   - Moya
   - Moya/RxSwift
   - "NSObject+Rx"
+  - RealmSwift
   - RxCocoa
   - RxDataSources
   - RxGesture
@@ -59,6 +65,8 @@ SPEC REPOS:
     - Kingfisher
     - Moya
     - "NSObject+Rx"
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -76,6 +84,8 @@ SPEC CHECKSUMS:
   Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  Realm: d4f810e161fa2c2c589b9860b6eb09238deacd73
+  RealmSwift: cef9946f09f2333a8f2ac8bac4f8de52fb9f5ac3
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
@@ -86,6 +96,6 @@ SPEC CHECKSUMS:
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
 
-PODFILE CHECKSUM: 8653a3240abda52852c8511eec2d5469a44f9c45
+PODFILE CHECKSUM: 7d810e2a1572264ea699e44ff0f4889d1ee6bff4
 
 COCOAPODS: 1.11.3

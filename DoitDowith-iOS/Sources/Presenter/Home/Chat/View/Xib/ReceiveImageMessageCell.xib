@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
         <array key="Pretendard-Regular.otf">
             <string>Pretendard-Regular</string>
         </array>
@@ -33,7 +36,19 @@
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUQ-AE-1Dn">
                         <rect key="frame" x="62" y="147" width="192" height="33"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4m-81-ALB">
+                                <rect key="frame" x="14" y="8.6666666666666572" width="32.333333333333336" height="15.666666666666664"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
+                                <color key="textColor" name="DarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W4m-81-ALB" firstAttribute="leading" secondItem="YUQ-AE-1Dn" secondAttribute="leading" constant="14" id="EL5-HR-EYG"/>
+                            <constraint firstItem="W4m-81-ALB" firstAttribute="centerY" secondItem="YUQ-AE-1Dn" secondAttribute="centerY" id="MBn-4q-eaF"/>
+                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 24:59" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqL-8W-XFg">
                         <rect key="frame" x="262" y="167" width="51.333333333333314" height="13"/>
@@ -58,6 +73,7 @@
             <connections>
                 <outlet property="dateLabel" destination="TqL-8W-XFg" id="CW8-gH-jzW"/>
                 <outlet property="receiveImageView" destination="q6a-zi-M58" id="pKW-d8-8re"/>
+                <outlet property="receiveMessage" destination="W4m-81-ALB" id="bJK-zF-n60"/>
                 <outlet property="receiveMessageView" destination="YUQ-AE-1Dn" id="RSC-t0-elV"/>
             </connections>
             <point key="canvasLocation" x="133.58778625954199" y="20.070422535211268"/>
@@ -66,6 +82,9 @@
     <resources>
         <namedColor name="CoolGray2">
             <color red="0.66299998760223389" green="0.68599998950958252" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DarkGray">
+            <color red="0.18799999356269836" green="0.20800000429153442" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGray">
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
