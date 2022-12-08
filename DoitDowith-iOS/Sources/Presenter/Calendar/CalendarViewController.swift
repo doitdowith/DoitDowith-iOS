@@ -43,11 +43,23 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         
         switch dateFormatter.string(from: date) {
-        case "2022-12-01":
-            cell.configure(model: ["안녕", "하세요"])
+        case "2022-12-08":
+            cell.configure(model: ["15분 홈트하기"])
+            return cell
+        case "2022-12-09":
+            cell.configure(model: ["15분 홈트하기"])
+            return cell
+        case "2022-12-10":
+            cell.configure(model: ["15분 홈트하기"])
             return cell
         case "2022-12-11":
-            cell.configure(model: ["반갑", "습니다."])
+            cell.configure(model: ["15분 홈트하기"])
+            return cell
+        case "2022-12-12":
+            cell.configure(model: ["15분 홈트하기"])
+            return cell
+        case "2022-12-13":
+            cell.configure(model: ["15분 홈트하기"])
             return cell
         default:
             return cell
