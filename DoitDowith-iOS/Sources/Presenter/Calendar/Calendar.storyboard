@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,13 +81,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKD-oN-Fv7">
-                                <rect key="frame" x="20" y="118" width="25" height="25"/>
+                                <rect key="frame" x="20" y="118" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="G8d-sy-cwg"/>
-                                    <constraint firstAttribute="width" constant="25" id="OjJ-Wb-Q9J"/>
+                                    <constraint firstAttribute="height" constant="20" id="G8d-sy-cwg"/>
+                                    <constraint firstAttribute="width" constant="20" id="OjJ-Wb-Q9J"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="lessthan" catalog="system" title="">
+                                <buttonConfiguration key="configuration" style="plain" title="">
+                                    <imageReference key="image" image="lessthan" catalog="system" symbolScale="medium"/>
                                     <color key="baseForegroundColor" red="0.109803915" green="0.11372549830000001" blue="0.109803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -94,13 +96,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bk-WQ-v6d">
-                                <rect key="frame" x="369" y="118" width="25" height="25"/>
+                                <rect key="frame" x="374" y="118" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="P6s-b6-Obs"/>
-                                    <constraint firstAttribute="width" constant="25" id="eU8-SQ-TCc"/>
+                                    <constraint firstAttribute="height" constant="20" id="P6s-b6-Obs"/>
+                                    <constraint firstAttribute="width" constant="20" id="eU8-SQ-TCc"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="greaterthan" catalog="system" title="">
+                                <buttonConfiguration key="configuration" style="plain" title="">
+                                    <imageReference key="image" image="greaterthan" catalog="system" symbolScale="medium"/>
                                     <color key="baseForegroundColor" red="0.109803915" green="0.11372549830000001" blue="0.109803915" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
