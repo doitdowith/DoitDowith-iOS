@@ -37,12 +37,14 @@ class ReceiveImageMessageCell: UITableViewCell {
 }
 
 extension ReceiveImageMessageCell {
-  func configure(time: String, message: Message, image: Image) {
-    switch image {
-    case .url(let model):
-      receiveImageView.setImage(with: model)
-    case .image(let model):
-      receiveImageView.image = model
+  func configure(time: String, message: Message, image: Image?) {
+    if let image = image {
+      switch image {
+      case .url(let model):
+        receiveImageView.setImage(with: model)
+      case .image(let model):
+        receiveImageView.image = model
+      }
     }
     
     switch message {

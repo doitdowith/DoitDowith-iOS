@@ -39,12 +39,14 @@ class SendImageMessageCell: UITableViewCell {
 }
 
 extension SendImageMessageCell {
-  func configure(time: String, message: Message, image: Image) {
-    switch image {
-    case .url(let model):
-      sendImageView.setImage(with: model)
-    case .image(let model):
-      sendImageView.image = model
+  func configure(time: String, message: Message, image: Image?) {
+    if let image = image {
+      switch image {
+      case .url(let model):
+        sendImageView.setImage(with: model)
+      case .image(let model):
+        sendImageView.image = model
+      }
     }
     
     switch message {

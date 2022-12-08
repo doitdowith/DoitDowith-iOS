@@ -68,7 +68,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         calendarView.delegate = self
         calendarView.dataSource = self
         

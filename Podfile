@@ -22,4 +22,6 @@ target 'DoitDowith-iOS' do
   pod 'Moya/RxSwift'
   pod 'RealmSwift'
   pod 'FSCalendar'
+  pod 'Then'
+  pod 'SnapKit'
 end

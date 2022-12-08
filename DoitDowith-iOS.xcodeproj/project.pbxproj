@@ -125,6 +125,7 @@
 		EEE063D62942140100D45493 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D52942140100D45493 /* LoginViewController.swift */; };
 		EEE063D8294214D600D45493 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D7294214D600D45493 /* UIButton+.swift */; };
 		EEE063DA2942154B00D45493 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D92942154B00D45493 /* UIView+.swift */; };
+		EEE063DE29421E0C00D45493 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063DD29421E0C00D45493 /* TabBarViewController.swift */; };
 		EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE46C102924B0D90030A15E /* UIColor+.swift */; };
 		EEE46C132924B4A00030A15E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE46C122924B4A00030A15E /* Colors.xcassets */; };
 		EEE8358D293ADAE4001C97CC /* VoteResultContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8358B293ADAE4001C97CC /* VoteResultContentViewCell.swift */; };
@@ -255,6 +256,7 @@
 		EEE063D52942140100D45493 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EEE063D7294214D600D45493 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		EEE063D92942154B00D45493 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		EEE063DD29421E0C00D45493 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EEE46C102924B0D90030A15E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		EEE46C122924B4A00030A15E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EEE8358B293ADAE4001C97CC /* VoteResultContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultContentViewCell.swift; sourceTree = "<group>"; };
@@ -792,6 +794,7 @@
 				EE3EA1A428D9CCD400CEFE36 /* Calendar */,
 				EE3EA1A228D9CCAB00CEFE36 /* Home */,
 				EE3EA1A328D9CCAF00CEFE36 /* More */,
+				EEE063DD29421E0C00D45493 /* TabBarViewController.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -1038,6 +1041,7 @@
 				EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */,
 				EEE063DA2942154B00D45493 /* UIView+.swift in Sources */,
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
+				EEE063DE29421E0C00D45493 /* TabBarViewController.swift in Sources */,
 				EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */,
 				EE25ED61293B899D00C579A5 /* EmptyCardCell.swift in Sources */,
 				EE300D77293A362200842742 /* VoteMember.swift in Sources */,

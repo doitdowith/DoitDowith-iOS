@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 
 class FriendListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
         }
@@ -66,7 +65,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 }
 
-//extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
+// extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 3
 //    }
@@ -76,4 +75,4 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
 //
 //        return cell
 //    }
-//}
+// }
