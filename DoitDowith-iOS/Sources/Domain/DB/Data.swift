@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class ChatRoom: Object, NSCopying {
-  @objc dynamic var roomId: Int = 0
+  @objc dynamic var roomId: Int = 1
   var items = List<Chat>()
   
   override class func primaryKey() -> String? {
@@ -22,9 +22,13 @@ class ChatRoom: Object, NSCopying {
     return copy
   }
   
-  convenience init(id: Int) {
-    self.init()
-    self.roomId = id
+  func incrementID() -> Int {
+    let realm = try! Realm()
+    if let retNext = realm.objects(ChatRoom.self).sorted(byKeyPath: "roomId").first?.roomId {
+      return retNext + 1
+    } else {
+      return 1
+    }
   }
 }
 

@@ -1255,10 +1255,10 @@
             </objects>
             <point key="canvasLocation" x="2237.5999999999999" y="1545.8128078817736"/>
         </scene>
-        <!--Chat Room Information Modal-->
+        <!--Chat Room Information Modal When Started-->
         <scene sceneID="Nwp-As-crB">
             <objects>
-                <viewController storyboardIdentifier="InformationModal" id="qiC-y0-cAK" customClass="ChatRoomInformationModal" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatRoomInformationModalWhenStarted" id="qiC-y0-cAK" customClass="ChatRoomInformationModalWhenStarted" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RuI-vg-aT3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1268,7 +1268,7 @@
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-ih-BCw" userLabel="Modal View">
-                                <rect key="frame" x="25" y="91" width="350" height="721"/>
+                                <rect key="frame" x="375" y="91" width="350" height="721"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1일 1커밋하기(제목)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVd-bF-aF9">
                                         <rect key="frame" x="21" y="28" width="168" height="24.666666666666671"/>
@@ -1324,7 +1324,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀원 모집 현황" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPr-Lh-gWM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션 제출 현황" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPr-Lh-gWM">
                                         <rect key="frame" x="20" y="167" width="79.666666666666671" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -1350,6 +1350,21 @@
                                         <rect key="frame" x="16" y="196" width="318" height="401"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yC5-Fc-Jmk">
+                                        <rect key="frame" x="0.0" y="637" width="350" height="48"/>
+                                        <color key="backgroundColor" name="PrimaryColor2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="15Z-cG-QsE"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="인증">
+                                            <fontDescription key="titleFontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="16"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="moveToCertificateBoard:" destination="qiC-y0-cAK" eventType="touchUpInside" id="9hA-WI-lbc"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -1357,6 +1372,7 @@
                                     <constraint firstAttribute="width" constant="350" id="3fQ-Mj-GPF"/>
                                     <constraint firstItem="gPW-6X-6x1" firstAttribute="top" secondItem="Elp-ih-BCw" secondAttribute="top" constant="26" id="4Bn-MD-Lbf"/>
                                     <constraint firstItem="DjS-8X-Sxp" firstAttribute="top" secondItem="4MI-pp-jOr" secondAttribute="top" constant="2.5" id="4Yj-td-V9O"/>
+                                    <constraint firstAttribute="bottom" secondItem="yC5-Fc-Jmk" secondAttribute="bottom" constant="36" id="4ms-Vk-eUk"/>
                                     <constraint firstItem="wku-2i-Uwd" firstAttribute="centerY" secondItem="gPW-6X-6x1" secondAttribute="centerY" id="6Ob-Vs-Mg4"/>
                                     <constraint firstItem="wku-2i-Uwd" firstAttribute="trailing" secondItem="gPW-6X-6x1" secondAttribute="leading" constant="-8" id="A6w-B6-btV"/>
                                     <constraint firstItem="QzJ-7E-zxn" firstAttribute="top" secondItem="EEa-L6-9o5" secondAttribute="bottom" constant="20" id="A8E-32-Cn8"/>
@@ -1364,9 +1380,11 @@
                                     <constraint firstItem="EEa-L6-9o5" firstAttribute="leading" secondItem="4MI-pp-jOr" secondAttribute="leading" id="DDh-Xx-xb6"/>
                                     <constraint firstItem="DjS-8X-Sxp" firstAttribute="leading" secondItem="4MI-pp-jOr" secondAttribute="trailing" constant="7" id="Dx5-Kr-rja"/>
                                     <constraint firstItem="xIc-8J-aJR" firstAttribute="top" secondItem="BPr-Lh-gWM" secondAttribute="bottom" constant="12" id="Gsi-xv-SfH"/>
+                                    <constraint firstItem="yC5-Fc-Jmk" firstAttribute="leading" secondItem="Elp-ih-BCw" secondAttribute="leading" id="GvH-VY-YFR"/>
                                     <constraint firstItem="xIc-8J-aJR" firstAttribute="leading" secondItem="Elp-ih-BCw" secondAttribute="leading" constant="16" id="Lcz-J6-Vzj"/>
                                     <constraint firstAttribute="trailing" secondItem="xIc-8J-aJR" secondAttribute="trailing" constant="16" id="NXY-ix-yT8"/>
                                     <constraint firstItem="4MI-pp-jOr" firstAttribute="leading" secondItem="nVd-bF-aF9" secondAttribute="leading" id="O9n-Qg-FpO"/>
+                                    <constraint firstAttribute="trailing" secondItem="yC5-Fc-Jmk" secondAttribute="trailing" id="Riy-ku-lKb"/>
                                     <constraint firstItem="yFx-g8-tmR" firstAttribute="leading" secondItem="DjS-8X-Sxp" secondAttribute="trailing" constant="7" id="Umf-FU-Azy"/>
                                     <constraint firstItem="nVd-bF-aF9" firstAttribute="top" secondItem="Elp-ih-BCw" secondAttribute="top" constant="28" id="XiK-ez-a9A"/>
                                     <constraint firstItem="QzJ-7E-zxn" firstAttribute="leading" secondItem="Elp-ih-BCw" secondAttribute="leading" constant="16" id="Y4G-mA-56V"/>
@@ -1378,7 +1396,7 @@
                                     <constraint firstItem="iq0-tJ-r2j" firstAttribute="centerY" secondItem="BPr-Lh-gWM" secondAttribute="centerY" id="pa0-ZZ-Cnp"/>
                                     <constraint firstItem="wku-2i-Uwd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nVd-bF-aF9" secondAttribute="trailing" constant="8" id="vNu-sj-MG1"/>
                                     <constraint firstItem="BPr-Lh-gWM" firstAttribute="top" secondItem="QzJ-7E-zxn" secondAttribute="bottom" constant="24" id="vw7-4i-81Z"/>
-                                    <constraint firstAttribute="bottom" secondItem="xIc-8J-aJR" secondAttribute="bottom" constant="124" id="xPG-Ct-8RE"/>
+                                    <constraint firstItem="xIc-8J-aJR" firstAttribute="bottom" secondItem="yC5-Fc-Jmk" secondAttribute="top" constant="-40" id="xPG-Ct-8RE"/>
                                     <constraint firstItem="EEa-L6-9o5" firstAttribute="top" secondItem="4MI-pp-jOr" secondAttribute="bottom" constant="12" id="xV7-fS-OVd"/>
                                     <constraint firstItem="BPr-Lh-gWM" firstAttribute="leading" secondItem="Elp-ih-BCw" secondAttribute="leading" constant="20" id="xoQ-mh-DFl"/>
                                 </constraints>
@@ -1391,7 +1409,7 @@
                             <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="0WC-sW-cs8" secondAttribute="trailing" id="GsL-nN-HpV"/>
                             <constraint firstItem="Elp-ih-BCw" firstAttribute="top" secondItem="AwJ-Tw-ltQ" secondAttribute="top" constant="44" id="bpF-pv-FTh"/>
                             <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="bottom" secondItem="0WC-sW-cs8" secondAttribute="bottom" id="cOV-RR-FpQ"/>
-                            <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="Elp-ih-BCw" secondAttribute="trailing" id="nkH-uj-oa5"/>
+                            <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="Elp-ih-BCw" secondAttribute="trailing" constant="-350" id="nkH-uj-oa5"/>
                             <constraint firstItem="0WC-sW-cs8" firstAttribute="top" secondItem="RuI-vg-aT3" secondAttribute="top" id="yH1-oo-QUc"/>
                         </constraints>
                     </view>
@@ -1400,6 +1418,7 @@
                         <outlet property="contentViewTrailingConstraints" destination="nkH-uj-oa5" id="wYQ-Oi-3ve"/>
                         <outlet property="dimmedView" destination="0WC-sW-cs8" id="AFW-6v-1h1"/>
                         <outlet property="teamMemberTableView" destination="xIc-8J-aJR" id="74T-Kl-I68"/>
+                        <outlet property="titleLabel" destination="nVd-bF-aF9" id="kYm-h4-hfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpo-CF-rEy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -159,17 +159,17 @@ extension InviteModalViewController {
   func bindFriendListTableView() {
     Observable.zip(friendListTableView.rx.modelSelected(Friend.self),
                friendListTableView.rx.itemSelected)
-    .bind { [weak self] model, indexPath in
+    .bind { [weak self] _, indexPath in
       self?.friendListTableView.deselectRow(at: indexPath, animated: true)
       if let cell = self?.friendListTableView.cellForRow(at: indexPath) as? FriendCell {
         switch cell.state {
-        case .success:
+        case .can:
           cell.inviteStateLabel.text = "선택함"
           cell.state = .ing
           self?.selectedCell[indexPath.row].toggle()
         case .ing:
-          cell.inviteStateLabel.text = "초대 가능"
-          cell.state = .success
+          cell.inviteStateLabel.text = State.can.rawValue
+          cell.state = .can
           self?.selectedCell[indexPath.row].toggle()
         default:
           break

@@ -19,6 +19,7 @@ import StompClientLib
 protocol ChatRoomViewModelInput {
   var viewWillAppear: PublishRelay<Void> { get }
   var sendMessage: PublishRelay<[ChatModel]> { get }
+  var chatroomInfo: PublishRelay<MissionRoomRequest> { get }
 }
 
 protocol ChatRoomViewModelOutput {
@@ -50,6 +51,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   // Input
   let viewWillAppear: PublishRelay<Void>
   let sendMessage: PublishRelay<[ChatModel]>
+  let chatroomInfo: PublishRelay<MissionRoomRequest>
   
   // Output
   let messageList: Driver<[SectionOfChatModel]>
@@ -58,7 +60,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
   
-  init(id: Int, chatService: ChatServiceProtocol, stompManager: StompManagerProtocol) {
+  init(id: Int, service: ChatServiceProtocol, stompManager: StompManagerProtocol) {
     let fetching = PublishRelay<Void>()
     let message = PublishRelay<[ChatModel]>()
     
@@ -67,16 +69,16 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let error = PublishRelay<Error>()
     
     message
-      .do(onNext: { chatService.sendMessage(roomId: id, message: $0.first!) })
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
     
     self.viewWillAppear = fetching
+    self.chatroomInfo = PublishRelay<MissionRoomRequest>()
     self.sendMessage = message
+    
     self.messageList = allMessages
       .scan([ChatModel](), accumulator: { prev, new in
-        return prev + new
-      })
+        return prev + new })
       .map { chat in
         var section: [SectionOfChatModel] = []
         var row: [ChatModel] = []
@@ -95,26 +97,24 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
         if !row.isEmpty {
           section.append(SectionOfChatModel(header: currentTime, items: row))
         }
-        return section
-      }
+        return section }
       .asDriver(onErrorJustReturn: [])
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
       // .do(onNext: { _ in stompManager.registerSocket() })
-        .flatMap { _ in
-          return chatService.fetchChatList(roomId: id)
-        }
+      .flatMap { _ in
+          return service.fetchChatList(roomId: id) }
       .do(onNext: { _ in activating.accept(false) })
       .do(onError: { err in error.accept(err) })
       .subscribe(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
         
-        self.activated = activating
+    self.activated = activating
         .distinctUntilChanged()
         .asDriver(onErrorJustReturn: false)
         
-        self.errorMessage = error
+    self.errorMessage = error
         .map { $0 as NSError }
         .asSignal(onErrorJustReturn: MyError.error as NSError)
     

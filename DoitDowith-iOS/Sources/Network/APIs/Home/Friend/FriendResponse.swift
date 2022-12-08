@@ -23,7 +23,7 @@ extension FriendResponse {
     var toDomain: [Friend] {
       return data.map { data in
         if data.state == "초대 가능" {
-          return Friend(id: data.id, url: data.url, state: .success, name: data.name)
+          return Friend(id: data.id, url: data.url, state: .can, name: data.name)
         } else {
           return Friend(id: data.id, url: data.url, state: .fail, name: data.name)
         }

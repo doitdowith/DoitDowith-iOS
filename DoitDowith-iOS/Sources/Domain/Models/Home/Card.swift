@@ -14,6 +14,7 @@ enum CardType: Int {
        willdo = 2,
        done = 3
 }
+
 struct CardList: Equatable, IdentifiableType {
   var type: CardType
   var data: [Card]
@@ -25,8 +26,10 @@ struct CardList: Equatable, IdentifiableType {
     self.identity = "\(Date.now.timeIntervalSinceReferenceDate)"
   }
 }
-struct Card: Equatable {
+
+struct Card: Equatable, Codable {
   var section: Int
+  var roomId: Int
   var title: String
-  var subTitle: String
+  var description: String
 }

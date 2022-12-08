@@ -11,8 +11,9 @@ import RxCocoa
 import RxSwift
 
 protocol ContentCellDelegate: AnyObject {
-  func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card)
+  func contentCell(_ didSelectCell: UICollectionViewCell, card: Card)
 }
+
 class ContentCell: UICollectionViewCell {
   static let identifier = "ContentCell"
   
@@ -33,14 +34,14 @@ class ContentCell: UICollectionViewCell {
     self.modelRelay
       .bind(to: self.cardCollectionView.rx.items(cellIdentifier: CardCell.identifier,
                                                  cellType: CardCell.self)) { _, element, cell in
-        cell.configure(title: element.title, subtitle: element.subTitle)
-      }
-                                                 .disposed(by: disposeBag)
+        cell.configure(title: element.title,
+                       subtitle: element.description)}
+      .disposed(by: disposeBag)
     
     self.cardCollectionView.rx.modelSelected(Card.self)
       .bind(onNext: { model in
-        self.delegate?.contentCell(self, didSelectCell: model)
-      }).disposed(by: disposeBag)
+        self.delegate?.contentCell(self, card: model) })
+      .disposed(by: disposeBag)
   }
   
   override func prepareForReuse() {

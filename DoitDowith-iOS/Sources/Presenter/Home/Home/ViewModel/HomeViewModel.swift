@@ -54,9 +54,9 @@ final class HomeViewModel: HomeViewModelInput,
   init() {
     let emptyCards: [HomeSectionModel] = [
       .init(model: 0,
-            items: [.init(type: .none, data: [.init(section: 0, title: "1", subTitle: "1")]),
-                    .init(type: .none, data: [.init(section: 0, title: "2", subTitle: "2")]),
-                    .init(type: .none, data: [.init(section: 0, title: "3", subTitle: "3")])])
+            items: [.init(type: .none, data: []),
+                    .init(type: .none, data: []),
+                    .init(type: .none, data: [])])
     ]
     let fetching = PublishRelay<Void>()
     let indicatorIndexing = BehaviorRelay<Int>(value: 0)
@@ -66,8 +66,9 @@ final class HomeViewModel: HomeViewModelInput,
     fetching
       .do(onNext: { _ in activating.accept(true) })
       .flatMap { _ -> Single<[Card]> in
-        let request = CardRequest(id: 1)
-        return HomeAPI.shared.getDoingCard(request: request)
+        // let request = CardRequest(id: 1)
+        // return HomeAPI.shared.getDoingCard(request: request)
+        return HomeAPI.shared.getMockChat()
       }
       .catchAndReturn([])
       .do(onNext: { _ in activating.accept(false) })

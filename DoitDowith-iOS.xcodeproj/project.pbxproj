@@ -18,7 +18,7 @@
 		EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */; };
 		EE05C25429266C4000FAA844 /* SendImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */; };
 		EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */; };
-		EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */; };
+		EE1ED77829016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77729016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift */; };
 		EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */; };
 		EE1F58F528F6711B0046ED09 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58F328F6711B0046ED09 /* ColorCell.swift */; };
 		EE1F58F628F6711B0046ED09 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE1F58F428F6711B0046ED09 /* ColorCell.xib */; };
@@ -121,6 +121,9 @@
 		EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */; };
 		EED13238292F8B9700EA38CA /* CertificationPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED13236292F8B9700EA38CA /* CertificationPostCell.xib */; };
 		EED13239292F8B9700EA38CA /* CertificationPostWithImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED13237292F8B9700EA38CA /* CertificationPostWithImageCell.xib */; };
+		EEE063D62942140100D45493 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D52942140100D45493 /* LoginViewController.swift */; };
+		EEE063D8294214D600D45493 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D7294214D600D45493 /* UIButton+.swift */; };
+		EEE063DA2942154B00D45493 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D92942154B00D45493 /* UIView+.swift */; };
 		EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE46C102924B0D90030A15E /* UIColor+.swift */; };
 		EEE46C132924B4A00030A15E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE46C122924B4A00030A15E /* Colors.xcassets */; };
 		EEE8358D293ADAE4001C97CC /* VoteResultContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8358B293ADAE4001C97CC /* VoteResultContentViewCell.swift */; };
@@ -142,7 +145,7 @@
 		EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageMessageCell.swift; sourceTree = "<group>"; };
 		EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendImageMessageCell.xib; sourceTree = "<group>"; };
 		EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewModel.swift; sourceTree = "<group>"; };
-		EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomInformationModal.swift; sourceTree = "<group>"; };
+		EE1ED77729016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomInformationModalWhenStarted.swift; sourceTree = "<group>"; };
 		EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModalViewModel.swift; sourceTree = "<group>"; };
 		EE1F58F328F6711B0046ED09 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		EE1F58F428F6711B0046ED09 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
@@ -247,6 +250,9 @@
 		EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		EED13236292F8B9700EA38CA /* CertificationPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificationPostCell.xib; sourceTree = "<group>"; };
 		EED13237292F8B9700EA38CA /* CertificationPostWithImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificationPostWithImageCell.xib; sourceTree = "<group>"; };
+		EEE063D52942140100D45493 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EEE063D7294214D600D45493 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		EEE063D92942154B00D45493 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		EEE46C102924B0D90030A15E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		EEE46C122924B4A00030A15E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EEE8358B293ADAE4001C97CC /* VoteResultContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultContentViewCell.swift; sourceTree = "<group>"; };
@@ -353,7 +359,7 @@
 				EE6A2BD128E485C1000656AA /* SendMessageCell.swift */,
 				EE6A2BD528E4893B000656AA /* ReceiveMessageCell.swift */,
 				EE5500A328E98543005F65AC /* ChatHeaderView.swift */,
-				EE1ED77729016AB80007F591 /* ChatRoomInformationModal.swift */,
+				EE1ED77729016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift */,
 				EE23A852291001BC0050175C /* DateView.swift */,
 				EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */,
 				EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */,
@@ -777,6 +783,7 @@
 		EEC4991E28D9C2E8003AF6C4 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				EEE063D4294213B800D45493 /* Login */,
 				EEAEDA2228D9C060000141ED /* LaunchScreen.storyboard */,
 				EEAEDA1D28D9C05D000141ED /* Main.storyboard */,
 				EE3EA1A428D9CCD400CEFE36 /* Calendar */,
@@ -805,8 +812,18 @@
 				EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */,
 				EEE46C102924B0D90030A15E /* UIColor+.swift */,
 				EE23C3E9293DE6100098740C /* UIImageView+.swift */,
+				EEE063D7294214D600D45493 /* UIButton+.swift */,
+				EEE063D92942154B00D45493 /* UIView+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		EEE063D4294213B800D45493 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EEE063D52942140100D45493 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		EEE70A78292DDA550085D22F /* CertificationBoard */ = {
@@ -994,9 +1011,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE063D62942140100D45493 /* LoginViewController.swift in Sources */,
 				EEC0E867293F7E9E00B2B79C /* MissionRoomResponse.swift in Sources */,
 				EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */,
 				EE695105292E128500B933BD /* CertificateBoardResponse.swift in Sources */,
+				EEE063D8294214D600D45493 /* UIButton+.swift in Sources */,
 				EE1F590F28F68BC00046ED09 /* CardRequest.swift in Sources */,
 				EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */,
 				EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */,
@@ -1014,6 +1033,7 @@
 				EE63629B2912115900A78758 /* ReceiveMessageWithProfileCell.swift in Sources */,
 				EE300D7C293A379C00842742 /* VoteMemberListResponse.swift in Sources */,
 				EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */,
+				EEE063DA2942154B00D45493 /* UIView+.swift in Sources */,
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
 				EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */,
 				EE25ED61293B899D00C579A5 /* EmptyCardCell.swift in Sources */,
@@ -1061,7 +1081,7 @@
 				EE1F591128F68C0E0046ED09 /* HomeTarget.swift in Sources */,
 				EE23C3EA293DE6100098740C /* UIImageView+.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
-				EE1ED77829016AB80007F591 /* ChatRoomInformationModal.swift in Sources */,
+				EE1ED77829016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift in Sources */,
 				EEE83590293B612E001C97CC /* CardSectionModel.swift in Sources */,
 				EE300D7A293A379300842742 /* VoteMemberListRequest.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,

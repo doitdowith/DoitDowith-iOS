@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController {
   
   // MARK: Properties
   var viewModel: HomeViewModelType
+  
   // MARK: Initializer
   required init?(coder: NSCoder) {
     self.viewModel = HomeViewModel()
@@ -51,8 +52,7 @@ final class HomeViewController: UIViewController {
     let vc = UIStoryboard(name: "Home",
                           bundle: nil).instantiateViewController(identifier: MissionRoomFirstViewController.identifier,
                                                                  creator: { coder in
-                            MissionRoomFirstViewController(coder: coder, viewModel: vm)
-                          })
+                            MissionRoomFirstViewController(coder: coder, viewModel: vm) })
     self.navigationController?.pushViewController(vc, animated: true)
   }
 }
@@ -120,8 +120,7 @@ extension HomeViewController {
       rx.viewWillAppear.map { _ in true },
       rx.viewWillDisappear.map { _ in false }])
     .bind(onNext: { [weak navigationController] visible in
-      navigationController?.isNavigationBarHidden = visible
-    })
+      navigationController?.isNavigationBarHidden = visible })
     .disposed(by: rx.disposeBag)
     
     let firstLoad = rx.viewWillAppear
@@ -151,8 +150,7 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 0)
-        self.viewModel.input.indicatorIndex.accept(0)
-      })
+        vc.viewModel.input.indicatorIndex.accept(0) })
       .disposed(by: rx.disposeBag)
     
     self.viewModel.doingButtonColor
@@ -166,8 +164,7 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 1)
-        self.viewModel.input.indicatorIndex.accept(1)
-      })
+        vc.viewModel.input.indicatorIndex.accept(1) })
       .disposed(by: rx.disposeBag)
     
     self.viewModel.willDoButtonColor
@@ -181,8 +178,7 @@ extension HomeViewController {
       .withUnretained(self)
       .bind(onNext: { vc, _ in
         vc.slideNextPage(at: 2)
-        self.viewModel.input.indicatorIndex.accept(2)
-      })
+        vc.viewModel.input.indicatorIndex.accept(2) })
       .disposed(by: rx.disposeBag)
     
     self.viewModel.doneButtonColor
@@ -192,26 +188,20 @@ extension HomeViewController {
 }
 
 extension HomeViewController: ContentCellDelegate {
-  func contentCell(_ cell: UICollectionViewCell, didSelectCell: Card) {
-    let service = ChatService()
-    let stompManager = StompManager(targetId: 1,
-                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
-                                    connectType: .room)
-    let vm = ChatRommViewModel(id: 1,
-                               chatService: service,
-                               stompManager: stompManager)
-    let vc = UIStoryboard(name: "Home",
-                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
-                                                                 creator: { coder in
-                            ChatRoomController(coder: coder, roomId: 1, viewModel: vm)
-                          })
-    self.navigationController?.pushViewController(vc, animated: true)
-    //    let vm = CertificationBoardViewModel()
-    //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "CertificationBoardVC",
-    //                                                                                           creator: { coder in
-    //      CertificationBoardViewController(coder: coder, viewModel: vm)
-    //    })
-    //    self.navigationController?.pushViewController(viewController, animated: true)
+  func contentCell(_ didSelectCell: UICollectionViewCell, card: Card) {
+    HomeAPI.shared.saveMockChat(card: Card(section: 1, roomId: 5, title: "title", description: "123123123123"))
+//    let service = ChatService()
+//    let stompManager = StompManager(targetId: card.roomId,
+//                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
+//                                    connectType: .room)
+//    let vm = ChatRommViewModel(id: card.roomId,
+//                               service: service,
+//                               stompManager: stompManager)
+//    let vc = UIStoryboard(name: "Home",
+//                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
+//                                                                 creator: { coder in
+//                            ChatRoomController(coder: coder, roomId: card.roomId, viewModel: vm) })
+//    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 
