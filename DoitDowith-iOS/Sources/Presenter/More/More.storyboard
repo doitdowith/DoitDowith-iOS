@@ -70,15 +70,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPZ-qv-0mW">
                                 <rect key="frame" x="16" y="109" width="382" height="271"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z6n-aB-vvU">
-                                        <rect key="frame" x="139.5" y="21.5" width="103" height="102"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 31" translatesAutoresizingMaskIntoConstraints="NO" id="Z6n-aB-vvU">
+                                        <rect key="frame" x="139.5" y="21" width="103" height="103"/>
                                         <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="oWI-Ss-bmy"/>
                                             <constraint firstAttribute="height" constant="103" id="x8l-rH-66w"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mh8-8H-Byb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이두잇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mh8-8H-Byb">
                                         <rect key="frame" x="171.5" y="134" width="39" height="18"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -406,8 +406,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fic-4F-Wnb">
                                 <rect key="frame" x="16" y="113" width="382" height="92"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-Fw-jaj">
-                                        <rect key="frame" x="16" y="16.5" width="60" height="59"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 31" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-Fw-jaj">
+                                        <rect key="frame" x="16" y="16" width="60" height="60"/>
                                         <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="ug9-vF-l4W"/>
@@ -1106,6 +1106,7 @@
         <segue reference="j0L-8M-6Kj"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Rectangle 31" width="111" height="111"/>
         <image name="addFriendModalImage" width="773" height="762"/>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
