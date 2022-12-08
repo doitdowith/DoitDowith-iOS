@@ -32,10 +32,6 @@ class FriendListViewController: UIViewController {
                         UIPasteboard.general.string = self.doitCode.text
                     }).disposed(by: bag)
 
-                if let storedString = UIPasteboard.general.string {
-                    print(storedString)
-                }
-
         // Do any additional setup after loading the view.
     }
     

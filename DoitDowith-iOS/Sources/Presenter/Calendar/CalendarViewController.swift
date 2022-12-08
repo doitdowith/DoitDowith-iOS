@@ -47,19 +47,19 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             cell.configure(model: ["15분 홈트하기"])
             return cell
         case "2022-12-09":
-            cell.configure(model: ["15분 홈트하기"])
+            cell.configure(model: [""])
             return cell
         case "2022-12-10":
-            cell.configure(model: ["15분 홈트하기"])
+            cell.configure(model: [""])
             return cell
         case "2022-12-11":
-            cell.configure(model: ["15분 홈트하기"])
+            cell.configure(model: [""])
             return cell
         case "2022-12-12":
-            cell.configure(model: ["15분 홈트하기"])
+            cell.configure(model: [""])
             return cell
         case "2022-12-13":
-            cell.configure(model: ["15분 홈트하기"])
+            cell.configure(model: [""])
             return cell
         default:
             return cell

@@ -1106,7 +1106,7 @@
         <segue reference="j0L-8M-6Kj"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Rectangle 31" width="111" height="111"/>
+        <image name="Rectangle 31" width="166.5" height="166.5"/>
         <image name="addFriendModalImage" width="773" height="762"/>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
