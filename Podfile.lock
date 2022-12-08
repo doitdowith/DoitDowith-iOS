@@ -38,11 +38,9 @@ PODS:
   - RxViewController (2.0.0):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - SnapKit (5.6.0)
   - SocketRocket (0.6.0)
   - StompClientLib (1.4.1):
     - SocketRocket
-  - Then (3.0.0)
 
 DEPENDENCIES:
   - Action
@@ -57,9 +55,7 @@ DEPENDENCIES:
   - RxKeyboard
   - RxSwift
   - RxViewController
-  - SnapKit
   - StompClientLib
-  - Then
 
 SPEC REPOS:
   trunk:
@@ -78,10 +74,8 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxViewController
-    - SnapKit
     - SocketRocket
     - StompClientLib
-    - Then
 
 SPEC CHECKSUMS:
   Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
@@ -99,11 +93,9 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
-  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 10defa499d8d6c54ee974f7cf79cf413608410bf
+PODFILE CHECKSUM: 7d810e2a1572264ea699e44ff0f4889d1ee6bff4
 
 COCOAPODS: 1.11.3
