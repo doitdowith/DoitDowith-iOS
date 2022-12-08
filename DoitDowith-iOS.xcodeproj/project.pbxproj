@@ -14,6 +14,7 @@
 		1824EDB72901A963007BA66B /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDB62901A963007BA66B /* FriendListViewController.swift */; };
 		1824EDB92901AB31007BA66B /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDB82901AB31007BA66B /* FriendListTableViewCell.swift */; };
 		1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDBA2901B0AF007BA66B /* ModalViewController.swift */; };
+		18C692FC2940B9720039D91E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C692FB2940B9720039D91E /* CustomCell.swift */; };
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
 		EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */; };
 		EE05C25429266C4000FAA844 /* SendImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */; };
@@ -139,6 +140,7 @@
 		1824EDB62901A963007BA66B /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		1824EDB82901AB31007BA66B /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
 		1824EDBA2901B0AF007BA66B /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		18C692FB2940B9720039D91E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		24691D147FCF764B27B270A4 /* Pods-DoitDowith-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DF2D234DA10A353A3131702 /* Pods-DoitDowith-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.release.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -502,6 +504,7 @@
 			children = (
 				EE77D5E328D9D0C100057EF8 /* CalendarViewController.swift */,
 				EE77D5E728D9D11600057EF8 /* Calendar.storyboard */,
+				18C692FB2940B9720039D91E /* CustomCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1096,6 +1099,7 @@
 				EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */,
 				EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */,
 				EE66961E290183C300ECFC9A /* MissionRoomRequest.swift in Sources */,
+				18C692FC2940B9720039D91E /* CustomCell.swift in Sources */,
 				EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
