@@ -11,15 +11,6 @@ import Alamofire
 import RxCocoa
 import RxSwift
 
-protocol HomeAPIProtocol {
-  func getDoingCard(request: CardRequest) -> Single<[Card]>
-  func getFriendList(request: FriendRequest) -> Single<[Friend]>
-  func getCertificatePostList(request: CertificateBoardRequest) -> Single<[CertificationPost]>
-  func getVoteMemberList(request: VoteMemberListRequest) -> Single<[VoteMember]>
-  
-  func postChatRoom(request: MissionRoomRequest)
-}
-
 class HomeAPI {
   static let shared = HomeAPI()
   
@@ -96,4 +87,76 @@ class HomeAPI {
         }
       }
   }
+  
+  func getMockChat() -> Single<[Card]> {
+    return Single.create { single in
+      guard let path = Bundle.main.path(forResource: "homeMock", ofType: "json"),
+            let jsonString = try? String(contentsOfFile: path),
+            let data = jsonString.data(using: .utf8),
+            let result = try? JSONDecoder().decode([Card].self, from: data) else {
+        single(.failure(ErrorType.Error))
+        return Disposables.create()
+      }
+      single(.success(result))
+      return Disposables.create()
+    }
+  }
+  
+  func saveMockChat(card: Card) {
+    guard let path = Bundle.main.path(forResource: "homeMock", ofType: "json"),
+          let jsonString = try? String(contentsOfFile: path),
+          let data = jsonString.data(using: .utf8),
+          var result = try? JSONDecoder().decode([Card].self, from: data) else {
+      return
+    }
+    result.append(card)
+    print(result)
+    
+    let jsonEncoder = JSONEncoder()
+    guard let jsonData = try? jsonEncoder.encode(result),
+          let jsonString = String(data: jsonData, encoding: .utf8) else { return }
+    
+    if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                        in: .userDomainMask).first {
+      let pathWithFilename = documentDirectory.appendingPathComponent("mock.json")
+      print(pathWithFilename)
+      do {
+        try jsonString.write(to: pathWithFilename,
+                             atomically: true,
+                             encoding: .utf8)
+      } catch {
+        // Handle error
+      }
+    }
+  }
+}
+
+extension JSONSerialization {
+    
+    static func loadJSON(withFilename filename: String) throws -> Any? {
+        let fm = FileManager.default
+        let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
+        if let url = urls.first {
+            var fileURL = url.appendingPathComponent(filename)
+            fileURL = fileURL.appendingPathExtension("json")
+            let data = try Data(contentsOf: fileURL)
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers, .mutableLeaves])
+            return jsonObject
+        }
+        return nil
+    }
+    
+    static func save(jsonObject: Any, toFilename filename: String) throws -> Bool{
+        let fm = FileManager.default
+        let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
+        if let url = urls.first {
+            var fileURL = url.appendingPathComponent(filename)
+            fileURL = fileURL.appendingPathExtension("json")
+            let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
+            try data.write(to: fileURL, options: [.atomicWrite])
+            return true
+        }
+        
+        return false
+    }
 }

@@ -53,11 +53,9 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
     self.passedData = PublishRelay<FirstRoomPassData>()
     
     let enable = Observable
-      .combineLatest(missionStartDate,
-                     missionCertificateCount)
+      .combineLatest(missionStartDate, missionCertificateCount)
       .map { (date, count) -> Bool in
-        return !date.isEmpty && !count.isEmpty
-      }
+        return !date.isEmpty && !count.isEmpty }
     
     self.buttonEnabled = enable.asDriver(onErrorJustReturn: false)
     self.buttonColor = enable.map { can -> UIColor in
@@ -70,10 +68,7 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
     
     self.model = missionFriendList.map { $0.map { $0.url } }.asDriver(onErrorJustReturn: [])
     self.passData = Observable
-      .zip(passedData,
-           self.missionStartDate,
-           self.missionCertificateCount,
-           self.missionFriendList)
+      .combineLatest(passedData, missionStartDate, missionCertificateCount, missionFriendList)
       .map { firstData, startDate, count, friendList in
         return MissionRoomRequest(title: firstData.name,
                                   description: firstData.description,

@@ -1,5 +1,5 @@
 //
-//  ChatRoomInformationModal.swift
+//  ChatRoomInformationModalWhenStarted.swift
 //  DoitDowith-iOS
 //
 //  Created by 김영균 on 2022/10/20.
@@ -12,15 +12,21 @@ import RxCocoa
 import RxGesture
 import RxSwift
 
-final class ChatRoomInformationModal: UIViewController {
-  // MARK: Interface Builder
-  @IBOutlet weak var dimmedView: UIView!
-  @IBOutlet weak var contentView: UIView!
-  @IBOutlet weak var teamMemberTableView: UITableView!
-  
+final class ChatRoomInformationModalWhenStarted: UIViewController {
+  static let identifier: String = "ChatRoomInformationModalWhenStarted"
+ 
   private let dimmedAlpha: CGFloat = 0.8
   private let modalViewWidth: CGFloat = 350
-  @IBOutlet weak var contentViewTrailingConstraints: NSLayoutConstraint!
+  private let viewModel: InformationModalViewModelType
+  
+  init?(coder: NSCoder, viewModel: InformationModalViewModelType) {
+    self.viewModel = viewModel
+    super.init(coder: coder)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: Life Cycle
   override func viewDidLoad() {
@@ -29,13 +35,23 @@ final class ChatRoomInformationModal: UIViewController {
     self.configureModalView()
   }
   
+  // MARK: Interface Builder
+  @IBOutlet weak var dimmedView: UIView!
+  @IBOutlet weak var contentView: UIView!
+  @IBOutlet weak var teamMemberTableView: UITableView!
+  @IBOutlet weak var contentViewTrailingConstraints: NSLayoutConstraint!
+  
+  @IBOutlet weak var titleLabel: UILabel!
+  
+  @IBAction func moveToCertificateBoard(_ sender: UIButton) {
+  }
   @IBAction func closeModal(_ sender: UIButton) {
     self.animateDismissView()
   }
 }
 
 // MARK: Basic functions
-extension ChatRoomInformationModal {
+extension ChatRoomInformationModalWhenStarted {
   func bind() {
     self.bindLifeCylce()
     self.bindDimmedView()
@@ -50,7 +66,7 @@ extension ChatRoomInformationModal {
 }
 
 // MARK: Bind functions
-extension ChatRoomInformationModal {
+extension ChatRoomInformationModalWhenStarted {
   func bindLifeCylce() {
     self.rx.viewDidAppear
       .withUnretained(self)
@@ -70,11 +86,15 @@ extension ChatRoomInformationModal {
       })
       .disposed(by: rx.disposeBag)
   }
-  func bindConentView() { }
+  func bindConentView() {
+    self.viewModel.output.roomTitle
+      .drive(self.titleLabel.rx.text)
+      .disposed(by: rx.disposeBag)
+  }
 }
 
 // MARK: Animate functions
-extension ChatRoomInformationModal {
+extension ChatRoomInformationModalWhenStarted {
   func animateDimmedView() {
     self.dimmedView.alpha = 0
     UIView.animate(withDuration: 0.4) { [weak self] in

@@ -16,16 +16,6 @@ import RxRelay
 import RxViewController
 
 final class ChatRoomController: UIViewController {
-  // MARK: Interface Builder
-  @IBOutlet weak var chatView: UITableView!
-  @IBOutlet weak var textfieldView: UIView!
-  @IBOutlet weak var textfield: UITextField!
-  @IBOutlet weak var modalButton: UIButton!
-  @IBOutlet weak var certificateButton: UIButton!
-  
-  @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
-  @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
-  
   // MARK: Constant
   static let identifier: String = "ChatRoomVC"
   private var roomId: Int
@@ -55,8 +45,16 @@ final class ChatRoomController: UIViewController {
     self.bind()
   }
   
-  // 모달의 +버튼 클릭했을 때 실행되는 함수
-  // 액션도 뷰모델로 빼야하는데
+  // MARK: Interface Builder
+  @IBOutlet weak var chatView: UITableView!
+  @IBOutlet weak var textfieldView: UIView!
+  @IBOutlet weak var textfield: UITextField!
+  @IBOutlet weak var modalButton: UIButton!
+  @IBOutlet weak var certificateButton: UIButton!
+  
+  @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
+  
   @IBAction func didTapAddButton(_ sender: UIButton) {
     var bottomHeight: CGFloat = 0
     if isModalOpen {
@@ -80,9 +78,13 @@ final class ChatRoomController: UIViewController {
   }
   
   @IBAction func showInformationModal(_ sender: UIButton) {
-    let informationModal = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "InformationModal")
-    informationModal.modalPresentationStyle = .overCurrentContext
-    self.present(informationModal, animated: false)
+    let vm = InformationModalViewModel()
+    let modal = UIStoryboard(name: "Home", bundle: nil)
+      .instantiateViewController(identifier: ChatRoomInformationModalWhenStarted.identifier) { coder in
+        ChatRoomInformationModalWhenStarted(coder: coder, viewModel: vm)
+      }
+    modal.modalPresentationStyle = .overCurrentContext
+    self.present(modal, animated: false)
   }
   
   @IBAction func certificateButtonDidTap(_ sender: UIButton) {

@@ -1,38 +1,38 @@
 [
   {
-    "section": 0,
+    "section": 1,
     "roomId": 0,
     "title": "과기대 컴공 미라클 모닝",
-    "subTitle": "12/7(수) 부터 1주동안 매일",
+    "description": "12/7(수) 부터 1주동안 매일",
   },
   {
-    "section": 0,
+    "section": 1,
     "roomId": 1,
     "title": "매일 토요일 밤 11시 모각코",
-    "subTitle": "12/7(수) 부터 1주 토요일",
+    "description": "12/7(수) 부터 1주 토요일",
   },
   {
-    "section": 0,
+    "section": 1,
     "roomId": 2,
     "title": "매일 낮 점심",
-    "subTitle": "12/8(목) 부터 매일 낮",
+    "description": "12/5(목) 부터 매일 낮",
   },
   {
     "section": 1,
     "roomId": 3,
     "title": "하루에 한시간 낮잠 자기",
-    "subTitle": "10/6(목) 부터 1주동안 매일",
+    "description": "12/5(화) 부터 1주동안 매일",
   },
   {
-    "section": 1,
+    "section": 2,
     "roomId": 4,
     "title": "하루에 한시간 낮잠 자기",
-    "subTitle": "10/6(목) 부터 1주동안 매일",
+    "description": "10/6(목) 부터 1주동안 매일",
   },
   {
-    "section": 1,
+    "section": 2,
     "roomId": 5,
     "title": "15분 홈트하기",
-    "subTitle": "8/9(월)부터 2주동안 매일",
-  }
+    "description": "8/9(월)부터 2주동안 매일",
+  } 
 ]

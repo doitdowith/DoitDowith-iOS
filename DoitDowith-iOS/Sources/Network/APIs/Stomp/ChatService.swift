@@ -58,7 +58,7 @@ class ChatService: ChatServiceProtocol {
         return Disposables.create()
       }
       let items = chatroom.items
-      print(chatroom, items)
+      print(chatrooms, chatroom, items)
       let chatModel: [ChatModel] = items.map { elem in
         return ChatModel(type: .init(rawValue: elem.type) ?? .sendMessage,
                          name: elem.name,

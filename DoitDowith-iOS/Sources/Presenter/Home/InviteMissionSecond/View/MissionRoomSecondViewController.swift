@@ -15,40 +15,8 @@ import RxSwift
 import RxRelay
 
 final class MissionRoomSecondViewController: UIViewController {
-  // MARK: Interface Builder
-  @IBOutlet weak var backButton: UIImageView!
-  @IBOutlet weak var friendCollectionView: UICollectionView!
-  @IBOutlet weak var makeButton: UIButton!
-  @IBOutlet weak var dateTextfield: UITextFieldWithPadding!
-  @IBOutlet weak var certificateCountTextField: UITextFieldWithPadding!
-  
-  @IBAction func didTapCompleteButton(_ sender: UIButton) {
-    let service = ChatService()
-    let roomId = service.createChatRoom()
-    let stompManager = StompManager(targetId: roomId,
-                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
-                                    connectType: .room)
-    
-    
-    let chatRoomViewModel = ChatRommViewModel(id: roomId,
-                                              service: service,
-                                              stompManager: stompManager)
-    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
-                                                                                           creator: { coder in
-      ChatRoomController(coder: coder, roomId: 1, viewModel: chatRoomViewModel)
-    })
-    self.navigationController?.pushViewController(viewController, animated: true)
-  }
-  
-  // MARK: Properties
-  private lazy var datePicker: UIDatePicker = {
-    let picker = UIDatePicker()
-    picker.preferredDatePickerStyle = .wheels
-    picker.datePickerMode = .date
-    return picker
-  }()
-  
-   let viewModel: MissionRoomSecondViewModelType
+  let viewModel: MissionRoomSecondViewModelType
+  var chatRequest: MissionRoomRequest?
   
   // MARK: Initializers
   init?(coder: NSCoder, viewModel: MissionRoomSecondViewModelType) {
@@ -72,6 +40,43 @@ final class MissionRoomSecondViewController: UIViewController {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
   }
+  
+  // MARK: Interface Builder
+  @IBOutlet weak var backButton: UIImageView!
+  @IBOutlet weak var friendCollectionView: UICollectionView!
+  @IBOutlet weak var makeButton: UIButton!
+  @IBOutlet weak var dateTextfield: UITextFieldWithPadding!
+  @IBOutlet weak var certificateCountTextField: UITextFieldWithPadding!
+  
+  @IBAction func didTapCompleteButton(_ sender: UIButton) {
+    // guard let request = chatRequest else { return }
+    let service = ChatService()
+    let roomId = service.createChatRoom()
+    HomeAPI.shared.saveMockChat(card: Card(section: 0,
+                                           roomId: roomId,
+                                           title: "request.title",
+                                           description: "request.description"))
+    let stompManager = StompManager(targetId: roomId,
+                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
+                                    connectType: .room)
+    
+    let chatRoomViewModel = ChatRommViewModel(id: roomId,
+                                              service: service,
+                                              stompManager: stompManager)
+    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
+                                                                                           creator: { coder in
+      ChatRoomController(coder: coder, roomId: roomId, viewModel: chatRoomViewModel)
+    })
+    self.navigationController?.pushViewController(viewController, animated: true)
+  }
+  
+  // MARK: Properties
+  private lazy var datePicker: UIDatePicker = {
+    let picker = UIDatePicker()
+    picker.preferredDatePickerStyle = .wheels
+    picker.datePickerMode = .date
+    return picker
+  }()
 }
 
 // MARK: Basic functions
@@ -83,6 +88,11 @@ extension MissionRoomSecondViewController {
     self.bindMakeButton()
     self.bindDateTextField()
     self.bindCertificateCountTextField()
+    self.viewModel.output.passData
+      .withUnretained(self)
+      .bind(onNext: { owner, req in
+        owner.chatRequest = req })
+      .disposed(by: rx.disposeBag)
   }
   
   func registerCells() {
