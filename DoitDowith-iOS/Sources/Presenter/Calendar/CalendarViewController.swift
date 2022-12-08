@@ -41,7 +41,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                                                       at: position) as? CustomCell else {
             return FSCalendarCell()
         }
-        
+                
         switch dateFormatter.string(from: date) {
         case "2022-12-08":
             cell.configure(model: ["15분 홈트하기"])

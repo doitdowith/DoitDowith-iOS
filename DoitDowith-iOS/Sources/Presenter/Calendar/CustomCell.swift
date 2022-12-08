@@ -21,11 +21,15 @@ class CustomCell: FSCalendarCell {
         super.init(frame: frame)
         self.addSubview(stackView)
         
+        self.titleLabel.textAlignment = .left
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.heightAnchor.constraint(equalToConstant: 13).isActive = true
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
     required init!(coder aDecoder: NSCoder!) {
