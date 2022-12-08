@@ -165,7 +165,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
           }
           cell.configure(time: item.time.suffix(7).description,
                          message: item.message,
-                         image: item.image!)
+                         image: item.image)
           return cell
         case .receiveImageMessage:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageMessageCell.identifier,
@@ -174,7 +174,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
           }
           cell.configure(time: item.time.suffix(7).description,
                          message: item.message,
-                         image: item.image!)
+                         image: item.image)
           return cell
         }
       })

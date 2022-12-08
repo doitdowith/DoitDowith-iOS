@@ -189,19 +189,18 @@ extension HomeViewController {
 
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ didSelectCell: UICollectionViewCell, card: Card) {
-    HomeAPI.shared.saveMockChat(card: Card(section: 1, roomId: 5, title: "title", description: "123123123123"))
-//    let service = ChatService()
-//    let stompManager = StompManager(targetId: card.roomId,
-//                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
-//                                    connectType: .room)
-//    let vm = ChatRommViewModel(id: card.roomId,
-//                               service: service,
-//                               stompManager: stompManager)
-//    let vc = UIStoryboard(name: "Home",
-//                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
-//                                                                 creator: { coder in
-//                            ChatRoomController(coder: coder, roomId: card.roomId, viewModel: vm) })
-//    self.navigationController?.pushViewController(vc, animated: true)
+    let service = ChatService()
+    let stompManager = StompManager(targetId: card.roomId,
+                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
+                                    connectType: .room)
+    let vm = ChatRommViewModel(id: card.roomId,
+                               service: service,
+                               stompManager: stompManager)
+    let vc = UIStoryboard(name: "Home",
+                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
+                                                                 creator: { coder in
+                            ChatRoomController(coder: coder, roomId: card.roomId, viewModel: vm) })
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 

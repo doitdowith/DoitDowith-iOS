@@ -9,13 +9,6 @@ import SnapKit
 import Then
 
 class LoginViewController: UIViewController {
-  private let guestLoginButton = UIButton().then {
-    $0.setTitle("로그인 없이 둘러보기", for: .normal)
-    $0.setTitleColor(UIColor(hex: 0xA9AFB9), for: .normal)
-    $0.titleLabel?.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
-    $0.setUnderline()
-    $0.translatesAutoresizingMaskIntoConstraints = false
-  }
   private let kakaoLoginButton = UIButton().then {
     $0.setImage(UIImage(named: "kakao_icon"), for: .normal)
     $0.setTitle("카카오 로그인", for: .normal)
@@ -35,6 +28,7 @@ class LoginViewController: UIViewController {
     }
     $0.translatesAutoresizingMaskIntoConstraints = false
   }
+  
   private let appleLoginButton = UIButton().then {
     $0.setTitle("Apple 로그인", for: .normal)
     $0.setTitleColor(.white, for: .normal)
@@ -44,20 +38,18 @@ class LoginViewController: UIViewController {
     $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     $0.translatesAutoresizingMaskIntoConstraints = false
   }
+  
   private let stackView = UIStackView().then {
     $0.axis = .vertical
     $0.alignment = .fill
     $0.distribution = .equalSpacing
     $0.spacing = 12
     $0.translatesAutoresizingMaskIntoConstraints = false
-    
   }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addBackground(with: "background")
-    
-    view.addSubview(guestLoginButton)
-    guestLoginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
     
     view.addSubview(stackView)
     stackView.addArrangedSubview(kakaoLoginButton)
@@ -70,10 +62,6 @@ class LoginViewController: UIViewController {
 }
 extension LoginViewController {
   func setConstraints() {
-    guestLoginButton.snp.makeConstraints { make in
-      make.bottom.equalTo(stackView.snp.top).offset(-16)
-      make.centerX.equalToSuperview()
-    }
     kakaoLoginButton.snp.makeConstraints { make in
       make.height.equalTo(48)
     }
@@ -94,5 +82,9 @@ extension LoginViewController {
 //    let mainAppTabBarVC = TabBarViewController()
 //    mainAppTabBarVC.modalPresentationStyle = .fullScreen
 //    present(mainAppTabBarVC, animated: true)
+    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+    vc.modalPresentationStyle = .fullScreen
+    present(vc, animated: true)
   }
 }

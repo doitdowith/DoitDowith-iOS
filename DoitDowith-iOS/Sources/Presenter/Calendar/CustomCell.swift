@@ -15,7 +15,7 @@ class CustomCell: FSCalendarCell {
         view.axis = .vertical
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }();
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
