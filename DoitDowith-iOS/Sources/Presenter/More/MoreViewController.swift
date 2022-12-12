@@ -8,25 +8,56 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
+import Alamofire
 
 class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var btnCode: UIButton!
-    @IBOutlet weak var doitCode: UILabel!
-
-    let bag = DisposeBag()
-
+    @IBOutlet weak var dowithCode: UILabel!
+    @IBOutlet weak var friendCount: UIButton!
+    @IBOutlet weak var participationCount: UILabel!
+    @IBOutlet weak var successRate: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         btnCode.rx.tap
-                    .bind(onNext: {
-                        UIPasteboard.general.string = self.doitCode.text
-                    }).disposed(by: bag)
+                    .bind(onNext: { 
+                        UIPasteboard.general.string = self.dowithCode.text
+                    })
+                    .disposed(by: rx.disposeBag)
+        getTest()
         
         // Do any additional setup after loading the view.
     }
+    
+    func getTest() {
+        let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/members/mypage",
+                                        method: .get,
+                                        parameters: nil,
+                                        model: Mypage.self,
+                                        header: ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzA5MjU2NDV9.H5dUy0NvtC1p4ieeHhxokJkbo0SgLa4nzRpqhoR6J1yD35pxxK1hefm_2FTXzXLMp87I0z2BpS-FjrLq97w7Cg"])
+
+        NetworkLayer.shared.request(model: requestModel) { (response) in
+            if response.error != nil {
+                // handle error
+            }
+
+            if let data = response.data {
+                // use data in your app
+                DispatchQueue.main.async {
+                    self.dowithCode.text = data.dowithCode
+                    self.friendCount.setTitle("\(data.friendCount)", for: .normal)
+                    self.participationCount.text = String(data.participationCount)
+                    self.successRate.text = String(data.successRate)
+                    print(data)
+                }
+            }
+        }
+    }
+    
 }
 
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
