@@ -17,7 +17,7 @@ enum HomeTarget {
   case kakao(CardRequest)
   case getCertificatePostList(CertificateBoardRequest)
   case getVoteMemberList(VoteMemberListRequest)
-  case postChatRoom(MissionRoomRequest)
+  case postChatRoom(CreateRoomRequest)
 }
 
 extension HomeTarget: TargetType {
@@ -41,9 +41,9 @@ extension HomeTarget: TargetType {
   
   var path: String {
     switch self {
-    case .getDoingCards(let request): return "/doing\(request.id)"
-    case .getWillDoCards(let request): return "/willdo\(request.id)"
-    case .getDoneCards(let request): return "/done\(request.id)"
+    case .getDoingCards(let request): return "/doing\(request.memberId)"
+    case .getWillDoCards(let request): return "/willdo\(request.memberId)"
+    case .getDoneCards(let request): return "/done\(request.memberId)"
     case .getFriendList(let request): return "/friends\(request.id)"
     case .kakao: return "/oauth2/authorization/kakao"
     case .getCertificatePostList(let request): return "/board\(request.id)"

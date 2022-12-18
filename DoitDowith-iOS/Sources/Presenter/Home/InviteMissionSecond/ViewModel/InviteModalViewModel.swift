@@ -52,12 +52,12 @@ final class InviteModalViewModel: InviteModalViewModelInput,
   init(memberId: Int) {
     let fetching = PublishRelay<Void>()
     let activating = BehaviorRelay<Bool>(value: false)
-    let friends = BehaviorRelay<[Friend]>(value: [Friend(id: 2, url: url[0], state: .can, name: "이예림"),
-                                                  Friend(id: 3, url: url[1], state: .fail, name: "박재영"),
-                                                  Friend(id: 4, url: url[2], state: .can, name: "조구영"),
-                                                  Friend(id: 5, url: url[4], state: .can, name: "김영균"),
-                                                  Friend(id: 6, url: url[5], state: .can, name: "해범이"),
-                                                  Friend(id: 5, url: url[6], state: .fail, name: "지민석")
+    let friends = BehaviorRelay<[Friend]>(value: [Friend(id: "2", url: url[0], state: .can, name: "이예림"),
+                                                  Friend(id: "3", url: url[1], state: .fail, name: "박재영"),
+                                                  Friend(id: "4", url: url[2], state: .can, name: "조구영"),
+                                                  Friend(id: "5", url: url[4], state: .can, name: "김영균"),
+                                                  Friend(id: "6", url: url[5], state: .can, name: "해범이"),
+                                                  Friend(id: "5", url: url[6], state: .fail, name: "지민석")
                                                  ])
     
     fetching

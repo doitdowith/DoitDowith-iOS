@@ -76,7 +76,7 @@ class HomeAPI {
     }
   }
   
-  func postChatRoom(request: MissionRoomRequest) {
+  func postChatRoom(request: CreateRoomRequest) {
     AF.request(HomeTarget.postChatRoom(request))
       .responseDecodable { (response: AFDataResponse<MissionRoomResponse>) in
         switch response.result {

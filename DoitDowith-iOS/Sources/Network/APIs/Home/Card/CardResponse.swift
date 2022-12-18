@@ -7,25 +7,50 @@
 
 import Foundation
 
-struct CardResponse: Decodable {
-  var id: Int
-  var data: [CardData]
+struct CardResponse: ResponseType {
+  var statusCode: Int
+  var doingRoomList, doneRoomList, willDoRoomList: [Room]
+  var data: Data?
 }
 
-struct CardData: Decodable {
-  var section: Int
-  var roomId: Int
-  var title: String
-  var subTitle: String
+struct Room: Decodable {
+    let color, roomListDescription, id, startDate: String
+    let title: String
+
+    enum CodingKeys: String, CodingKey {
+        case color
+        case roomListDescription = "description"
+        case id, startDate, title
+    }
 }
 
 extension CardResponse {
     var toDomain: [Card] {
-      return data.map { data in
-        return Card(section: data.section,
-                    roomId: data.roomId,
-                    title: data.title,
-                    description: data.subTitle)
+      var data: [Card] = []
+      for room in doingRoomList {
+        data.append(Card(section: 1,
+                         roomId: room.id,
+                         title: room.title,
+                         description: room.roomListDescription,
+                         color: room.color,
+                         startDate: room.startDate))
       }
+      for room in willDoRoomList {
+        data.append(Card(section: 2,
+                         roomId: room.id,
+                         title: room.title,
+                         description: room.roomListDescription,
+                         color: room.color,
+                         startDate: room.startDate))
+      }
+      for room in doneRoomList {
+        data.append(Card(section: 3,
+                         roomId: room.id,
+                         title: room.title,
+                         description: room.roomListDescription,
+                         color: room.color,
+                         startDate: room.startDate))
+      }
+     return data
     }
 }

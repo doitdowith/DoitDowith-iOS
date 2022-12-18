@@ -29,7 +29,9 @@ struct CardList: Equatable, IdentifiableType {
 
 struct Card: Equatable, Codable {
   var section: Int
-  var roomId: Int
+  var roomId: String
   var title: String
   var description: String
+  var color: String
+  var startDate: String
 }

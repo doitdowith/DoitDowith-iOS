@@ -13,7 +13,7 @@ enum State: String, Encodable {
   case ing = "초대중"
 }
 struct Friend: Encodable {
-  let id: Int
+  let id: String
   let url: String
   let state: State
   let name: String

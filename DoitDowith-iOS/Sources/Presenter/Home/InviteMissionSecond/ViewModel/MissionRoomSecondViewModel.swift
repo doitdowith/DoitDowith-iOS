@@ -21,7 +21,7 @@ protocol MissionRoomSecondViewModelOutput {
   var buttonEnabled: Driver<Bool> { get }
   var buttonColor: Driver<UIColor> { get }
   var model: Driver<[String]> { get }
-  var passData: Observable<MissionRoomRequest> { get }
+  var passData: Observable<CreateRoomRequest> { get }
 }
 
 protocol MissionRoomSecondViewModelType {
@@ -34,6 +34,7 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
                                        MissionRoomSecondViewModelOutput {
   var input: MissionRoomSecondViewModelInput { return self }
   var output: MissionRoomSecondViewModelOutput { return self }
+  let disposeBag: DisposeBag = DisposeBag()
   
   let passedData: PublishRelay<FirstRoomPassData>
   let missionStartDate: PublishRelay<String>
@@ -43,13 +44,13 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
   let buttonEnabled: Driver<Bool>
   let buttonColor: Driver<UIColor>
   let model: Driver<[String]>
-  let passData: Observable<MissionRoomRequest>
+  let passData: Observable<CreateRoomRequest>
   
   init() {
     let myimage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5iqjI9Lka_8V84HSC_1Df8ZdVK1otORRVGJwYWDPFw&s"
     self.missionStartDate = PublishRelay<String>()
     self.missionCertificateCount = PublishRelay<String>()
-    self.missionFriendList = BehaviorRelay<[Friend]>(value: [Friend(id: 1, url: myimage, state: .ing, name: "김영균")])
+    self.missionFriendList = BehaviorRelay<[Friend]>(value: [Friend(id: "1", url: myimage, state: .ing, name: "김영균")])
     self.passedData = PublishRelay<FirstRoomPassData>()
     
     let enable = Observable
@@ -70,14 +71,16 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
     self.passData = Observable
       .combineLatest(passedData, missionStartDate, missionCertificateCount, missionFriendList)
       .map { firstData, startDate, count, friendList in
-        return MissionRoomRequest(title: firstData.name,
-                                  description: firstData.description,
-                                  color: firstData.color,
-                                  date: startDate,
-                                  certificationCount: Int(count)!,
-                                  members: friendList) }
-      .do(onNext: { request in
-        HomeAPI.shared.postChatRoom(request: request)
+        return CreateRoomRequest(certificationCount: Int(count)!,
+                                 color: firstData.color,
+                                 description: firstData.description,
+                                 participants: friendList.map { $0.id },
+                                 startDate: startDate,
+                                 title: firstData.name)}
+      .do(onNext: { (request: CreateRoomRequest) in
+        APIService.shared.request(request: request).map { (response: CreateRoomResponse) in
+          print(response.statusCode)
+        }
       })
   }
 }
