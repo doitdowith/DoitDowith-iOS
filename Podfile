@@ -19,6 +19,7 @@ target 'DoitDowith-iOS' do
   pod 'Action'
 
   pod 'RxAlamofire'
+  pod 'Alamofire'
   pod 'RealmSwift'
   pod 'FSCalendar'
   pod 'Then'
