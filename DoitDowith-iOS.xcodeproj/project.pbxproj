@@ -1287,11 +1287,14 @@
 				DEVELOPMENT_TEAM = DU7FSA5JUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DoitDowith-iOS/Application/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"DoitDowith\"이 사진을 촬영하여 메시지로 전송 또는 게시글에 사진을 촬영하여 첨부하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"DoitDowith\"이 사진을 촬영하여 메시지로 전송 또는 게시글에 사진을 촬영하여 첨부, 내 프로필 사진을 촬영하여 등록하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1316,11 +1319,14 @@
 				DEVELOPMENT_TEAM = DU7FSA5JUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DoitDowith-iOS/Application/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"DoitDowith\"이 사진을 촬영하여 메시지로 전송 또는 게시글에 사진을 촬영하여 첨부하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"DoitDowith\"이 사진을 촬영하여 메시지로 전송 또는 게시글에 사진을 촬영하여 첨부, 내 프로필 사진을 촬영하여 등록하는 기능 사용을 위해 사진 라이브러리에 접근하도록 허용합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

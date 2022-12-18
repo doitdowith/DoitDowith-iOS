@@ -5,8 +5,11 @@
 //  Created by 김영균 on 2022/12/08.
 //
 import UIKit
+
 import SnapKit
 import Then
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class LoginViewController: UIViewController {
   private let kakaoLoginButton = UIButton().then {
@@ -82,9 +85,24 @@ extension LoginViewController {
 //    let mainAppTabBarVC = TabBarViewController()
 //    mainAppTabBarVC.modalPresentationStyle = .fullScreen
 //    present(mainAppTabBarVC, animated: true)
-    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-    vc.modalPresentationStyle = .fullScreen
-    present(vc, animated: true)
+    if UserApi.isKakaoTalkLoginAvailable() {
+      UserApi.shared.loginWithKakaoTalk { oauthToken, error in
+        if let error = error {
+          print(error)
+        } else {
+          print("로그인 성공")
+          print(oauthToken)
+        }
+      }
+    } else {
+      UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+        if let error = error {
+          print("error")
+        } else {
+          print("로그인 성공")
+          print(oauthToken)
+        }
+      }
+    }
   }
 }
