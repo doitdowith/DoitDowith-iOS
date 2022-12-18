@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import KakaoSDKCommon
+import KakaoSDKUser
+import KakaoSDKAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
     let window = UIWindow(frame: UIScreen.main.bounds)
-    window.rootViewController = LoginViewController()
+    
+    KakaoSDK.initSDK(appKey: "04d5bc7b6ebcb848ff8a9aabc924a1a6")
+    if(AuthApi.hasToken()) {
+      UserApi.shared.accessTokenInfo { info, error in
+        if let error = error,
+           let sdkError = error as? SdkError, sdkError.isInvalidTokenError() {
+          window.rootViewController = LoginViewController()
+        } else {
+          let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+          let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+          vc.modalPresentationStyle = .fullScreen
+          window.rootViewController = vc
+        }
+      }
+    }
     window.makeKeyAndVisible()
     self.window = window
     return true

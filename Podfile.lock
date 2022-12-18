@@ -5,6 +5,17 @@ PODS:
   - Alamofire (5.6.4)
   - Differentiator (5.0.0)
   - FSCalendar (2.8.4)
+  - KakaoSDKAuth (2.12.0):
+    - KakaoSDKCommon (= 2.12.0)
+  - KakaoSDKCommon (2.12.0):
+    - KakaoSDKCommon/Common (= 2.12.0)
+    - KakaoSDKCommon/Network (= 2.12.0)
+  - KakaoSDKCommon/Common (2.12.0)
+  - KakaoSDKCommon/Network (2.12.0):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.12.0)
+  - KakaoSDKUser (2.12.0):
+    - KakaoSDKAuth (= 2.12.0)
   - Kingfisher (7.4.1)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -48,6 +59,9 @@ PODS:
 DEPENDENCIES:
   - Action
   - FSCalendar
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
   - Kingfisher
   - Moya
   - Moya/RxSwift
@@ -69,6 +83,9 @@ SPEC REPOS:
     - Alamofire
     - Differentiator
     - FSCalendar
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - Kingfisher
     - Moya
     - "NSObject+Rx"
@@ -91,6 +108,9 @@ SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  KakaoSDKAuth: 46e9979113a2f1b6ce7b347465841c78f6e43b03
+  KakaoSDKCommon: 7a49d3c686a7b38b4736ab4b8e0f776feed15bcd
+  KakaoSDKUser: addc31c3b9b5be71b231021467dbaef3086efbb2
   Kingfisher: cd762a593a61b2fbecf7645c00f9a801a3ebfc9c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
@@ -108,6 +128,6 @@ SPEC CHECKSUMS:
   StompClientLib: ac40390e9660c574675f1c933bec81c8e2811a4f
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 9dfd4b83587a43b110e0b8cbe21e5093b078e25f
+PODFILE CHECKSUM: 6986e166c24b632ad9a4ce72ed3ef7dd0a0f833a
 
 COCOAPODS: 1.11.3
