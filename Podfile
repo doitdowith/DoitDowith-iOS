@@ -18,8 +18,7 @@ target 'DoitDowith-iOS' do
   pod 'RxKeyboard'
   pod 'Action'
 
-  pod 'Moya'
-  pod 'Moya/RxSwift'
+  pod 'RxAlamofire'
   pod 'RealmSwift'
   pod 'FSCalendar'
   pod 'Then'
