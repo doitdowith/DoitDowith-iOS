@@ -7,50 +7,42 @@
 
 import Foundation
 
-struct CardResponse: ResponseType {
-  var statusCode: Int
+struct CardResponse: Decodable {
   var doingRoomList, doneRoomList, willDoRoomList: [Room]
-  var data: Data?
 }
 
 struct Room: Decodable {
-    let color, roomListDescription, id, startDate: String
-    let title: String
-
-    enum CodingKeys: String, CodingKey {
-        case color
-        case roomListDescription = "description"
-        case id, startDate, title
-    }
+  var color, description, id, startDate: String
+  var title: String
 }
 
 extension CardResponse {
-    var toDomain: [Card] {
-      var data: [Card] = []
-      for room in doingRoomList {
-        data.append(Card(section: 1,
-                         roomId: room.id,
-                         title: room.title,
-                         description: room.roomListDescription,
-                         color: room.color,
-                         startDate: room.startDate))
-      }
-      for room in willDoRoomList {
-        data.append(Card(section: 2,
-                         roomId: room.id,
-                         title: room.title,
-                         description: room.roomListDescription,
-                         color: room.color,
-                         startDate: room.startDate))
-      }
-      for room in doneRoomList {
-        data.append(Card(section: 3,
-                         roomId: room.id,
-                         title: room.title,
-                         description: room.roomListDescription,
-                         color: room.color,
-                         startDate: room.startDate))
-      }
-     return data
+  var toDomain: [Card] {
+    var data: [Card] = []
+    for room in doingRoomList {
+      data.append(Card(section: 1,
+                       roomId: room.id,
+                       title: room.title,
+                       description: room.description,
+                       color: room.color,
+                       startDate: room.startDate))
     }
+    for room in willDoRoomList {
+      data.append(Card(section: 2,
+                       roomId: room.id,
+                       title: room.title,
+                       description: room.description,
+                       color: room.color,
+                       startDate: room.startDate))
+    }
+    for room in doneRoomList {
+      data.append(Card(section: 3,
+                       roomId: room.id,
+                       title: room.title,
+                       description: room.description,
+                       color: room.color,
+                       startDate: room.startDate))
+    }
+    return data
+  }
 }

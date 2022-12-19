@@ -51,7 +51,7 @@ final class HomeViewModel: HomeViewModelInput,
   let willDoButtonColor: Driver<UIColor>
   let doneButtonColor: Driver<UIColor>
   
-  init(memberId: String) {
+  init(token: String) {
     let emptyCards: [HomeSectionModel] = [
       .init(model: 0,
             items: [.init(type: .none, data: []),
@@ -66,7 +66,11 @@ final class HomeViewModel: HomeViewModelInput,
     fetching
       .do(onNext: { _ in activating.accept(true) })
         .flatMap { _ -> Observable<[Card]> in
-          return APIService.shared.request(request: CardRequest(memberId: memberId))
+          let request = RequestType(endpoint: "room",
+                                    method: .get,
+                                    headers: ["Content-Type": "application/json",
+                                              "Authorization": "Bearer \(token)"])
+          return APIService.shared.request(request: request)
             .map { (response: CardResponse) -> [Card] in
               return response.toDomain
             }

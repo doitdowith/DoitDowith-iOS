@@ -60,16 +60,16 @@ final class InviteModalViewModel: InviteModalViewModelInput,
                                                   Friend(id: "5", url: url[6], state: .fail, name: "지민석")
                                                  ])
     
-    fetching
-      .do(onNext: { _ in activating.accept(true) })
-      .flatMap { _ -> Single<[Friend]> in
-        let request = FriendRequest(id: memberId)
-        return HomeAPI.shared.getFriendList(request: request)
-      }
-      .catchAndReturn([])
-      .do(onNext: { _ in activating.accept(false) })
-      .bind(onNext: { friends.accept($0) })
-      .disposed(by: disposeBag)
+//    fetching
+//      .do(onNext: { _ in activating.accept(true) })
+//      .flatMap { _ -> Single<[Friend]> in
+//        let request = FriendRequest(id: memberId)
+//        return HomeAPI.shared.getFriendList(request: request)
+//      }
+//      .catchAndReturn([])
+//      .do(onNext: { _ in activating.accept(false) })
+//      .bind(onNext: { friends.accept($0) })
+//      .disposed(by: disposeBag)
     
     self.frieindList = friends
     self.friendNumber = friends.map { $0.count }.asDriver(onErrorJustReturn: 0)

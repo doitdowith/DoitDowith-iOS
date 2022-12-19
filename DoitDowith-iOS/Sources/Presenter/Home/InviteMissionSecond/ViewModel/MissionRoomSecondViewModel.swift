@@ -21,7 +21,7 @@ protocol MissionRoomSecondViewModelOutput {
   var buttonEnabled: Driver<Bool> { get }
   var buttonColor: Driver<UIColor> { get }
   var model: Driver<[String]> { get }
-  var passData: Observable<CreateRoomRequest> { get }
+  var passData: Observable<RequestType> { get }
 }
 
 protocol MissionRoomSecondViewModelType {
@@ -44,9 +44,9 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
   let buttonEnabled: Driver<Bool>
   let buttonColor: Driver<UIColor>
   let model: Driver<[String]>
-  let passData: Observable<CreateRoomRequest>
+  let passData: Observable<RequestType>
   
-  init() {
+  init(token: String) {
     let myimage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5iqjI9Lka_8V84HSC_1Df8ZdVK1otORRVGJwYWDPFw&s"
     self.missionStartDate = PublishRelay<String>()
     self.missionCertificateCount = PublishRelay<String>()
@@ -71,16 +71,23 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
     self.passData = Observable
       .combineLatest(passedData, missionStartDate, missionCertificateCount, missionFriendList)
       .map { firstData, startDate, count, friendList in
-        return CreateRoomRequest(certificationCount: Int(count)!,
-                                 color: firstData.color,
-                                 description: firstData.description,
-                                 participants: friendList.map { $0.id },
-                                 startDate: startDate,
-                                 title: firstData.name)}
-      .do(onNext: { (request: CreateRoomRequest) in
-        APIService.shared.request(request: request).map { (response: CreateRoomResponse) in
-          print(response.statusCode)
-        }
+        return RequestType(endpoint: "room",
+                           method: .get,
+                           parameters: [
+                            "certificationCount": Int(count),
+                            "color": firstData.color,
+                            "description": firstData.description,
+                            "participants": friendList.map { $0.id },
+                            "startDate": startDate,
+                            "title": firstData.name
+                           ],
+                           headers: ["Content-Type": "application/json",
+                                     "Authorization": "Bearer \(token)"])}
+      .do(onNext: { (request: RequestType) in
+        APIService.shared.request(request: request)
+          .map { (response: String) -> String in
+            return response
+          }
       })
   }
 }

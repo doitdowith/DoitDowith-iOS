@@ -51,16 +51,16 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
                       )
     ])
     
-    fetching
-      .do(onNext: { _ in activating.accept(true) })
-      .flatMap { _ -> Single<[CertificationPost]> in
-        return HomeAPI.shared.getCertificatePostList(request: CertificateBoardRequest(id: 1))
-      }
-      .do(onNext: { _ in activating.accept(false) })
-      .map { [PostSectionModel(model: 0, items: $0)] }
-      .bind(onNext: { allPosts.accept($0) })
-      .disposed(by: disposeBag)
-    
+//    fetching
+//      .do(onNext: { _ in activating.accept(true) })
+//      .flatMap { _ -> Single<[CertificationPost]> in
+//        // return HomeAPI.shared.getCertificatePostList(request: CertificateBoardRequest(id: 1))
+//      }
+//      .do(onNext: { _ in activating.accept(false) })
+//      .map { [PostSectionModel(model: 0, items: $0)] }
+//      .bind(onNext: { allPosts.accept($0) })
+//      .disposed(by: disposeBag)
+//    
     // Input
     self.fetchPosts = fetching
     // Output

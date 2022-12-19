@@ -27,18 +27,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     guard let windowScene = (scene as? UIWindowScene) else { return }
     let window = UIWindow(windowScene: windowScene)
-    if(AuthApi.hasToken()) {
-      UserApi.shared.accessTokenInfo { info, error in
-        if let error = error,
-           let sdkError = error as? SdkError, sdkError.isInvalidTokenError() {
-          window.rootViewController = LoginViewController()
-        } else {
-          let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-          let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-          window.rootViewController = vc
-        }
-      }
-    }
+    window.rootViewController = LoginViewController()
+//    if(AuthApi.hasToken()) {
+//      UserApi.shared.accessTokenInfo { info, error in
+//        if let error = error,
+//           let sdkError = error as? SdkError, sdkError.isInvalidTokenError() {
+//
+//          window.rootViewController = LoginViewController()
+//        } else {
+//          let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//          let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+//          window.rootViewController = vc
+//        }
+//      }
+//    }
     window.makeKeyAndVisible()
     self.window = window
   }

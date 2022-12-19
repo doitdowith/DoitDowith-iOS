@@ -16,24 +16,42 @@ class APIService: ReactiveCompatible {
   typealias ReactiveBase = APIService
   
   static let shared = APIService()
-  let baseURL = "http://117.17.198.38:8080"
+  let baseURL = "http://117.17.198.38:8080/api/v1/members"
   
   private init() { }
-  
-  func request<T: RequestType, U: ResponseType>(request: T) -> Observable<U> {
+  func request<T: Decodable>(request: RequestType) -> Observable<T> {
     return RxAlamofire
       .request(request.method,
-               request.endpoint,
+               "http://117.17.198.38:8080/api/v1/\(request.endpoint)",
                parameters: request.parameters,
                encoding: JSONEncoding.default,
-               headers: request.headers)
-      .validate(statusCode: 200..<300)
+               headers: HTTPHeaders(request.headers))
       .responseData()
       .observe(on: MainScheduler.instance)
-      .map({ (response, data) -> U in
+      .map { (response, data) -> T in
+        print(data)
         let statusCode = response.statusCode
+        print(statusCode)
         let decoder = JSONDecoder()
-        return try decoder.decode(U.self, from: data)
-      })
+        return try decoder.decode(T.self, from: data)
+      }
   }
+  
+//  func request<U: Decodable>(request: RequestType) -> Observable<U> {
+//    return RxAlamofire
+//      .request(request.method,
+//               "http://117.17.198.38:8080/api/v1/members",
+//               parameters: request.parameters,
+//               encoding: JSONEncoding.default,
+//               headers: ["Content-Type": "application/json"])
+//      .responseData()
+//      .observe(on: MainScheduler.instance)
+//      .map({ (response, data) -> U in
+//        print(data)
+//        let statusCode = response.statusCode
+//        print(statusCode)
+//        let decoder = JSONDecoder()
+//        return try decoder.decode(U.self, from: data)
+//      })
+//  }
 }

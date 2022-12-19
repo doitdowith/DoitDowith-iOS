@@ -67,19 +67,19 @@ class VoteResultViewModel: VoteResultViewModelInput,
                                                                                         .init(type: .good, data: d),
                                                                                         .init(type: .bad, data: e)])])
     
-        fetching
-          .do(onNext: { _ in activating.accept(true) })
-          .flatMap { _ -> Single<[VoteMember]> in
-            return HomeAPI.shared.getVoteMemberList(request: VoteMemberListRequest(id: 1))
-          }
-          .do(onNext: { _ in activating.accept(false) })
-            .map { members -> [VoteSectionModel] in
-              return [VoteSectionModel(model: 0, items: [.init(type: .all, data: members),
-                                                         .init(type: .good, data: members.filter { $0.type == 1 }),
-                                                         .init(type: .bad, data: members.filter { $0.type == 2 })])]
-          }
-            .bind(onNext: { voteMembers.accept($0) })
-            .disposed(by: disposeBag)
+//        fetching
+//          .do(onNext: { _ in activating.accept(true) })
+//          .flatMap { _ -> Single<[VoteMember]> in
+//            //return HomeAPI.shared.getVoteMemberList(request: VoteMemberListRequest(id: 1))
+//          }
+//          .do(onNext: { _ in activating.accept(false) })
+//            .map { members -> [VoteSectionModel] in
+//              return [VoteSectionModel(model: 0, items: [.init(type: .all, data: members),
+//                                                         .init(type: .good, data: members.filter { $0.type == 1 }),
+//                                                         .init(type: .bad, data: members.filter { $0.type == 2 })])]
+//          }
+//            .bind(onNext: { voteMembers.accept($0) })
+//            .disposed(by: disposeBag)
     
     // Input
     self.fetchData = fetching

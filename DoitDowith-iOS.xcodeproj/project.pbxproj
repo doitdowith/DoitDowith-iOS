@@ -23,13 +23,8 @@
 		EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */; };
 		EE1F58F528F6711B0046ED09 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58F328F6711B0046ED09 /* ColorCell.swift */; };
 		EE1F58F628F6711B0046ED09 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE1F58F428F6711B0046ED09 /* ColorCell.xib */; };
-		EE1F58FB28F688B30046ED09 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58FA28F688B30046ED09 /* TargetType.swift */; };
-		EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58FD28F689340046ED09 /* HttpHeaderField.swift */; };
 		EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */; };
-		EE1F590728F68B0D0046ED09 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F590628F68B0D0046ED09 /* HomeAPI.swift */; };
 		EE1F590928F68B280046ED09 /* CardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F590828F68B280046ED09 /* CardResponse.swift */; };
-		EE1F590F28F68BC00046ED09 /* CardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F590E28F68BC00046ED09 /* CardRequest.swift */; };
-		EE1F591128F68C0E0046ED09 /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F591028F68C0E0046ED09 /* HomeTarget.swift */; };
 		EE22491428F572D1007C5B16 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */; };
 		EE23A853291001BC0050175C /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE23A852291001BC0050175C /* DateView.swift */; };
 		EE23C3EA293DE6100098740C /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE23C3E9293DE6100098740C /* UIImageView+.swift */; };
@@ -89,7 +84,6 @@
 		EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */; };
 		EE78580328EDB62300F8C309 /* MissionRoomSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */; };
 		EE7F4026294DBBC1002AD53F /* CreateRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4025294DBBC1002AD53F /* CreateRoomRequest.swift */; };
-		EE7F4028294DBBC9002AD53F /* CreateRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4027294DBBC9002AD53F /* CreateRoomResponse.swift */; };
 		EE7F402A294DFA11002AD53F /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4029294DFA11002AD53F /* ChatRequest.swift */; };
 		EE84AC47292F85A80032E963 /* CertificationPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE84AC45292F85A80032E963 /* CertificationPostCell.swift */; };
 		EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */; };
@@ -118,6 +112,7 @@
 		EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEDA1928D9C05D000141ED /* SceneDelegate.swift */; };
 		EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAEDA1D28D9C05D000141ED /* Main.storyboard */; };
 		EEAEDA2428D9C060000141ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEAEDA2228D9C060000141ED /* LaunchScreen.storyboard */; };
+		EEB6036E294EEB4200BEF609 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB6036D294EEB4200BEF609 /* LoginResponse.swift */; };
 		EEC0E867293F7E9E00B2B79C /* MissionRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC0E866293F7E9E00B2B79C /* MissionRoomResponse.swift */; };
 		EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC949DE28F7E1A300A9661F /* FriendProfileCell.swift */; };
 		EEC949E128F7E1A300A9661F /* FriendProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEC949DF28F7E1A300A9661F /* FriendProfileCell.xib */; };
@@ -158,13 +153,8 @@
 		EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModalViewModel.swift; sourceTree = "<group>"; };
 		EE1F58F328F6711B0046ED09 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		EE1F58F428F6711B0046ED09 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
-		EE1F58FA28F688B30046ED09 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
-		EE1F58FD28F689340046ED09 /* HttpHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHeaderField.swift; sourceTree = "<group>"; };
 		EE1F58FF28F6894C0046ED09 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
-		EE1F590628F68B0D0046ED09 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
 		EE1F590828F68B280046ED09 /* CardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResponse.swift; sourceTree = "<group>"; };
-		EE1F590E28F68BC00046ED09 /* CardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRequest.swift; sourceTree = "<group>"; };
-		EE1F591028F68C0E0046ED09 /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
 		EE22491328F572D1007C5B16 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		EE23A852291001BC0050175C /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		EE23C3E9293DE6100098740C /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
@@ -224,7 +214,6 @@
 		EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewController.swift; sourceTree = "<group>"; };
 		EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewModel.swift; sourceTree = "<group>"; };
 		EE7F4025294DBBC1002AD53F /* CreateRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomRequest.swift; sourceTree = "<group>"; };
-		EE7F4027294DBBC9002AD53F /* CreateRoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomResponse.swift; sourceTree = "<group>"; };
 		EE7F4029294DFA11002AD53F /* ChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
 		EE84AC45292F85A80032E963 /* CertificationPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationPostCell.swift; sourceTree = "<group>"; };
 		EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -255,6 +244,7 @@
 		EEAEDA1E28D9C05D000141ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEAEDA2328D9C060000141ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEAEDA2528D9C060000141ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEB6036D294EEB4200BEF609 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		EEC0E866293F7E9E00B2B79C /* MissionRoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomResponse.swift; sourceTree = "<group>"; };
 		EEC949DE28F7E1A300A9661F /* FriendProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileCell.swift; sourceTree = "<group>"; };
 		EEC949DF28F7E1A300A9661F /* FriendProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendProfileCell.xib; sourceTree = "<group>"; };
@@ -308,8 +298,6 @@
 		EE1F58FC28F688BB0046ED09 /* Bases */ = {
 			isa = PBXGroup;
 			children = (
-				EE1F58FA28F688B30046ED09 /* TargetType.swift */,
-				EE1F58FD28F689340046ED09 /* HttpHeaderField.swift */,
 				EE8F28F5294DA250006E6F96 /* RequestType.swift */,
 				EE8F28F7294DA273006E6F96 /* ResponseType.swift */,
 			);
@@ -348,6 +336,7 @@
 		EE1F590428F68AFA0046ED09 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				EEB6036A294EEB2800BEF609 /* Login */,
 				EE63629D29121B0900A78758 /* Chat */,
 				EE8FF3F128FD4BB900EB5FBC /* Stomp */,
 				EE1F590528F68AFF0046ED09 /* Home */,
@@ -364,9 +353,7 @@
 				EE66961B290183AB00ECFC9A /* MissionRoom */,
 				EE3A079628F8747D002C7E5D /* Card */,
 				EE3A079128F8746D002C7E5D /* Friend */,
-				EE1F590628F68B0D0046ED09 /* HomeAPI.swift */,
 				EE8F28FD294DB616006E6F96 /* APIService.swift */,
-				EE1F591028F68C0E0046ED09 /* HomeTarget.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -482,7 +469,6 @@
 		EE3A079628F8747D002C7E5D /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				EE1F590E28F68BC00046ED09 /* CardRequest.swift */,
 				EE1F590828F68B280046ED09 /* CardResponse.swift */,
 			);
 			path = Card;
@@ -644,7 +630,6 @@
 			isa = PBXGroup;
 			children = (
 				EE7F4025294DBBC1002AD53F /* CreateRoomRequest.swift */,
-				EE7F4027294DBBC9002AD53F /* CreateRoomResponse.swift */,
 			);
 			path = CreateRoom;
 			sourceTree = "<group>";
@@ -768,6 +753,14 @@
 				EEC4991A28D9C2A4003AF6C4 /* Sources */,
 			);
 			path = "DoitDowith-iOS";
+			sourceTree = "<group>";
+		};
+		EEB6036A294EEB2800BEF609 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EEB6036D294EEB4200BEF609 /* LoginResponse.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		EEC4991728D9C1F3003AF6C4 /* Application */ = {
@@ -1048,13 +1041,11 @@
 				EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */,
 				EE695105292E128500B933BD /* CertificateBoardResponse.swift in Sources */,
 				EEE063D8294214D600D45493 /* UIButton+.swift in Sources */,
-				EE1F590F28F68BC00046ED09 /* CardRequest.swift in Sources */,
 				EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */,
 				EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */,
 				EE6A2BD728E4893B000656AA /* ReceiveMessageCell.swift in Sources */,
 				EE557F2529266649005685EC /* ReceiveImageMessageCell.swift in Sources */,
 				EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */,
-				EE7F4028294DBBC9002AD53F /* CreateRoomResponse.swift in Sources */,
 				1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */,
 				EEE8358D293ADAE4001C97CC /* VoteResultContentViewCell.swift in Sources */,
 				EE695103292E127F00B933BD /* CertificateBoardRequest.swift in Sources */,
@@ -1103,8 +1094,6 @@
 				EE6950F3292DF78300B933BD /* CertificationPostWithImageCell.swift in Sources */,
 				EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */,
 				EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */,
-				EE1F590728F68B0D0046ED09 /* HomeAPI.swift in Sources */,
-				EE1F58FB28F688B30046ED09 /* TargetType.swift in Sources */,
 				EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */,
 				EE8FF3F328FD4BC200EB5FBC /* StompTarget.swift in Sources */,
 				EE63629F29121B1600A78758 /* ChatResponse.swift in Sources */,
@@ -1116,7 +1105,6 @@
 				EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */,
 				EE6950F9292E096E00B933BD /* CertificationPost.swift in Sources */,
 				EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */,
-				EE1F591128F68C0E0046ED09 /* HomeTarget.swift in Sources */,
 				EE23C3EA293DE6100098740C /* UIImageView+.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
 				EE1ED77829016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift in Sources */,
@@ -1126,8 +1114,8 @@
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
 				EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */,
 				EE300D70293A30B000842742 /* VoteResultViewController.swift in Sources */,
-				EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */,
 				EE84AC47292F85A80032E963 /* CertificationPostCell.swift in Sources */,
+				EEB6036E294EEB4200BEF609 /* LoginResponse.swift in Sources */,
 				EE45707E2914006100B13DF3 /* CertificationViewModel.swift in Sources */,
 				EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */,
 				1824EDB92901AB31007BA66B /* FriendListTableViewCell.swift in Sources */,
