@@ -142,26 +142,12 @@
                                                         <color key="textColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Si0-ED-sdL">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-PV-nO1">
                                                         <rect key="frame" x="0.0" y="22.5" width="89" height="16.5"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-PV-nO1">
-                                                                <rect key="frame" x="0.0" y="0.0" width="46" height="16.5"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="46" id="vqw-M6-Lu3"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
-                                                                <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="번" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3d-hg-Ni7">
-                                                                <rect key="frame" x="46" y="0.0" width="43" height="16.5"/>
-                                                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
-                                                                <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                                                        <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="89" id="qMp-72-cVN"/>
@@ -176,26 +162,12 @@
                                                         <color key="textColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUj-v3-iT3">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFB-DC-yva">
                                                         <rect key="frame" x="0.0" y="22.5" width="89" height="16.5"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFB-DC-yva">
-                                                                <rect key="frame" x="0.0" y="0.0" width="46" height="16.5"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="46" id="asG-QU-JIT"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
-                                                                <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2H-EU-dC5">
-                                                                <rect key="frame" x="46" y="0.0" width="43" height="16.5"/>
-                                                                <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
-                                                                <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
+                                                        <color key="textColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="89" id="LsH-ON-hGl"/>
@@ -215,9 +187,6 @@
                                                             <fontDescription key="titleFontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="12"/>
                                                             <color key="baseForegroundColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
-                                                        <connections>
-                                                            <segue destination="q34-cn-K91" kind="show" id="j0L-8M-6Kj"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xY-2D-OEa">
                                                         <rect key="frame" x="0.0" y="22" width="89" height="17"/>
@@ -231,9 +200,6 @@
                                                             <fontDescription key="titleFontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
                                                             <color key="baseForegroundColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
-                                                        <connections>
-                                                            <segue destination="q34-cn-K91" kind="show" id="kMs-K5-WaU"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -340,10 +306,13 @@
                     <connections>
                         <outlet property="btnCode" destination="P6V-EO-jK8" id="CTZ-Bj-h0z"/>
                         <outlet property="dowithCode" destination="a33-Vx-gaW" id="GGb-kb-qre"/>
+                        <outlet property="friend" destination="tpG-hf-Eah" id="0My-Qg-7st"/>
                         <outlet property="friendCount" destination="4xY-2D-OEa" id="Net-T7-DVj"/>
                         <outlet property="participationCount" destination="nWW-PV-nO1" id="HnV-pX-5S8"/>
                         <outlet property="successRate" destination="kFB-DC-yva" id="QCc-w6-Qmx"/>
                         <outlet property="tableView" destination="SEM-TU-z47" id="aq8-Sw-stg"/>
+                        <outlet property="userImage" destination="Z6n-aB-vvU" id="3VX-UF-eu8"/>
+                        <outlet property="userName" destination="mh8-8H-Byb" id="xvh-mg-GjA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -423,7 +392,7 @@
         <!--Friend List View Controller-->
         <scene sceneID="tmA-j4-3d0">
             <objects>
-                <viewController id="q34-cn-K91" customClass="FriendListViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendListViewController" id="q34-cn-K91" customClass="FriendListViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e8G-SQ-qA4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -552,7 +521,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yin-5f-im3">
-                                <rect key="frame" x="16" y="251.5" width="382" height="561.5"/>
+                                <rect key="frame" x="16" y="251.5" width="382" height="610.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="68" id="45Y-Rs-MtE" customClass="FriendListTableViewCell" customModule="DoitDowith_iOS" customModuleProvider="target">
@@ -631,7 +600,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNi-La-zTy" userLabel="Add Button">
-                                <rect key="frame" x="329" y="728" width="60" height="60"/>
+                                <rect key="frame" x="329" y="777" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="CZV-WB-cLx"/>
                                     <constraint firstAttribute="height" constant="60" id="zSK-st-st4"/>
@@ -639,8 +608,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="ic_plus_blue"/>
                                 <connections>
-                                    <action selector="showModal:" destination="q34-cn-K91" eventType="touchUpInside" id="eCp-0b-OUI"/>
-                                    <segue destination="SNU-y8-gn6" kind="show" id="Gzh-ih-Qxe"/>
+                                    <action selector="showModal:" destination="q34-cn-K91" eventType="touchUpInside" id="8YE-cg-HOh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -668,8 +636,10 @@
                     <navigationItem key="navigationItem" id="xr3-7n-o3A"/>
                     <connections>
                         <outlet property="btnCode" destination="LjV-Bj-oiN" id="dIj-G9-Zpz"/>
-                        <outlet property="doitCode" destination="dRd-ci-tCG" id="igs-pA-SuI"/>
+                        <outlet property="dowithCode" destination="dRd-ci-tCG" id="Qf3-A7-Kt7"/>
+                        <outlet property="friendCount" destination="cqR-go-6oH" id="PyY-K9-nBf"/>
                         <outlet property="tableView" destination="Yin-5f-im3" id="GM6-yc-hdg"/>
+                        <outlet property="userName" destination="Lha-zx-ZsE" id="Jj4-cF-xmm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ST3-Ae-7aa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -679,13 +649,13 @@
         <!--Modal View Controller-->
         <scene sceneID="vRz-ni-6tC">
             <objects>
-                <viewController id="SNU-y8-gn6" customClass="ModalViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModalViewVC" id="SNU-y8-gn6" customClass="ModalViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UuQ-Za-hEc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gO0-Bd-pKu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPK-S9-hIB">
@@ -739,6 +709,9 @@
                                             </attributedString>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="sendBtn:" destination="SNU-y8-gn6" eventType="touchUpInside" id="68r-2V-RVl"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Wc-Jj-ix5">
                                         <rect key="frame" x="111" y="398" width="162" height="34"/>
@@ -783,7 +756,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="DN9-9T-WXk"/>
                     <connections>
+                        <outlet property="codeTF" destination="3Wc-Jj-ix5" id="dBE-Dk-d2T"/>
                         <outlet property="mainView" destination="gO0-Bd-pKu" id="Re1-cd-XGd"/>
+                        <outlet property="sendBtn" destination="AdB-Eg-bn3" id="sr1-V4-Cyj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbb-Tz-e6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1137,9 +1112,6 @@
             <point key="canvasLocation" x="1327.536231884058" y="843.75"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="j0L-8M-6Kj"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Rectangle 31" width="166.5" height="166.5"/>
         <image name="addFriendModalImage" width="773" height="762"/>

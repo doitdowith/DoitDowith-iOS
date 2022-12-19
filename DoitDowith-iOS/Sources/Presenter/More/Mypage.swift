@@ -8,6 +8,8 @@
 import Foundation
 
 struct Mypage: Codable {
+    let name: String
+    let profileImage: String
     let dowithCode: String
     let friendCount: Int
     let memberId: String

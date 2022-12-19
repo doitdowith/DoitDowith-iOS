@@ -15,6 +15,7 @@
 		1824EDB92901AB31007BA66B /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDB82901AB31007BA66B /* FriendListTableViewCell.swift */; };
 		1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824EDBA2901B0AF007BA66B /* ModalViewController.swift */; };
 		18C692FC2940B9720039D91E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C692FB2940B9720039D91E /* CustomCell.swift */; };
+		18E69C992950491600A644F7 /* requestFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E69C982950491600A644F7 /* requestFriend.swift */; };
 		18F863C92947257100EC96A7 /* Mypage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F863C82947257100EC96A7 /* Mypage.swift */; };
 		18F863CB2947345700EC96A7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F863CA2947345700EC96A7 /* NetworkService.swift */; };
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
@@ -144,6 +145,7 @@
 		1824EDB82901AB31007BA66B /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
 		1824EDBA2901B0AF007BA66B /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		18C692FB2940B9720039D91E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		18E69C982950491600A644F7 /* requestFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = requestFriend.swift; sourceTree = "<group>"; };
 		18F863C82947257100EC96A7 /* Mypage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mypage.swift; sourceTree = "<group>"; };
 		18F863CA2947345700EC96A7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		24691D147FCF764B27B270A4 /* Pods-DoitDowith-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoitDowith-iOS.debug.xcconfig"; path = "Target Support Files/Pods-DoitDowith-iOS/Pods-DoitDowith-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				1824EDB22901A7C5007BA66B /* CSViewController.swift */,
 				1824EDB42901A7DC007BA66B /* SettingViewController.swift */,
 				18F863C82947257100EC96A7 /* Mypage.swift */,
+				18E69C982950491600A644F7 /* requestFriend.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1100,6 +1103,7 @@
 				EE300D7A293A379300842742 /* VoteMemberListRequest.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
 				EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */,
+				18E69C992950491600A644F7 /* requestFriend.swift in Sources */,
 				EE300D70293A30B000842742 /* VoteResultViewController.swift in Sources */,
 				EE1F58FE28F689340046ED09 /* HttpHeaderField.swift in Sources */,
 				EE84AC47292F85A80032E963 /* CertificationPostCell.swift in Sources */,

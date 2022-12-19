@@ -14,9 +14,12 @@ import Alamofire
 class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var btnCode: UIButton!
     @IBOutlet weak var dowithCode: UILabel!
     @IBOutlet weak var friendCount: UIButton!
+    @IBOutlet weak var friend: UIButton!
     @IBOutlet weak var participationCount: UILabel!
     @IBOutlet weak var successRate: UILabel!
     
@@ -28,8 +31,10 @@ class MoreViewController: UIViewController {
                         UIPasteboard.general.string = self.dowithCode.text
                     })
                     .disposed(by: rx.disposeBag)
-        getTest()
         
+        getTest()
+        self.friendCount.addTarget(self, action: #selector(moveFriendVC), for: .touchUpInside)
+        self.friend.addTarget(self, action: #selector(moveFriendVC), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
     
@@ -38,7 +43,7 @@ class MoreViewController: UIViewController {
                                         method: .get,
                                         parameters: nil,
                                         model: Mypage.self,
-                                        header: ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzA5MjU2NDV9.H5dUy0NvtC1p4ieeHhxokJkbo0SgLa4nzRpqhoR6J1yD35pxxK1hefm_2FTXzXLMp87I0z2BpS-FjrLq97w7Cg"])
+                                        header: ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzE1MTg3MzV9.8SpAo2ZE7QaiWIEO7xJc1hYwnPDkXYZ9FL5iXX8RoqPVJtS3xJGBJFqFgzbYwOODS6hnyTD7GULh7cnYR-3Myw"])
 
         NetworkLayer.shared.request(model: requestModel) { (response) in
             if response.error != nil {
@@ -48,16 +53,25 @@ class MoreViewController: UIViewController {
             if let data = response.data {
                 // use data in your app
                 DispatchQueue.main.async {
+                    self.userName.text = data.name
+                    self.userImage.setImage(with: "http://117.17.198.38:8080/images/\(data.profileImage)")
                     self.dowithCode.text = data.dowithCode
-                    self.friendCount.setTitle("\(data.friendCount)", for: .normal)
-                    self.participationCount.text = String(data.participationCount)
-                    self.successRate.text = String(data.successRate)
+                    self.friendCount.setTitle("\(data.friendCount)명", for: .normal)
+                    // self.friendCount.titleLabel("\(data.friendCount)명", for: .normal)
+                    self.participationCount.text = "\(data.participationCount)번"
+                    self.successRate.text = "\(data.successRate)%"
                     print(data)
                 }
             }
         }
     }
     
+    @objc func moveFriendVC() {
+        let vc = UIStoryboard(name: "More", bundle: nil).instantiateViewController(identifier: FriendListViewController.identifier) { coder in
+            FriendListViewController(coder: coder, doitCode: self.dowithCode.text, userName: self.userName.text)
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
