@@ -16,7 +16,7 @@ import RxRelay
 
 final class MissionRoomSecondViewController: UIViewController {
   let viewModel: MissionRoomSecondViewModelType
-  var chatRequest: MissionRoomRequest?
+  var chatRequest: RequestType?
   
   // MARK: Initializers
   init?(coder: NSCoder, viewModel: MissionRoomSecondViewModelType) {
@@ -49,25 +49,20 @@ final class MissionRoomSecondViewController: UIViewController {
   @IBOutlet weak var certificateCountTextField: UITextFieldWithPadding!
   
   @IBAction func didTapCompleteButton(_ sender: UIButton) {
-    // guard let request = chatRequest else { return }
-    let service = ChatService()
-    let roomId = service.createChatRoom()
-    HomeAPI.shared.saveMockChat(card: Card(section: 0,
-                                           roomId: roomId,
-                                           title: "request.title",
-                                           description: "request.description"))
-    let stompManager = StompManager(targetId: roomId,
-                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
-                                    connectType: .room)
-    
-    let chatRoomViewModel = ChatRommViewModel(id: roomId,
-                                              service: service,
-                                              stompManager: stompManager)
-    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
-                                                                                           creator: { coder in
-      ChatRoomController(coder: coder, roomId: roomId, viewModel: chatRoomViewModel)
-    })
-    self.navigationController?.pushViewController(viewController, animated: true)
+    //     guard let request = chatRequest else { return }
+    //    let service = ChatService()
+    //    let stompManager = StompManager(targetId: roomId,
+    //                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
+    //                                    connectType: .room)
+    //
+    //    let chatRoomViewModel = ChatRommViewModel(id: roomId,
+    //                                              service: service,
+    //                                              stompManager: stompManager)
+    //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
+    //                                                                                           creator: { coder in
+    //      ChatRoomController(coder: coder, roomId: roomId, viewModel: chatRoomViewModel)
+    //    })
+    //    self.navigationController?.pushViewController(viewController, animated: true)
   }
   
   // MARK: Properties
@@ -88,6 +83,7 @@ extension MissionRoomSecondViewController {
     self.bindMakeButton()
     self.bindDateTextField()
     self.bindCertificateCountTextField()
+    
     self.viewModel.output.passData
       .withUnretained(self)
       .bind(onNext: { owner, req in
@@ -155,7 +151,7 @@ extension MissionRoomSecondViewController {
                                                 cellType: FriendProfileCell.self)) { _, item, cell in
         cell.configure(url: item)
       }
-      .disposed(by: rx.disposeBag)
+                                                .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.friendCollectionView.rx.itemSelected,

@@ -6,12 +6,21 @@
 //
 
 import UIKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   var window: UIWindow?
 
-
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    if let url = URLContexts.first?.url {
+      if(AuthApi.isKakaoTalkLoginUrl(url)) {
+        _ = AuthController.handleOpenUrl(url: url)
+      }
+    }
+  }
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -19,6 +28,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     let window = UIWindow(windowScene: windowScene)
     window.rootViewController = LoginViewController()
+//    if(AuthApi.hasToken()) {
+//      UserApi.shared.accessTokenInfo { info, error in
+//        if let error = error,
+//           let sdkError = error as? SdkError, sdkError.isInvalidTokenError() {
+//
+//          window.rootViewController = LoginViewController()
+//        } else {
+//          let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//          let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+//          window.rootViewController = vc
+//        }
+//      }
+//    }
     window.makeKeyAndVisible()
     self.window = window
   }

@@ -30,11 +30,11 @@ final class StompManager: StompManagerProtocol {
   private var socketClient = StompClientLib()
  
   private let url = URL(string: "ws://117.17.198.38:8080/chat")!
-  private let targetId: Int
+  private let targetId: String
   private let senderId: String
   private let connectType: ConnectType
   
-  init(targetId: Int, senderId: String, connectType: ConnectType) {
+  init(targetId: String, senderId: String, connectType: ConnectType) {
     self.targetId = targetId
     self.senderId = senderId
     self.connectType = connectType

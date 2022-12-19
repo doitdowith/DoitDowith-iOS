@@ -13,7 +13,7 @@ protocol StompTargetType {
 
 enum DestinationType {
   case receiveMemeber(id: String)
-  case receiveRoom(id: Int)
+  case receiveRoom(id: String)
   case sendRoom
 }
 

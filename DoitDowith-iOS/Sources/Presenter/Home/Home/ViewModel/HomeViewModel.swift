@@ -51,7 +51,7 @@ final class HomeViewModel: HomeViewModelInput,
   let willDoButtonColor: Driver<UIColor>
   let doneButtonColor: Driver<UIColor>
   
-  init() {
+  init(token: String) {
     let emptyCards: [HomeSectionModel] = [
       .init(model: 0,
             items: [.init(type: .none, data: []),
@@ -65,28 +65,30 @@ final class HomeViewModel: HomeViewModelInput,
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
-      .flatMap { _ -> Single<[Card]> in
-        // let request = CardRequest(id: 1)
-        // return HomeAPI.shared.getDoingCard(request: request)
-        return HomeAPI.shared.getMockChat()
-      }
-      .catchAndReturn([])
-      .do(onNext: { _ in activating.accept(false) })
-      .map({ cards -> [HomeSectionModel] in
-        if cards.isEmpty {
-          return emptyCards
+        .flatMap { _ -> Observable<[Card]> in
+          let request = RequestType(endpoint: "room",
+                                    method: .get,
+                                    headers: ["Content-Type": "application/json",
+                                              "Authorization": "Bearer \(token)"])
+          return APIService.shared.request(request: request)
+            .map { (response: CardResponse) -> [Card] in
+              return response.toDomain
+            }
         }
-        let none: CardList = .init(type: .none, data: [])
-        let doing = cards.filter { $0.section == 1 }
-        let willdo = cards.filter { $0.section == 2 }
-        let done = cards.filter { $0.section == 3 }
-        return [.init(model: 0, items: [doing.isEmpty ? none : CardList(type: .doing, data: doing),
-                                        willdo.isEmpty ? none : CardList(type: .willdo, data: willdo),
-                                        done.isEmpty ? none : CardList(type: .done, data: done)])]
-      })
-      .bind(onNext: { sectionCards.accept($0) })
-      .disposed(by: disposeBag)
-      
+        .do(onNext: { _ in activating.accept(false) })
+        .bind(onNext: { cards in
+          if cards.isEmpty { sectionCards.accept(emptyCards) }
+          let none: CardList = .init(type: .none, data: [])
+          let doing = cards.filter { $0.section == 1 }
+          let willdo = cards.filter { $0.section == 2 }
+          let done = cards.filter { $0.section == 3 }
+          let sectionModel: [HomeSectionModel] = [.init(model: 0, items: [doing.isEmpty ? none : CardList(type: .doing, data: doing),
+                                                                          willdo.isEmpty ? none : CardList(type: .willdo, data: willdo),
+                                                                          done.isEmpty ? none : CardList(type: .done, data: done)])]
+          sectionCards.accept(sectionModel)
+        })
+        .disposed(by: disposeBag)
+                              
       // Input
     self.fetchCards = fetching
     self.indicatorIndex = indicatorIndexing

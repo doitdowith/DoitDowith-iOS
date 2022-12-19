@@ -5,8 +5,14 @@
 //  Created by 김영균 on 2022/12/08.
 //
 import UIKit
+
+import RxCocoa
+import RxSwift
+import NSObject_Rx
 import SnapKit
 import Then
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class LoginViewController: UIViewController {
   private let kakaoLoginButton = UIButton().then {
@@ -74,17 +80,47 @@ extension LoginViewController {
       make.width.equalToSuperview().offset(-16)
     }
   }
+  
+  func postToken(token: String) {
+    APIService.shared
+      .request(request: RequestType(endpoint: "members",
+                                    method: .post,
+                                    parameters: ["accessToken": token]))
+      .bind(onNext: { (response: LoginResponse) in
+        UserDefaults.standard.set(response.accessToken, forKey: "token")
+        UserDefaults.standard.set(response.email, forKey: "email")
+        UserDefaults.standard.set(response.memberId, forKey: "memberId")
+        UserDefaults.standard.set(response.name, forKey: "name")
+        UserDefaults.standard.set(response.profileImage, forKey: "profileImage")
+      })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func navigateHome() {
+  }
+  
   @objc func didTapLogin() {
-    // Log user in or yell at them for error
-    // code
-    
-    // navigate home
-//    let mainAppTabBarVC = TabBarViewController()
-//    mainAppTabBarVC.modalPresentationStyle = .fullScreen
-//    present(mainAppTabBarVC, animated: true)
-    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-    vc.modalPresentationStyle = .fullScreen
-    present(vc, animated: true)
+    if UserApi.isKakaoTalkLoginAvailable() {
+      UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+        guard let self = self,
+              let token = oauthToken,
+              error == nil else {
+          return
+        }
+        self.postToken(token: token.accessToken)
+        self.navigateHome()
+      }
+    } else {
+      UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+        guard let self = self,
+              let token = oauthToken,
+              error == nil else {
+          return
+        }
+        print("accessToken: ", token.accessToken)
+        self.postToken(token: token.accessToken)
+        self.navigateHome()
+      }
+    }
   }
 }
