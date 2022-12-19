@@ -43,20 +43,22 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
                 
         switch dateFormatter.string(from: date) {
+        case "2022-12-07":
+            cell.configure(model: ["모각코"])
         case "2022-12-08":
-            cell.configure(model: ["15분 홈트하기"])
+            cell.configure(model: ["", "15분 홈트하기"])
             return cell
         case "2022-12-09":
-            cell.configure(model: [""])
+            cell.configure(model: ["", ""])
             return cell
         case "2022-12-10":
-            cell.configure(model: [""])
+            cell.configure(model: ["", ""])
             return cell
         case "2022-12-11":
-            cell.configure(model: [""])
+            cell.configure(model: ["", ""])
             return cell
         case "2022-12-12":
-            cell.configure(model: [""])
+            cell.configure(model: ["", ""])
             return cell
         case "2022-12-13":
             cell.configure(model: [""])
@@ -64,6 +66,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         default:
             return cell
         }
+        
+        return cell
     }
     
     override func viewDidLoad() {

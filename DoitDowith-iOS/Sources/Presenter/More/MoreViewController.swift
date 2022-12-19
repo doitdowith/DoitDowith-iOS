@@ -8,24 +8,69 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
+import Alamofire
 
 class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var btnCode: UIButton!
-    @IBOutlet weak var doitCode: UILabel!
-
-    let bag = DisposeBag()
-
+    @IBOutlet weak var dowithCode: UILabel!
+    @IBOutlet weak var friendCount: UIButton!
+    @IBOutlet weak var friend: UIButton!
+    @IBOutlet weak var participationCount: UILabel!
+    @IBOutlet weak var successRate: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         btnCode.rx.tap
-                    .bind(onNext: {
-                        UIPasteboard.general.string = self.doitCode.text
-                    }).disposed(by: bag)
+                    .bind(onNext: { 
+                        UIPasteboard.general.string = self.dowithCode.text
+                    })
+                    .disposed(by: rx.disposeBag)
         
+        getTest()
+        self.friendCount.addTarget(self, action: #selector(moveFriendVC), for: .touchUpInside)
+        self.friend.addTarget(self, action: #selector(moveFriendVC), for: .touchUpInside)
         // Do any additional setup after loading the view.
+    }
+    
+    func getTest() {
+        let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/members/mypage",
+                                        method: .get,
+                                        parameters: nil,
+                                        model: Mypage.self,
+                                        header: ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzE1MTg3MzV9.8SpAo2ZE7QaiWIEO7xJc1hYwnPDkXYZ9FL5iXX8RoqPVJtS3xJGBJFqFgzbYwOODS6hnyTD7GULh7cnYR-3Myw"])
+
+        NetworkLayer.shared.request(model: requestModel) { (response) in
+            if response.error != nil {
+                // handle error
+            }
+
+            if let data = response.data {
+                // use data in your app
+                DispatchQueue.main.async {
+                    self.userName.text = data.name
+                    self.userImage.setImage(with: "http://117.17.198.38:8080/images/\(data.profileImage)")
+                    self.dowithCode.text = data.dowithCode
+                    self.friendCount.setTitle("\(data.friendCount)명", for: .normal)
+                    // self.friendCount.titleLabel("\(data.friendCount)명", for: .normal)
+                    self.participationCount.text = "\(data.participationCount)번"
+                    self.successRate.text = "\(data.successRate)%"
+                    print(data)
+                }
+            }
+        }
+    }
+    
+    @objc func moveFriendVC() {
+        let vc = UIStoryboard(name: "More", bundle: nil).instantiateViewController(identifier: FriendListViewController.identifier) { coder in
+            FriendListViewController(coder: coder, doitCode: self.dowithCode.text, userName: self.userName.text)
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

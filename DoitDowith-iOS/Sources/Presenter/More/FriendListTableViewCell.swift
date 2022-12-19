@@ -13,7 +13,7 @@ class FriendListTableViewCell: UITableViewCell {
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var friendNameLabel: UILabel!
     @IBOutlet weak var friendImage: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -39,7 +39,7 @@ class CustomCell: FSCalendarCell {
 
 extension CustomCell {
     func configure(model: [String]) {
-        let colors = [UIColor(r: 255, g: 226, b: 226), UIColor(r: 227, g: 245, b: 213), UIColor(r: 25, g: 226, b: 226)]
+        let colors = [UIColor(r: 224, g: 243, b: 254), UIColor(r: 227, g: 245, b: 213), UIColor(r: 25, g: 226, b: 226)]
         
         for (index, event) in model.enumerated() {
             let label = UILabel()
