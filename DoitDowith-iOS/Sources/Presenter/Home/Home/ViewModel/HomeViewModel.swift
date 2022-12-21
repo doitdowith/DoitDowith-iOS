@@ -51,54 +51,52 @@ final class HomeViewModel: HomeViewModelInput,
   let willDoButtonColor: Driver<UIColor>
   let doneButtonColor: Driver<UIColor>
   
-  init(token: String) {
-    let emptyCards: [HomeSectionModel] = [
-      .init(model: 0,
-            items: [.init(type: .none, data: []),
-                    .init(type: .none, data: []),
-                    .init(type: .none, data: [])])
+  init() {
+    let emptyCards: [HomeSectionModel] = [.init(model: 0, items: [.init(type: .none, data: []),
+                                                                  .init(type: .none, data: []),
+                                                                  .init(type: .none, data: [])])
     ]
     let fetching = PublishRelay<Void>()
     let indicatorIndexing = BehaviorRelay<Int>(value: 0)
     let activating = BehaviorRelay<Bool>(value: false)
-    let sectionCards = BehaviorRelay<[HomeSectionModel]>(value: [])
+    let sectionCards = BehaviorRelay<[HomeSectionModel]>(value: emptyCards)
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
-        .flatMap { _ -> Observable<[Card]> in
-          let request = RequestType(endpoint: "room",
-                                    method: .get,
-                                    headers: ["Content-Type": "application/json",
-                                              "Authorization": "Bearer \(token)"])
-          return APIService.shared.request(request: request)
-            .map { (response: CardResponse) -> [Card] in
-              return response.toDomain
-            }
-        }
-        .do(onNext: { _ in activating.accept(false) })
-        .bind(onNext: { cards in
-          if cards.isEmpty { sectionCards.accept(emptyCards) }
-          let none: CardList = .init(type: .none, data: [])
-          let doing = cards.filter { $0.section == 1 }
-          let willdo = cards.filter { $0.section == 2 }
-          let done = cards.filter { $0.section == 3 }
-          let sectionModel: [HomeSectionModel] = [.init(model: 0, items: [doing.isEmpty ? none : CardList(type: .doing, data: doing),
-                                                                          willdo.isEmpty ? none : CardList(type: .willdo, data: willdo),
-                                                                          done.isEmpty ? none : CardList(type: .done, data: done)])]
-          sectionCards.accept(sectionModel)
-        })
-        .disposed(by: disposeBag)
-                              
-      // Input
+      .flatMap { _ -> Observable<[Card]> in
+        let request = RequestType(endpoint: "room",
+                                  method: .get)
+        return APIService.shared.request(request: request)
+          .map { (response: CardResponse) -> [Card] in
+            return response.toDomain
+          }
+      }
+      .do(onNext: { _ in activating.accept(false) })
+      .filter { !$0.isEmpty }
+      .bind(onNext: { cards in
+        let none: CardList = .init(type: .none, data: [])
+        let doing = cards.filter { $0.section == 1 }
+        let willdo = cards.filter { $0.section == 2 }
+        let done = cards.filter { $0.section == 3 }
+        let sectionModel: [HomeSectionModel] = [ .init(model: 0,
+                                                       items: [doing.isEmpty ? none : CardList(type: .doing, data: doing),
+                                                               willdo.isEmpty ? none : CardList(type: .willdo, data: willdo),
+                                                               done.isEmpty ? none : CardList(type: .done, data: done)])
+        ]
+        sectionCards.accept(sectionModel)
+      })
+      .disposed(by: disposeBag)
+        
+        // Input
     self.fetchCards = fetching
     self.indicatorIndex = indicatorIndexing
-    
-    // Output
+        
+        // Output
     self.cardList = sectionCards.asDriver(onErrorJustReturn: emptyCards)
     self.activated = activating
       .distinctUntilChanged()
       .asDriver(onErrorJustReturn: false)
-      
+        
     self.doingButtonColor = indicatorIndexing
       .map { $0 == 0 ? .primaryColor2 : .coolGray2 }
       .asDriver(onErrorJustReturn: .primaryColor2)

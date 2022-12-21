@@ -25,8 +25,7 @@ final class HomeViewController: UIViewController {
   
   // MARK: Initializer
   required init?(coder: NSCoder) {
-    let token = UserDefaults.standard.string(forKey: "token")
-    self.viewModel = HomeViewModel(token: token!)
+    self.viewModel = HomeViewModel()
     super.init(coder: coder)
   }
   

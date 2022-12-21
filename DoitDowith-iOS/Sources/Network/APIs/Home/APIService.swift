@@ -20,12 +20,16 @@ class APIService: ReactiveCompatible {
   
   private init() { }
   func request<T: Decodable>(request: RequestType) -> Observable<T> {
+    var headers = request.headers
+    if let token = UserDefaults.standard.string(forKey: "token") {
+      headers.updateValue("Bearer \(token)", forKey: "Authorization")
+    }
     return RxAlamofire
       .request(request.method,
                "http://117.17.198.38:8080/api/v1/\(request.endpoint)",
                parameters: request.parameters,
                encoding: JSONEncoding.default,
-               headers: HTTPHeaders(request.headers))
+               headers: HTTPHeaders(headers))
       .responseData()
       .observe(on: MainScheduler.instance)
       .map { (response, data) -> T in

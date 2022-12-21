@@ -87,6 +87,7 @@ extension LoginViewController {
                                     method: .post,
                                     parameters: ["accessToken": token]))
       .bind(onNext: { (response: LoginResponse) in
+        print("local token: ", response.accessToken)
         UserDefaults.standard.set(response.accessToken, forKey: "token")
         UserDefaults.standard.set(response.email, forKey: "email")
         UserDefaults.standard.set(response.memberId, forKey: "memberId")
@@ -97,6 +98,9 @@ extension LoginViewController {
   }
   
   func navigateHome() {
+    guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarVC") as? TabBarViewController else { return }
+    vc.modalPresentationStyle = .overFullScreen
+    present(vc, animated: true)
   }
   
   @objc func didTapLogin() {
@@ -117,7 +121,6 @@ extension LoginViewController {
               error == nil else {
           return
         }
-        print("accessToken: ", token.accessToken)
         self.postToken(token: token.accessToken)
         self.navigateHome()
       }
