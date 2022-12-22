@@ -28,6 +28,7 @@ protocol ChatRoomViewModelOutput {
   var activated: Driver<Bool> { get }
   var errorMessage: Signal<NSError> { get }
   var lastPosition: Signal<(Int, Int)> { get }
+  var ddayCount: Driver<String> { get }
 }
 
 protocol ChatRoomViewModelType {
@@ -59,11 +60,12 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let activated: Driver<Bool>
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
+  let ddayCount: Driver<String>
   
   init(card: Card, stompManager: StompManagerProtocol) {
     let fetching = PublishRelay<Void>()
     let message = PublishRelay<[ChatModel]>()
-    
+    let cardInfo = BehaviorRelay<Card>(value: card)
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
@@ -89,7 +91,6 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     self.viewWillAppear = fetching
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
     self.sendMessage = message
-    
     self.messageList = allMessages
       .scan([ChatModel](), accumulator: { prev, new in
         return prev + new })
@@ -127,6 +128,17 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .filter { !$0.isEmpty }
       .map { ($0[$0.endIndex - 1].items.count - 1, $0.count - 1) }
       .asSignal(onErrorJustReturn: (0, 0))
+    
+    self.ddayCount = cardInfo
+      .map { $0.startDate.toDate() }
+      .map { (date: Date?) -> String in
+        guard let date = date else { return "" }
+        let next = date.addingTimeInterval(3600 * 7 * 24)
+        let diff = next.timeIntervalSince(date)
+        let day = Int(diff / (3600 * 24))
+        return "미션 종료 D-\(day)"
+      }
+      .asDriver(onErrorJustReturn: "")
     
     self.dataSource = RxTableViewSectionedReloadDataSource<SectionOfChatModel>(
       configureCell: { _, tableView, indexPath, item in

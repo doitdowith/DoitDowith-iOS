@@ -46,6 +46,7 @@
 		EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A078C28F8736A002C7E5D /* Friend.swift */; };
 		EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079228F87473002C7E5D /* FriendRequest.swift */; };
 		EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079428F87478002C7E5D /* FriendResponse.swift */; };
+		EE3D3096295468FD00908F59 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3095295468FD00908F59 /* String+.swift */; };
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
 		EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */; };
@@ -178,6 +179,7 @@
 		EE3A078C28F8736A002C7E5D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		EE3A079228F87473002C7E5D /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		EE3A079428F87478002C7E5D /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
+		EE3D3095295468FD00908F59 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EE3EA1B028D9CD3E00CEFE36 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
@@ -845,6 +847,7 @@
 				EE23C3E9293DE6100098740C /* UIImageView+.swift */,
 				EEE063D7294214D600D45493 /* UIButton+.swift */,
 				EEE063D92942154B00D45493 /* UIView+.swift */,
+				EE3D3095295468FD00908F59 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				EEAEAD1C28E9237E004CA8BA /* ChatService.swift in Sources */,
 				EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */,
 				EE1F58F528F6711B0046ED09 /* ColorCell.swift in Sources */,
+				EE3D3096295468FD00908F59 /* String+.swift in Sources */,
 				EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */,
 				EE6950F9292E096E00B933BD /* CertificationPost.swift in Sources */,
 				EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */,
