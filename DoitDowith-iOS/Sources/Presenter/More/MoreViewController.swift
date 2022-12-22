@@ -23,6 +23,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var participationCount: UILabel!
     @IBOutlet weak var successRate: UILabel!
     
+    private var profileImageURL: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,11 +40,12 @@ class MoreViewController: UIViewController {
     }
     
     func getTest() {
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
         let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/members/mypage",
                                         method: .get,
                                         parameters: nil,
                                         model: Mypage.self,
-                                        header: ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzE1MTg3MzV9.8SpAo2ZE7QaiWIEO7xJc1hYwnPDkXYZ9FL5iXX8RoqPVJtS3xJGBJFqFgzbYwOODS6hnyTD7GULh7cnYR-3Myw"])
+                                        header: ["Authorization": "Bearer \(token)"])
 
         NetworkLayer.shared.request(model: requestModel) { (response) in
             if response.error != nil {
@@ -54,10 +56,11 @@ class MoreViewController: UIViewController {
                 // use data in your app
                 DispatchQueue.main.async {
                     self.userName.text = data.name
-                    self.userImage.setImage(with: "http://117.17.198.38:8080/images/\(data.profileImage)")
+                    self.profileImageURL = "http://117.17.198.38:8080/images/\(data.profileImage)"
+                    self.userImage.setImage(with: self.profileImageURL!)
                     self.dowithCode.text = data.dowithCode
                     self.friendCount.setTitle("\(data.friendCount)명", for: .normal)
-                    // self.friendCount.titleLabel("\(data.friendCount)명", for: .normal)
+                    self.friendCount.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 14)
                     self.participationCount.text = "\(data.participationCount)번"
                     self.successRate.text = "\(data.successRate)%"
                     print(data)
@@ -68,8 +71,9 @@ class MoreViewController: UIViewController {
     
     @objc func moveFriendVC() {
         let vc = UIStoryboard(name: "More", bundle: nil).instantiateViewController(identifier: FriendListViewController.identifier) { coder in
-            FriendListViewController(coder: coder, doitCode: self.dowithCode.text, userName: self.userName.text)
+            FriendListViewController(coder: coder, doitCode: self.dowithCode.text, userName: self.userName.text, userImageURL: self.profileImageURL!)
         }
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -194,12 +194,12 @@
                                                             <constraint firstAttribute="width" constant="89" id="ZIP-iW-JUW"/>
                                                             <constraint firstAttribute="height" constant="17" id="s8A-wW-DnP"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="6명">
-                                                            <fontDescription key="titleFontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="14"/>
-                                                            <color key="baseForegroundColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </buttonConfiguration>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="6명">
+                                                            <color key="titleColor" red="0.28627452250000002" green="0.2941176593" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </state>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -639,6 +639,7 @@
                         <outlet property="dowithCode" destination="dRd-ci-tCG" id="Qf3-A7-Kt7"/>
                         <outlet property="friendCount" destination="cqR-go-6oH" id="PyY-K9-nBf"/>
                         <outlet property="tableView" destination="Yin-5f-im3" id="GM6-yc-hdg"/>
+                        <outlet property="userImage" destination="h8y-Fw-jaj" id="25w-vZ-HIc"/>
                         <outlet property="userName" destination="Lha-zx-ZsE" id="Jj4-cF-xmm"/>
                     </connections>
                 </viewController>

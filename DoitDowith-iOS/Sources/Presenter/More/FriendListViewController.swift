@@ -42,18 +42,21 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var btnCode: UIButton!
     @IBOutlet weak var dowithCode: UILabel!
     @IBOutlet weak var friendCount: UILabel!
     
     let doitcode: String?
     let username: String?
+    let userimageurl: String?
     let bag = DisposeBag()
     var model: [Datum] = []
     
-    init?(coder: NSCoder, doitCode: String?, userName: String?) {
+    init?(coder: NSCoder, doitCode: String?, userName: String?, userImageURL: String) {
         self.doitcode = doitCode
         self.username = userName
+        self.userimageurl = userImageURL
         super.init(coder: coder)
     }
     
@@ -75,16 +78,18 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.friendCount.text = "친구 \(model.count)명"
         self.dowithCode.text = doitcode
         self.userName.text = username
+        self.userImage.setImage(with: self.userimageurl!)
         getTest()
         // Do any additional setup after loading the view.
     }
     
     func getTest() {
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
         let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/friends/my",
                                         method: .get,
                                         parameters: nil,
                                         model: Welcome.self,
-                                        header: ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzE1MTg3MzV9.8SpAo2ZE7QaiWIEO7xJc1hYwnPDkXYZ9FL5iXX8RoqPVJtS3xJGBJFqFgzbYwOODS6hnyTD7GULh7cnYR-3Myw"])
+                                        header: ["Authorization": "Bearer \(token)"])
 
         NetworkLayer.shared.request(model: requestModel) { [weak self] (response) in
             guard let self = self else { return }

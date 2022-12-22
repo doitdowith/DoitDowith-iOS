@@ -8,6 +8,21 @@
 import UIKit
 import FSCalendar
 
+struct Mission: Codable {
+    let data: [Datumm]
+}
+
+// MARK: - Datumm
+struct Datumm: Codable {
+    let startDate: String
+    let title: [String]
+
+    enum CodingKeys: String, CodingKey {
+        case startDate
+        case title
+    }
+}
+
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     let dateFormatter = DateFormatter()
     
@@ -21,7 +36,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         scrollCurrentPage(isPrev: false)
     }
     
+    var model: [Datumm] = []
+    
     private func scrollCurrentPage(isPrev: Bool) {
+        getTest()
         let cal = Calendar.current
         var dateComponents = DateComponents()
         dateComponents.month = isPrev ? -1 : 1
@@ -35,38 +53,48 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         return Date()
     }()
     
+    func getTest() {
+        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+        let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/calendar/my",
+                                        method: .get,
+                                        parameters: nil,
+                                        model: Mission.self,
+                                        header: ["Authorization": "Bearer \(token)"])
+
+        DispatchQueue.global().async { [weak self] in
+            NetworkLayer.shared.request(model: requestModel) { [weak self] (response) in
+                guard let self = self else { return }
+                if response.error != nil {
+                    // handle error
+                }
+
+                if let data = response.data {
+                    print(data)
+                    // use data in your app
+                    DispatchQueue.main.async { [weak self] in
+                        self?.model = data.data
+                        self?.calendarView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CustomCell.identifier,
                                                       for: date,
                                                       at: position) as? CustomCell else {
             return FSCalendarCell()
         }
-                
-        switch dateFormatter.string(from: date) {
-        case "2022-12-07":
-            cell.configure(model: ["모각코"])
-        case "2022-12-08":
-            cell.configure(model: ["", "15분 홈트하기"])
-            return cell
-        case "2022-12-09":
-            cell.configure(model: ["", ""])
-            return cell
-        case "2022-12-10":
-            cell.configure(model: ["", ""])
-            return cell
-        case "2022-12-11":
-            cell.configure(model: ["", ""])
-            return cell
-        case "2022-12-12":
-            cell.configure(model: ["", ""])
-            return cell
-        case "2022-12-13":
-            cell.configure(model: [""])
-            return cell
-        default:
-            return cell
+        cell.initConfigure()
+
+        let formattedDate = dateFormatter.string(from: date)
+
+        model.forEach {
+            if formattedDate == $0.startDate {
+                cell.configure(model: $0.title)
+            }
         }
-        
         return cell
     }
     
@@ -83,8 +111,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         calendarView.calendarHeaderView.backgroundColor = UIColor.white
         calendarView.calendarWeekdayView.backgroundColor = UIColor.white
-
-        // Do any additional setup after loading the view.
+        
+        getTest()
     }
 }
 
