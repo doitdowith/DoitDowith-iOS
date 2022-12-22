@@ -193,7 +193,7 @@ extension HomeViewController: ContentCellDelegate {
         let stompManager = StompManager(targetId: card.roomId,
                                         senderId: memberId,
                                         connectType: .room)
-        let vm = ChatRommViewModel(id: card.roomId,
+      let vm = ChatRommViewModel(card: card,
                                    stompManager: stompManager)
         let vc = UIStoryboard(name: "Home",
                               bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
