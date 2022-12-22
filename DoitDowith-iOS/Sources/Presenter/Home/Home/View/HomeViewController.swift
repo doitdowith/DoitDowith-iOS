@@ -189,18 +189,17 @@ extension HomeViewController {
 
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ didSelectCell: UICollectionViewCell, card: Card) {
-    //    let service = ChatService()
-    //    let stompManager = StompManager(targetId: card.roomId,
-    //                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
-    //                                    connectType: .room)
-    //    let vm = ChatRommViewModel(id: card.roomId,
-    //                               service: service,
-    //                               stompManager: stompManager)
-    //    let vc = UIStoryboard(name: "Home",
-    //                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
-    //                                                                 creator: { coder in
-    //                            ChatRoomController(coder: coder, roomId: card.roomId, viewModel: vm) })
-    //    self.navigationController?.pushViewController(vc, animated: true)
+    guard let memberId = UserDefaults.standard.string(forKey: "memberId") else { return }
+        let stompManager = StompManager(targetId: card.roomId,
+                                        senderId: memberId,
+                                        connectType: .room)
+        let vm = ChatRommViewModel(id: card.roomId,
+                                   stompManager: stompManager)
+        let vc = UIStoryboard(name: "Home",
+                              bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
+                                                                     creator: { coder in
+                                ChatRoomController(coder: coder, roomId: card.roomId, viewModel: vm) })
+        self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 

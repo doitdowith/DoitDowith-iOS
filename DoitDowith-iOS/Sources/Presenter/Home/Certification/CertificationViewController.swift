@@ -78,12 +78,16 @@ class CertificationViewController: UIViewController {
   }
   
   @IBAction func completeButtomDidTap(_ sender: UIButton) {
-    guard let image = selectedImage else { return }
+    guard let image = selectedImage,
+          let data = image.pngData(),
+          let name = UserDefaults.standard.string(forKey: "name") else { return }
+    
+    let base64 = data.base64EncodedString()
     self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
-                                                         name: "",
-                                                         message: .text("인증 메세지 테스트"),
-                                                         image: .image(image),
-                                                         time: Date.now.formatted(format: "YY-MM-dd")))
+                                                         name: name,
+                                                         message: .text("\(name)님의 인증 메세지"),
+                                                         image: .base64(base64),
+                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     self.navigationController?.popViewController(animated: true)
   }
   

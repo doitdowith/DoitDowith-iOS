@@ -18,18 +18,20 @@ import RxViewController
 final class ChatRoomController: UIViewController {
   // MARK: Constant
   static let identifier: String = "ChatRoomVC"
-  private var roomId: Int
+  private var roomId: String
   private var isModalOpen = false
   private let defaultBottomConstraint: CGFloat = 98
   private var keyboardHeight: CGFloat = 0
-  
+  private var sections: [SectionOfChatModel] = []
+  private var name: String?
   // MARK: Properties
   private let viewModel: ChatRoomViewModelType
   
   // MARK: Initializer
-  init?(coder: NSCoder, roomId: Int, viewModel: ChatRoomViewModelType) {
+  init?(coder: NSCoder, roomId: String, viewModel: ChatRoomViewModelType) {
     self.roomId = roomId
     self.viewModel = viewModel
+    self.name = UserDefaults.standard.string(forKey: "name")
     super.init(coder: coder)
   }
   
@@ -101,6 +103,7 @@ final class ChatRoomController: UIViewController {
 // MARK: Basic functions
 extension ChatRoomController {
   func bind() {
+    self.bindSection()
     self.bindChatView()
     self.bindKeyboard()
     self.bindLifeCycle()
@@ -141,6 +144,14 @@ extension ChatRoomController {
 
 // MARK: Bind functions
 extension ChatRoomController {
+  func bindSection() {
+    self.viewModel.output.messageList
+      .drive(onNext: { [weak self] sections in
+        guard let self = self else { return }
+        self.sections = sections
+      })
+      .disposed(by: rx.disposeBag)
+  }
   func bindLifeCycle() {
     self.rx.viewWillAppear
       .map { _ in }
@@ -182,9 +193,9 @@ extension ChatRoomController {
         let indexPath = IndexPath(row: row, section: section)
         self.chatView.scrollToRow(at: indexPath, at: .bottom, animated: false)
       })
-        .emit(onNext: { _ in })
-        .disposed(by: rx.disposeBag)
-        }
+      .emit(onNext: { _ in })
+      .disposed(by: rx.disposeBag)
+  }
   
   func bindMessageField() {
     self.textfield.rx
@@ -193,9 +204,9 @@ extension ChatRoomController {
       .withUnretained(self)
       .bind(onNext: { owner, text in
         owner.viewModel.input.sendMessage.accept([ChatModel(type: .sendMessage,
-                                                            name: "",
+                                                            name: owner.name ?? "",
                                                             message: .text(text!.description),
-                                                            time: Date.now.formatted(format: "hh:mm"))])
+                                                            time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
         
         owner.textfield.rx.text.onNext("")
       })
@@ -227,7 +238,8 @@ extension ChatRoomController: UITableViewDelegate {
     guard let header = chatView.dequeueReusableHeaderFooterView(withIdentifier: DateView.identifier) as? DateView else {
       return UIView()
     }
-    header.configure(date: "2021.10.31 (목)")
+    let date = sections[section].header
+    header.configure(date: date.prefix(10).description)
     return header
   }
   

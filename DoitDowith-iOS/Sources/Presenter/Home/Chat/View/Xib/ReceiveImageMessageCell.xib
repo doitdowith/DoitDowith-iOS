@@ -35,10 +35,20 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUQ-AE-1Dn">
-                        <rect key="frame" x="62" y="147" width="192" height="33"/>
+                        <rect key="frame" x="62" y="147" width="192" height="39.666666666666657"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4m-81-ALB">
-                                <rect key="frame" x="14" y="8.6666666666666572" width="32.333333333333336" height="15.666666666666664"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4m-81-ALB">
+                                <rect key="frame" x="14" y="12" width="147" height="15.666666666666664"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
+                                <color key="textColor" name="DarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYd-6e-6Bl">
+                                <rect key="frame" x="166" y="12" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="FPp-nR-2Mo"/>
+                                    <constraint firstAttribute="width" constant="12" id="bUC-DC-SNq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
                                 <color key="textColor" name="DarkGray"/>
                                 <nil key="highlightedColor"/>
@@ -46,12 +56,17 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="nYd-6e-6Bl" firstAttribute="leading" secondItem="W4m-81-ALB" secondAttribute="trailing" constant="5" id="0bG-FR-KjY"/>
+                            <constraint firstAttribute="trailing" secondItem="nYd-6e-6Bl" secondAttribute="trailing" constant="14" id="1fa-TS-BtW"/>
+                            <constraint firstItem="W4m-81-ALB" firstAttribute="top" secondItem="YUQ-AE-1Dn" secondAttribute="top" constant="12" id="DQV-a4-e7J"/>
                             <constraint firstItem="W4m-81-ALB" firstAttribute="leading" secondItem="YUQ-AE-1Dn" secondAttribute="leading" constant="14" id="EL5-HR-EYG"/>
-                            <constraint firstItem="W4m-81-ALB" firstAttribute="centerY" secondItem="YUQ-AE-1Dn" secondAttribute="centerY" id="MBn-4q-eaF"/>
+                            <constraint firstItem="nYd-6e-6Bl" firstAttribute="top" secondItem="YUQ-AE-1Dn" secondAttribute="top" constant="12" id="OBa-i1-kkF"/>
+                            <constraint firstAttribute="bottom" secondItem="W4m-81-ALB" secondAttribute="bottom" constant="12" id="WQV-tV-c11"/>
+                            <constraint firstAttribute="bottom" secondItem="nYd-6e-6Bl" secondAttribute="bottom" constant="12" id="mU7-LP-Sce"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 24:59" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqL-8W-XFg">
-                        <rect key="frame" x="262" y="167" width="51.333333333333314" height="13"/>
+                        <rect key="frame" x="262" y="173.66666666666666" width="51.333333333333314" height="13"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="11"/>
                         <color key="textColor" name="CoolGray2"/>
                         <nil key="highlightedColor"/>

@@ -60,7 +60,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
   
-  init(id: String, service: ChatServiceProtocol, stompManager: StompManagerProtocol) {
+  init(card: Card, stompManager: StompManagerProtocol) {
     let fetching = PublishRelay<Void>()
     let message = PublishRelay<[ChatModel]>()
     
@@ -72,6 +72,20 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
     
+//    fetching
+//      .do(onNext: { _ in activating.accept(true) })
+//      .do(onNext: { _ in stompManager.registerSocket() })
+//      .flatMap { _ -> Observable<[ChatModel]> in
+//        return APIService.shared.request(request: RequestType(endpoint: "chats/\(id)",
+//                                                              method: .get))
+//        .map { (response: ChatResponse) -> [ChatModel] in
+//          return response.toDomain
+//        }
+//      }
+//      .do(onNext: { _ in activating.accept(false) })
+//      .bind(onNext: { allMessages.accept($0) })
+//      .disposed(by: disposeBag)
+        
     self.viewWillAppear = fetching
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
     self.sendMessage = message
@@ -97,19 +111,10 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
         if !row.isEmpty {
           section.append(SectionOfChatModel(header: currentTime, items: row))
         }
-        return section }
+        return section
+      }
       .asDriver(onErrorJustReturn: [])
-    
-    fetching
-      .do(onNext: { _ in activating.accept(true) })
-      // .do(onNext: { _ in stompManager.registerSocket() })
-      .flatMap { _ in
-          return service.fetchChatList(roomId: 0) }
-      .do(onNext: { _ in activating.accept(false) })
-      .do(onError: { err in error.accept(err) })
-      .subscribe(onNext: { allMessages.accept($0) })
-      .disposed(by: disposeBag)
-        
+  
     self.activated = activating
         .distinctUntilChanged()
         .asDriver(onErrorJustReturn: false)
@@ -141,14 +146,14 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                                          for: indexPath) as? ReceiveMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description, message: item.message)
+          cell.configure(time: item.time.suffix(5).description, message: item.message)
           return cell
         case .sendMessageWithTip:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
                                                          for: indexPath) as? SendMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description, message: item.message)
+          cell.configure(time: item.time.suffix(5).description, message: item.message)
           cell.addTipView()
           return cell
         case .sendMessage:
@@ -156,14 +161,14 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                                          for: indexPath) as? SendMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description, message: item.message)
+          cell.configure(time: item.time.suffix(5).description, message: item.message)
           return cell
         case .sendImageMessage:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageMessageCell.identifier,
                                                          for: indexPath) as? SendImageMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description,
+          cell.configure(time: item.time.suffix(5).description,
                          message: item.message,
                          image: item.image)
           return cell
@@ -172,7 +177,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                                          for: indexPath) as? ReceiveImageMessageCell else {
             return UITableViewCell()
           }
-          cell.configure(time: item.time.suffix(7).description,
+          cell.configure(time: item.time.suffix(5).description,
                          message: item.message,
                          image: item.image)
           return cell

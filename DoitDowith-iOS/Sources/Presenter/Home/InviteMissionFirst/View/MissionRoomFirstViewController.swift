@@ -22,8 +22,7 @@ final class MissionRoomFirstViewController: UIViewController {
   @IBOutlet weak var nextPageButton: UIButton!
   
   @IBAction func didTapNextPageButton(_ sender: UIButton) {
-    let token = UserDefaults.standard.string(forKey: "token")
-    let vm: MissionRoomSecondViewModelType = MisionRoomSecondViewModel(token: token!)
+    let vm: MissionRoomSecondViewModelType = MisionRoomSecondViewModel()
     self.viewModel.output.passData
       .bind(to: vm.input.passedData)
       .disposed(by: rx.disposeBag)

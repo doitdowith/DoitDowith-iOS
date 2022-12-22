@@ -20,10 +20,10 @@ struct CardList: Equatable, IdentifiableType {
   var data: [Card]
   var identity: String
   
-  init(type: CardType, data: [Card]) {
+  init(type: CardType, data: [Card], identity: String) {
     self.type = type
     self.data = data
-    self.identity = "\(Date.now.timeIntervalSinceReferenceDate)"
+    self.identity = identity
   }
 }
 

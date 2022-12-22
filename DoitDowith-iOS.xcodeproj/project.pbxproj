@@ -87,7 +87,6 @@
 		EE78580128EDB3EA00F8C309 /* MissionRoomSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */; };
 		EE78580328EDB62300F8C309 /* MissionRoomSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */; };
 		EE7F4026294DBBC1002AD53F /* CreateRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4025294DBBC1002AD53F /* CreateRoomRequest.swift */; };
-		EE7F402A294DFA11002AD53F /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4029294DFA11002AD53F /* ChatRequest.swift */; };
 		EE84AC47292F85A80032E963 /* CertificationPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE84AC45292F85A80032E963 /* CertificationPostCell.swift */; };
 		EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */; };
 		EE889E9128DD6A87005DE44B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE889E8828DD6A87005DE44B /* Pretendard-Regular.otf */; };
@@ -220,7 +219,6 @@
 		EE78580028EDB3EA00F8C309 /* MissionRoomSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewController.swift; sourceTree = "<group>"; };
 		EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomSecondViewModel.swift; sourceTree = "<group>"; };
 		EE7F4025294DBBC1002AD53F /* CreateRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomRequest.swift; sourceTree = "<group>"; };
-		EE7F4029294DFA11002AD53F /* ChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
 		EE84AC45292F85A80032E963 /* CertificationPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationPostCell.swift; sourceTree = "<group>"; };
 		EE85BE0F28EF06AA006A0088 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		EE889E8828DD6A87005DE44B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -575,7 +573,6 @@
 			isa = PBXGroup;
 			children = (
 				EE63629E29121B1600A78758 /* ChatResponse.swift */,
-				EE7F4029294DFA11002AD53F /* ChatRequest.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1070,7 +1067,6 @@
 				EEE063DA2942154B00D45493 /* UIView+.swift in Sources */,
 				EE6A2BDA28E48ED8000656AA /* ChatModel.swift in Sources */,
 				EEE063DE29421E0C00D45493 /* TabBarViewController.swift in Sources */,
-				EE7F402A294DFA11002AD53F /* ChatRequest.swift in Sources */,
 				EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */,
 				EE25ED61293B899D00C579A5 /* EmptyCardCell.swift in Sources */,
 				EE300D77293A362200842742 /* VoteMember.swift in Sources */,

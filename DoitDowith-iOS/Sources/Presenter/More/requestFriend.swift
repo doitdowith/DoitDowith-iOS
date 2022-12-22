@@ -8,6 +8,5 @@
 import Foundation
 
 struct requestFriend: Codable {
-
     let dowithCode: String
 }

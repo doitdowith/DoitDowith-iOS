@@ -44,8 +44,11 @@ extension SendImageMessageCell {
       switch image {
       case .url(let model):
         sendImageView.setImage(with: model)
-      case .image(let model):
-        sendImageView.image = model
+      case .base64(let model):
+        if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
+          let decodedImg = UIImage(data: data)
+          sendImageView.image = decodedImg
+        }
       }
     }
     

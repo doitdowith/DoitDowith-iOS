@@ -20,7 +20,7 @@ enum MessageType: Int {
 }
 
 enum Image {
-  case image(UIImage)
+  case base64(String)
   case url(String)
 }
 

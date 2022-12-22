@@ -84,7 +84,7 @@ extension MissionRoomSecondViewController {
     self.bindDateTextField()
     self.bindCertificateCountTextField()
     
-    self.viewModel.output.passData
+    self.viewModel.output.chatroomInfo
       .withUnretained(self)
       .bind(onNext: { owner, req in
         owner.chatRequest = req })
@@ -110,7 +110,7 @@ extension MissionRoomSecondViewController {
   }
   
   func action1() {
-    let vm = InviteModalViewModel(memberId: 1)
+    let vm = InviteModalViewModel()
     let inviteModal = UIStoryboard(name: "Home",
                                    bundle: nil).instantiateViewController(identifier: InviteModalViewController.identifier) { coder in
       InviteModalViewController(coder: coder, viewModel: vm, parentViewModel: self.viewModel)
@@ -151,7 +151,7 @@ extension MissionRoomSecondViewController {
                                                 cellType: FriendProfileCell.self)) { _, item, cell in
         cell.configure(url: item)
       }
-                                                .disposed(by: rx.disposeBag)
+      .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.friendCollectionView.rx.itemSelected,
@@ -165,6 +165,11 @@ extension MissionRoomSecondViewController {
   }
   
   func bindMakeButton() {
+    self.makeButton.rx.tap
+      .do { print($0) }
+      .bind(onNext: { self.viewModel.input.completeAction.accept(Void()) })
+      .disposed(by: rx.disposeBag)
+    
     self.viewModel.output.buttonEnabled
       .drive(self.makeButton.rx.isUserInteractionEnabled)
       .disposed(by: rx.disposeBag)

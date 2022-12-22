@@ -40,8 +40,11 @@ extension ReceiveMessageWithProfileCell {
     switch image {
     case .url(let model):
       profileImageView.setImage(with: model)
-    case .image(let model):
-      profileImageView.image = model
+    case .base64(let model):
+      if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
+        let decodedImg = UIImage(data: data)
+        profileImageView.image = decodedImg
+      }
     }
     
     switch message {
