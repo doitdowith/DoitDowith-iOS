@@ -18,7 +18,7 @@ import RxViewController
 final class ChatRoomController: UIViewController {
   // MARK: Constant
   static let identifier: String = "ChatRoomVC"
-  private var roomId: String
+  private var card: Card
   private var isModalOpen = false
   private let defaultBottomConstraint: CGFloat = 98
   private var keyboardHeight: CGFloat = 0
@@ -28,8 +28,8 @@ final class ChatRoomController: UIViewController {
   private let viewModel: ChatRoomViewModelType
   
   // MARK: Initializer
-  init?(coder: NSCoder, roomId: String, viewModel: ChatRoomViewModelType) {
-    self.roomId = roomId
+  init?(coder: NSCoder, card: Card, viewModel: ChatRoomViewModelType) {
+    self.card = card
     self.viewModel = viewModel
     self.name = UserDefaults.standard.string(forKey: "name")
     super.init(coder: coder)
@@ -53,6 +53,7 @@ final class ChatRoomController: UIViewController {
   @IBOutlet weak var textfield: UITextField!
   @IBOutlet weak var modalButton: UIButton!
   @IBOutlet weak var certificateButton: UIButton!
+  @IBOutlet weak var ddayLabel: UILabel!
   
   @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
@@ -80,7 +81,7 @@ final class ChatRoomController: UIViewController {
   }
   
   @IBAction func showInformationModal(_ sender: UIButton) {
-    let vm = InformationModalViewModel()
+    let vm = InformationModalViewModel(card: card)
     let modal = UIStoryboard(name: "Home", bundle: nil)
       .instantiateViewController(identifier: ChatRoomInformationModalWhenStarted.identifier) { coder in
         ChatRoomInformationModalWhenStarted(coder: coder, viewModel: vm)
@@ -182,6 +183,10 @@ extension ChatRoomController {
   func bindChatView() {
     self.chatView.rx
       .setDelegate(self)
+      .disposed(by: rx.disposeBag)
+    
+    viewModel.output.ddayCount
+      .drive(ddayLabel.rx.text)
       .disposed(by: rx.disposeBag)
     
     viewModel.output.messageList

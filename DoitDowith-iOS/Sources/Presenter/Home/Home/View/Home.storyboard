@@ -800,6 +800,7 @@
                     <connections>
                         <outlet property="certificateButton" destination="siB-Qu-afl" id="zXr-Hv-tx6"/>
                         <outlet property="chatView" destination="6Wr-3T-xOC" id="kAe-CF-qGs"/>
+                        <outlet property="ddayLabel" destination="h1f-OR-Bq7" id="88i-e9-nxQ"/>
                         <outlet property="modalButton" destination="W6Y-WI-1OO" id="FJp-QC-DAD"/>
                         <outlet property="modalViewBottomConstraint" destination="HjK-19-eRo" id="0h3-rJ-kVX"/>
                         <outlet property="textfield" destination="ukD-GQ-6gl" id="ZrE-yS-3Q0"/>
@@ -1268,7 +1269,7 @@
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-ih-BCw" userLabel="Modal View">
-                                <rect key="frame" x="375" y="91" width="350" height="721"/>
+                                <rect key="frame" x="25" y="91" width="350" height="721"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1일 1커밋하기(제목)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVd-bF-aF9">
                                         <rect key="frame" x="21" y="28" width="168" height="24.666666666666671"/>
@@ -1287,15 +1288,6 @@
                                         <connections>
                                             <action selector="closeModal:" destination="qiC-y0-cAK" eventType="touchUpInside" id="Cnp-30-3KH"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wku-2i-Uwd" userLabel="Modify Button">
-                                        <rect key="frame" x="270" y="26" width="28" height="28"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="1xA-l3-8Tk"/>
-                                            <constraint firstAttribute="width" constant="28" id="iEt-fu-BCj"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="icClose"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.03.18.(월) ~ 22.03.25.(일)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MI-pp-jOr">
                                         <rect key="frame" x="21" y="60.666666666666657" width="166" height="16"/>
@@ -1337,15 +1329,6 @@
                                             <constraint firstAttribute="height" constant="0.5" id="qPL-5B-BQ1"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iq0-tJ-r2j" userLabel="Modify Button">
-                                        <rect key="frame" x="306" y="161.33333333333334" width="28" height="28"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="B8g-99-0ds"/>
-                                            <constraint firstAttribute="width" constant="28" id="tND-GE-and"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="icClose"/>
-                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-8J-aJR">
                                         <rect key="frame" x="16" y="196" width="318" height="401"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1362,7 +1345,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="moveToCertificateBoard:" destination="qiC-y0-cAK" eventType="touchUpInside" id="9hA-WI-lbc"/>
+                                            <action selector="moveToCertificateBoard:" destination="qiC-y0-cAK" eventType="touchUpInside" id="eiK-rf-uVp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1373,8 +1356,6 @@
                                     <constraint firstItem="gPW-6X-6x1" firstAttribute="top" secondItem="Elp-ih-BCw" secondAttribute="top" constant="26" id="4Bn-MD-Lbf"/>
                                     <constraint firstItem="DjS-8X-Sxp" firstAttribute="top" secondItem="4MI-pp-jOr" secondAttribute="top" constant="2.5" id="4Yj-td-V9O"/>
                                     <constraint firstAttribute="bottom" secondItem="yC5-Fc-Jmk" secondAttribute="bottom" constant="36" id="4ms-Vk-eUk"/>
-                                    <constraint firstItem="wku-2i-Uwd" firstAttribute="centerY" secondItem="gPW-6X-6x1" secondAttribute="centerY" id="6Ob-Vs-Mg4"/>
-                                    <constraint firstItem="wku-2i-Uwd" firstAttribute="trailing" secondItem="gPW-6X-6x1" secondAttribute="leading" constant="-8" id="A6w-B6-btV"/>
                                     <constraint firstItem="QzJ-7E-zxn" firstAttribute="top" secondItem="EEa-L6-9o5" secondAttribute="bottom" constant="20" id="A8E-32-Cn8"/>
                                     <constraint firstAttribute="trailing" secondItem="QzJ-7E-zxn" secondAttribute="trailing" id="AVr-qc-U9C"/>
                                     <constraint firstItem="EEa-L6-9o5" firstAttribute="leading" secondItem="4MI-pp-jOr" secondAttribute="leading" id="DDh-Xx-xb6"/>
@@ -1389,12 +1370,9 @@
                                     <constraint firstItem="nVd-bF-aF9" firstAttribute="top" secondItem="Elp-ih-BCw" secondAttribute="top" constant="28" id="XiK-ez-a9A"/>
                                     <constraint firstItem="QzJ-7E-zxn" firstAttribute="leading" secondItem="Elp-ih-BCw" secondAttribute="leading" constant="16" id="Y4G-mA-56V"/>
                                     <constraint firstAttribute="trailing" secondItem="gPW-6X-6x1" secondAttribute="trailing" constant="16" id="YSS-wn-lRu"/>
-                                    <constraint firstAttribute="trailing" secondItem="iq0-tJ-r2j" secondAttribute="trailing" constant="16" id="YYZ-UL-Poj"/>
                                     <constraint firstItem="DjS-8X-Sxp" firstAttribute="bottom" secondItem="4MI-pp-jOr" secondAttribute="bottom" constant="-2.5" id="dJL-3y-c4n"/>
                                     <constraint firstItem="nVd-bF-aF9" firstAttribute="leading" secondItem="Elp-ih-BCw" secondAttribute="leading" constant="21" id="eCi-xO-eY9"/>
                                     <constraint firstItem="yFx-g8-tmR" firstAttribute="centerY" secondItem="4MI-pp-jOr" secondAttribute="centerY" id="kdI-bC-bgl"/>
-                                    <constraint firstItem="iq0-tJ-r2j" firstAttribute="centerY" secondItem="BPr-Lh-gWM" secondAttribute="centerY" id="pa0-ZZ-Cnp"/>
-                                    <constraint firstItem="wku-2i-Uwd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nVd-bF-aF9" secondAttribute="trailing" constant="8" id="vNu-sj-MG1"/>
                                     <constraint firstItem="BPr-Lh-gWM" firstAttribute="top" secondItem="QzJ-7E-zxn" secondAttribute="bottom" constant="24" id="vw7-4i-81Z"/>
                                     <constraint firstItem="xIc-8J-aJR" firstAttribute="bottom" secondItem="yC5-Fc-Jmk" secondAttribute="top" constant="-40" id="xPG-Ct-8RE"/>
                                     <constraint firstItem="EEa-L6-9o5" firstAttribute="top" secondItem="4MI-pp-jOr" secondAttribute="bottom" constant="12" id="xV7-fS-OVd"/>
@@ -1409,13 +1387,16 @@
                             <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="0WC-sW-cs8" secondAttribute="trailing" id="GsL-nN-HpV"/>
                             <constraint firstItem="Elp-ih-BCw" firstAttribute="top" secondItem="AwJ-Tw-ltQ" secondAttribute="top" constant="44" id="bpF-pv-FTh"/>
                             <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="bottom" secondItem="0WC-sW-cs8" secondAttribute="bottom" id="cOV-RR-FpQ"/>
-                            <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="Elp-ih-BCw" secondAttribute="trailing" constant="-350" id="nkH-uj-oa5"/>
+                            <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="Elp-ih-BCw" secondAttribute="trailing" id="nkH-uj-oa5"/>
                             <constraint firstItem="0WC-sW-cs8" firstAttribute="top" secondItem="RuI-vg-aT3" secondAttribute="top" id="yH1-oo-QUc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="Elp-ih-BCw" id="ApI-kp-N5X"/>
                         <outlet property="contentViewTrailingConstraints" destination="nkH-uj-oa5" id="wYQ-Oi-3ve"/>
+                        <outlet property="countLabel" destination="yFx-g8-tmR" id="1Aj-5g-6aJ"/>
+                        <outlet property="dateLabel" destination="4MI-pp-jOr" id="3ma-Gz-gQv"/>
+                        <outlet property="descriptionLabel" destination="EEa-L6-9o5" id="bkT-Ab-wyV"/>
                         <outlet property="dimmedView" destination="0WC-sW-cs8" id="AFW-6v-1h1"/>
                         <outlet property="teamMemberTableView" destination="xIc-8J-aJR" id="74T-Kl-I68"/>
                         <outlet property="titleLabel" destination="nVd-bF-aF9" id="kYm-h4-hfl"/>

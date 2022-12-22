@@ -42,9 +42,22 @@ final class ChatRoomInformationModalWhenStarted: UIViewController {
   @IBOutlet weak var contentViewTrailingConstraints: NSLayoutConstraint!
   
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var countLabel: UILabel!
+  
+  @IBOutlet weak var descriptionLabel: UILabel!
   
   @IBAction func moveToCertificateBoard(_ sender: UIButton) {
+    let vm = CertificationBoardViewModel()
+    let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: CertificationBoardViewController.identifier) { coder in
+      CertificationBoardViewController(coder: coder, viewModel: vm)
+    }
+    let nav = UINavigationController(rootViewController: vc)
+    nav.modalPresentationStyle = .fullScreen
+    nav.isNavigationBarHidden = true
+    present(nav, animated: true)
   }
+  
   @IBAction func closeModal(_ sender: UIButton) {
     self.animateDismissView()
   }
@@ -88,7 +101,19 @@ extension ChatRoomInformationModalWhenStarted {
   }
   func bindConentView() {
     self.viewModel.output.roomTitle
-      .drive(self.titleLabel.rx.text)
+      .drive(titleLabel.rx.text)
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.roomDescription
+      .drive(descriptionLabel.rx.text)
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.roomCount
+      .drive(countLabel.rx.text)
+      .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.roomDate
+      .drive(dateLabel.rx.text)
       .disposed(by: rx.disposeBag)
   }
 }

@@ -14,6 +14,7 @@ import RxViewController
 import NSObject_Rx
 
 class CertificationBoardViewController: UIViewController {
+  static let identifier: String = "CertificationBoardVC"
   var viewModel: CertificationBoardViewModelType
   
   init?(coder: NSCoder, viewModel: CertificationBoardViewModelType) {
