@@ -42,18 +42,21 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var btnCode: UIButton!
     @IBOutlet weak var dowithCode: UILabel!
     @IBOutlet weak var friendCount: UILabel!
     
     let doitcode: String?
     let username: String?
+    let userimageurl: String?
     let bag = DisposeBag()
     var model: [Datum] = []
     
-    init?(coder: NSCoder, doitCode: String?, userName: String?) {
+    init?(coder: NSCoder, doitCode: String?, userName: String?, userImageURL: String) {
         self.doitcode = doitCode
         self.username = userName
+        self.userimageurl = userImageURL
         super.init(coder: coder)
     }
     
@@ -75,6 +78,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.friendCount.text = "친구 \(model.count)명"
         self.dowithCode.text = doitcode
         self.userName.text = username
+        self.userImage.setImage(with: self.userimageurl!)
         getTest()
         // Do any additional setup after loading the view.
     }
