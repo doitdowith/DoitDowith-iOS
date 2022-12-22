@@ -38,17 +38,22 @@ class CustomCell: FSCalendarCell {
 }
 
 extension CustomCell {
+    func initConfigure() {
+        stackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
     func configure(model: [String]) {
         let colors = [UIColor(r: 224, g: 243, b: 254), UIColor(r: 227, g: 245, b: 213), UIColor(r: 25, g: 226, b: 226)]
         
         for (index, event) in model.enumerated() {
             let label = UILabel()
             label.text = event
-            label.backgroundColor = colors[index]
+            label.backgroundColor = label.text != "" ? colors[index] : nil
             label.textColor = UIColor(r: 48, g: 53, b: 61)
             label.font = label.font.withSize(9)
             label.heightAnchor.constraint(equalToConstant: 19).isActive = true
-
+            
             self.stackView.addArrangedSubview(label)
         }
     }
