@@ -68,12 +68,14 @@ final class HomeViewModel: HomeViewModelInput,
                                   method: .get)
         return APIService.shared.request(request: request)
           .map { (response: CardResponse) -> [Card] in
+            print(response.toDomain)
             return response.toDomain
           }
       }
       .do(onNext: { _ in activating.accept(false) })
       .filter { !$0.isEmpty }
       .bind(onNext: { cards in
+        print(cards)
         let none: CardList = .init(type: .none, data: [], identity: "\(Date.now.timeIntervalSince1970)4")
         let doing = cards.filter { $0.section == 1 }
         let willdo = cards.filter { $0.section == 2 }

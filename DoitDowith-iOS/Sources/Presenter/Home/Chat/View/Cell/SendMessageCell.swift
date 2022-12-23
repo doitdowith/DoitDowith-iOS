@@ -29,12 +29,9 @@ class SendMessageCell: UITableViewCell {
 
 // Configure
 extension SendMessageCell {
-  func configure(time: String, message: Message) {
-    switch message {
-    case .text(let model):
-      sendMessageTextView.text = model
-    case .image:
-      break
+  func configure(time: String, message: String?) {
+    if let message = message {
+      sendMessageTextView.text = message
     }
     sendTimeLabel.text = time
   }

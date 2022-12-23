@@ -1,19 +1,17 @@
 //
-//  SendImageMessageCell.swift
+//  SendImageCell.swift
 //  DoitDowith-iOS
 //
-//  Created by 김영균 on 2022/11/17.
+//  Created by 김영균 on 2022/12/23.
 //
 
 import UIKit
 
-class SendImageMessageCell: UITableViewCell {
-  static let identifier: String = "SendImageMessageCell"
+class SendImageCell: UITableViewCell {
+  static let identifier: String = "SendImageCell"
   
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var sendMessageView: UIView!
+  @IBOutlet weak var sendDateLabel: UILabel!
   @IBOutlet weak var sendImageView: UIImageView!
-  @IBOutlet weak var sendMessage: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -24,22 +22,15 @@ class SendImageMessageCell: UITableViewCell {
                                  spread: 0)
     self.layer.cornerRadius = 2
   }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-    
-    // Configure the view for the selected state
-  }
-  
   override func prepareForReuse() {
     super.prepareForReuse()
-    self.dateLabel.text = ""
+    self.sendDateLabel.text = ""
     self.sendImageView.image = nil
   }
 }
 
-extension SendImageMessageCell {
-  func configure(time: String, message: Message, image: Image?) {
+extension SendImageCell {
+  func configure(time: String, image: Image?) {
     if let image = image {
       switch image {
       case .url(let model):
@@ -52,12 +43,6 @@ extension SendImageMessageCell {
       }
     }
     
-    switch message {
-    case .text(let model):
-      sendMessage.text = model
-    case .image:
-      break
-    }
-    self.dateLabel.text = time
+    self.sendDateLabel.text = time
   }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 import NSObject_Rx
 import RealmSwift
@@ -59,21 +60,7 @@ final class ChatRoomController: UIViewController {
   @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
   
   @IBAction func didTapAddButton(_ sender: UIButton) {
-    var bottomHeight: CGFloat = 0
-    if isModalOpen {
-      self.modalButton.setImage(UIImage(named: "ic_plus"), for: .normal)
-      bottomHeight = self.defaultBottomConstraint
-    } else {
-      self.modalButton.setImage(UIImage(named: "ic_exit"), for: .normal)
-      bottomHeight = 0
-    }
-    isModalOpen.toggle()
-    self.modalViewBottomConstraint.constant = bottomHeight
-    self.textfieldBottomConstraint.constant = bottomHeight - 98
-    UIView.animate(withDuration: 0.4) { [weak self] in
-      guard let self = self else { return }
-      self.view.layoutIfNeeded()
-    }
+    modalButtonDidTap()
   }
   /// 뒤로가기 버튼을 클릭했을 때
   @IBAction func didTapNavBackButton(_ sender: UIButton) {
@@ -99,6 +86,27 @@ final class ChatRoomController: UIViewController {
     vc.delegate = self
     navigationController?.pushViewController(vc, animated: true)
   }
+
+  // 갤러리 버튼을 클릭했을 때 갤러리를 보여준다.
+  @IBAction func galaryButtonDidTap(_ sender: UIButton) {
+    var configuration = PHPickerConfiguration()
+    configuration.filter = .images
+    configuration.selectionLimit = 1
+    let picker = PHPickerViewController(configuration: configuration)
+    picker.delegate = self
+    self.present(picker, animated: true)
+  }
+  
+  // 카메라 버튼을 클릭했을 때 카메라를 동작시킨다.
+  @IBAction func cameraButtonDidTap(_ sender: UIButton) {
+    let camera = UIImagePickerController()
+    camera.sourceType = .camera
+    camera.allowsEditing = true
+    camera.cameraDevice = .rear
+    camera.cameraCaptureMode = .photo
+    camera.delegate = self
+    self.present(camera, animated: true)
+  }
 }
 
 // MARK: Basic functions
@@ -119,6 +127,9 @@ extension ChatRoomController {
   
   // Configure Chat View(Table View)
   func register() {
+    let sendImageCellNib = UINib(nibName: "SendImageCell", bundle: nil)
+    chatView.register(sendImageCellNib,
+                      forCellReuseIdentifier: SendImageCell.identifier)
     let sendMessageCellNib = UINib(nibName: "SendMessageCell", bundle: nil)
     chatView.register(sendMessageCellNib,
                       forCellReuseIdentifier: SendMessageCell.identifier)
@@ -126,6 +137,10 @@ extension ChatRoomController {
     let sendImageMessageCellNib = UINib(nibName: "SendImageMessageCell", bundle: nil)
     chatView.register(sendImageMessageCellNib,
                       forCellReuseIdentifier: SendImageMessageCell.identifier)
+    
+    let receiveImageCellNib = UINib(nibName: "ReceiveImageCell", bundle: nil)
+    chatView.register(receiveImageCellNib,
+                      forCellReuseIdentifier: ReceiveImageCell.identifier)
     
     let receiveMessageCellNib = UINib(nibName: "ReceiveMessageCell", bundle: nil)
     chatView.register(receiveMessageCellNib,
@@ -140,6 +155,24 @@ extension ChatRoomController {
                       forCellReuseIdentifier: ReceiveImageMessageCell.identifier)
     
     chatView.register(DateView.self, forHeaderFooterViewReuseIdentifier: DateView.identifier)
+  }
+  
+  func modalButtonDidTap() {
+    var bottomHeight: CGFloat = 0
+    if isModalOpen {
+      self.modalButton.setImage(UIImage(named: "ic_plus"), for: .normal)
+      bottomHeight = self.defaultBottomConstraint
+    } else {
+      self.modalButton.setImage(UIImage(named: "ic_exit"), for: .normal)
+      bottomHeight = 0
+    }
+    isModalOpen.toggle()
+    self.modalViewBottomConstraint.constant = bottomHeight
+    self.textfieldBottomConstraint.constant = bottomHeight - 98
+    UIView.animate(withDuration: 0.4) { [weak self] in
+      guard let self = self else { return }
+      self.view.layoutIfNeeded()
+    }
   }
 }
 
@@ -210,7 +243,7 @@ extension ChatRoomController {
       .bind(onNext: { owner, text in
         owner.viewModel.input.sendMessage.accept([ChatModel(type: .sendMessage,
                                                             name: owner.name ?? "",
-                                                            message: .text(text!.description),
+                                                            message: text?.description,
                                                             time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
         
         owner.textfield.rx.text.onNext("")
@@ -253,8 +286,57 @@ extension ChatRoomController: UITableViewDelegate {
   }
 }
 
+// MARK: CertificationViewController Delegate
 extension ChatRoomController: CertificationViewControllerDelegate {
   func certificationViewController(_ certificateMessage: ChatModel) {
     viewModel.input.sendMessage.accept([certificateMessage])
+  }
+}
+
+// MARK: PHPicker ViewController Delegate
+extension ChatRoomController: PHPickerViewControllerDelegate {
+  func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+    picker.dismiss(animated: true)
+    modalButtonDidTap()
+    guard let result = results.first else { return }
+    result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+      guard error == nil,
+            let self = self,
+            let image = image as? UIImage,
+            let data = image.pngData(),
+            let name = UserDefaults.standard.string(forKey: "name"),
+            let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
+      let base64 = data.base64EncodedString()
+      self.viewModel.input.sendMessage.accept([ChatModel(type: .sendImage,
+                                                         profileImage: .url(profileImage),
+                                                         name: name,
+                                                         image: .base64(base64),
+                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
+    }
+  }
+}
+
+// MARK: UIImagePickerController Delegate
+extension ChatRoomController: UIImagePickerControllerDelegate,
+                              UINavigationControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage,
+       let data = image.pngData(),
+       let name = UserDefaults.standard.string(forKey: "name"),
+       let profileImage = UserDefaults.standard.string(forKey: "profileImage") {
+      let base64 = data.base64EncodedString()
+      self.viewModel.input.sendMessage.accept([ChatModel(type: .sendImage,
+                                                         profileImage: .url(profileImage),
+                                                         name: name,
+                                                         image: .base64(base64),
+                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
+    }
+    picker.dismiss(animated: true)
+    modalButtonDidTap()
+  }
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true)
+    modalButtonDidTap()
   }
 }

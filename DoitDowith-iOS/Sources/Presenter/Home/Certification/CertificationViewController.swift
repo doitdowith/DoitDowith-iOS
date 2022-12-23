@@ -85,7 +85,7 @@ class CertificationViewController: UIViewController {
     let base64 = data.base64EncodedString()
     self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
                                                          name: name,
-                                                         message: .text("\(name)님의 인증 메세지"),
+                                                         message: "\(name)님의 인증 메세지",
                                                          image: .base64(base64),
                                                          time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     self.navigationController?.popViewController(animated: true)

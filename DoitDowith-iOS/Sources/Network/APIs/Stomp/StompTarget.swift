@@ -12,7 +12,6 @@ protocol StompTargetType {
 }
 
 enum DestinationType {
-  case receiveMemeber(id: String)
   case receiveRoom(id: String)
   case sendRoom
 }
@@ -20,8 +19,7 @@ enum DestinationType {
 extension DestinationType: StompTargetType {
   var path: String {
     switch self {
-    case .receiveMemeber(let id): return "/sub/api/v1/member/\(id)"
-    case .receiveRoom(let id): return "/sub/api/v1/room/\(id)"
+    case .receiveRoom(let id): return "/sub/room/\(id)"
     case .sendRoom: return "/pub/chat"
     }
   }

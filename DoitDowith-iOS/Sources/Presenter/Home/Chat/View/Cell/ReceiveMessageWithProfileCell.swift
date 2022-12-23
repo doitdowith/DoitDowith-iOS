@@ -22,10 +22,6 @@ class ReceiveMessageWithProfileCell: UITableViewCell {
     self.configureMessageView()
   }
   
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-  }
-  
   override func prepareForReuse() {
     super.prepareForReuse()
     profileImageView.image = nil
@@ -36,23 +32,23 @@ class ReceiveMessageWithProfileCell: UITableViewCell {
 }
 
 extension ReceiveMessageWithProfileCell {
-  func configure(image: Image, name: String, message: Message, time: String) {
-    switch image {
-    case .url(let model):
-      profileImageView.setImage(with: model)
-    case .base64(let model):
-      if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
-        let decodedImg = UIImage(data: data)
-        profileImageView.image = decodedImg
+  func configure(image: Image?, name: String, message: String?, time: String) {
+    if let image = image {
+      switch image {
+      case .url(let model):
+        profileImageView.setImage(with: model)
+      case .base64(let model):
+        if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
+          let decodedImg = UIImage(data: data)
+          profileImageView.image = decodedImg
+        }
       }
     }
     
-    switch message {
-    case .text(let model):
-      receiveMessageTextView.text = model
-    case .image:
-      break
+    if let message = message {
+      receiveMessageTextView.text = message
     }
+    
     nameLabel.text = name
     receiveTimeLabel.text = time
   }

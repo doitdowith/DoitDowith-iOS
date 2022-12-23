@@ -71,22 +71,30 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let error = PublishRelay<Error>()
     
     message
+      .filter { !$0.isEmpty }
+      .do(onNext: { model in
+        if let chat = model.first,
+           let message = chat.message {
+            stompManager.sendMessage(meesage: message)
+        }
+      })
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
     
-//    fetching
-//      .do(onNext: { _ in activating.accept(true) })
-//      .do(onNext: { _ in stompManager.registerSocket() })
+    fetching
+      .do(onNext: { _ in activating.accept(true) })
+      .do(onNext: { _ in stompManager.registerSocket() })
+      .map { _ in return [] }
 //      .flatMap { _ -> Observable<[ChatModel]> in
-//        return APIService.shared.request(request: RequestType(endpoint: "chats/\(id)",
+//        return APIService.shared.request(request: RequestType(endpoint: "chats/\(card.roomId)",
 //                                                              method: .get))
 //        .map { (response: ChatResponse) -> [ChatModel] in
 //          return response.toDomain
 //        }
 //      }
-//      .do(onNext: { _ in activating.accept(false) })
-//      .bind(onNext: { allMessages.accept($0) })
-//      .disposed(by: disposeBag)
+      .do(onNext: { _ in activating.accept(false) })
+      .bind(onNext: { allMessages.accept($0) })
+      .disposed(by: disposeBag)
         
     self.viewWillAppear = fetching
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
@@ -191,6 +199,22 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
           }
           cell.configure(time: item.time.suffix(5).description,
                          message: item.message,
+                         image: item.image)
+          return cell
+        case .receiveImage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageCell.identifier,
+                                                         for: indexPath) as? ReceiveImageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description,
+                         image: item.image)
+          return cell
+        case .sendImage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageCell.identifier,
+                                                         for: indexPath) as? SendImageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description,
                          image: item.image)
           return cell
         }

@@ -738,6 +738,9 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="ic_photo"/>
+                                                <connections>
+                                                    <action selector="galaryButtonDidTap:" destination="JI9-5f-KCL" eventType="touchUpInside" id="0Wb-Kb-3kk"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1S-SX-vSs" userLabel="CamerButton">
                                                 <rect key="frame" x="172" y="0.0" width="36" height="36"/>
@@ -748,6 +751,9 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="ic_camera"/>
+                                                <connections>
+                                                    <action selector="cameraButtonDidTap:" destination="JI9-5f-KCL" eventType="touchUpInside" id="Rkj-gn-TtP"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -1316,8 +1322,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션 제출 현황" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPr-Lh-gWM">
-                                        <rect key="frame" x="20" y="167" width="79.666666666666671" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀원 목록" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPr-Lh-gWM">
+                                        <rect key="frame" x="20" y="167" width="52" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1953,16 +1959,16 @@
     </scenes>
     <designables>
         <designable name="Ngf-yW-cYd">
-            <size key="intrinsicContentSize" width="221.66666666666666" height="60.333333333333336"/>
+            <size key="intrinsicContentSize" width="193.66666666666666" height="34"/>
         </designable>
         <designable name="UWT-d0-o9t">
-            <size key="intrinsicContentSize" width="275.66666666666669" height="61"/>
+            <size key="intrinsicContentSize" width="251.33333333333334" height="34"/>
         </designable>
         <designable name="Xmu-9C-1TL">
-            <size key="intrinsicContentSize" width="234" height="61"/>
+            <size key="intrinsicContentSize" width="206" height="34"/>
         </designable>
         <designable name="YG7-Lk-iOW">
-            <size key="intrinsicContentSize" width="198.66666666666666" height="61"/>
+            <size key="intrinsicContentSize" width="174.66666666666666" height="34"/>
         </designable>
     </designables>
     <resources>

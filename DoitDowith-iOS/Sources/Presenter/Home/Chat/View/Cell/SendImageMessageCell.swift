@@ -1,5 +1,5 @@
 //
-//  ReceiveImageMessageCell.swift
+//  SendImageMessageCell.swift
 //  DoitDowith-iOS
 //
 //  Created by 김영균 on 2022/11/17.
@@ -7,20 +7,16 @@
 
 import UIKit
 
-class ReceiveImageMessageCell: UITableViewCell {
-  static let identifier: String = "ReceiveImagemessageCell"
+class SendImageMessageCell: UITableViewCell {
+  static let identifier: String = "SendImageMessageCell"
   
   @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var receiveImageView: UIImageView!
-  @IBOutlet weak var receiveMessageView: UIView!
-  @IBOutlet weak var receiveMessage: UILabel!
+  @IBOutlet weak var sendMessageView: UIView!
+  @IBOutlet weak var sendImageView: UIImageView!
+  @IBOutlet weak var sendMessage: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
     self.layer.applySketchShadow(alpha: 0.04,
                                  x: 2,
                                  y: 2,
@@ -32,30 +28,28 @@ class ReceiveImageMessageCell: UITableViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     self.dateLabel.text = ""
-    self.receiveImageView.image = nil
+    self.sendImageView.image = nil
   }
 }
 
-extension ReceiveImageMessageCell {
-  func configure(time: String, message: Message, image: Image?) {
+extension SendImageMessageCell {
+  func configure(time: String, message: String?, image: Image?) {
     if let image = image {
       switch image {
       case .url(let model):
-        receiveImageView.setImage(with: model)
+        sendImageView.setImage(with: model)
       case .base64(let model):
         if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
           let decodedImg = UIImage(data: data)
-          receiveImageView.image = decodedImg
+          sendImageView.image = decodedImg
         }
       }
     }
     
-    switch message {
-    case .text(let model):
-      receiveMessage.text = model
-    case .image:
-      break
+    if let message = message {
+      sendMessage.text = message
     }
+    
     self.dateLabel.text = time
   }
 }

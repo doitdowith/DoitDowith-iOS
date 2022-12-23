@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReceiveImageCell" id="KGk-i7-Jjw" customClass="ReceiveImageCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vZZ-xc-n2C">
+                        <rect key="frame" x="62" y="3" width="192" height="144"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="144" id="aaE-iR-VBJ"/>
+                            <constraint firstAttribute="width" constant="192" id="smK-zA-B3r"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 24:59" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dge-Yh-gUz">
+                        <rect key="frame" x="273" y="128" width="51.333333333333314" height="13"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="11"/>
+                        <color key="textColor" name="CoolGray2"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="LightGray"/>
+                <constraints>
+                    <constraint firstItem="Dge-Yh-gUz" firstAttribute="leading" secondItem="vZZ-xc-n2C" secondAttribute="trailing" constant="8" id="1j6-OC-rD2"/>
+                    <constraint firstAttribute="bottom" secondItem="vZZ-xc-n2C" secondAttribute="bottom" constant="3" id="8Pe-ES-l1A"/>
+                    <constraint firstItem="vZZ-xc-n2C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="L4S-YK-1nQ"/>
+                    <constraint firstItem="Dge-Yh-gUz" firstAttribute="bottom" secondItem="vZZ-xc-n2C" secondAttribute="bottom" id="acs-Bp-u9K"/>
+                    <constraint firstItem="vZZ-xc-n2C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="62" id="seN-0i-wPM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="receiveDateLabel" destination="Dge-Yh-gUz" id="uCf-Ph-D6N"/>
+                <outlet property="receiveImageView" destination="vZZ-xc-n2C" id="YmL-ah-hcW"/>
+            </connections>
+            <point key="canvasLocation" x="21" y="20"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="CoolGray2">
+            <color red="0.66299998760223389" green="0.68599998950958252" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

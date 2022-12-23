@@ -27,11 +27,22 @@ struct CardList: Equatable, IdentifiableType {
   }
 }
 
-struct Card: Equatable, Codable {
+struct Card: Equatable {
+  static func == (lhs: Card, rhs: Card) -> Bool {
+    return lhs.roomId == rhs.roomId
+  }
+  
   var section: Int
   var roomId: String
   var title: String
   var description: String
   var color: String
   var startDate: String
+  var participants: [Participant]
+  var count: Int
+}
+
+struct Participant: Codable {
+  var name: String
+  var profileImage: String
 }

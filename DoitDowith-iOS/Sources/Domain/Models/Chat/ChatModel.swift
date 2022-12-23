@@ -17,6 +17,8 @@ enum MessageType: Int {
   case sendMessageWithTip = 3
   case sendMessage = 4
   case sendImageMessage = 5
+  case receiveImage = 6
+  case sendImage = 7
 }
 
 enum Image {
@@ -24,16 +26,11 @@ enum Image {
   case url(String)
 }
 
-enum Message {
-  case image(UIImage)
-  case text(String)
-}
-
 struct ChatModel {
   var type: MessageType
   var profileImage: Image?
   var name: String
-  var message: Message
+  var message: String?
   var image: Image?
   var time: String
 }

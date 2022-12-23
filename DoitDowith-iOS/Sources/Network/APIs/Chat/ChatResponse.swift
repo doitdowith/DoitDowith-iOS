@@ -44,7 +44,7 @@ extension ChatResponse {
       return ChatModel(type: type,
                        profileImage: .url(data.image),
                        name: data.name,
-                       message: .text(data.message),
+                       message: data.message,
                        time: data.time)
     }
   }

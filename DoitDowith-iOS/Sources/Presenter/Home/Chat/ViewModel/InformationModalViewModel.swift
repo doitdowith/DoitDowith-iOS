@@ -21,6 +21,7 @@ protocol InformationModalViewModelOutput {
   var roomDescription: Driver<String> { get }
   var roomCount: Driver<String> { get }
   var roomDate: Driver<String> { get }
+  var roomMemberList: Driver<[Participant]> { get }
 }
 
 protocol InformationModalViewModelType: InformationModalViewModelInput,
@@ -44,6 +45,7 @@ final class InformationModalViewModel: InformationModalViewModelInput,
   let roomDescription: Driver<String>
   let roomCount: Driver<String>
   let roomDate: Driver<String>
+  let roomMemberList: Driver<[Participant]>
   
   init(card: Card) {
     self.chatroomInfo = BehaviorRelay<Card>(value: card)
@@ -61,5 +63,8 @@ final class InformationModalViewModel: InformationModalViewModelInput,
         return "\(date.formatted(format: "yyyy-MM-dd")) ~ \(nextDate.formatted(format: "yyyy-MM-dd"))"
       }
       .asDriver(onErrorJustReturn: "")
+    self.roomMemberList = chatroomInfo
+      .map { $0.participants }
+      .asDriver(onErrorJustReturn: [])
   }
 }

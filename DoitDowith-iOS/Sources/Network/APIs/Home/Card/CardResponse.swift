@@ -13,7 +13,10 @@ struct CardResponse: Decodable {
 
 struct Room: Decodable {
   var color, description, id, title: String
-  var startDate: [Int]
+  var startDate: String
+  var nameList: [String]
+  var imageList: [String]
+  var participants: Int
 }
 
 extension CardResponse {
@@ -25,7 +28,9 @@ extension CardResponse {
                        title: room.title,
                        description: room.description,
                        color: room.color,
-                       startDate: "\(room.startDate[0])-\(room.startDate[1])-\(room.startDate[2])"))
+                       startDate: room.startDate,
+                       participants: zip(room.nameList, room.imageList).map { Participant(name: $0.0, profileImage: $0.1) },
+                       count: room.participants))
     }
     for room in willDoRoomList {
       data.append(Card(section: 2,
@@ -33,7 +38,9 @@ extension CardResponse {
                        title: room.title,
                        description: room.description,
                        color: room.color,
-                       startDate: "\(room.startDate[0])-\(room.startDate[1])-\(room.startDate[2])"))
+                       startDate: room.startDate,
+                       participants: zip(room.nameList, room.imageList).map { Participant(name: $0.0, profileImage: $0.1) },
+                       count: room.participants))
     }
     for room in doneRoomList {
       data.append(Card(section: 3,
@@ -41,8 +48,11 @@ extension CardResponse {
                        title: room.title,
                        description: room.description,
                        color: room.color,
-                       startDate: "\(room.startDate[0])-\(room.startDate[1])-\(room.startDate[2])"))
+                       startDate: room.startDate,
+                       participants: zip(room.nameList, room.imageList).map { Participant(name: $0.0, profileImage: $0.1) },
+                       count: room.participants))
     }
+    print(data)
     return data
   }
 }

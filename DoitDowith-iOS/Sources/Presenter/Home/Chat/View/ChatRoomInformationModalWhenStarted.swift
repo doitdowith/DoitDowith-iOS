@@ -89,7 +89,6 @@ extension ChatRoomInformationModalWhenStarted {
       })
       .disposed(by: rx.disposeBag)
   }
-  
   func bindDimmedView() {
     self.dimmedView.rx.tapGesture()
       .when(.recognized)
@@ -115,6 +114,8 @@ extension ChatRoomInformationModalWhenStarted {
     self.viewModel.output.roomDate
       .drive(dateLabel.rx.text)
       .disposed(by: rx.disposeBag)
+  }
+  func bindTeamMemberTableView() {
   }
 }
 

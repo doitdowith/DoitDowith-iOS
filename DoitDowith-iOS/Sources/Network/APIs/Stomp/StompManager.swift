@@ -13,14 +13,8 @@ struct Response: Codable {
   var message: String
 }
 
-enum ConnectType {
-  case member
-  case room
-}
-
 protocol StompManagerProtocol {
   func registerSocket()
-  func subscribeMember()
   func subscribeRoom()
   func sendMessage(meesage: String)
   func disconnect()
@@ -30,14 +24,12 @@ final class StompManager: StompManagerProtocol {
   private var socketClient = StompClientLib()
  
   private let url = URL(string: "ws://117.17.198.38:8080/chat")!
-  private let targetId: String
-  private let senderId: String
-  private let connectType: ConnectType
+  private let roomId: String
+  private let memberId: String
   
-  init(targetId: String, senderId: String, connectType: ConnectType) {
-    self.targetId = targetId
-    self.senderId = senderId
-    self.connectType = connectType
+  init(roomId: String, memberId: String) {
+    self.roomId = roomId
+    self.memberId = memberId
   }
   
   // connection
@@ -46,21 +38,17 @@ final class StompManager: StompManagerProtocol {
                                           delegate: self as StompClientLibDelegate)
   }
   
-   // subscribe member
-  func subscribeMember() {
-//    socketClient.subscribe(destination: DestinationType.receiveMemeber(id: self.targetId).path)
-  }
-  
   // subscribe room
   func subscribeRoom() {
-    socketClient.subscribe(destination: DestinationType.receiveRoom(id: self.targetId).path)
+    socketClient.subscribe(destination: DestinationType.receiveRoom(id: self.roomId).path)
   }
   
   // public message
   func sendMessage(meesage message: String) {
     let payloadObject: [String: Any] = ["contents": message,
-                                        "memberId": self.senderId,
-                                        "roomId": self.targetId]
+                                        "memberId": self.memberId,
+                                        "roomId": self.roomId]
+    print("sendMessage: ", payloadObject)
     socketClient.sendJSONForDict(
       dict: payloadObject as AnyObject,
       toDestination: DestinationType.sendRoom.path)
@@ -74,12 +62,7 @@ final class StompManager: StompManagerProtocol {
 extension StompManager: StompClientLibDelegate {
   func stompClientDidConnect(client: StompClientLib!) {
     print("Socket is Connected")
-    switch self.connectType {
-    case .member:
-      subscribeMember()
-    case .room:
-      subscribeRoom()
-    }
+    subscribeRoom()
   }
   
   // Unsubscribe Topic

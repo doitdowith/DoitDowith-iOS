@@ -21,6 +21,12 @@
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
 		EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */; };
 		EE05C25429266C4000FAA844 /* SendImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */; };
+		EE0C68712955692100581B33 /* SendImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0C686F2955692100581B33 /* SendImageCell.swift */; };
+		EE0C68722955692100581B33 /* SendImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0C68702955692100581B33 /* SendImageCell.xib */; };
+		EE0C687529556A9500581B33 /* ReceiveImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0C687329556A9500581B33 /* ReceiveImageCell.swift */; };
+		EE0C687629556A9500581B33 /* ReceiveImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0C687429556A9500581B33 /* ReceiveImageCell.xib */; };
+		EE0C687A295590B100581B33 /* ChatMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0C6878295590B100581B33 /* ChatMemberCell.swift */; };
+		EE0C687B295590B100581B33 /* ChatMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0C6879295590B100581B33 /* ChatMemberCell.xib */; };
 		EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */; };
 		EE1ED77829016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77729016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift */; };
 		EE1ED77A29016B7D0007F591 /* InformationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */; };
@@ -154,6 +160,12 @@
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageMessageCell.swift; sourceTree = "<group>"; };
 		EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendImageMessageCell.xib; sourceTree = "<group>"; };
+		EE0C686F2955692100581B33 /* SendImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageCell.swift; sourceTree = "<group>"; };
+		EE0C68702955692100581B33 /* SendImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendImageCell.xib; sourceTree = "<group>"; };
+		EE0C687329556A9500581B33 /* ReceiveImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveImageCell.swift; sourceTree = "<group>"; };
+		EE0C687429556A9500581B33 /* ReceiveImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiveImageCell.xib; sourceTree = "<group>"; };
+		EE0C6878295590B100581B33 /* ChatMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMemberCell.swift; sourceTree = "<group>"; };
+		EE0C6879295590B100581B33 /* ChatMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMemberCell.xib; sourceTree = "<group>"; };
 		EE1BE9AF28F5AE94005433FA /* MissionRoomFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRoomFirstViewModel.swift; sourceTree = "<group>"; };
 		EE1ED77729016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomInformationModalWhenStarted.swift; sourceTree = "<group>"; };
 		EE1ED77929016B7D0007F591 /* InformationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModalViewModel.swift; sourceTree = "<group>"; };
@@ -292,6 +304,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE0C687729556B8800581B33 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EE0C686F2955692100581B33 /* SendImageCell.swift */,
+				EE0C687329556A9500581B33 /* ReceiveImageCell.swift */,
+				EE6A2BD128E485C1000656AA /* SendMessageCell.swift */,
+				EE6A2BD528E4893B000656AA /* ReceiveMessageCell.swift */,
+				EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */,
+				EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */,
+				EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		EE1F58F928F688A10046ED09 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +368,7 @@
 		EE1F590428F68AFA0046ED09 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				EE8F28FD294DB616006E6F96 /* APIService.swift */,
 				EEB6036A294EEB2800BEF609 /* Login */,
 				EE63629D29121B0900A78758 /* Chat */,
 				EE8FF3F128FD4BB900EB5FBC /* Stomp */,
@@ -359,7 +386,6 @@
 				EE66961B290183AB00ECFC9A /* MissionRoom */,
 				EE3A079628F8747D002C7E5D /* Card */,
 				EE3A079128F8746D002C7E5D /* Friend */,
-				EE8F28FD294DB616006E6F96 /* APIService.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -367,16 +393,14 @@
 		EE255BB728EADB2F00DB555E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE0C687729556B8800581B33 /* Cell */,
 				EE8FF3F028FD38D900EB5FBC /* Xib */,
 				EE6A2BCF28E48474000656AA /* ChatRoomController.swift */,
-				EE6A2BD128E485C1000656AA /* SendMessageCell.swift */,
-				EE6A2BD528E4893B000656AA /* ReceiveMessageCell.swift */,
 				EE5500A328E98543005F65AC /* ChatHeaderView.swift */,
 				EE1ED77729016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift */,
 				EE23A852291001BC0050175C /* DateView.swift */,
-				EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */,
-				EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */,
-				EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */,
+				EE0C6878295590B100581B33 /* ChatMemberCell.swift */,
+				EE0C6879295590B100581B33 /* ChatMemberCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -710,6 +734,8 @@
 				EE63629A2912115900A78758 /* ReceiveMessageWithProfileCell.xib */,
 				EE557F2429266649005685EC /* ReceiveImageMessageCell.xib */,
 				EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */,
+				EE0C68702955692100581B33 /* SendImageCell.xib */,
+				EE0C687429556A9500581B33 /* ReceiveImageCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -913,6 +939,7 @@
 				TargetAttributes = {
 					EEAEDA1328D9C05D000141ED = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -942,6 +969,7 @@
 				EE77D5EA28D9D14000057EF8 /* Home.storyboard in Resources */,
 				EE889E9128DD6A87005DE44B /* Pretendard-Regular.otf in Resources */,
 				EE889E9928DD6A87005DE44B /* Pretendard-ExtraLight.otf in Resources */,
+				EE0C687629556A9500581B33 /* ReceiveImageCell.xib in Resources */,
 				EE557F2629266649005685EC /* ReceiveImageMessageCell.xib in Resources */,
 				EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */,
 				EEE8358E293ADAE4001C97CC /* VoteResultContentViewCell.xib in Resources */,
@@ -954,6 +982,7 @@
 				EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */,
 				EE77D5E628D9D10C00057EF8 /* More.storyboard in Resources */,
 				EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */,
+				EE0C68722955692100581B33 /* SendImageCell.xib in Resources */,
 				EE889E9628DD6A87005DE44B /* Pretendard-Bold.otf in Resources */,
 				EEC949E128F7E1A300A9661F /* FriendProfileCell.xib in Resources */,
 				EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */,
@@ -962,6 +991,7 @@
 				EE25ED62293B899D00C579A5 /* EmptyCardCell.xib in Resources */,
 				EE889E9828DD6A87005DE44B /* Pretendard-Medium.otf in Resources */,
 				EE300D74293A339E00842742 /* VoteMemberCell.xib in Resources */,
+				EE0C687B295590B100581B33 /* ChatMemberCell.xib in Resources */,
 				EE889E9328DD6A87005DE44B /* Pretendard-Thin.otf in Resources */,
 				EE25ED5D293B897C00C579A5 /* CardCell.xib in Resources */,
 				EE889E9528DD6A87005DE44B /* Pretendard-ExtraBold.otf in Resources */,
@@ -1079,11 +1109,14 @@
 				EE896FD8293A48940030724D /* VoteMemberSectionModel.swift in Sources */,
 				EE300D73293A339E00842742 /* VoteMemberCell.swift in Sources */,
 				EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */,
+				EE0C68712955692100581B33 /* SendImageCell.swift in Sources */,
+				EE0C687529556A9500581B33 /* ReceiveImageCell.swift in Sources */,
 				EE1F590928F68B280046ED09 /* CardResponse.swift in Sources */,
 				EE6950F6292E074200B933BD /* CertificationBoardViewController.swift in Sources */,
 				1824EDB72901A963007BA66B /* FriendListViewController.swift in Sources */,
 				EE8BE62E28F40747003686E3 /* TextFieldWithPadding.swift in Sources */,
 				EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */,
+				EE0C687A295590B100581B33 /* ChatMemberCell.swift in Sources */,
 				EE7F4026294DBBC1002AD53F /* CreateRoomRequest.swift in Sources */,
 				EE300D7E293A3C3000842742 /* VoteResultViewModel.swift in Sources */,
 				18F863CB2947345700EC96A7 /* NetworkService.swift in Sources */,
@@ -1282,6 +1315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DU7FSA5JUQ;
@@ -1303,6 +1337,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.seoultech.DoitDowith-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1314,6 +1349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DU7FSA5JUQ;

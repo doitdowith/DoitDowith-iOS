@@ -22,11 +22,16 @@ final class HomeViewController: UIViewController {
   
   // MARK: Properties
   var viewModel: HomeViewModelType
+  var stompManager: StompManagerProtocol?
   
   // MARK: Initializer
   required init?(coder: NSCoder) {
     self.viewModel = HomeViewModel()
     super.init(coder: coder)
+  }
+  
+  deinit {
+    stompManager?.disconnect()
   }
   
   // MARK: Life Cycle
@@ -190,16 +195,16 @@ extension HomeViewController {
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ didSelectCell: UICollectionViewCell, card: Card) {
     guard let memberId = UserDefaults.standard.string(forKey: "memberId") else { return }
-        let stompManager = StompManager(targetId: card.roomId,
-                                        senderId: memberId,
-                                        connectType: .room)
-        let vm = ChatRommViewModel(card: card,
-                                   stompManager: stompManager)
-        let vc = UIStoryboard(name: "Home",
-                              bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
-                                                                     creator: { coder in
-                                ChatRoomController(coder: coder, card: card, viewModel: vm) })
-        self.navigationController?.pushViewController(vc, animated: true)
+    let stompManager = StompManager(roomId: card.roomId,
+                                    memberId: memberId)
+    self.stompManager = stompManager
+    let vm = ChatRommViewModel(card: card,
+                               stompManager: stompManager)
+    let vc = UIStoryboard(name: "Home",
+                          bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
+                                                                 creator: { coder in
+                            ChatRoomController(coder: coder, card: card, viewModel: vm) })
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 
