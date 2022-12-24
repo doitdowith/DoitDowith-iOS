@@ -41,8 +41,3 @@ struct Card: Equatable {
   var participants: [Participant]
   var count: Int
 }
-
-struct Participant: Codable {
-  var name: String
-  var profileImage: String
-}

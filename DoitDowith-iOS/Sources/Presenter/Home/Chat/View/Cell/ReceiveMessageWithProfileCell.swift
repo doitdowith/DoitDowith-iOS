@@ -32,7 +32,7 @@ class ReceiveMessageWithProfileCell: UITableViewCell {
 }
 
 extension ReceiveMessageWithProfileCell {
-  func configure(image: Image?, name: String, message: String?, time: String) {
+  func configure(image: ImageType?, name: String, message: String?, time: String) {
     if let image = image {
       switch image {
       case .url(let model):

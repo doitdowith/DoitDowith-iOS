@@ -31,7 +31,7 @@ class ReceiveImageCell: UITableViewCell {
 }
 
 extension ReceiveImageCell {
-  func configure(time: String, image: Image?) {
+  func configure(time: String, image: ImageType?) {
     if let image = image {
       switch image {
       case .url(let model):

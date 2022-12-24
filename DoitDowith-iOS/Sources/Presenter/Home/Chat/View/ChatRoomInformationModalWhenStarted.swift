@@ -31,8 +31,12 @@ final class ChatRoomInformationModalWhenStarted: UIViewController {
   // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.registerCells()
     self.bind()
     self.configureModalView()
+    self.teamMemberTableView.layer.cornerRadius = 4
+    self.teamMemberTableView.rowHeight = UITableView.automaticDimension
+    self.teamMemberTableView.estimatedRowHeight = 130
   }
   
   // MARK: Interface Builder
@@ -44,7 +48,6 @@ final class ChatRoomInformationModalWhenStarted: UIViewController {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var countLabel: UILabel!
-  
   @IBOutlet weak var descriptionLabel: UILabel!
   
   @IBAction func moveToCertificateBoard(_ sender: UIButton) {
@@ -69,13 +72,18 @@ extension ChatRoomInformationModalWhenStarted {
     self.bindLifeCylce()
     self.bindDimmedView()
     self.bindConentView()
+    self.bindTeamMemberTableView()
   }
   func configureModalView() {
     self.contentView.layer.masksToBounds = true
     self.contentView.layer.cornerRadius = 24
     self.contentView.layer.maskedCorners = [.layerMinXMinYCorner]
   }
-  func registerCells() { }
+  func registerCells() {
+    let chatMemberCellNib = UINib(nibName: "ChatMemberCell", bundle: nil)
+    teamMemberTableView.register(chatMemberCellNib,
+                                 forCellReuseIdentifier: ChatMemberCell.identifier)
+  }
 }
 
 // MARK: Bind functions
@@ -116,6 +124,15 @@ extension ChatRoomInformationModalWhenStarted {
       .disposed(by: rx.disposeBag)
   }
   func bindTeamMemberTableView() {
+    self.viewModel.output.roomMemberList
+      .drive(teamMemberTableView.rx.items(cellIdentifier: ChatMemberCell.identifier,
+                                          cellType: ChatMemberCell.self)) { _, element, cell in
+        cell.configure(model: element)
+      }
+      .disposed(by: rx.disposeBag)
+    self.teamMemberTableView.rx
+      .setDelegate(self)
+      .disposed(by: rx.disposeBag)
   }
 }
 
@@ -151,5 +168,17 @@ extension ChatRoomInformationModalWhenStarted {
       guard let self = self else { return }
       self.view.layoutIfNeeded()
     }
+  }
+}
+
+// MARK: TableView DataSource, Delegate
+extension ChatRoomInformationModalWhenStarted: UITableViewDelegate {
+  // MARK: Header DataSource
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return CGFloat.leastNormalMagnitude
+  }
+  
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return CGFloat.leastNormalMagnitude
   }
 }

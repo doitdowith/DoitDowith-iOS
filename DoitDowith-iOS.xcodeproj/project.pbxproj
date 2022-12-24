@@ -52,6 +52,9 @@
 		EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A078C28F8736A002C7E5D /* Friend.swift */; };
 		EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079228F87473002C7E5D /* FriendRequest.swift */; };
 		EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079428F87478002C7E5D /* FriendResponse.swift */; };
+		EE3AD8752956C89600457E44 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD8742956C89600457E44 /* Participant.swift */; };
+		EE3AD8782956C8CB00457E44 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD8772956C8CB00457E44 /* ImageType.swift */; };
+		EE3AD87A2956C8EB00457E44 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD8792956C8EB00457E44 /* MessageType.swift */; };
 		EE3D3096295468FD00908F59 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3095295468FD00908F59 /* String+.swift */; };
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
@@ -191,6 +194,9 @@
 		EE3A078C28F8736A002C7E5D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		EE3A079228F87473002C7E5D /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		EE3A079428F87478002C7E5D /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
+		EE3AD8742956C89600457E44 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		EE3AD8772956C8CB00457E44 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		EE3AD8792956C8EB00457E44 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		EE3D3095295468FD00908F59 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +357,7 @@
 				EE4F4D7228EAEF5E000C2FE7 /* Card.swift */,
 				EE4F4D7828EB0357000C2FE7 /* homeMock.json */,
 				EEE8358F293B612E001C97CC /* CardSectionModel.swift */,
+				EE3AD8742956C89600457E44 /* Participant.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -504,6 +511,15 @@
 			path = Card;
 			sourceTree = "<group>";
 		};
+		EE3AD8762956C8C500457E44 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				EE3AD8772956C8CB00457E44 /* ImageType.swift */,
+				EE3AD8792956C8EB00457E44 /* MessageType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		EE3EA1A228D9CCAB00CEFE36 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +595,7 @@
 		EE4F4D7128EAEF54000C2FE7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE3AD8762956C8C500457E44 /* Enum */,
 				EE6950F7292E095C00B933BD /* CertificateBoard */,
 				EE3A078B28F87356002C7E5D /* Friend */,
 				EE1F590328F68A710046ED09 /* Chat */,
@@ -1086,6 +1103,7 @@
 				EE557F2529266649005685EC /* ReceiveImageMessageCell.swift in Sources */,
 				EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */,
 				1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */,
+				EE3AD8752956C89600457E44 /* Participant.swift in Sources */,
 				EEE8358D293ADAE4001C97CC /* VoteResultContentViewCell.swift in Sources */,
 				EE695103292E127F00B933BD /* CertificateBoardRequest.swift in Sources */,
 				EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */,
@@ -1123,6 +1141,7 @@
 				EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */,
 				EE8F28FE294DB616006E6F96 /* APIService.swift in Sources */,
 				EEC949E728F8083300A9661F /* FriendCell.swift in Sources */,
+				EE3AD8782956C8CB00457E44 /* ImageType.swift in Sources */,
 				EE6950FC292E10FA00B933BD /* CertificationBoardViewModel.swift in Sources */,
 				EE85BE1028EF06AA006A0088 /* UILabel+Extension.swift in Sources */,
 				EE77D5E428D9D0C100057EF8 /* CalendarViewController.swift in Sources */,
@@ -1150,6 +1169,7 @@
 				EEE46C112924B0D90030A15E /* UIColor+.swift in Sources */,
 				EE23C3EA293DE6100098740C /* UIImageView+.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
+				EE3AD87A2956C8EB00457E44 /* MessageType.swift in Sources */,
 				EE1ED77829016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift in Sources */,
 				EEE83590293B612E001C97CC /* CardSectionModel.swift in Sources */,
 				EE8F28F8294DA273006E6F96 /* ResponseType.swift in Sources */,

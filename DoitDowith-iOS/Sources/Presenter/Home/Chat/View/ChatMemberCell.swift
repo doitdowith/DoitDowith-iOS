@@ -9,8 +9,10 @@ import UIKit
 import Kingfisher
 
 class ChatMemberCell: UITableViewCell {
-//  @IBOutlet weak var profileImageView: UIImageView!
-//  @IBOutlet weak var name: UILabel!
+  static let identifier: String = "ChatMemberCell"
+  
+  @IBOutlet weak var profileImageView: UIImageView!
+  @IBOutlet weak var nameLabel: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -19,14 +21,15 @@ class ChatMemberCell: UITableViewCell {
   
   override func prepareForReuse() {
     super.prepareForReuse()
-//    self.profileImageView.image = nil
+    self.profileImageView.image = nil
+    self.nameLabel.text = ""
   }
 }
-//
-//extension ChatMemberCell {
-//  func configure(model: Participant) {
-//    let image = model.profileImage
-//    self.profileImageView.setImage(with: image)
-//    self.name.text = model.name
-//  }
-//}
+
+extension ChatMemberCell {
+  func configure(model: Participant) {
+    let image = model.profileImage
+    self.profileImageView.setImage(with: "http://117.17.198.38:8080/images/\(image)")
+    self.nameLabel.text = model.name
+  }
+}

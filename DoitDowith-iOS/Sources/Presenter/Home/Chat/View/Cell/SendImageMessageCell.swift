@@ -33,7 +33,7 @@ class SendImageMessageCell: UITableViewCell {
 }
 
 extension SendImageMessageCell {
-  func configure(time: String, message: String?, image: Image?) {
+  func configure(time: String, message: String?, image: ImageType?) {
     if let image = image {
       switch image {
       case .url(let model):
