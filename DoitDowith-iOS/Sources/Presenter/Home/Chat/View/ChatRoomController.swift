@@ -241,10 +241,10 @@ extension ChatRoomController {
       .withLatestFrom(self.textfield.rx.text)
       .withUnretained(self)
       .bind(onNext: { owner, text in
-        owner.viewModel.input.sendMessage.accept([ChatModel(type: .sendMessage,
+        owner.viewModel.input.sendMessage.accept(ChatModel(type: .sendMessage,
                                                             name: owner.name ?? "",
                                                             message: text?.description,
-                                                            time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
+                                                            time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
         
         owner.textfield.rx.text.onNext("")
       })
@@ -289,7 +289,7 @@ extension ChatRoomController: UITableViewDelegate {
 // MARK: CertificationViewController Delegate
 extension ChatRoomController: CertificationViewControllerDelegate {
   func certificationViewController(_ certificateMessage: ChatModel) {
-    viewModel.input.sendMessage.accept([certificateMessage])
+    viewModel.input.sendMessage.accept(certificateMessage)
   }
 }
 
@@ -307,11 +307,11 @@ extension ChatRoomController: PHPickerViewControllerDelegate {
             let name = UserDefaults.standard.string(forKey: "name"),
             let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
       let base64 = data.base64EncodedString()
-      self.viewModel.input.sendMessage.accept([ChatModel(type: .sendImage,
+      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
                                                          profileImage: .url(profileImage),
                                                          name: name,
                                                          image: .base64(base64),
-                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
+                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
   }
 }
@@ -326,11 +326,11 @@ extension ChatRoomController: UIImagePickerControllerDelegate,
        let name = UserDefaults.standard.string(forKey: "name"),
        let profileImage = UserDefaults.standard.string(forKey: "profileImage") {
       let base64 = data.base64EncodedString()
-      self.viewModel.input.sendMessage.accept([ChatModel(type: .sendImage,
+      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
                                                          profileImage: .url(profileImage),
                                                          name: name,
                                                          image: .base64(base64),
-                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm"))])
+                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
     picker.dismiss(animated: true)
     modalButtonDidTap()

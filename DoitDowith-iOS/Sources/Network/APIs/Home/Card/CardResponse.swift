@@ -52,7 +52,6 @@ extension CardResponse {
                        participants: zip(room.nameList, room.imageList).map { Participant(name: $0.0, profileImage: $0.1) },
                        count: room.participants))
     }
-    print(data)
     return data
   }
 }

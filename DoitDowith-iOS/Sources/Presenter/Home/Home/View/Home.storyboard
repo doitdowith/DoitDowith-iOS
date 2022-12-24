@@ -1275,7 +1275,7 @@
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-ih-BCw" userLabel="Modal View">
-                                <rect key="frame" x="25" y="91" width="350" height="721"/>
+                                <rect key="frame" x="375" y="91" width="350" height="721"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1일 1커밋하기(제목)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVd-bF-aF9">
                                         <rect key="frame" x="21" y="28" width="168" height="24.666666666666671"/>
@@ -1393,7 +1393,7 @@
                             <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="0WC-sW-cs8" secondAttribute="trailing" id="GsL-nN-HpV"/>
                             <constraint firstItem="Elp-ih-BCw" firstAttribute="top" secondItem="AwJ-Tw-ltQ" secondAttribute="top" constant="44" id="bpF-pv-FTh"/>
                             <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="bottom" secondItem="0WC-sW-cs8" secondAttribute="bottom" id="cOV-RR-FpQ"/>
-                            <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="Elp-ih-BCw" secondAttribute="trailing" id="nkH-uj-oa5"/>
+                            <constraint firstItem="AwJ-Tw-ltQ" firstAttribute="trailing" secondItem="Elp-ih-BCw" secondAttribute="trailing" constant="-350" id="nkH-uj-oa5"/>
                             <constraint firstItem="0WC-sW-cs8" firstAttribute="top" secondItem="RuI-vg-aT3" secondAttribute="top" id="yH1-oo-QUc"/>
                         </constraints>
                     </view>

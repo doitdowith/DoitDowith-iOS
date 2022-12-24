@@ -17,3 +17,13 @@ enum MessageType: Int {
   case receiveImage = 6
   case sendImage = 7
 }
+
+extension MessageType {
+  func inverseMessage() -> MessageType {
+    switch self {
+    case .sendMessage: return .sendMessageWithTip
+    case .receiveMessage: return .receiveMessageWithProfile
+    default: return self
+    }
+  }
+}

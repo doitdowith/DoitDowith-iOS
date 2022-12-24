@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vZZ-xc-n2C">
-                        <rect key="frame" x="62" y="3" width="192" height="144"/>
+                        <rect key="frame" x="55" y="3" width="192" height="144"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="144" id="aaE-iR-VBJ"/>
                             <constraint firstAttribute="width" constant="192" id="smK-zA-B3r"/>
@@ -44,7 +44,7 @@
                     <constraint firstAttribute="bottom" secondItem="vZZ-xc-n2C" secondAttribute="bottom" constant="3" id="8Pe-ES-l1A"/>
                     <constraint firstItem="vZZ-xc-n2C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="L4S-YK-1nQ"/>
                     <constraint firstItem="Dge-Yh-gUz" firstAttribute="bottom" secondItem="vZZ-xc-n2C" secondAttribute="bottom" id="acs-Bp-u9K"/>
-                    <constraint firstItem="vZZ-xc-n2C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="62" id="seN-0i-wPM"/>
+                    <constraint firstItem="vZZ-xc-n2C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="55" id="seN-0i-wPM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -18,7 +18,8 @@ import StompClientLib
 
 protocol ChatRoomViewModelInput {
   var viewWillAppear: PublishRelay<Void> { get }
-  var sendMessage: PublishRelay<[ChatModel]> { get }
+  var sendMessage: PublishRelay<ChatModel> { get }
+  var recevieMessage: PublishRelay<ChatModel> { get }
   var chatroomInfo: PublishRelay<MissionRoomRequest> { get }
 }
 
@@ -44,14 +45,13 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                ChatRoomViewModelOutput,
                                ChatRoomViewModelType {
   let disposeBag = DisposeBag()
-  let lib = StompClientLib()
-  
   var input: ChatRoomViewModelInput { return self }
   var output: ChatRoomViewModelOutput { return self }
   
   // Input
   let viewWillAppear: PublishRelay<Void>
-  let sendMessage: PublishRelay<[ChatModel]>
+  let sendMessage: PublishRelay<ChatModel>
+  let recevieMessage: PublishRelay<ChatModel>
   let chatroomInfo: PublishRelay<MissionRoomRequest>
   
   // Output
@@ -63,74 +63,80 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let ddayCount: Driver<String>
   
   init(card: Card, stompManager: StompManagerProtocol) {
+    let name = UserDefaults.standard.string(forKey: "name")
     let fetching = PublishRelay<Void>()
-    let message = PublishRelay<[ChatModel]>()
+    let send = PublishRelay<ChatModel>()
+    let receive = PublishRelay<ChatModel>()
     let cardInfo = BehaviorRelay<Card>(value: card)
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
     
-    message
-      .filter { !$0.isEmpty }
-      .do(onNext: { model in
-        if let chat = model.first,
-           let message = chat.message {
-            stompManager.sendMessage(meesage: message)
-        }
-      })
-      .bind(onNext: { allMessages.accept($0) })
+    receive
+      .filter { $0.name != name! }
+      .bind(onNext: { allMessages.accept([$0]) })
+      .disposed(by: disposeBag)
+    
+    send
+      .do(onNext: { stompManager.sendMessage(meesage: $0.message!) })
+      .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
       .do(onNext: { _ in stompManager.registerSocket() })
       .map { _ in return [] }
-//      .flatMap { _ -> Observable<[ChatModel]> in
-//        return APIService.shared.request(request: RequestType(endpoint: "chats/\(card.roomId)",
-//                                                              method: .get))
-//        .map { (response: ChatResponse) -> [ChatModel] in
-//          return response.toDomain
-//        }
-//      }
+    //      .flatMap { _ -> Observable<[ChatModel]> in
+    //        return APIService.shared.request(request: RequestType(endpoint: "chats/\(card.roomId)",
+    //                                                              method: .get))
+    //        .map { (response: ChatResponse) -> [ChatModel] in
+    //          return response.toDomain
+    //        }
+    //      }
       .do(onNext: { _ in activating.accept(false) })
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
-        
+    
     self.viewWillAppear = fetching
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
-    self.sendMessage = message
+    self.sendMessage = send
+    self.recevieMessage = receive
     self.messageList = allMessages
-      .scan([ChatModel](), accumulator: { prev, new in
-        return prev + new })
-      .map { chat in
-        var section: [SectionOfChatModel] = []
-        var row: [ChatModel] = []
-        var currentTime: String = ""
-        for message in chat {
-          if currentTime.isEmpty || currentTime == message.time {
-            row.append(message)
-            currentTime = message.time
-          } else {
-            section.append(SectionOfChatModel(header: currentTime, items: row))
-            row = []
-            row.append(message)
-            currentTime = message.time
+        .scan([ChatModel](), accumulator: { prev, new in
+          return prev + new })
+        .map { (chats: [ChatModel]) -> [SectionOfChatModel] in
+          var section: [SectionOfChatModel] = []
+          var row: [ChatModel] = []
+          var currentTime: String = ""
+          for i in 0..<chats.count {
+            var message: ChatModel = chats[i]
+            let time = message.time.substring(from: 0, to: 9)
+            if i == 0 || chats[i - 1].name != message.name {
+              message.type = message.type.inverseMessage()
+            }
+            if currentTime.isEmpty || currentTime == time {
+              row.append(message)
+              currentTime = time
+            } else {
+              section.append(SectionOfChatModel(header: currentTime, items: row))
+              row = [message]
+              currentTime = time
+            }
           }
+          if !row.isEmpty {
+            section.append(SectionOfChatModel(header: currentTime, items: row))
+          }
+          return section
         }
-        if !row.isEmpty {
-          section.append(SectionOfChatModel(header: currentTime, items: row))
-        }
-        return section
-      }
-      .asDriver(onErrorJustReturn: [])
-  
+        .asDriver(onErrorJustReturn: [])
+    
     self.activated = activating
-        .distinctUntilChanged()
-        .asDriver(onErrorJustReturn: false)
-        
+      .distinctUntilChanged()
+      .asDriver(onErrorJustReturn: false)
+    
     self.errorMessage = error
-        .map { $0 as NSError }
-        .asSignal(onErrorJustReturn: MyError.error as NSError)
+      .map { $0 as NSError }
+      .asSignal(onErrorJustReturn: MyError.error as NSError)
     
     self.lastPosition = messageList
       .filter { !$0.isEmpty }
@@ -159,7 +165,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
           cell.configure(image: item.profileImage!,
                          name: item.name,
                          message: item.message,
-                         time: item.time)
+                         time: item.time.suffix(5).description)
           return cell
         case .receiveMessage:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageCell.identifier,

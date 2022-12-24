@@ -21,8 +21,8 @@ protocol StompManagerProtocol {
 }
 
 final class StompManager: StompManagerProtocol {
+  weak var viewModel: ChatRommViewModel?
   private var socketClient = StompClientLib()
- 
   private let url = URL(string: "ws://117.17.198.38:8080/chat")!
   private let roomId: String
   private let memberId: String
@@ -48,6 +48,8 @@ final class StompManager: StompManagerProtocol {
     let payloadObject: [String: Any] = ["contents": message,
                                         "memberId": self.memberId,
                                         "roomId": self.roomId]
+    print("roomId: ", roomId)
+    print("memberId", memberId)
     print("sendMessage: ", payloadObject)
     socketClient.sendJSONForDict(
       dict: payloadObject as AnyObject,
@@ -80,6 +82,15 @@ extension StompManager: StompClientLibDelegate {
     print("JSON Body : \(String(describing: jsonBody))")
     print("String Body : \(stringBody ?? "nil")")
     print("---------------------------")
+    guard let body = stringBody,
+          let data = body.data(using: .utf8),
+    let viewModel = viewModel else { return }
+    do {
+      let data2 = try JSONDecoder().decode(ChatSocketResponse.self, from: data)
+      viewModel.input.recevieMessage.accept(data2.toDomain)
+    } catch {
+      print(error.localizedDescription)
+    }
   }
   
   func stompClientJSONBody(client: StompClientLib!,

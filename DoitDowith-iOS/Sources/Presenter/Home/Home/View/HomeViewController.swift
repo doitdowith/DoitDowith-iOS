@@ -200,6 +200,8 @@ extension HomeViewController: ContentCellDelegate {
     self.stompManager = stompManager
     let vm = ChatRommViewModel(card: card,
                                stompManager: stompManager)
+    stompManager.viewModel = vm
+    
     let vc = UIStoryboard(name: "Home",
                           bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
                                                                  creator: { coder in

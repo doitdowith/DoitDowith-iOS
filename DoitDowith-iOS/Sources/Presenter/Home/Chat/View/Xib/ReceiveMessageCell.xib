@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AET-cA-RTq" userLabel="Message Background View">
-                        <rect key="frame" x="62" y="3" width="192" height="94"/>
+                        <rect key="frame" x="55" y="3" width="192" height="94"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKx-xU-fvM" userLabel="Message Text View">
                                 <rect key="frame" x="14" y="12" width="164" height="70"/>
@@ -45,7 +45,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 24:59" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9v-iV-V8U" userLabel="Time Label">
-                        <rect key="frame" x="262" y="87" width="49.666666666666686" height="13"/>
+                        <rect key="frame" x="255" y="87" width="51.5" height="13"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="11"/>
                         <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                     <constraint firstItem="AET-cA-RTq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="Phg-D6-auy"/>
                     <constraint firstItem="x9v-iV-V8U" firstAttribute="leading" secondItem="AET-cA-RTq" secondAttribute="trailing" constant="8" id="cZ4-C7-TBa"/>
                     <constraint firstAttribute="bottom" secondItem="AET-cA-RTq" secondAttribute="bottom" constant="3" id="lWK-tW-hoR"/>
-                    <constraint firstItem="AET-cA-RTq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="62" id="tSK-Pw-oav"/>
+                    <constraint firstItem="AET-cA-RTq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="55" id="tSK-Pw-oav"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

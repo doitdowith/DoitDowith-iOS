@@ -55,6 +55,7 @@
 		EE3AD8752956C89600457E44 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD8742956C89600457E44 /* Participant.swift */; };
 		EE3AD8782956C8CB00457E44 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD8772956C8CB00457E44 /* ImageType.swift */; };
 		EE3AD87A2956C8EB00457E44 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD8792956C8EB00457E44 /* MessageType.swift */; };
+		EE3AD87C2956D07900457E44 /* ChatSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3AD87B2956D07900457E44 /* ChatSocketResponse.swift */; };
 		EE3D3096295468FD00908F59 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D3095295468FD00908F59 /* String+.swift */; };
 		EE3EA1A128D9CBF000CEFE36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */; };
 		EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */; };
@@ -197,6 +198,7 @@
 		EE3AD8742956C89600457E44 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		EE3AD8772956C8CB00457E44 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		EE3AD8792956C8EB00457E44 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		EE3AD87B2956D07900457E44 /* ChatSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketResponse.swift; sourceTree = "<group>"; };
 		EE3D3095295468FD00908F59 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		EE3EA1A028D9CBF000CEFE36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EE3EA1AC28D9CD3300CEFE36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		EE1F590428F68AFA0046ED09 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				EEAEAD1B28E9237E004CA8BA /* ChatService.swift */,
 				EE8F28FD294DB616006E6F96 /* APIService.swift */,
 				EEB6036A294EEB2800BEF609 /* Login */,
 				EE63629D29121B0900A78758 /* Chat */,
@@ -760,9 +763,9 @@
 		EE8FF3F128FD4BB900EB5FBC /* Stomp */ = {
 			isa = PBXGroup;
 			children = (
-				EEAEAD1B28E9237E004CA8BA /* ChatService.swift */,
 				EE8BE63928F4532C003686E3 /* StompManager.swift */,
 				EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */,
+				EE3AD87B2956D07900457E44 /* ChatSocketResponse.swift */,
 			);
 			path = Stomp;
 			sourceTree = "<group>";
@@ -1101,6 +1104,7 @@
 				EE3EA1B228D9CD3E00CEFE36 /* MoreViewController.swift in Sources */,
 				EE6A2BD728E4893B000656AA /* ReceiveMessageCell.swift in Sources */,
 				EE557F2529266649005685EC /* ReceiveImageMessageCell.swift in Sources */,
+				EE3AD87C2956D07900457E44 /* ChatSocketResponse.swift in Sources */,
 				EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */,
 				1824EDBB2901B0AF007BA66B /* ModalViewController.swift in Sources */,
 				EE3AD8752956C89600457E44 /* Participant.swift in Sources */,
