@@ -15,12 +15,20 @@ import RxSwift
 import RxRelay
 
 final class MissionRoomSecondViewController: UIViewController {
-  let viewModel: MissionRoomSecondViewModelType
+  private let viewModel: MissionRoomSecondViewModelType
   var chatRequest: RequestType?
+  private var passdata: FirstRoomPassData?
+  
+  private var startDate: String?
+  private var certificateCount: String?
+  private var friendList: [String]?
   
   // MARK: Initializers
-  init?(coder: NSCoder, viewModel: MissionRoomSecondViewModelType) {
+  init?(coder: NSCoder,
+        viewModel: MissionRoomSecondViewModelType,
+        passdata: FirstRoomPassData) {
     self.viewModel = viewModel
+    self.passdata = passdata
     super.init(coder: coder)
   }
   
@@ -49,22 +57,67 @@ final class MissionRoomSecondViewController: UIViewController {
   @IBOutlet weak var certificateCountTextField: UITextFieldWithPadding!
   
   @IBAction func didTapCompleteButton(_ sender: UIButton) {
-    //     guard let request = chatRequest else { return }
-    //    let service = ChatService()
-    //    let stompManager = StompManager(targetId: roomId,
-    //                                    senderId: "b6dcf006-7fbf-47fc-9247-944b5706222e",
-    //                                    connectType: .room)
-    //
-    //    let chatRoomViewModel = ChatRommViewModel(id: roomId,
-    //                                              service: service,
-    //                                              stompManager: stompManager)
-    //    let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
-    //                                                                                           creator: { coder in
-    //      ChatRoomController(coder: coder, roomId: roomId, viewModel: chatRoomViewModel)
-    //    })
-    //    self.navigationController?.pushViewController(viewController, animated: true)
+    guard let passdata = passdata,
+          let startDate = startDate,
+          let certificateCount = certificateCount,
+          let count = Int(certificateCount),
+          var friendList = friendList else { return }
+    
+    friendList = ["4879404e-849e-45e1-9753-d53a12fcde25", "1", "2"]
+    let body: [String: Any] = ["certificationCount": count,
+                               "color": passdata.color,
+                               "description": passdata.description,
+                               "participants": friendList,
+                               "startDate": startDate,
+                               "title": passdata.name]
+    let request = RequestType(endpoint: "room", method: .post, parameters: body)
+    APIService.shared.request(request: request)
+      .map { (response: CreateRoomResponse) -> String in
+        print("roomdId: ", response.roomId)
+        return response.roomId
+      }
+      .withUnretained(self)
+      .bind(onNext: { (owner, id: String) in
+        owner.navigateChat(roomId: id)
+      })
+      .disposed(by: rx.disposeBag)
   }
   
+  func navigateChat(roomId: String) {
+    guard let passdata = passdata,
+          let startDate = startDate,
+          let certificateCount = certificateCount,
+          let count = Int(certificateCount),
+          var friendList = friendList,
+          let memberId = UserDefaults.standard.string(forKey: "memberId")else { return }
+    
+    let stompManager = StompManager(roomId: roomId,
+                                    memberId: memberId)
+    
+    let chatService = ChatService()
+    chatService.createChatRoom(roomId: roomId.hash)
+    
+    let card = Card(section: 1,
+                    roomId: roomId,
+                    title: passdata.name,
+                    description: passdata.description,
+                    color: passdata.color,
+                    startDate: startDate,
+                    participants: friendList.map { Participant(name: $0, profileImage: "") },
+                    count: count)
+    
+    let chatRoomViewModel = ChatRommViewModel(card: card,
+                                              stompManager: stompManager,
+                                              chatService: chatService)
+    stompManager.viewModel = chatRoomViewModel
+    
+    let viewController = UIStoryboard(name: "Home",
+                                      bundle: nil).instantiateViewController(identifier: "ChatRoomVC",
+                                                                             creator: { coder in
+                                        ChatRoomController(coder: coder, card: card, viewModel: chatRoomViewModel)
+                                      })
+    self.navigationController?.pushViewController(viewController, animated: true)
+  }
   // MARK: Properties
   private lazy var datePicker: UIDatePicker = {
     let picker = UIDatePicker()
@@ -83,12 +136,7 @@ extension MissionRoomSecondViewController {
     self.bindMakeButton()
     self.bindDateTextField()
     self.bindCertificateCountTextField()
-    
-    self.viewModel.output.chatroomInfo
-      .withUnretained(self)
-      .bind(onNext: { owner, req in
-        owner.chatRequest = req })
-      .disposed(by: rx.disposeBag)
+    self.bindFriendList()
   }
   
   func registerCells() {
@@ -145,13 +193,12 @@ extension MissionRoomSecondViewController {
   func bindFriendCollectionView() {
     self.friendCollectionView.allowsMultipleSelection = true
     self.viewModel.output.model
-      .debug()
       .map { $0 + ["https://www.pngfind.com/pngs/m/52-523304_plus-sign-icon-png-plus-icon-png-transparent.png"] }
       .drive(self.friendCollectionView.rx.items(cellIdentifier: FriendProfileCell.identifier,
                                                 cellType: FriendProfileCell.self)) { _, item, cell in
         cell.configure(url: item)
       }
-      .disposed(by: rx.disposeBag)
+                                                .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.friendCollectionView.rx.itemSelected,
@@ -165,11 +212,6 @@ extension MissionRoomSecondViewController {
   }
   
   func bindMakeButton() {
-    self.makeButton.rx.tap
-      .do { print($0) }
-      .bind(onNext: { self.viewModel.input.completeAction.accept(Void()) })
-      .disposed(by: rx.disposeBag)
-    
     self.viewModel.output.buttonEnabled
       .drive(self.makeButton.rx.isUserInteractionEnabled)
       .disposed(by: rx.disposeBag)
@@ -188,6 +230,7 @@ extension MissionRoomSecondViewController {
       .withUnretained(self)
       .bind(onNext: { owner, text in
         owner.viewModel.input.missionStartDate.accept(text)
+        owner.startDate = text
       })
       .disposed(by: rx.disposeBag)
   }
@@ -198,7 +241,14 @@ extension MissionRoomSecondViewController {
       .withUnretained(self)
       .bind(onNext: { owner, text in
         owner.viewModel.input.missionCertificateCount.accept(text)
+        owner.certificateCount = text
       })
+      .disposed(by: rx.disposeBag)
+  }
+  
+  func bindFriendList() {
+    self.viewModel.output.selectedFriend
+      .drive(onNext: { self.friendList = $0 })
       .disposed(by: rx.disposeBag)
   }
 }
@@ -222,7 +272,7 @@ extension MissionRoomSecondViewController {
   }
   
   @objc func donePressed() {
-    self.dateTextfield.rx.text.onNext("\(self.datePicker.date.formatted(format: "yy-MM-dd"))")
+    self.dateTextfield.rx.text.onNext("\(self.datePicker.date.formatted(format: "yyyy-MM-dd"))")
     self.view.endEditing(true)
   }
 }

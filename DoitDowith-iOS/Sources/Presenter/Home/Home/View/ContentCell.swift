@@ -34,8 +34,8 @@ class ContentCell: UICollectionViewCell {
     self.modelRelay
       .bind(to: self.cardCollectionView.rx.items(cellIdentifier: CardCell.identifier,
                                                  cellType: CardCell.self)) { _, element, cell in
-        cell.configure(title: element.title,
-                       subtitle: element.description)}
+        cell.configure(model: element)
+      }
       .disposed(by: disposeBag)
     
     self.cardCollectionView.rx.modelSelected(Card.self)

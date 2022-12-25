@@ -26,8 +26,7 @@ protocol MissionRoomFirstViewModelInput {
 protocol MissionRoomFirstViewModelOutput {
   var buttonEnabled: Driver<Bool> { get }
   var buttonColor: Driver<UIColor> { get }
-  var missionColors: Driver<[UIColor]> { get }
-  var passData: Observable<FirstRoomPassData> { get }
+  var missionColors: Driver<[Int]> { get }
 }
 
 protocol MissionRoomFirstViewModelType {
@@ -50,28 +49,26 @@ final class MissionRoomFirstViewModel: MissionRoomFirstViewModelInput,
   // Output
   let buttonEnabled: Driver<Bool>
   let buttonColor: Driver<UIColor>
-  let missionColors: Driver<[UIColor]>
-  let passData: Observable<FirstRoomPassData>
+  let missionColors: Driver<[Int]>
   
   init() {
     self.currentMissionName = PublishRelay<String>()
     self.currentMissionDetail = PublishRelay<String>()
     self.currentMissionColor = PublishRelay<String>()
     
-    let colors = BehaviorRelay<[UIColor]>(value: [UIColor(red: 253/255, green: 236/255, blue: 236/255, alpha: 1),
-                                                  UIColor(red: 253/255, green: 243/255, blue: 232/255, alpha: 1),
-                                                  UIColor(red: 245/255, green: 247/255, blue: 229/255, alpha: 1),
-                                                  UIColor(red: 229/255, green: 243/255, blue: 251/255, alpha: 1),
-                                                  UIColor(red: 235/255, green: 235/255, blue: 252/255, alpha: 1),
-                                                  UIColor(red: 255/255, green: 237/255, blue: 250/255, alpha: 1)])
+    let colors = BehaviorRelay<[Int]>(value: [0xFDECEC,
+                                              0xFDF3E8,
+                                              0xF5F7E5,
+                                              0xE5F3FB,
+                                              0xEBEBFC,
+                                              0xFFEDFA])
     
-    let enable = Observable
-      .combineLatest(currentMissionName,
-                     currentMissionDetail,
-                     currentMissionColor)
-      .map { (name, detail, _) -> Bool in
-        return !name.isEmpty && !detail.isEmpty
-      }
+    let combined = PublishRelay.combineLatest(currentMissionName,
+                                              currentMissionDetail,
+                                              currentMissionColor)
+    let enable = combined.map { (name, detail, _) -> Bool in
+      return !name.isEmpty && !detail.isEmpty
+    }
     
     self.buttonEnabled = enable.asDriver(onErrorJustReturn: false)
     self.buttonColor = enable.map { can -> UIColor in
@@ -81,11 +78,6 @@ final class MissionRoomFirstViewModel: MissionRoomFirstViewModelInput,
         return .primaryColor4
       }
     }.asDriver(onErrorJustReturn: .primaryColor4)
-    self.missionColors = colors.asDriver(onErrorJustReturn: [UIColor]())
-    self.passData = Observable
-      .zip(self.currentMissionName.asObservable(),
-           self.currentMissionDetail.asObservable(),
-           self.currentMissionColor.asObservable())
-      .map { FirstRoomPassData(name: $0.0, description: $0.1, color: $0.2) }
+    self.missionColors = colors.asDriver(onErrorJustReturn: [Int]())
   }
 }

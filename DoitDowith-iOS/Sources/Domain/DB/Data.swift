@@ -21,15 +21,6 @@ class ChatRoom: Object, NSCopying {
     copy.items = self.items
     return copy
   }
-  
-  func incrementID() -> Int {
-    let realm = try! Realm()
-    if let retNext = realm.objects(ChatRoom.self).sorted(byKeyPath: "roomId").first?.roomId {
-      return retNext + 1
-    } else {
-      return 1
-    }
-  }
 }
 
 class Chat: Object {

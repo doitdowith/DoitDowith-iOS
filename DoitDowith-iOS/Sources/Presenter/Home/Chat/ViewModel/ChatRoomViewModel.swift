@@ -62,7 +62,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let lastPosition: Signal<(Int, Int)>
   let ddayCount: Driver<String>
   
-  init(card: Card, stompManager: StompManagerProtocol) {
+  init(card: Card, stompManager: StompManagerProtocol, chatService: ChatServiceProtocol) {
     let name = UserDefaults.standard.string(forKey: "name")
     let fetching = PublishRelay<Void>()
     let send = PublishRelay<ChatModel>()
@@ -71,28 +71,26 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
+    let roomid = card.roomId.hash
     
     receive
       .filter { $0.name != name! }
+      .do(onNext: { chatService.sendMessage(roomId: roomid, message: $0) })
       .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
     
     send
       .do(onNext: { stompManager.sendMessage(meesage: $0.message!) })
+      .do(onNext: { chatService.sendMessage(roomId: roomid, message: $0) })
       .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
     
     fetching
       .do(onNext: { _ in activating.accept(true) })
       .do(onNext: { _ in stompManager.registerSocket() })
-      .map { _ in return [] }
-    //      .flatMap { _ -> Observable<[ChatModel]> in
-    //        return APIService.shared.request(request: RequestType(endpoint: "chats/\(card.roomId)",
-    //                                                              method: .get))
-    //        .map { (response: ChatResponse) -> [ChatModel] in
-    //          return response.toDomain
-    //        }
-    //      }
+      .flatMap { _ -> Observable<[ChatModel]> in
+        return chatService.fetchChatList(roomId: roomid)
+      }
       .do(onNext: { _ in activating.accept(false) })
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)

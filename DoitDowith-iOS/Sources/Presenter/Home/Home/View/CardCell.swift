@@ -33,8 +33,12 @@ extension CardCell {
     self.background.layer.cornerRadius = 8
   }
   
-  func configure(title: String, subtitle: String) {
-    self.titleLabel.text = title
-    self.subtitleLabel.text = subtitle
+  func configure(model: Card) {
+    self.titleLabel.text = model.title
+    self.subtitleLabel.text = model.description
+    if let hex = Int(model.color) {
+      let color = UIColor(hex: hex)
+      self.background.backgroundColor = color
+    }
   }
 }

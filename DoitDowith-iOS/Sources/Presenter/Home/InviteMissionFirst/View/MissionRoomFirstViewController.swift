@@ -21,17 +21,22 @@ final class MissionRoomFirstViewController: UIViewController {
   @IBOutlet weak var descriptionTextField: UITextFieldWithPadding!
   @IBOutlet weak var nextPageButton: UIButton!
   
+  private var name: String?
+  private var detail: String?
+  private var color: String?
+  
   @IBAction func didTapNextPageButton(_ sender: UIButton) {
-    let vm: MissionRoomSecondViewModelType = MisionRoomSecondViewModel()
-    self.viewModel.output.passData
-      .bind(to: vm.input.passedData)
-      .disposed(by: rx.disposeBag)
-    
+    guard let name = name,
+          let detail = detail,
+          let color = color else { return }
+    let vm = MisionRoomSecondViewModel()
+    let passdata = FirstRoomPassData(name: name, description: detail, color: color)
     let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(
       identifier: "MissionRoomSecondVC",
       creator: { coder in
         MissionRoomSecondViewController(coder: coder,
-                                        viewModel: vm)
+                                        viewModel: vm,
+                                        passdata: passdata)
       })
     self.navigationController?.pushViewController(viewController, animated: true)
   }
@@ -117,18 +122,21 @@ extension MissionRoomFirstViewController {
   func bindMissionColorView() {
     self.viewModel.output.missionColors
       .drive(self.missionColorView.rx.items(cellIdentifier: ColorCell.identifier,
-                                            cellType: ColorCell.self)) { _, color, cell in
-        cell.backgroundColor = color
+                                            cellType: ColorCell.self)) { [weak self] (_, color: Int, cell: ColorCell) in
+        guard let self = self else { return }
+        cell.configure(color: UIColor(hex: color))
+        self.color = "\(color)"
       }
       .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.missionColorView.rx.itemSelected,
-           self.missionColorView.rx.modelSelected(UIColor.self))
+           self.missionColorView.rx.modelSelected(Int.self))
       .withUnretained(self)
       .bind(onNext: { owner, arg in
         let color = arg.1
-        owner.viewModel.input.currentMissionColor.accept(color.accessibilityName)
+        owner.viewModel.input.currentMissionColor.accept("\(color)")
+        owner.color = "\(color)"
       })
       .disposed(by: rx.disposeBag)
   }
@@ -139,6 +147,7 @@ extension MissionRoomFirstViewController {
       .withUnretained(self)
       .bind(onNext: { owner, text in
         owner.viewModel.input.currentMissionName.accept(text)
+        owner.name = text
       })
       .disposed(by: rx.disposeBag)
   }
@@ -149,6 +158,7 @@ extension MissionRoomFirstViewController {
       .withUnretained(self)
       .bind(onNext: { owner, text in
         owner.viewModel.input.currentMissionDetail.accept(text)
+        owner.detail = text
       })
       .disposed(by: rx.disposeBag)
   }

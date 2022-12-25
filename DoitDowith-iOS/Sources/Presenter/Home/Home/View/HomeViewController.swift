@@ -39,10 +39,12 @@ final class HomeViewController: UIViewController {
     super.viewDidLoad()
     self.registerNib()
     self.contentCollectionView.collectionViewLayout = self.colletionViewLayout()
+    self.contentCollectionView.refreshControl = refreshControl
     self.bind()
   }
   
   // MARK: Interface Builder
+  let refreshControl = UIRefreshControl()
   @IBOutlet weak var contentCollectionView: UICollectionView!
   @IBOutlet weak var doingButton: UILabel!
   @IBOutlet weak var willdoButton: UILabel!
@@ -137,7 +139,7 @@ extension HomeViewController {
       .map { _ in () } ?? Observable.just(())
     
     Observable.merge([firstLoad, reload])
-      .bind(to: viewModel.fetchCards)
+      .bind(to: viewModel.input.fetchCards)
       .disposed(by: rx.disposeBag)
   }
   
@@ -198,10 +200,11 @@ extension HomeViewController: ContentCellDelegate {
     let stompManager = StompManager(roomId: card.roomId,
                                     memberId: memberId)
     self.stompManager = stompManager
+    let chatService = ChatService()
     let vm = ChatRommViewModel(card: card,
-                               stompManager: stompManager)
+                               stompManager: stompManager,
+                               chatService: chatService)
     stompManager.viewModel = vm
-    
     let vc = UIStoryboard(name: "Home",
                           bundle: nil).instantiateViewController(identifier: ChatRoomController.identifier,
                                                                  creator: { coder in

@@ -14,7 +14,7 @@ final class ColorCell: UICollectionViewCell {
     didSet {
       if isSelected {
         self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
       } else {
         self.layer.borderWidth = 0
       }
@@ -36,5 +36,9 @@ extension ColorCell {
     self.layer.masksToBounds = true
     self.layer.cornerRadius = 24
     self.layer.applySketchShadow(alpha: 0.16, x: 1, y: 1, blur: 2, spread: 0)
+  }
+  
+  func configure(color: UIColor) {
+    self.backgroundColor = color
   }
 }
