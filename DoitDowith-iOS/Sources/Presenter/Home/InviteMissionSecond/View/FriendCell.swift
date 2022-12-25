@@ -43,7 +43,8 @@ class FriendCell: UITableViewCell {
 extension FriendCell {
   func configure(url: String, name: String, state: State) {
     let processor = RoundCornerImageProcessor(cornerRadius: 22)
-    self.profileImage.kf.setImage(with: URL(string: url), options: [.processor(processor)])
+    self.profileImage.setImage(with: "http://117.17.198.38:8080/images/\(url)",
+                               processor: processor)
    
     self.nameLabel.text = name
     self.state = state

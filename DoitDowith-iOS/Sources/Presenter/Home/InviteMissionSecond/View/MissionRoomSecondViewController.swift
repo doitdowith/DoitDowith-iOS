@@ -8,6 +8,7 @@
 import UIKit
 
 import Action
+import Kingfisher
 import NSObject_Rx
 import RealmSwift
 import RxCocoa
@@ -61,9 +62,8 @@ final class MissionRoomSecondViewController: UIViewController {
           let startDate = startDate,
           let certificateCount = certificateCount,
           let count = Int(certificateCount),
-          var friendList = friendList else { return }
+          let friendList = friendList else { return }
     
-    friendList = ["4879404e-849e-45e1-9753-d53a12fcde25", "1", "2"]
     let body: [String: Any] = ["certificationCount": count,
                                "color": passdata.color,
                                "description": passdata.description,
@@ -88,8 +88,8 @@ final class MissionRoomSecondViewController: UIViewController {
           let startDate = startDate,
           let certificateCount = certificateCount,
           let count = Int(certificateCount),
-          var friendList = friendList,
-          let memberId = UserDefaults.standard.string(forKey: "memberId")else { return }
+          let friendList = friendList,
+          let memberId = UserDefaults.standard.string(forKey: "memberId") else { return }
     
     let stompManager = StompManager(roomId: roomId,
                                     memberId: memberId)
@@ -161,7 +161,7 @@ extension MissionRoomSecondViewController {
     let vm = InviteModalViewModel()
     let inviteModal = UIStoryboard(name: "Home",
                                    bundle: nil).instantiateViewController(identifier: InviteModalViewController.identifier) { coder in
-      InviteModalViewController(coder: coder, viewModel: vm, parentViewModel: self.viewModel)
+      InviteModalViewController(coder: coder, parentViewModel: self.viewModel)
     }
     inviteModal.modalPresentationStyle = .overCurrentContext
     self.present(inviteModal, animated: false)
@@ -178,6 +178,12 @@ extension MissionRoomSecondViewController {
       navigationController?.isNavigationBarHidden = visible
     })
     .disposed(by: rx.disposeBag)
+    
+    rx.viewWillAppear
+      .take(1)
+      .map { _ in () }
+      .bind(to: viewModel.input.fetchFriends)
+      .disposed(by: rx.disposeBag)
   }
   
   func bindBackButton() {
@@ -193,12 +199,17 @@ extension MissionRoomSecondViewController {
   func bindFriendCollectionView() {
     self.friendCollectionView.allowsMultipleSelection = true
     self.viewModel.output.model
-      .map { $0 + ["https://www.pngfind.com/pngs/m/52-523304_plus-sign-icon-png-plus-icon-png-transparent.png"] }
+      .map { $0 + ["https://cdn-icons-png.flaticon.com/512/117/117885.png"] }
       .drive(self.friendCollectionView.rx.items(cellIdentifier: FriendProfileCell.identifier,
                                                 cellType: FriendProfileCell.self)) { _, item, cell in
-        cell.configure(url: item)
+        if item == "https://cdn-icons-png.flaticon.com/512/117/117885.png" {
+          cell.profileImage.setImage(with: "https://cdn-icons-png.flaticon.com/512/117/117885.png",
+                                     processor: RoundCornerImageProcessor(cornerRadius: 22))
+        } else {
+          cell.configure(url: item)
+        }
       }
-                                                .disposed(by: rx.disposeBag)
+      .disposed(by: rx.disposeBag)
     
     Observable
       .zip(self.friendCollectionView.rx.itemSelected,
@@ -247,7 +258,7 @@ extension MissionRoomSecondViewController {
   }
   
   func bindFriendList() {
-    self.viewModel.output.selectedFriend
+    self.viewModel.output.selectedFriends
       .drive(onNext: { self.friendList = $0 })
       .disposed(by: rx.disposeBag)
   }

@@ -87,7 +87,7 @@ extension LoginViewController {
                                     method: .post,
                                     parameters: ["accessToken": token]))
       .bind(onNext: { (response: LoginResponse) in
-        print(response.memberId.hash)
+        print(response)
         UserDefaults.standard.set(response.accessToken, forKey: "token")
         UserDefaults.standard.set(response.email, forKey: "email")
         UserDefaults.standard.set(response.memberId, forKey: "memberId")

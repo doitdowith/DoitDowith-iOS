@@ -155,8 +155,15 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .map { (date: Date?) -> String in
         guard let date = date else { return "" }
         let next = date.addingTimeInterval(3600 * 7 * 24)
-        let diff = next.timeIntervalSince(date)
+        let diff = next.timeIntervalSince(Date.now)
         let day = Int(diff / (3600 * 24))
+        if day > 7 {
+          return "미션 시작 D-\(day - 7)"
+        } else if day < 0 {
+          return "미션이 종료되었습니다."
+        } else if day == 0 {
+          return "미션이 오늘 종료됩니다."
+        }
         return "미션 종료 D-\(day)"
       }
       .asDriver(onErrorJustReturn: "")

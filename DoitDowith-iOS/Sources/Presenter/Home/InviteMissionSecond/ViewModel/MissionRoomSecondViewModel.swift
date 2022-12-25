@@ -13,15 +13,17 @@ import RxSwift
 import Action
 
 protocol MissionRoomSecondViewModelInput {
+  var fetchFriends: PublishRelay<Void> { get }
   var missionStartDate: PublishRelay<String> { get }
   var missionCertificateCount: PublishRelay<String> { get }
-  var missionFriendList: BehaviorRelay<[Friend]> { get }
+  var selectFriends: BehaviorRelay<[Friend]> { get }
 }
 protocol MissionRoomSecondViewModelOutput {
   var buttonEnabled: Driver<Bool> { get }
   var buttonColor: Driver<UIColor> { get }
   var model: Driver<[String]> { get }
-  var selectedFriend: Driver<[String]> { get }
+  var friendList: Driver<[Friend]> { get }
+  var selectedFriends: Driver<[String]> { get }
 }
 
 protocol MissionRoomSecondViewModelType {
@@ -36,21 +38,30 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
   var output: MissionRoomSecondViewModelOutput { return self }
   let disposeBag: DisposeBag = DisposeBag()
   
+  let fetchFriends: PublishRelay<Void>
   let missionStartDate: PublishRelay<String>
   let missionCertificateCount: PublishRelay<String>
-  let missionFriendList: BehaviorRelay<[Friend]>
+  let selectFriends: BehaviorRelay<[Friend]>
   
   let buttonEnabled: Driver<Bool>
   let buttonColor: Driver<UIColor>
   let model: Driver<[String]>
-  let selectedFriend: Driver<[String]>
+  let friendList: Driver<[Friend]>
+  let selectedFriends: Driver<[String]>
   
   init() {
+    let memberId = UserDefaults.standard.string(forKey: "memberId")
+    let imageUrl = UserDefaults.standard.string(forKey: "profileImage")
+    let name = UserDefaults.standard.string(forKey: "name")
+    
     let fetching = PublishRelay<Void>()
     let activating = BehaviorRelay<Bool>(value: false)
-    let friendsList = BehaviorRelay<[Friend]>(value: [])
     let startDate = PublishRelay<String>()
+    let select = BehaviorRelay<[Friend]>(value: [])
     let count = PublishRelay<String>()
+    
+    let friends = BehaviorRelay<[Friend]>(value: [])
+    
     fetching
       .do(onNext: { _ in activating.accept(true) })
       .flatMap { _ -> Observable<[Friend]> in
@@ -61,21 +72,7 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
           }
       }
       .do(onNext: { _ in activating.accept(false) })
-      .map { (friendList: [Friend]) -> [Friend] in
-        var friends = friendList
-        guard let memberId = UserDefaults.standard.string(forKey: "memberId"),
-              let imageUrl = UserDefaults.standard.string(forKey: "profileImage"),
-              let name = UserDefaults.standard.string(forKey: "name") else {
-          return friends
-        }
-        friends.insert(Friend(id: memberId,
-                              url: imageUrl,
-                              state: .ing,
-                              name: name),
-                       at: 0)
-        return friends
-      }
-      .bind(onNext: { friends in friendsList.accept(friends) })
+      .bind(onNext: { friends.accept($0) })
       .disposed(by: disposeBag)
     
     let enable = Observable
@@ -83,9 +80,11 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
       .map { (date, count) -> Bool in
         return !date.isEmpty && !count.isEmpty }
     
+    self.fetchFriends = fetching
     self.missionStartDate = startDate
     self.missionCertificateCount = count
-    self.missionFriendList = friendsList
+    self.selectFriends = select
+  
     self.buttonEnabled = enable.asDriver(onErrorJustReturn: false)
     self.buttonColor = enable.map { can -> UIColor in
       if can {
@@ -94,7 +93,12 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
         return .primaryColor4
       }
     }.asDriver(onErrorJustReturn: .primaryColor4)
-    self.model = missionFriendList.map { $0.map { $0.url } }.asDriver(onErrorJustReturn: [])
-    self.selectedFriend = missionFriendList.map { $0.map { $0.id } }.asDriver(onErrorJustReturn: [])
+    self.model = select.map { $0.map { $0.url } }
+                        .map { [imageUrl!] + $0 }
+                        .asDriver(onErrorJustReturn: [])
+    self.friendList = friends.asDriver(onErrorJustReturn: [])
+    self.selectedFriends = select.map { $0.map { $0.id } }
+                                 .map { [memberId!] + $0 }
+                                 .asDriver(onErrorJustReturn: [])
   }
 }

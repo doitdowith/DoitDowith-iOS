@@ -27,15 +27,12 @@ final class InviteModalViewController: UIViewController {
   
   @IBAction func completeButtonDidTap(_ sender: UIButton) {
     var filtered: [Friend] = []
-    let friendlist = viewModel.output.frieindList.value
-    for (i, friend) in friendlist.enumerated() where selectedCell[i] {
-      let temp = Friend(id: friend.id,
-                        url: friend.url,
-                        state: .ing,
-                        name: friend.name)
-      filtered.append(temp)
+    for (i, friend) in self.friendList.enumerated() where selectedCell[i] {
+      let selected = Friend(id: friend.id, url: friend.url, state: .ing, name: friend.name)
+      filtered.append(selected)
     }
-    parentViewModel.input.missionFriendList.accept(filtered)
+    print(filtered)
+    parentViewModel.input.selectFriends.accept(filtered)
     animateDismissView()
   }
   
@@ -49,16 +46,14 @@ final class InviteModalViewController: UIViewController {
   private let dissmissHeight: CGFloat = 350
   private let filterButtonTapCount: Int = 0
   
-  private var selectedCell: [Bool]
-  private let viewModel: InviteModalViewModelType
+  private var friendList: [Friend] = []
+  private var selectedCell: [Bool] = []
   private let parentViewModel: MissionRoomSecondViewModelType
+  
   // MARK: Initializers
   init?(coder: NSCoder,
-        viewModel: InviteModalViewModelType,
         parentViewModel: MissionRoomSecondViewModelType) {
-    self.viewModel = viewModel
     self.parentViewModel = parentViewModel
-    self.selectedCell = Array(repeating: false, count: viewModel.frieindList.value.count)
     super.init(coder: coder)
   }
   
@@ -94,6 +89,7 @@ extension InviteModalViewController {
   func bind() {
     self.bindLifeCycle()
     self.bindDimmedView()
+    self.bindFriendList()
     self.bindContentView()
     self.bindFriendListTableView()
     self.bindFriendNumberLabel()
@@ -102,8 +98,17 @@ extension InviteModalViewController {
 
 // MARK: Bind Functions
 extension InviteModalViewController {
+  func bindFriendList() {
+    self.parentViewModel.output.friendList
+      .drive(onNext: { friends in
+        self.friendList = friends
+        self.selectedCell = Array(repeating: false, count: friends.count)
+      })
+      .disposed(by: rx.disposeBag)
+  }
   func bindFriendNumberLabel() {
-    self.viewModel.output.friendNumber
+    self.parentViewModel.output.friendList
+      .map { $0.count }
       .map { "친구 \($0)명" }
       .drive(self.friendNumber.rx.text)
       .disposed(by: rx.disposeBag)
@@ -178,8 +183,8 @@ extension InviteModalViewController {
     }
     .disposed(by: rx.disposeBag)
     
-    self.viewModel.output.frieindList
-      .bind(to: self.friendListTableView.rx.items(cellIdentifier: FriendCell.identifier,
+    self.parentViewModel.output.friendList
+      .drive(friendListTableView.rx.items(cellIdentifier: FriendCell.identifier,
                                                       cellType: FriendCell.self)) { _, element, cell in
         cell.configure(url: element.url,
                        name: element.name,
