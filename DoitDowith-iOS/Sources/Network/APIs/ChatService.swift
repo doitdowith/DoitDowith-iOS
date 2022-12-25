@@ -18,34 +18,49 @@ protocol ChatServiceProtocol {
   func fetchChatList(roomId: Int) -> Observable<[ChatModel]>
   func sendMessage(roomId: Int, message: ChatModel)
   func createChatRoom(roomId: Int)
+  func searchRoom(roomId: Int) -> Bool 
 }
 
 class ChatService: ChatServiceProtocol {
   let realm = try! Realm()
   
-  func createChatRoom(roomId: Int){
-    let chatroom = ChatRoom()
-    chatroom.roomId = roomId
-    try? realm.write {
-      realm.add(chatroom)
+  func createChatRoom(roomId: Int) {
+    do {
+      let chatroom = ChatRoom()
+      chatroom.roomId = roomId
+      try realm.write {
+        realm.add(chatroom)
+      }
+    } catch {
+      print("Create chat room error: ", error.localizedDescription)
     }
   }
   
   func sendMessage(roomId: Int, message: ChatModel) {
-    try! realm.write {
-      let chatrooms = realm.objects(ChatRoom.self)
-      let chatroom = chatrooms.first { $0.roomId == roomId }
-      if let msg = message.message {
-        chatroom?.items.append(Chat(type: message.type.rawValue,
-                                    name: message.name,
-                                    message: msg))
+    do {
+      try realm.write {
+        let chatrooms = realm.objects(ChatRoom.self)
+        let chatroom = chatrooms.first { $0.roomId == roomId }
+        if let profile = message.profileImage {
+          chatroom?.items.append(Chat(type: message.type.rawValue,
+                                      name: message.name,
+                                      profileImage: profile,
+                                      message: message.message))
+        }
       }
+    } catch {
+      print("send message error: ", error.localizedDescription)
     }
+  }
+  
+  func searchRoom(roomId: Int) -> Bool {
+    let roomResult = realm.objects(ChatRoom.self).filter { $0.roomId == roomId }
+    guard roomResult.first != nil else { return false }
+    return true
   }
   
   func fetchChatList(roomId: Int) -> Observable<[ChatModel]> {
     return Observable.create { emitter in
-      print(Realm.Configuration.defaultConfiguration.fileURL)
       let realmChat = self.realm.objects(ChatRoom.self).sorted(byKeyPath: "roomId")
       let chatrooms: [ChatRoom] = self.convertToArray(results: realmChat)
       guard let chatroom = chatrooms.first(where: { $0.roomId == roomId }) else {
@@ -55,6 +70,7 @@ class ChatService: ChatServiceProtocol {
       let items = chatroom.items
       let chatModel: [ChatModel] = items.map { elem in
         return ChatModel(type: .init(rawValue: elem.type) ?? .sendMessage,
+                         profileImage: elem.profileImage,
                          name: elem.name,
                          message: elem.message,
                          time: elem.time.formatted(format: "yyyy-MM-dd hh:mm"))

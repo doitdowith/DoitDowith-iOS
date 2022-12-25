@@ -37,17 +37,11 @@ class ReceiveImageMessageCell: UITableViewCell {
 }
 
 extension ReceiveImageMessageCell {
-  func configure(time: String, message: String?, image: ImageType?) {
-    if let image = image {
-      switch image {
-      case .url(let model):
-        receiveImageView.setImage(with: model)
-      case .base64(let model):
-        if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
-          let decodedImg = UIImage(data: data)
-          receiveImageView.image = decodedImg
-        }
-      }
+  func configure(time: String, message: String?, image: String?) {
+    if let image = image,
+       let data = Data(base64Encoded: image, options: .ignoreUnknownCharacters) {
+      let decodedImg = UIImage(data: data)
+      receiveImageView.image = decodedImg
     }
     
     if let message = message {

@@ -201,6 +201,10 @@ extension HomeViewController: ContentCellDelegate {
                                     memberId: memberId)
     self.stompManager = stompManager
     let chatService = ChatService()
+    let roomid = card.roomId.hash
+    if !chatService.searchRoom(roomId: roomid) {
+      chatService.createChatRoom(roomId: roomid)
+    }
     let vm = ChatRommViewModel(card: card,
                                stompManager: stompManager,
                                chatService: chatService)

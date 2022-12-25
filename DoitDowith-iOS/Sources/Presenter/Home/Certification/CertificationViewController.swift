@@ -86,7 +86,7 @@ class CertificationViewController: UIViewController {
     self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
                                                          name: name,
                                                          message: "\(name)님의 인증 메세지",
-                                                         image: .base64(base64),
+                                                         image: base64,
                                                          time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     self.navigationController?.popViewController(animated: true)
   }

@@ -12,9 +12,9 @@ import RxDataSources
 
 struct ChatModel {
   var type: MessageType
-  var profileImage: ImageType?
+  var profileImage: String?
   var name: String
-  var message: String?
-  var image: ImageType?
+  var message: String
+  var image: String?
   var time: String
 }

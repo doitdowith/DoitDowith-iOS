@@ -15,7 +15,7 @@ struct ChatResponse: Codable {
 
 struct ChatData: Codable {
   var memberId: Int
-  var image: String
+  var profileImage: String
   var name: String
   var message: String
   var time: String
@@ -42,7 +42,7 @@ extension ChatResponse {
         }
       }
       return ChatModel(type: type,
-                       profileImage: .url(data.image),
+                       profileImage: data.profileImage,
                        name: data.name,
                        message: data.message,
                        time: data.time)

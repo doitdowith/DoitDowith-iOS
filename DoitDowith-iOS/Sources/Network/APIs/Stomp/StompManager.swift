@@ -48,9 +48,6 @@ final class StompManager: StompManagerProtocol {
     let payloadObject: [String: Any] = ["contents": message,
                                         "memberId": self.memberId,
                                         "roomId": self.roomId]
-    print("roomId: ", roomId)
-    print("memberId", memberId)
-    print("sendMessage: ", payloadObject)
     socketClient.sendJSONForDict(
       dict: payloadObject as AnyObject,
       toDestination: DestinationType.sendRoom.path)

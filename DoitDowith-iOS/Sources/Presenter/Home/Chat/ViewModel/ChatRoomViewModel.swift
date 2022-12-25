@@ -80,7 +80,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .disposed(by: disposeBag)
     
     send
-      .do(onNext: { stompManager.sendMessage(meesage: $0.message!) })
+      .do(onNext: { stompManager.sendMessage(meesage: $0.message) })
       .do(onNext: { chatService.sendMessage(roomId: roomid, message: $0) })
       .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
@@ -160,7 +160,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
                                                          for: indexPath) as? ReceiveMessageWithProfileCell else {
             return UITableViewCell()
           }
-          cell.configure(image: item.profileImage!,
+          cell.configure(image: item.profileImage,
                          name: item.name,
                          message: item.message,
                          time: item.time.suffix(5).description)
@@ -211,7 +211,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
             return UITableViewCell()
           }
           cell.configure(time: item.time.suffix(5).description,
-                         image: item.image)
+                         image: item.message)
           return cell
         case .sendImage:
           guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageCell.identifier,
@@ -219,7 +219,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
             return UITableViewCell()
           }
           cell.configure(time: item.time.suffix(5).description,
-                         image: item.image)
+                         image: item.message)
           return cell
         }
       })

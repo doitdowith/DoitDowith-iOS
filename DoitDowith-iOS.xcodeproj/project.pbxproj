@@ -66,13 +66,12 @@
 		EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */; };
 		EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */; };
 		EE4F4D7328EAEF5E000C2FE7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F4D7228EAEF5E000C2FE7 /* Card.swift */; };
-		EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */ = {isa = PBXBuildFile; fileRef = EE4F4D7828EB0357000C2FE7 /* homeMock.json */; };
 		EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5500A328E98543005F65AC /* ChatHeaderView.swift */; };
 		EE557F2529266649005685EC /* ReceiveImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */; };
 		EE557F2629266649005685EC /* ReceiveImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE557F2429266649005685EC /* ReceiveImageMessageCell.xib */; };
 		EE5BAEA028E5B5B000589AC2 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */; };
 		EE5F31BD293330CC00046B00 /* VoteModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F31BC293330CC00046B00 /* VoteModalViewController.swift */; };
-		EE601ECD293DF30100AABA91 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE601ECC293DF30100AABA91 /* Data.swift */; };
+		EE601ECD293DF30100AABA91 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE601ECC293DF30100AABA91 /* ChatRoom.swift */; };
 		EE63629B2912115900A78758 /* ReceiveMessageWithProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */; };
 		EE63629C2912115900A78758 /* ReceiveMessageWithProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE63629A2912115900A78758 /* ReceiveMessageWithProfileCell.xib */; };
 		EE63629F29121B1600A78758 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63629E29121B1600A78758 /* ChatResponse.swift */; };
@@ -118,7 +117,6 @@
 		EE8FF3F328FD4BC200EB5FBC /* StompTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */; };
 		EE9EA67E2913D67B00F4E656 /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EA67D2913D67B00F4E656 /* CertificationViewController.swift */; };
 		EEA0C0B928ED390500282A30 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0C0B728ED390500282A30 /* ContentCell.swift */; };
-		EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EEAEAD1528E91EF4004CA8BA /* mock.json */; };
 		EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */; };
 		EEAEAD1C28E9237E004CA8BA /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEAD1B28E9237E004CA8BA /* ChatService.swift */; };
 		EEAEDA1828D9C05D000141ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAEDA1728D9C05D000141ED /* AppDelegate.swift */; };
@@ -209,13 +207,12 @@
 		EE4F4D6728EAE73C000C2FE7 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		EE4F4D6F28EAEE76000C2FE7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		EE4F4D7228EAEF5E000C2FE7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		EE4F4D7828EB0357000C2FE7 /* homeMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeMock.json; sourceTree = "<group>"; };
 		EE5500A328E98543005F65AC /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
 		EE557F2329266649005685EC /* ReceiveImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveImageMessageCell.swift; sourceTree = "<group>"; };
 		EE557F2429266649005685EC /* ReceiveImageMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiveImageMessageCell.xib; sourceTree = "<group>"; };
 		EE5BAE9F28E5B5B000589AC2 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		EE5F31BC293330CC00046B00 /* VoteModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModalViewController.swift; sourceTree = "<group>"; };
-		EE601ECC293DF30100AABA91 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		EE601ECC293DF30100AABA91 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		EE6362992912115900A78758 /* ReceiveMessageWithProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveMessageWithProfileCell.swift; sourceTree = "<group>"; };
 		EE63629A2912115900A78758 /* ReceiveMessageWithProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiveMessageWithProfileCell.xib; sourceTree = "<group>"; };
 		EE63629E29121B1600A78758 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
@@ -261,7 +258,6 @@
 		EE8FF3F228FD4BC200EB5FBC /* StompTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompTarget.swift; sourceTree = "<group>"; };
 		EE9EA67D2913D67B00F4E656 /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		EEA0C0B728ED390500282A30 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
-		EEAEAD1528E91EF4004CA8BA /* mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
 		EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfChatModel.swift; sourceTree = "<group>"; };
 		EEAEAD1B28E9237E004CA8BA /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		EEAEDA1428D9C05D000141ED /* DoitDowith-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DoitDowith-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,7 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				EE4F4D7228EAEF5E000C2FE7 /* Card.swift */,
-				EE4F4D7828EB0357000C2FE7 /* homeMock.json */,
 				EEE8358F293B612E001C97CC /* CardSectionModel.swift */,
 				EE3AD8742956C89600457E44 /* Participant.swift */,
 			);
@@ -367,7 +362,6 @@
 		EE1F590328F68A710046ED09 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				EEAEAD1528E91EF4004CA8BA /* mock.json */,
 				EE6A2BD928E48ED8000656AA /* ChatModel.swift */,
 				EEAEAD1928E921C1004CA8BA /* SectionOfChatModel.swift */,
 			);
@@ -610,7 +604,7 @@
 		EE601ECB293DF2E700AABA91 /* DB */ = {
 			isa = PBXGroup;
 			children = (
-				EE601ECC293DF30100AABA91 /* Data.swift */,
+				EE601ECC293DF30100AABA91 /* ChatRoom.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -999,13 +993,11 @@
 				EED13238292F8B9700EA38CA /* CertificationPostCell.xib in Resources */,
 				EE889E9228DD6A87005DE44B /* Pretendard-Black.otf in Resources */,
 				EED13239292F8B9700EA38CA /* CertificationPostWithImageCell.xib in Resources */,
-				EE4F4D7928EB0357000C2FE7 /* homeMock.json in Resources */,
 				EE77D5E628D9D10C00057EF8 /* More.storyboard in Resources */,
 				EEAEDA1F28D9C05D000141ED /* Main.storyboard in Resources */,
 				EE0C68722955692100581B33 /* SendImageCell.xib in Resources */,
 				EE889E9628DD6A87005DE44B /* Pretendard-Bold.otf in Resources */,
 				EEC949E128F7E1A300A9661F /* FriendProfileCell.xib in Resources */,
-				EEAEAD1628E91EF4004CA8BA /* mock.json in Resources */,
 				EE1F58F628F6711B0046ED09 /* ColorCell.xib in Resources */,
 				EE6A2BD828E4893B000656AA /* ReceiveMessageCell.xib in Resources */,
 				EE25ED62293B899D00C579A5 /* EmptyCardCell.xib in Resources */,
@@ -1112,7 +1104,7 @@
 				EE695103292E127F00B933BD /* CertificateBoardRequest.swift in Sources */,
 				EE1BE9B028F5AE94005433FA /* MissionRoomFirstViewModel.swift in Sources */,
 				EEAEDA1A28D9C05D000141ED /* SceneDelegate.swift in Sources */,
-				EE601ECD293DF30100AABA91 /* Data.swift in Sources */,
+				EE601ECD293DF30100AABA91 /* ChatRoom.swift in Sources */,
 				1824EDB32901A7C5007BA66B /* CSViewController.swift in Sources */,
 				EE9EA67E2913D67B00F4E656 /* CertificationViewController.swift in Sources */,
 				EE63629B2912115900A78758 /* ReceiveMessageWithProfileCell.swift in Sources */,

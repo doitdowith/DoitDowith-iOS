@@ -16,11 +16,10 @@ struct ChatSocketResponse: Codable {
 
 extension ChatSocketResponse {
   var toDomain: ChatModel {
-    let baseurl = "http://117.17.198.38:8080/images"
     return ChatModel(type: .receiveMessage,
-                      profileImage: .url("\(baseurl)/\(profileImg)"),
-                      name: nickname,
-                      message: contents,
-                      time: "\(sendTime.substring(from: 0, to: 9)) \(sendTime.substring(from: 11, to: 15))")
+                     profileImage: profileImg,
+                     name: nickname,
+                     message: contents,
+                     time: "\(sendTime.substring(from: 0, to: 9)) \(sendTime.substring(from: 11, to: 15))")
   }
 }

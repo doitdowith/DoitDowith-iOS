@@ -25,6 +25,7 @@ final class ChatRoomController: UIViewController {
   private var keyboardHeight: CGFloat = 0
   private var sections: [SectionOfChatModel] = []
   private var name: String?
+  private var profileImage: String?
   // MARK: Properties
   private let viewModel: ChatRoomViewModelType
   
@@ -33,6 +34,7 @@ final class ChatRoomController: UIViewController {
     self.card = card
     self.viewModel = viewModel
     self.name = UserDefaults.standard.string(forKey: "name")
+    self.profileImage = UserDefaults.standard.string(forKey: "profileImage")
     super.init(coder: coder)
   }
   
@@ -86,7 +88,7 @@ final class ChatRoomController: UIViewController {
     vc.delegate = self
     navigationController?.pushViewController(vc, animated: true)
   }
-
+  
   // 갤러리 버튼을 클릭했을 때 갤러리를 보여준다.
   @IBAction func galaryButtonDidTap(_ sender: UIButton) {
     var configuration = PHPickerConfiguration()
@@ -241,10 +243,13 @@ extension ChatRoomController {
       .withLatestFrom(self.textfield.rx.text)
       .withUnretained(self)
       .bind(onNext: { owner, text in
+        guard let profileImage = owner.profileImage,
+              let message = text?.description else { return }
         owner.viewModel.input.sendMessage.accept(ChatModel(type: .sendMessage,
-                                                            name: owner.name ?? "",
-                                                            message: text?.description,
-                                                            time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+                                                           profileImage: profileImage,
+                                                           name: owner.name ?? "",
+                                                           message: message,
+                                                           time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
         
         owner.textfield.rx.text.onNext("")
       })
@@ -308,10 +313,11 @@ extension ChatRoomController: PHPickerViewControllerDelegate {
             let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
       let base64 = data.base64EncodedString()
       self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
-                                                         profileImage: .url(profileImage),
-                                                         name: name,
-                                                         image: .base64(base64),
-                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+                                                        profileImage: profileImage,
+                                                        name: name,
+                                                        message: base64,
+                                                        image: base64,
+                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
   }
 }
@@ -327,10 +333,11 @@ extension ChatRoomController: UIImagePickerControllerDelegate,
        let profileImage = UserDefaults.standard.string(forKey: "profileImage") {
       let base64 = data.base64EncodedString()
       self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
-                                                         profileImage: .url(profileImage),
-                                                         name: name,
-                                                         image: .base64(base64),
-                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+                                                        profileImage: profileImage,
+                                                        name: name,
+                                                        message: base64,
+                                                        image: base64,
+                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
     picker.dismiss(animated: true)
     modalButtonDidTap()

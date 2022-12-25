@@ -32,17 +32,9 @@ class ReceiveMessageWithProfileCell: UITableViewCell {
 }
 
 extension ReceiveMessageWithProfileCell {
-  func configure(image: ImageType?, name: String, message: String?, time: String) {
+  func configure(image: String?, name: String, message: String?, time: String) {
     if let image = image {
-      switch image {
-      case .url(let model):
-        profileImageView.setImage(with: model)
-      case .base64(let model):
-        if let data = Data(base64Encoded: model, options: .ignoreUnknownCharacters) {
-          let decodedImg = UIImage(data: data)
-          profileImageView.image = decodedImg
-        }
-      }
+      profileImageView.setImage(with: "http://117.17.198.38:8080/images/\(image)")
     }
     
     if let message = message {
