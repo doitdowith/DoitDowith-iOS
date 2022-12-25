@@ -209,7 +209,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F0-9M-5zc">
-                                        <rect key="frame" x="320" y="14" width="32" height="33"/>
+                                        <rect key="frame" x="320" y="13.666666666666664" width="32" height="34"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="18"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="다음">
@@ -481,7 +481,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션 시작일까지 합류한 사람들끼리 미션을 수행하게 됩니다." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxI-8W-wcS">
-                                        <rect key="frame" x="16" y="303" width="306.66666666666669" height="16"/>
+                                        <rect key="frame" x="16" y="303" width="303.66666666666669" height="16"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
                                         <color key="textColor" name="CoolGray3"/>
                                         <nil key="highlightedColor"/>
@@ -807,8 +807,10 @@
                         <outlet property="certificateButton" destination="siB-Qu-afl" id="zXr-Hv-tx6"/>
                         <outlet property="chatView" destination="6Wr-3T-xOC" id="kAe-CF-qGs"/>
                         <outlet property="ddayLabel" destination="h1f-OR-Bq7" id="88i-e9-nxQ"/>
+                        <outlet property="leftCertificateCount" destination="hsO-cQ-CvP" id="Pbt-4y-DuD"/>
                         <outlet property="modalButton" destination="W6Y-WI-1OO" id="FJp-QC-DAD"/>
                         <outlet property="modalViewBottomConstraint" destination="HjK-19-eRo" id="0h3-rJ-kVX"/>
+                        <outlet property="roomTitle" destination="Q2X-S5-stH" id="28a-VX-5NQ"/>
                         <outlet property="textfield" destination="ukD-GQ-6gl" id="ZrE-yS-3Q0"/>
                         <outlet property="textfieldBottomConstraint" destination="oYT-tm-sjG" id="YI8-aU-7hR"/>
                         <outlet property="textfieldView" destination="CbC-Zn-XcL" id="SE4-gc-wsc"/>
@@ -1587,7 +1589,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLn-sN-j83">
-                                        <rect key="frame" x="15" y="173.66666666666663" width="345" height="465"/>
+                                        <rect key="frame" x="15" y="173.66666666666663" width="345" height="465.00000000000011"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuu-h2-6M6">
                                                 <rect key="frame" x="304" y="16" width="28" height="28"/>
@@ -1796,13 +1798,13 @@
             <size key="intrinsicContentSize" width="221.66666666666666" height="60.333333333333336"/>
         </designable>
         <designable name="UWT-d0-o9t">
-            <size key="intrinsicContentSize" width="277.66666666666669" height="60.333333333333336"/>
+            <size key="intrinsicContentSize" width="275.66666666666669" height="61"/>
         </designable>
         <designable name="Xmu-9C-1TL">
-            <size key="intrinsicContentSize" width="235.66666666666666" height="60.333333333333336"/>
+            <size key="intrinsicContentSize" width="234" height="61"/>
         </designable>
         <designable name="YG7-Lk-iOW">
-            <size key="intrinsicContentSize" width="199.33333333333334" height="60.333333333333336"/>
+            <size key="intrinsicContentSize" width="198.66666666666666" height="61"/>
         </designable>
     </designables>
     <resources>

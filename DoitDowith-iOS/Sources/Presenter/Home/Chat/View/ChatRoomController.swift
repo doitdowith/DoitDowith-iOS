@@ -56,7 +56,9 @@ final class ChatRoomController: UIViewController {
   @IBOutlet weak var textfield: UITextField!
   @IBOutlet weak var modalButton: UIButton!
   @IBOutlet weak var certificateButton: UIButton!
+  @IBOutlet weak var roomTitle: UILabel!
   @IBOutlet weak var ddayLabel: UILabel!
+  @IBOutlet weak var leftCertificateCount: UILabel!
   
   @IBOutlet weak var textfieldBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var modalViewBottomConstraint: NSLayoutConstraint!
@@ -220,6 +222,14 @@ extension ChatRoomController {
       .setDelegate(self)
       .disposed(by: rx.disposeBag)
     
+    viewModel.output.title
+      .drive(roomTitle.rx.text)
+      .disposed(by: rx.disposeBag)
+    
+    viewModel.output.leftCertificateCount
+      .drive(leftCertificateCount.rx.text)
+      .disposed(by: rx.disposeBag)
+    
     viewModel.output.ddayCount
       .drive(ddayLabel.rx.text)
       .disposed(by: rx.disposeBag)
@@ -316,7 +326,6 @@ extension ChatRoomController: PHPickerViewControllerDelegate {
                                                         profileImage: profileImage,
                                                         name: name,
                                                         message: base64,
-                                                        image: base64,
                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
   }
@@ -336,7 +345,6 @@ extension ChatRoomController: UIImagePickerControllerDelegate,
                                                         profileImage: profileImage,
                                                         name: name,
                                                         message: base64,
-                                                        image: base64,
                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
     picker.dismiss(animated: true)

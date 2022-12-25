@@ -29,7 +29,9 @@ protocol ChatRoomViewModelOutput {
   var activated: Driver<Bool> { get }
   var errorMessage: Signal<NSError> { get }
   var lastPosition: Signal<(Int, Int)> { get }
+  var title: Driver<String> { get }
   var ddayCount: Driver<String> { get }
+  var leftCertificateCount: Driver<String> { get }
 }
 
 protocol ChatRoomViewModelType {
@@ -60,7 +62,9 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let activated: Driver<Bool>
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
+  let title: Driver<String>
   let ddayCount: Driver<String>
+  let leftCertificateCount: Driver<String>
   
   init(card: Card, stompManager: StompManagerProtocol, chatService: ChatServiceProtocol) {
     let name = UserDefaults.standard.string(forKey: "name")
@@ -80,8 +84,9 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .disposed(by: disposeBag)
     
     send
-      .do(onNext: { stompManager.sendMessage(meesage: $0.message) })
+      .observe(on: MainScheduler.instance)
       .do(onNext: { chatService.sendMessage(roomId: roomid, message: $0) })
+      .do(onNext: { stompManager.sendMessage(meesage: $0.message) })
       .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
     
@@ -136,6 +141,10 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .map { $0 as NSError }
       .asSignal(onErrorJustReturn: MyError.error as NSError)
     
+    self.title = cardInfo
+      .map { $0.title }
+      .asDriver(onErrorJustReturn: "")
+    
     self.lastPosition = messageList
       .filter { !$0.isEmpty }
       .map { ($0[$0.endIndex - 1].items.count - 1, $0.count - 1) }
@@ -150,6 +159,11 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
         let day = Int(diff / (3600 * 24))
         return "미션 종료 D-\(day)"
       }
+      .asDriver(onErrorJustReturn: "")
+    
+    self.leftCertificateCount = cardInfo
+      .map { $0.count }
+      .map { "남은 인증 횟수 \($0)회" }
       .asDriver(onErrorJustReturn: "")
     
     self.dataSource = RxTableViewSectionedReloadDataSource<SectionOfChatModel>(

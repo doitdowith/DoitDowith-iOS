@@ -51,10 +51,12 @@ final class InformationModalViewModel: InformationModalViewModelInput,
     self.chatroomInfo = BehaviorRelay<Card>(value: card)
     self.roomTitle = chatroomInfo.map { $0.title }.asDriver(onErrorJustReturn: "")
     self.roomDescription = chatroomInfo.map { $0.description }.asDriver(onErrorJustReturn: "")
+    
     self.roomCount = chatroomInfo
-      .map { _ -> String in
-        return "7일동안 \(2)회 인증" }
+      .map { $0.count }
+      .map { "7일동안 \($0)회 인증" }
       .asDriver(onErrorJustReturn: "")
+    
     self.roomDate = chatroomInfo
       .map { $0.startDate.toDate() }
       .map { date in
@@ -63,6 +65,7 @@ final class InformationModalViewModel: InformationModalViewModelInput,
         return "\(date.formatted(format: "yyyy-MM-dd")) ~ \(nextDate.formatted(format: "yyyy-MM-dd"))"
       }
       .asDriver(onErrorJustReturn: "")
+    
     self.roomMemberList = chatroomInfo
       .map { $0.participants }
       .asDriver(onErrorJustReturn: [])
