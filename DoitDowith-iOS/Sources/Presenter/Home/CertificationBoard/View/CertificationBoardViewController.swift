@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxDataSources
+import RxGesture
 import RxSwift
 import RxViewController
 import NSObject_Rx
@@ -28,18 +29,28 @@ class CertificationBoardViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.certificationBoardView.collectionViewLayout = layout()
     register()
     bind()
+    self.certificationBoardView.collectionViewLayout = layout()
   }
   
   // MARK: Interface Builder
   @IBOutlet weak var navigationTitleLabel: UILabel!
   @IBOutlet weak var certificationBoardView: UICollectionView!
+  @IBOutlet weak var backButton: UIImageView!
   // @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  
 }
 
+// MARK: Basic Functions: bind, register...
 extension CertificationBoardViewController {
+  func bind() {
+    bindLifeCycle()
+    bindTitle()
+    bindBackButton()
+    bindCertificationBoardView()
+    // bindActivityIndicator()
+  }
   func register() {
     let certificationPostWithImageCellNib = UINib(nibName: "CertificationPostWithImageCell", bundle: nil)
     certificationBoardView.register(certificationPostWithImageCellNib,
@@ -48,13 +59,29 @@ extension CertificationBoardViewController {
     certificationBoardView.register(certificationPostCellNib,
                                     forCellWithReuseIdentifier: CertificationPostCell.identifier)
   }
+  
+  func backButtonDidTap() {
+    self.navigationController?.dismiss(animated: true)
+  }
 }
 
+// MARK: Bind Functions
 extension CertificationBoardViewController {
-  func bind() {
-    bindLifeCycle()
-    bindCertificationBoardView()
-    // bindActivityIndicator()
+  func bindBackButton() {
+    self.backButton.rx
+      .tapGesture()
+      .when(.recognized)
+      .withUnretained(self)
+      .bind(onNext: { owner, _ in
+        owner.backButtonDidTap()
+      })
+      .disposed(by: rx.disposeBag)
+  }
+                
+  func bindTitle() {
+    self.viewModel.output.roomTitle
+      .drive(navigationTitleLabel.rx.text)
+      .disposed(by: rx.disposeBag)
   }
   
   func bindCertificationBoardView() {
@@ -71,6 +98,11 @@ extension CertificationBoardViewController {
         nav.rx.isNavigationBarHidden.onNext(state)
       })
       .disposed(by: rx.disposeBag)
+    
+    self.rx.viewWillAppear
+      .map { _ in }
+      .bind(to: self.viewModel.input.fetchPosts)
+      .disposed(by: rx.disposeBag)
   }
   /*
    func bindActivityIndicator() {
@@ -81,10 +113,11 @@ extension CertificationBoardViewController {
    */
 }
 
+// MARK: CollectionView Function: Layout, datasource
 extension CertificationBoardViewController {
   func layout() -> UICollectionViewLayout {
     let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                      heightDimension: .estimated(500))
+                                      heightDimension: .estimated(400))
     let item = NSCollectionLayoutItem(layoutSize: size)
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: size,
                                                    subitem: item,
@@ -130,6 +163,7 @@ extension CertificationBoardViewController {
   }
 }
 
+// MARK: CollectionView Cell delegate
 extension CertificationBoardViewController: CertifiactionPostCellDelegate,
                                             CertificationPostWithImageCellDelegate {
   func presentVoteModal() {

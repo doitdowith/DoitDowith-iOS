@@ -131,7 +131,6 @@ extension HomeViewController {
     .disposed(by: rx.disposeBag)
     
     let firstLoad = rx.viewWillAppear
-      .take(1)
       .map { _ in () }
     
     let reload = self.contentCollectionView.refreshControl?.rx

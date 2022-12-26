@@ -18,6 +18,7 @@ import StompClientLib
 
 protocol ChatRoomViewModelInput {
   var viewWillAppear: PublishRelay<Void> { get }
+  var viewWillDisappear: PublishRelay<Void> { get }
   var sendMessage: PublishRelay<ChatModel> { get }
   var recevieMessage: PublishRelay<ChatModel> { get }
   var chatroomInfo: PublishRelay<MissionRoomRequest> { get }
@@ -25,7 +26,6 @@ protocol ChatRoomViewModelInput {
 
 protocol ChatRoomViewModelOutput {
   var messageList: Driver<[SectionOfChatModel]> { get }
-  var dataSource: RxTableViewSectionedReloadDataSource<SectionOfChatModel> { get }
   var activated: Driver<Bool> { get }
   var errorMessage: Signal<NSError> { get }
   var lastPosition: Signal<(Int, Int)> { get }
@@ -52,13 +52,13 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   
   // Input
   let viewWillAppear: PublishRelay<Void>
+  let viewWillDisappear: PublishRelay<Void>
   let sendMessage: PublishRelay<ChatModel>
   let recevieMessage: PublishRelay<ChatModel>
   let chatroomInfo: PublishRelay<MissionRoomRequest>
   
   // Output
   let messageList: Driver<[SectionOfChatModel]>
-  let dataSource: RxTableViewSectionedReloadDataSource<SectionOfChatModel>
   let activated: Driver<Bool>
   let errorMessage: Signal<NSError>
   let lastPosition: Signal<(Int, Int)>
@@ -69,6 +69,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   init(card: Card, stompManager: StompManagerProtocol, chatService: ChatServiceProtocol) {
     let name = UserDefaults.standard.string(forKey: "name")
     let fetching = PublishRelay<Void>()
+    let disconnect = PublishRelay<Void>()
     let send = PublishRelay<ChatModel>()
     let receive = PublishRelay<ChatModel>()
     let cardInfo = BehaviorRelay<Card>(value: card)
@@ -76,6 +77,13 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
     let roomid = card.roomId.hash
+    
+    let certificateCount = Observable.combineLatest(cardInfo, allMessages)
+      .map { (cards, messages) -> Int in
+        let totalcertificateCount = cards.count
+        let certificateCount = messages.filter { $0.type == .sendImageMessage }.count
+        return totalcertificateCount - certificateCount
+      }
     
     receive
       .filter { $0.name != name! }
@@ -91,6 +99,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .disposed(by: disposeBag)
     
     fetching
+      .take(1)
       .do(onNext: { _ in activating.accept(true) })
       .do(onNext: { _ in stompManager.registerSocket() })
       .flatMap { _ -> Observable<[ChatModel]> in
@@ -100,7 +109,12 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .bind(onNext: { allMessages.accept($0) })
       .disposed(by: disposeBag)
     
+    disconnect
+      .bind(onNext: { _ in stompManager.disconnect() })
+      .disposed(by: disposeBag)
+        
     self.viewWillAppear = fetching
+    self.viewWillDisappear = disconnect
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
     self.sendMessage = send
     self.recevieMessage = receive
@@ -167,82 +181,9 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
         return "미션 종료 D-\(day)"
       }
       .asDriver(onErrorJustReturn: "")
-    
-    self.leftCertificateCount = cardInfo
-      .map { $0.count }
+
+    self.leftCertificateCount = certificateCount
       .map { "남은 인증 횟수 \($0)회" }
       .asDriver(onErrorJustReturn: "")
-    
-    self.dataSource = RxTableViewSectionedReloadDataSource<SectionOfChatModel>(
-      configureCell: { _, tableView, indexPath, item in
-        switch item.type {
-        case .receiveMessageWithProfile:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageWithProfileCell.identifier,
-                                                         for: indexPath) as? ReceiveMessageWithProfileCell else {
-            return UITableViewCell()
-          }
-          cell.configure(image: item.profileImage,
-                         name: item.name,
-                         message: item.message,
-                         time: item.time.suffix(5).description)
-          return cell
-        case .receiveMessage:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageCell.identifier,
-                                                         for: indexPath) as? ReceiveMessageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description, message: item.message)
-          return cell
-        case .sendMessageWithTip:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
-                                                         for: indexPath) as? SendMessageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description, message: item.message)
-          cell.addTipView()
-          return cell
-        case .sendMessage:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
-                                                         for: indexPath) as? SendMessageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description, message: item.message)
-          return cell
-        case .sendImageMessage:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageMessageCell.identifier,
-                                                         for: indexPath) as? SendImageMessageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description,
-                         message: item.message,
-                         image: item.image)
-          return cell
-        case .receiveImageMessage:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageMessageCell.identifier,
-                                                         for: indexPath) as? ReceiveImageMessageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description,
-                         message: item.message,
-                         image: item.image)
-          return cell
-        case .receiveImage:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageCell.identifier,
-                                                         for: indexPath) as? ReceiveImageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description,
-                         image: item.message)
-          return cell
-        case .sendImage:
-          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageCell.identifier,
-                                                         for: indexPath) as? SendImageCell else {
-            return UITableViewCell()
-          }
-          cell.configure(time: item.time.suffix(5).description,
-                         image: item.message)
-          return cell
-        }
-      })
   }
 }

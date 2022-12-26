@@ -33,7 +33,6 @@ class APIService: ReactiveCompatible {
       .responseData()
       .observe(on: MainScheduler.instance)
       .map { (response, data) -> T in
-        let statusCode = response.statusCode
         let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)
       }

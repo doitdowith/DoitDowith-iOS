@@ -48,7 +48,6 @@
 		EE300D7A293A379300842742 /* VoteMemberListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE300D79293A379300842742 /* VoteMemberListRequest.swift */; };
 		EE300D7C293A379C00842742 /* VoteMemberListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE300D7B293A379C00842742 /* VoteMemberListResponse.swift */; };
 		EE300D7E293A3C3000842742 /* VoteResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE300D7D293A3C3000842742 /* VoteResultViewModel.swift */; };
-		EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */; };
 		EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A078C28F8736A002C7E5D /* Friend.swift */; };
 		EE3A079328F87473002C7E5D /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079228F87473002C7E5D /* FriendRequest.swift */; };
 		EE3A079528F87478002C7E5D /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3A079428F87478002C7E5D /* FriendResponse.swift */; };
@@ -189,7 +188,6 @@
 		EE300D79293A379300842742 /* VoteMemberListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMemberListRequest.swift; sourceTree = "<group>"; };
 		EE300D7B293A379C00842742 /* VoteMemberListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMemberListResponse.swift; sourceTree = "<group>"; };
 		EE300D7D293A3C3000842742 /* VoteResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultViewModel.swift; sourceTree = "<group>"; };
-		EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteModalViewModel.swift; sourceTree = "<group>"; };
 		EE3A078C28F8736A002C7E5D /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		EE3A079228F87473002C7E5D /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		EE3A079428F87478002C7E5D /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
@@ -443,7 +441,6 @@
 			isa = PBXGroup;
 			children = (
 				EE78580228EDB62300F8C309 /* MissionRoomSecondViewModel.swift */,
-				EE3A078228F87075002C7E5D /* InviteModalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1148,7 +1145,6 @@
 				1824EDAF29019BDC007BA66B /* OtherTableViewCell.swift in Sources */,
 				EE78580328EDB62300F8C309 /* MissionRoomSecondViewModel.swift in Sources */,
 				EE6950F3292DF78300B933BD /* CertificationPostWithImageCell.swift in Sources */,
-				EE3A078328F87075002C7E5D /* InviteModalViewModel.swift in Sources */,
 				EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */,
 				EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */,
 				EE8FF3F328FD4BC200EB5FBC /* StompTarget.swift in Sources */,

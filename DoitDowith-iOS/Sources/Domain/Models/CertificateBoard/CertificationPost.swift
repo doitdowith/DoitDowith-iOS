@@ -17,7 +17,7 @@ struct CertificationPost: Equatable, IdentifiableType {
   var postType: PostType
   var profileImageUrl: String?
   var nickName: String
-  var uploadTime: Date
+  var uploadTime: String
   var certificateImageUrl: String?
   var certificateText: String
   var identity: String
@@ -25,7 +25,7 @@ struct CertificationPost: Equatable, IdentifiableType {
   init(postType: PostType,
        profileImageUrl: String? = nil,
        nickName: String,
-       uploadTime: Date,
+       uploadTime: String,
        certificateImageUrl: String? = nil,
        certificateText: String) {
     self.postType = postType
@@ -34,6 +34,6 @@ struct CertificationPost: Equatable, IdentifiableType {
     self.uploadTime = uploadTime
     self.certificateImageUrl = certificateImageUrl
     self.certificateText = certificateText
-    self.identity = "\(uploadTime.timeIntervalSinceReferenceDate)"
+    self.identity = uploadTime
   }
 }

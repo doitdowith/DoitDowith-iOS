@@ -21,6 +21,8 @@ class CertificationViewController: UIViewController {
   // MARK: Constant
   weak var delegate: CertificationViewControllerDelegate?
   var selectedImage: UIImage?
+  var certificateText: String?
+  
   private let safeAreaBottomSize = UIApplication.safeAreaEdgeInsets.bottom
   private let viewModel: CertificationViewModelType
   
@@ -61,7 +63,7 @@ class CertificationViewController: UIViewController {
   @IBAction func gallaryButtonDidTap(_ sender: UIButton) {
     var configuration = PHPickerConfiguration()
     configuration.filter = .images
-    configuration.selectionLimit = 0
+    configuration.selectionLimit = 1
     let picker = PHPickerViewController(configuration: configuration)
     picker.delegate = self
     self.present(picker, animated: true)
@@ -79,13 +81,16 @@ class CertificationViewController: UIViewController {
   
   @IBAction func completeButtomDidTap(_ sender: UIButton) {
     guard let image = selectedImage,
+          let message = certificateText,
           let data = image.pngData(),
-          let name = UserDefaults.standard.string(forKey: "name") else { return }
+          let name = UserDefaults.standard.string(forKey: "name"),
+          let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
     
     let base64 = data.base64EncodedString()
     self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
+                                                         profileImage: profileImage,
                                                          name: name,
-                                                         message: "\(name)님의 인증 메세지",
+                                                         message: message,
                                                          image: base64,
                                                          time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     self.navigationController?.popViewController(animated: true)
@@ -180,6 +185,14 @@ extension CertificationViewController {
       .bind(onNext: {
         self.completeButton.rx.isUserInteractionEnabled.onNext($0)
         self.viewModel.input.completeButtonEnabled.accept($0)
+      })
+      .disposed(by: rx.disposeBag)
+    
+    self.certificationTextView.rx.text
+      .filter { $0 != "인증 글을 작성해보세요!" && !$0!.isEmpty }
+      .withUnretained(self)
+      .bind(onNext: { (owner, text) in
+        owner.certificateText = text
       })
       .disposed(by: rx.disposeBag)
     

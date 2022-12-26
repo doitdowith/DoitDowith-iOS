@@ -53,11 +53,12 @@ class CertificationPostCell: UICollectionViewCell {
 extension CertificationPostCell {
   func configure(with model: CertificationPost) {
     self.nickName.text = model.nickName
-    self.uploadTime.text = model.uploadTime.formatted(format: "yy-MM-dd")
+    self.uploadTime.text = model.uploadTime
     self.certificateText.text = model.certificateText
-    if let url = model.profileImageUrl {
-      let processor = RoundCornerImageProcessor(cornerRadius: 18)
-      self.profileImage.kf.setImage(with: URL(string: url), options: [.processor(processor)])
+    let processor = RoundCornerImageProcessor(cornerRadius: 18)
+    if let profileImageUrl = model.profileImageUrl {
+      self.profileImage.setImage(with: "http://117.17.198.38:8080/images/\(profileImageUrl)",
+                                 processor: processor)
     }
   }
 }

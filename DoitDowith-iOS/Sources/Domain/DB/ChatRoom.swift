@@ -28,14 +28,16 @@ class Chat: Object {
   @objc dynamic var name: String = ""
   @objc dynamic var profileImage: String = ""
   @objc dynamic var message: String = ""
+  @objc dynamic var image: String = ""
   @objc dynamic var time: Date = Date.now
   var parent = LinkingObjects(fromType: ChatRoom.self, property: "items")
   
-  convenience init(type: Int, name: String, profileImage: String, message: String) {
+  convenience init(type: Int, name: String, profileImage: String, message: String, image: String = "none") {
     self.init()
     self.type = type
     self.name = name
     self.profileImage = profileImage
     self.message = message
+    self.image = image
   }
 }

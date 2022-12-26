@@ -158,7 +158,6 @@ extension MissionRoomSecondViewController {
   }
   
   func action1() {
-    let vm = InviteModalViewModel()
     let inviteModal = UIStoryboard(name: "Home",
                                    bundle: nil).instantiateViewController(identifier: InviteModalViewController.identifier) { coder in
       InviteModalViewController(coder: coder, parentViewModel: self.viewModel)

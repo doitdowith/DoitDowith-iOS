@@ -7,8 +7,15 @@
 
 import UIKit
 
+import RxSwift
+import RxGesture
+
+protocol SendImageMessageCellDelegate: AnyObject {
+  func sendImageMessageCell()
+}
 class SendImageMessageCell: UITableViewCell {
   static let identifier: String = "SendImageMessageCell"
+  weak var delegate: SendImageMessageCellDelegate?
   
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var sendMessageView: UIView!
@@ -23,6 +30,7 @@ class SendImageMessageCell: UITableViewCell {
                                  blur: 4,
                                  spread: 0)
     self.layer.cornerRadius = 2
+    bindSendMessageView()
   }
   
   override func prepareForReuse() {
@@ -33,17 +41,24 @@ class SendImageMessageCell: UITableViewCell {
 }
 
 extension SendImageMessageCell {
-  func configure(time: String, message: String?, image: String?) {
-    if let image = image,
+  func configure(model: ChatModel) {
+    if let image = model.image,
        let data = Data(base64Encoded: image, options: .ignoreUnknownCharacters) {
       let decodedImg = UIImage(data: data)
-      sendImageView.image = decodedImg
+      self.sendImageView.image = decodedImg
     }
+    self.sendMessage.text = "\(model.name)님의 인증 메세지"
     
-    if let message = message {
-      sendMessage.text = message
-    }
-    
-    self.dateLabel.text = time
+    self.dateLabel.text = model.time.suffix(5).description
+  }
+  
+  func bindSendMessageView() {
+    self.sendMessageView.rx.tapGesture()
+      .when(.recognized)
+      .withUnretained(self)
+      .subscribe(onNext: { owner, _ in
+        owner.delegate?.sendImageMessageCell()
+      })
+      .disposed(by: rx.disposeBag)
   }
 }

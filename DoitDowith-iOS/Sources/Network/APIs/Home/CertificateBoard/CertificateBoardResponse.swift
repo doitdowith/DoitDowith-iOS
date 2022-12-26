@@ -30,7 +30,7 @@ extension CertificateBoardResponse {
       return CertificationPost(postType: type,
                                profileImageUrl: data.profileUrl,
                                nickName: data.name,
-                               uploadTime: data.time,
+                               uploadTime: data.time.formatted(format: "yyyy-MM-dd hh:mm"),
                                certificateImageUrl: data.imageUrl,
                                certificateText: data.text)
     }

@@ -18,8 +18,10 @@ final class ChatRoomInformationModalWhenStarted: UIViewController {
   private let dimmedAlpha: CGFloat = 0.8
   private let modalViewWidth: CGFloat = 350
   private let viewModel: InformationModalViewModelType
+  private let card: Card
   
-  init?(coder: NSCoder, viewModel: InformationModalViewModelType) {
+  init?(coder: NSCoder, card: Card, viewModel: InformationModalViewModelType) {
+    self.card = card
     self.viewModel = viewModel
     super.init(coder: coder)
   }
@@ -51,7 +53,8 @@ final class ChatRoomInformationModalWhenStarted: UIViewController {
   @IBOutlet weak var descriptionLabel: UILabel!
   
   @IBAction func moveToCertificateBoard(_ sender: UIButton) {
-    let vm = CertificationBoardViewModel()
+    let chatService = ChatService()
+    let vm = CertificationBoardViewModel(card: card, chatService: chatService)
     let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: CertificationBoardViewController.identifier) { coder in
       CertificationBoardViewController(coder: coder, viewModel: vm)
     }

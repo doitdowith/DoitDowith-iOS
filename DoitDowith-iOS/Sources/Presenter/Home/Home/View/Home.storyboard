@@ -1337,7 +1337,7 @@
                                             <constraint firstAttribute="height" constant="0.5" id="qPL-5B-BQ1"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-8J-aJR">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-8J-aJR">
                                         <rect key="frame" x="16" y="196" width="318" height="401"/>
                                         <color key="backgroundColor" name="LightGray2"/>
                                     </tableView>
@@ -1784,6 +1784,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="3gy-Fc-VOj" id="wbV-bI-4Pl"/>
                         <outlet property="certificationBoardView" destination="AKd-gr-6Ol" id="mod-ao-6ey"/>
                         <outlet property="navigationTitleLabel" destination="spG-O6-94K" id="ij1-Ym-46U"/>
                     </connections>

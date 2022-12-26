@@ -13,7 +13,7 @@ import SnapKit
 import Then
 import KakaoSDKAuth
 import KakaoSDKUser
-
+import RealmSwift
 class LoginViewController: UIViewController {
   private let kakaoLoginButton = UIButton().then {
     $0.setImage(UIImage(named: "kakao_icon"), for: .normal)
@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
   }
   
   override func viewDidLoad() {
+    print(Realm.Configuration.defaultConfiguration.fileURL)
     super.viewDidLoad()
     view.addBackground(with: "background")
     

@@ -14,28 +14,6 @@ import RxSwift
 import RxViewController
 
 final class InviteModalViewController: UIViewController {
-  // MARK: Interface Builder
-  @IBOutlet weak var dimmedView: UIView!
-  @IBOutlet weak var contentView: UIView!
-  @IBOutlet weak var friendListTableView: UITableView!
-  @IBOutlet weak var searchbar: UISearchBar!
-  @IBOutlet weak var friendNumber: UILabel!
-  @IBOutlet weak var filterButton: UIButton!
-  
-  @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
-  
-  @IBAction func completeButtonDidTap(_ sender: UIButton) {
-    var filtered: [Friend] = []
-    for (i, friend) in self.friendList.enumerated() where selectedCell[i] {
-      let selected = Friend(id: friend.id, url: friend.url, state: .ing, name: friend.name)
-      filtered.append(selected)
-    }
-    print(filtered)
-    parentViewModel.input.selectFriends.accept(filtered)
-    animateDismissView()
-  }
-  
   // MARK: Constant
   static let identifier: String = "InviteModalVC"
   private var currentViewHeight: CGFloat = 700
@@ -68,6 +46,28 @@ final class InviteModalViewController: UIViewController {
     self.configureModalView()
     self.configureSearchbar()
     self.bind()
+  }
+  
+  // MARK: Interface Builder
+  @IBOutlet weak var dimmedView: UIView!
+  @IBOutlet weak var contentView: UIView!
+  @IBOutlet weak var friendListTableView: UITableView!
+  @IBOutlet weak var searchbar: UISearchBar!
+  @IBOutlet weak var friendNumber: UILabel!
+  @IBOutlet weak var filterButton: UIButton!
+  
+  @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
+  
+  @IBAction func completeButtonDidTap(_ sender: UIButton) {
+    var filtered: [Friend] = []
+    for (i, friend) in self.friendList.enumerated() where selectedCell[i] {
+      let selected = Friend(id: friend.id, url: friend.url, state: .ing, name: friend.name)
+      filtered.append(selected)
+    }
+    print(filtered)
+    parentViewModel.input.selectFriends.accept(filtered)
+    animateDismissView()
   }
 }
 

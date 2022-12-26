@@ -11,6 +11,7 @@ import PhotosUI
 import NSObject_Rx
 import RealmSwift
 import RxCocoa
+import RxDataSources
 import RxKeyboard
 import RxSwift
 import RxRelay
@@ -48,6 +49,7 @@ final class ChatRoomController: UIViewController {
     self.register()
     self.applyShadow()
     self.bind()
+    self.chatView.separatorStyle = .none
   }
   
   // MARK: Interface Builder
@@ -75,7 +77,7 @@ final class ChatRoomController: UIViewController {
     let vm = InformationModalViewModel(card: card)
     let modal = UIStoryboard(name: "Home", bundle: nil)
       .instantiateViewController(identifier: ChatRoomInformationModalWhenStarted.identifier) { coder in
-        ChatRoomInformationModalWhenStarted(coder: coder, viewModel: vm)
+        ChatRoomInformationModalWhenStarted(coder: coder, card: self.card, viewModel: vm)
       }
     modal.modalPresentationStyle = .overCurrentContext
     self.present(modal, animated: false)
@@ -191,6 +193,11 @@ extension ChatRoomController {
       .disposed(by: rx.disposeBag)
   }
   func bindLifeCycle() {
+    self.rx.viewWillDisappear
+      .map { _ in }
+      .bind(to: viewModel.input.viewWillDisappear)
+      .disposed(by: rx.disposeBag)
+    
     self.rx.viewWillAppear
       .map { _ in }
       .bind(to: viewModel.input.viewWillAppear)
@@ -235,7 +242,7 @@ extension ChatRoomController {
       .disposed(by: rx.disposeBag)
     
     viewModel.output.messageList
-      .drive(self.chatView.rx.items(dataSource: viewModel.output.dataSource))
+      .drive(self.chatView.rx.items(dataSource: self.dataSource()))
       .disposed(by: rx.disposeBag)
     
     viewModel.output.lastPosition
@@ -280,6 +287,81 @@ extension ChatRoomController {
   }
 }
 
+// MARK: ChatView DataSource
+extension ChatRoomController {
+  func dataSource() -> RxTableViewSectionedReloadDataSource<SectionOfChatModel> {
+    return RxTableViewSectionedReloadDataSource<SectionOfChatModel>(
+      configureCell: { _, tableView, indexPath, item in
+        switch item.type {
+        case .receiveMessageWithProfile:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageWithProfileCell.identifier,
+                                                         for: indexPath) as? ReceiveMessageWithProfileCell else {
+            return UITableViewCell()
+          }
+          cell.configure(image: item.profileImage,
+                         name: item.name,
+                         message: item.message,
+                         time: item.time.suffix(5).description)
+          return cell
+        case .receiveMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveMessageCell.identifier,
+                                                         for: indexPath) as? ReceiveMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description, message: item.message)
+          return cell
+        case .sendMessageWithTip:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
+                                                         for: indexPath) as? SendMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description, message: item.message)
+          cell.addTipView()
+          return cell
+        case .sendMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendMessageCell.identifier,
+                                                         for: indexPath) as? SendMessageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description, message: item.message)
+          return cell
+        case .sendImageMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageMessageCell.identifier,
+                                                         for: indexPath) as? SendImageMessageCell else {
+            return UITableViewCell()
+          }
+          cell.delegate = self
+          cell.configure(model: item)
+          return cell
+        case .receiveImageMessage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageMessageCell.identifier,
+                                                         for: indexPath) as? ReceiveImageMessageCell else {
+            return UITableViewCell()
+          }
+          cell.delegate = self
+          cell.configure(model: item)
+          return cell
+        case .receiveImage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiveImageCell.identifier,
+                                                         for: indexPath) as? ReceiveImageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description,
+                         image: item.message)
+          return cell
+        case .sendImage:
+          guard let cell = tableView.dequeueReusableCell(withIdentifier: SendImageCell.identifier,
+                                                         for: indexPath) as? SendImageCell else {
+            return UITableViewCell()
+          }
+          cell.configure(time: item.time.suffix(5).description,
+                         image: item.message)
+          return cell
+        }
+      })
+  }
+}
+
 // MARK: TableView DataSource, Delegate
 extension ChatRoomController: UITableViewDelegate {
   // MARK: Header DataSource
@@ -297,7 +379,7 @@ extension ChatRoomController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return CGFloat.leastNormalMagnitude
+    return 30
   }
 }
 
@@ -353,5 +435,29 @@ extension ChatRoomController: UIImagePickerControllerDelegate,
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true)
     modalButtonDidTap()
+  }
+}
+
+// MARK: Certification Cell Delegate
+extension ChatRoomController: SendImageMessageCellDelegate,
+                              ReceiveImageMessageCellDelegate {
+  func openCertificationBoard() {
+    let chatService = ChatService()
+    let vm = CertificationBoardViewModel(card: card, chatService: chatService)
+    let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: CertificationBoardViewController.identifier) { coder in
+      CertificationBoardViewController(coder: coder, viewModel: vm)
+    }
+    let nav = UINavigationController(rootViewController: vc)
+    nav.modalPresentationStyle = .fullScreen
+    nav.isNavigationBarHidden = true
+    present(nav, animated: true)
+  }
+  
+  func sendImageMessageCell() {
+    openCertificationBoard()
+  }
+  
+  func receiveImageMessageCell() {
+    openCertificationBoard()
   }
 }

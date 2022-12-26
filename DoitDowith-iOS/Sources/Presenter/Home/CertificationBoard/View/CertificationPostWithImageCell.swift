@@ -54,16 +54,19 @@ class CertificationPostWithImageCell: UICollectionViewCell {
 extension CertificationPostWithImageCell {
   func configure(with model: CertificationPost) {
     self.nickName.text = model.nickName
-    self.uploadTime.text = model.uploadTime.formatted()
+    self.uploadTime.text = model.uploadTime
     self.certificateText.text = model.certificateText
-    if let url = model.profileImageUrl {
-      let processor = RoundCornerImageProcessor(cornerRadius: 18)
-      self.profileImage.kf.setImage(with: URL(string: url), options: [.processor(processor)])
+    
+    let processor = RoundCornerImageProcessor(cornerRadius: 18)
+    if let profileImageUrl = model.profileImageUrl {
+      self.profileImage.setImage(with: "http://117.17.198.38:8080/images/\(profileImageUrl)",
+                                 processor: processor)
     }
-    if let url = model.certificateImageUrl {
-      let width = UIScreen.main.bounds.width
-      let processor = ResizingImageProcessor(referenceSize: CGSize(width: width - 56, height: 220))
-      self.certificateImage.kf.setImage(with: URL(string: url), options: [.processor(processor)])
+    
+    if let certificateImageUrl = model.certificateImageUrl,
+       let data = Data(base64Encoded: certificateImageUrl, options: .ignoreUnknownCharacters) {
+      let certificateImage = UIImage(data: data)
+      self.certificateImage.image = certificateImage
     }
   }
 }

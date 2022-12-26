@@ -7,8 +7,17 @@
 
 import UIKit
 
+import RxSwift
+import RxGesture
+
+protocol ReceiveImageMessageCellDelegate: AnyObject {
+  func receiveImageMessageCell()
+}
+
 class ReceiveImageMessageCell: UITableViewCell {
   static let identifier: String = "ReceiveImagemessageCell"
+  
+  weak var delegate: ReceiveImageMessageCellDelegate?
   
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var receiveImageView: UIImageView!
@@ -17,6 +26,7 @@ class ReceiveImageMessageCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    bindReceiveMessageView()
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,20 +43,29 @@ class ReceiveImageMessageCell: UITableViewCell {
     super.prepareForReuse()
     self.dateLabel.text = ""
     self.receiveImageView.image = nil
+    self.receiveMessage.text = ""
   }
 }
 
 extension ReceiveImageMessageCell {
-  func configure(time: String, message: String?, image: String?) {
-    if let image = image,
+  func configure(model: ChatModel) {
+    if let image = model.image,
        let data = Data(base64Encoded: image, options: .ignoreUnknownCharacters) {
       let decodedImg = UIImage(data: data)
-      receiveImageView.image = decodedImg
+      self.receiveImageView.image = decodedImg
     }
+    self.receiveMessage.text = "\(model.name)님의 인증 메세지"
     
-    if let message = message {
-      receiveMessage.text = message
-    }
-    self.dateLabel.text = time
+    self.dateLabel.text = model.time.suffix(5).description
+  }
+  
+  func bindReceiveMessageView() {
+    self.receiveMessageView.rx.tapGesture()
+      .when(.recognized)
+      .withUnretained(self)
+      .subscribe(onNext: { owner, _ in
+        owner.delegate?.receiveImageMessageCell()
+      })
+      .disposed(by: rx.disposeBag)
   }
 }

@@ -41,10 +41,17 @@ class ChatService: ChatServiceProtocol {
       try realm.write {
         let chatrooms = realm.objects(ChatRoom.self)
         let chatroom = chatrooms.first { $0.roomId == roomId }
-        if let profile = message.profileImage {
-          chatroom?.items.append(Chat(type: message.type.rawValue,
+        guard let chatroom = chatroom else { return }
+        if let image = message.image {
+          chatroom.items.append(Chat(type: message.type.rawValue,
                                       name: message.name,
-                                      profileImage: profile,
+                                      profileImage: message.profileImage,
+                                      message: message.message,
+                                      image: image))
+        } else {
+          chatroom.items.append(Chat(type: message.type.rawValue,
+                                      name: message.name,
+                                      profileImage: message.profileImage,
                                       message: message.message))
         }
       }
@@ -73,6 +80,7 @@ class ChatService: ChatServiceProtocol {
                          profileImage: elem.profileImage,
                          name: elem.name,
                          message: elem.message,
+                         image: elem.image,
                          time: elem.time.formatted(format: "yyyy-MM-dd hh:mm"))
       }
       emitter.onNext(chatModel)
