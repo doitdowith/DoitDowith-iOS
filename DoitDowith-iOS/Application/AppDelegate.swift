@@ -37,19 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     KakaoSDK.initSDK(appKey: "04d5bc7b6ebcb848ff8a9aabc924a1a6")
     window.rootViewController = LoginViewController()
-    //    if(AuthApi.hasToken()) {
-    //      UserApi.shared.accessTokenInfo { info, error in
-    //        if let error = error,
-    //           let sdkError = error as? SdkError, sdkError.isInvalidTokenError() {
-    //          window.rootViewController = LoginViewController()
-    //        } else {
-    //          let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    //          let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
-    //          vc.modalPresentationStyle = .fullScreen
-    //          window.rootViewController = vc
-    //        }
-    //      }
-    //    }
+     if(AuthApi.hasToken()) {
+       UserApi.shared.accessTokenInfo { info, error in
+         if let error = error,
+            let sdkError = error as? SdkError, sdkError.isInvalidTokenError() {
+           window.rootViewController = LoginViewController()
+         } else {
+           let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+           let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+           vc.modalPresentationStyle = .fullScreen
+           window.rootViewController = vc
+         }
+       }
+     }
     window.makeKeyAndVisible()
     self.window = window
     return true
