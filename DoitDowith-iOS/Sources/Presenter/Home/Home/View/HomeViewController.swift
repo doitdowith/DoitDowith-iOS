@@ -90,7 +90,16 @@ extension HomeViewController {
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .groupPaging
     section.visibleItemsInvalidationHandler = ({ [weak self] (_, point, _) in
+      let half = screenWidth / 2
       guard let self = self else { return }
+      if 0 <= point.x  && point.x <= half {
+        self.viewModel.input.indicatorIndex.accept(0)
+      } else if half < point.x && point.x <= screenWidth + half {
+        self.viewModel.input.indicatorIndex.accept(1)
+      } else if screenWidth + half < point.x && point.x <= 2 * screenWidth {
+        self.viewModel.input.indicatorIndex.accept(2)
+      }
+      
       if point.x <= 0 {
         self.bottomLineLeadingConstraint.constant = (self.doingButton.left - self.doingButtonLeftPadding)
         self.bottomLineWidthConstraint.constant = self.doingButton.width
@@ -127,6 +136,13 @@ extension HomeViewController {
       navigationController?.isNavigationBarHidden = visible })
     .disposed(by: rx.disposeBag)
     
+    rx.viewWillAppear
+      .withUnretained(self)
+      .bind(onNext: {(owner, _) in
+        owner.slideNextPage(at: 0)
+        owner.viewModel.input.indicatorIndex.accept(0)
+      })
+      .disposed(by: rx.disposeBag)
     let firstLoad = rx.viewWillAppear
       .map { _ in () }
     
