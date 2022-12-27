@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +31,7 @@
                         <rect key="frame" x="16" y="0.0" width="311" height="119"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqU-fV-W21">
-                                <rect key="frame" x="18" y="16" width="31.666666666666671" height="21"/>
+                                <rect key="frame" x="18" y="16" width="31.5" height="21"/>
                                 <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="18"/>
                                 <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -60,33 +59,18 @@
                             <constraint firstItem="9MY-XM-7zO" firstAttribute="leading" secondItem="SjC-vS-en4" secondAttribute="leading" id="gpa-s1-CO2"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzk-mE-dEg">
-                        <rect key="frame" x="165.66666666666663" y="85" width="177.33333333333337" height="40"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="방 입장하기?" titleAlignment="center">
-                            <backgroundConfiguration key="background">
-                                <color key="backgroundColor" red="0.2627450980392157" green="0.53333333333333333" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
-                            </backgroundConfiguration>
-                            <fontDescription key="titleFontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
-                            <directionalEdgeInsets key="contentInsets" top="11" leading="53" bottom="12" trailing="53"/>
-                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </buttonConfiguration>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Hzk-mE-dEg" secondAttribute="trailing" id="HtJ-kR-gWu"/>
                 <constraint firstAttribute="trailing" secondItem="lpf-mT-KGJ" secondAttribute="trailing" constant="16" id="Ta1-mu-RNt"/>
                 <constraint firstAttribute="bottom" secondItem="lpf-mT-KGJ" secondAttribute="bottom" constant="6" id="cVq-GA-gml"/>
-                <constraint firstItem="Hzk-mE-dEg" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="j3Y-2X-UC1"/>
                 <constraint firstItem="lpf-mT-KGJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="n8Z-gv-NG8"/>
                 <constraint firstItem="lpf-mT-KGJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ouw-F9-M3a"/>
             </constraints>
             <connections>
                 <outlet property="background" destination="lpf-mT-KGJ" id="97N-qZ-MJN"/>
                 <outlet property="dateLabel" destination="9MY-XM-7zO" id="T3v-cf-Mai"/>
-                <outlet property="enterButton" destination="Hzk-mE-dEg" id="tsk-QD-Kuy"/>
                 <outlet property="subtitleLabel" destination="SjC-vS-en4" id="D4f-85-cZz"/>
                 <outlet property="titleLabel" destination="iqU-fV-W21" id="14f-Cf-UYG"/>
             </connections>
