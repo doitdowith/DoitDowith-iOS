@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKUser
 
 class SettingViewController: UIViewController {
     @IBOutlet weak var navigationView: UIView!
@@ -14,6 +15,20 @@ class SettingViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         }
     @IBAction func logout() {
+        UserApi.shared.logout {(error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    else {
+                        print("logout() success.")
+
+                        // ✅ 로그아웃 시 메인으로 보냄
+                        UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            exit(0)
+                        }
+                    }
+                }
     }
 
     override func viewDidLoad() {

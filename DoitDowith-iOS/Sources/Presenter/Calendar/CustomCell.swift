@@ -44,7 +44,7 @@ extension CustomCell {
         }
     }
     func configure(model: [String]) {
-        let colors = [UIColor(r: 224, g: 243, b: 254), UIColor(r: 227, g: 245, b: 213), UIColor(r: 25, g: 226, b: 226)]
+        let colors = [UIColor(r: 229, g: 243, b: 251), UIColor(r: 253, g: 236, b: 236), UIColor(r: 253, g: 243, b: 232), UIColor(r: 245, g: 247, b: 229), UIColor(r: 235, g: 235, b: 252), UIColor(r: 255, g: 237, b: 250), UIColor(r: 224, g: 243, b: 254), UIColor(r: 227, g: 245, b: 213), UIColor(r: 253, g: 236, b: 236), UIColor(r: 253, g: 243, b: 232), UIColor(r: 245, g: 247, b: 229), UIColor(r: 235, g: 235, b: 252), UIColor(r: 255, g: 237, b: 250)]
         
         for (index, event) in model.enumerated() {
             let label = UILabel()
