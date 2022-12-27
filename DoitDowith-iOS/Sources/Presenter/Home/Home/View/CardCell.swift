@@ -14,6 +14,7 @@ final class CardCell: UICollectionViewCell {
   @IBOutlet weak var subtitleLabel: UILabel!
   @IBOutlet weak var background: UIView!
   @IBOutlet weak var enterButton: UIButton!
+  @IBOutlet weak var dateLabel: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -39,6 +40,10 @@ extension CardCell {
     if let hex = Int(model.color) {
       let color = UIColor(hex: hex)
       self.background.backgroundColor = color
+    }
+    if let date = model.startDate.toDate() {
+      let nextDate = date.addingTimeInterval(3600 * 24 * 7)
+      self.dateLabel.text = "\(date.formatted(format: "yyyy년 MM월 dd일")) ~ \(nextDate.formatted(format: "yyyy년 MM월 dd일"))"
     }
   }
 }
