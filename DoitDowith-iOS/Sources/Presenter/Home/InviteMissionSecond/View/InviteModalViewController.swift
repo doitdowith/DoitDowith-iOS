@@ -61,11 +61,13 @@ final class InviteModalViewController: UIViewController {
   
   @IBAction func completeButtonDidTap(_ sender: UIButton) {
     var filtered: [Friend] = []
-    for (i, friend) in self.friendList.enumerated() where selectedCell[i] {
-      let selected = Friend(id: friend.id, url: friend.url, state: .ing, name: friend.name)
-      filtered.append(selected)
+    for (i, friend) in self.friendList.enumerated() {
+      if selectedCell[i] {
+        filtered.append(Friend(id: friend.id, url: friend.url, state: .fail, name: friend.name))
+      } else {
+        filtered.append(friend)
+      }
     }
-    print(filtered)
     parentViewModel.input.selectFriends.accept(filtered)
     animateDismissView()
   }

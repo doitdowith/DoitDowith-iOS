@@ -85,6 +85,9 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
     self.missionCertificateCount = count
     self.selectFriends = select
   
+    select.bind(onNext: { friends.accept($0) })
+          .disposed(by: disposeBag)
+    
     self.buttonEnabled = enable.asDriver(onErrorJustReturn: false)
     self.buttonColor = enable.map { can -> UIColor in
       if can {
@@ -93,11 +96,13 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
         return .primaryColor4
       }
     }.asDriver(onErrorJustReturn: .primaryColor4)
-    self.model = select.map { $0.map { $0.url } }
-                        .map { [imageUrl!] + $0 }
-                        .asDriver(onErrorJustReturn: [])
+    self.model = select.map { $0.filter { $0.state == .fail } }
+                       .map { $0.map { $0.url } }
+                       .map { [imageUrl!] + $0 }
+                       .asDriver(onErrorJustReturn: [])
     self.friendList = friends.asDriver(onErrorJustReturn: [])
-    self.selectedFriends = select.map { $0.map { $0.id } }
+    self.selectedFriends = select.map { $0.filter { $0.state == .fail } }
+                                 .map { $0.map { $0.id } }
                                  .map { [memberId!] + $0 }
                                  .asDriver(onErrorJustReturn: [])
   }

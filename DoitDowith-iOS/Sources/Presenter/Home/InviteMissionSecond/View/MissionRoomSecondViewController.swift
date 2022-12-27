@@ -203,14 +203,14 @@ extension MissionRoomSecondViewController {
   func bindFriendCollectionView() {
     self.friendCollectionView.allowsMultipleSelection = true
     self.viewModel.output.model
-      .map { $0 + ["https://cdn-icons-png.flaticon.com/512/117/117885.png"] }
+      .map { $0 + ["ic_plus_white"] }
       .drive(self.friendCollectionView.rx.items(cellIdentifier: FriendProfileCell.identifier,
                                                 cellType: FriendProfileCell.self)) { _, item, cell in
-        if item == "https://cdn-icons-png.flaticon.com/512/117/117885.png" {
-          cell.profileImage.setImage(with: "https://cdn-icons-png.flaticon.com/512/117/117885.png",
-                                     processor: RoundCornerImageProcessor(cornerRadius: 22))
+        if item == "ic_plus_white" {
+          cell.profileImage.image = UIImage(named: item)
         } else {
           cell.configure(url: item)
+          cell.addShadow()
         }
       }
       .disposed(by: rx.disposeBag)

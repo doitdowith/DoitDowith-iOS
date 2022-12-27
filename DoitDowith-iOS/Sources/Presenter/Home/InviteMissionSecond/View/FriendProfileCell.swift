@@ -15,9 +15,6 @@ class FriendProfileCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    profileImage.clipsToBounds = true
-    profileImage.layer.cornerRadius = self.contentView.frame.height / 2
-    profileImage.layer.applySketchShadow(alpha: 0.16, x: 1, y: 1, blur: 2, spread: 0)
   }
   override func prepareForReuse() {
     super.prepareForReuse()
@@ -30,5 +27,10 @@ extension FriendProfileCell {
     let processor = RoundCornerImageProcessor(cornerRadius: 24)
     self.profileImage.setImage(with: "http://117.17.198.38:8080/images/\(url)",
                                processor: processor)
+  }
+  func addShadow() {
+    profileImage.clipsToBounds = true
+    profileImage.layer.cornerRadius = self.contentView.frame.height / 2
+    profileImage.layer.applySketchShadow(alpha: 0.16, x: 1, y: 1, blur: 2, spread: 0)
   }
 }
