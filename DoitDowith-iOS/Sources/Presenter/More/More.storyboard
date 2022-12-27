@@ -70,8 +70,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPZ-qv-0mW">
                                 <rect key="frame" x="16" y="109" width="382" height="271"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 31" translatesAutoresizingMaskIntoConstraints="NO" id="Z6n-aB-vvU">
-                                        <rect key="frame" x="139.5" y="21" width="103" height="103"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z6n-aB-vvU">
+                                        <rect key="frame" x="139.5" y="21.5" width="103" height="102"/>
                                         <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="oWI-Ss-bmy"/>
@@ -406,8 +406,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fic-4F-Wnb">
                                 <rect key="frame" x="16" y="113" width="382" height="92"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 31" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-Fw-jaj">
-                                        <rect key="frame" x="16" y="16" width="60" height="60"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-Fw-jaj">
+                                        <rect key="frame" x="16" y="16.5" width="60" height="59"/>
                                         <color key="tintColor" red="0.48627454040000001" green="0.64313727620000005" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="ug9-vF-l4W"/>
@@ -1114,7 +1114,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Rectangle 31" width="166.5" height="166.5"/>
         <image name="addFriendModalImage" width="773" height="762"/>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
@@ -1122,6 +1121,7 @@
         <image name="ic_back" width="28" height="28"/>
         <image name="ic_plus_blue" width="46" height="46"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
