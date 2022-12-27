@@ -50,17 +50,13 @@ final class HomeViewController: UIViewController {
   @IBOutlet weak var willdoButton: UILabel!
   @IBOutlet weak var doneButton: UILabel!
   @IBOutlet weak var bottomLine: UIView!
+  @IBOutlet weak var alamButton: UIImageView!
   
   @IBOutlet weak var bottomLineWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var bottomLineLeadingConstraint: NSLayoutConstraint!
   
   @IBAction func createMissionRoom(_ sender: UIButton) {
-    let vm: MissionRoomFirstViewModelType = MissionRoomFirstViewModel()
-    let vc = UIStoryboard(name: "Home",
-                          bundle: nil).instantiateViewController(identifier: MissionRoomFirstViewController.identifier,
-                                                                 creator: { coder in
-                            MissionRoomFirstViewController(coder: coder, viewModel: vm) })
-    self.navigationController?.pushViewController(vc, animated: true)
+    navigateCreateMissionRoom()
   }
 }
 
@@ -79,6 +75,7 @@ extension HomeViewController {
     self.bindLifeCycle()
     self.bindContentCollectionView()
     self.bindPagingTabButton()
+    self.bindAlarmButton()
   }
   
   func colletionViewLayout() -> UICollectionViewLayout {
@@ -191,8 +188,20 @@ extension HomeViewController {
       .drive(self.doneButton.rx.textColor)
       .disposed(by: rx.disposeBag)
   }
+  
+  func bindAlarmButton() {
+    self.alamButton.rx
+      .tapGesture()
+      .when(.recognized)
+      .withUnretained(self)
+      .bind(onNext: { owner, _ in
+        owner.navigateAlarmView()
+      })
+      .disposed(by: rx.disposeBag)
+  }
 }
 
+// MARK: - ContentCell Delegate
 extension HomeViewController: ContentCellDelegate {
   func contentCell(_ didSelectCell: UICollectionViewCell, card: Card) {
     guard let memberId = UserDefaults.standard.string(forKey: "memberId") else { return }
@@ -216,6 +225,7 @@ extension HomeViewController: ContentCellDelegate {
   }
 }
 
+// MARK: - Card TableView DataSource
 extension HomeViewController {
   func dataSource() -> HomeDataSource {
     return HomeDataSource { _, collectionView, indexPath, item in
@@ -236,5 +246,26 @@ extension HomeViewController {
         return cell
       }
     }
+  }
+}
+
+// MARK: - Navigate Functions
+extension HomeViewController {
+  func navigateCreateMissionRoom() {
+    let vm: MissionRoomFirstViewModelType = MissionRoomFirstViewModel()
+    let vc = UIStoryboard(name: "Home",
+                          bundle: nil).instantiateViewController(identifier: MissionRoomFirstViewController.identifier,
+                                                                 creator: { coder in
+                            MissionRoomFirstViewController(coder: coder, viewModel: vm) })
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  func navigateAlarmView() {
+    let vm: AlarmViewModelType = AlarmViewModel()
+    let vc = UIStoryboard(name: "Home",
+                          bundle: nil).instantiateViewController(identifier: AlarmViewController.identifier,
+                                                                 creator: { coder in
+                            AlarmViewController(coder: coder, viewModel: vm) })
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }

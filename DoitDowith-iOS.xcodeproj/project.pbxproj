@@ -21,6 +21,12 @@
 		9DD2A1DF4B9DBA828AF4FBC9 /* Pods_DoitDowith_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */; };
 		EE05C25329266C4000FAA844 /* SendImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */; };
 		EE05C25429266C4000FAA844 /* SendImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */; };
+		EE08335F295AE2E100C0C1EC /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08335E295AE2E100C0C1EC /* AlarmViewController.swift */; };
+		EE083361295AE44A00C0C1EC /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE083360295AE44A00C0C1EC /* AlarmViewModel.swift */; };
+		EE083364295AE54900C0C1EC /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE083362295AE54900C0C1EC /* AlarmCell.swift */; };
+		EE083365295AE54900C0C1EC /* AlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE083363295AE54900C0C1EC /* AlarmCell.xib */; };
+		EE083368295AE76600C0C1EC /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE083367295AE76600C0C1EC /* Alarm.swift */; };
+		EE08336B295AE83000C0C1EC /* AlarmResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08336A295AE83000C0C1EC /* AlarmResponse.swift */; };
 		EE0C68712955692100581B33 /* SendImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0C686F2955692100581B33 /* SendImageCell.swift */; };
 		EE0C68722955692100581B33 /* SendImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE0C68702955692100581B33 /* SendImageCell.xib */; };
 		EE0C687529556A9500581B33 /* ReceiveImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0C687329556A9500581B33 /* ReceiveImageCell.swift */; };
@@ -161,6 +167,12 @@
 		C0286882C860FD524F209C7D /* Pods_DoitDowith_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoitDowith_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE05C25129266C4000FAA844 /* SendImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageMessageCell.swift; sourceTree = "<group>"; };
 		EE05C25229266C4000FAA844 /* SendImageMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendImageMessageCell.xib; sourceTree = "<group>"; };
+		EE08335E295AE2E100C0C1EC /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		EE083360295AE44A00C0C1EC /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
+		EE083362295AE54900C0C1EC /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
+		EE083363295AE54900C0C1EC /* AlarmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlarmCell.xib; sourceTree = "<group>"; };
+		EE083367295AE76600C0C1EC /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		EE08336A295AE83000C0C1EC /* AlarmResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmResponse.swift; sourceTree = "<group>"; };
 		EE0C686F2955692100581B33 /* SendImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImageCell.swift; sourceTree = "<group>"; };
 		EE0C68702955692100581B33 /* SendImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendImageCell.xib; sourceTree = "<group>"; };
 		EE0C687329556A9500581B33 /* ReceiveImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveImageCell.swift; sourceTree = "<group>"; };
@@ -306,6 +318,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE08335D295AE2D800C0C1EC /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				EE08335E295AE2E100C0C1EC /* AlarmViewController.swift */,
+				EE083360295AE44A00C0C1EC /* AlarmViewModel.swift */,
+				EE083362295AE54900C0C1EC /* AlarmCell.swift */,
+				EE083363295AE54900C0C1EC /* AlarmCell.xib */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		EE083366295AE75F00C0C1EC /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				EE083367295AE76600C0C1EC /* Alarm.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		EE083369295AE82900C0C1EC /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				EE08336A295AE83000C0C1EC /* AlarmResponse.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
 		EE0C687729556B8800581B33 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +421,7 @@
 		EE1F590528F68AFF0046ED09 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE083369295AE82900C0C1EC /* Alarm */,
 				EE7F4024294DBBAA002AD53F /* CreateRoom */,
 				EE300D78293A378800842742 /* VoteMemberList */,
 				EE6950FD292E11CD00B933BD /* CertificateBoard */,
@@ -517,6 +557,7 @@
 		EE3EA1A228D9CCAB00CEFE36 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EE08335D295AE2D800C0C1EC /* Alarm */,
 				EEE70A78292DDA550085D22F /* CertificationBoard */,
 				EE9EA67C2913D5E400F4E656 /* Certification */,
 				EE7857FD28EDB3B600F8C309 /* InviteMissionFirst */,
@@ -589,6 +630,7 @@
 		EE4F4D7128EAEF54000C2FE7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE083366295AE75F00C0C1EC /* Alarm */,
 				EE3AD8762956C8C500457E44 /* Enum */,
 				EE6950F7292E095C00B933BD /* CertificateBoard */,
 				EE3A078B28F87356002C7E5D /* Friend */,
@@ -1012,6 +1054,7 @@
 				EE889E9428DD6A87005DE44B /* Pretendard-SemiBold.otf in Resources */,
 				EEE46C132924B4A00030A15E /* Colors.xcassets in Resources */,
 				EE77D5E828D9D11600057EF8 /* Calendar.storyboard in Resources */,
+				EE083365295AE54900C0C1EC /* AlarmCell.xib in Resources */,
 				EE889E9728DD6A87005DE44B /* Pretendard-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1087,6 +1130,7 @@
 				EEE063D62942140100D45493 /* LoginViewController.swift in Sources */,
 				EEC0E867293F7E9E00B2B79C /* MissionRoomResponse.swift in Sources */,
 				EE4F4D7028EAEE76000C2FE7 /* HomeViewModel.swift in Sources */,
+				EE08336B295AE83000C0C1EC /* AlarmResponse.swift in Sources */,
 				EE695105292E128500B933BD /* CertificateBoardResponse.swift in Sources */,
 				EEE063D8294214D600D45493 /* UIButton+.swift in Sources */,
 				EEAEAD1A28E921C1004CA8BA /* SectionOfChatModel.swift in Sources */,
@@ -1143,7 +1187,9 @@
 				EEC949E328F7F37100A9661F /* InviteModalViewController.swift in Sources */,
 				EEC949E028F7E1A300A9661F /* FriendProfileCell.swift in Sources */,
 				1824EDAF29019BDC007BA66B /* OtherTableViewCell.swift in Sources */,
+				EE083368295AE76600C0C1EC /* Alarm.swift in Sources */,
 				EE78580328EDB62300F8C309 /* MissionRoomSecondViewModel.swift in Sources */,
+				EE083364295AE54900C0C1EC /* AlarmCell.swift in Sources */,
 				EE6950F3292DF78300B933BD /* CertificationPostWithImageCell.swift in Sources */,
 				EE3A078D28F8736A002C7E5D /* Friend.swift in Sources */,
 				EE3EA1AE28D9CD3300CEFE36 /* HomeViewController.swift in Sources */,
@@ -1161,12 +1207,14 @@
 				EE23C3EA293DE6100098740C /* UIImageView+.swift in Sources */,
 				EE5500A428E98543005F65AC /* ChatHeaderView.swift in Sources */,
 				EE3AD87A2956C8EB00457E44 /* MessageType.swift in Sources */,
+				EE08335F295AE2E100C0C1EC /* AlarmViewController.swift in Sources */,
 				EE402260295729B1004EE609 /* CreateRoomResponse.swift in Sources */,
 				EE1ED77829016AB80007F591 /* ChatRoomInformationModalWhenStarted.swift in Sources */,
 				EEE83590293B612E001C97CC /* CardSectionModel.swift in Sources */,
 				EE8F28F8294DA273006E6F96 /* ResponseType.swift in Sources */,
 				EE300D7A293A379300842742 /* VoteMemberListRequest.swift in Sources */,
 				EE6A2BD328E485C1000656AA /* SendMessageCell.swift in Sources */,
+				EE083361295AE44A00C0C1EC /* AlarmViewModel.swift in Sources */,
 				EE1F590028F6894C0046ED09 /* Encodable+Extension.swift in Sources */,
 				18E69C992950491600A644F7 /* requestFriend.swift in Sources */,
 				EE300D70293A30B000842742 /* VoteResultViewController.swift in Sources */,

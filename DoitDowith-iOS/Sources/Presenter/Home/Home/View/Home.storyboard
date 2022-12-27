@@ -170,6 +170,7 @@
                     <navigationItem key="navigationItem" id="4XB-KC-Ydj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="alamButton" destination="PgT-13-6jK" id="acO-3l-D9E"/>
                         <outlet property="bottomLine" destination="NE5-yz-D1D" id="HKd-Z4-dtI"/>
                         <outlet property="bottomLineLeadingConstraint" destination="PMF-NE-yHH" id="okD-OK-9pn"/>
                         <outlet property="bottomLineWidthConstraint" destination="mmV-sQ-yhR" id="5m5-h5-L0B"/>
@@ -182,6 +183,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wxq-ci-vns" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1518.840579710145" y="93.75"/>
+        </scene>
+        <!--Alarm View Controller-->
+        <scene sceneID="zwB-Qo-BRv">
+            <objects>
+                <viewController storyboardIdentifier="AlarmViewController" id="sxX-30-hft" customClass="AlarmViewController" customModule="DoitDowith_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VPY-UK-oME">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-Gx-bDn" userLabel="Navigation View">
+                                <rect key="frame" x="0.0" y="47" width="375" height="61"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icBack" translatesAutoresizingMaskIntoConstraints="NO" id="5n7-8i-a8k">
+                                        <rect key="frame" x="17" y="16.666666666666664" width="28" height="28"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="Gdi-AC-V9C"/>
+                                            <constraint firstAttribute="height" constant="28" id="qo1-Dt-UM3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kzk-QP-Nom">
+                                        <rect key="frame" x="65" y="20" width="31.333333333333329" height="21"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Bold" family="Pretendard" pointSize="18"/>
+                                        <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Kzk-QP-Nom" firstAttribute="leading" secondItem="5n7-8i-a8k" secondAttribute="trailing" constant="20" id="Dae-YE-kGj"/>
+                                    <constraint firstItem="Kzk-QP-Nom" firstAttribute="centerY" secondItem="a7M-Gx-bDn" secondAttribute="centerY" id="LBT-Uh-buu"/>
+                                    <constraint firstAttribute="height" constant="61" id="ShV-og-heJ"/>
+                                    <constraint firstItem="5n7-8i-a8k" firstAttribute="leading" secondItem="a7M-Gx-bDn" secondAttribute="leading" constant="17" id="adr-jc-fSX"/>
+                                    <constraint firstItem="5n7-8i-a8k" firstAttribute="centerY" secondItem="a7M-Gx-bDn" secondAttribute="centerY" id="h3F-L1-IKP"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="q7t-OX-mQt">
+                                <rect key="frame" x="0.0" y="113" width="375" height="665"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ybH-Ve-CIH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="q7t-OX-mQt" firstAttribute="leading" secondItem="ybH-Ve-CIH" secondAttribute="leading" id="7JF-jv-4MM"/>
+                            <constraint firstItem="a7M-Gx-bDn" firstAttribute="leading" secondItem="VPY-UK-oME" secondAttribute="leading" id="JYk-yx-AfN"/>
+                            <constraint firstItem="q7t-OX-mQt" firstAttribute="trailing" secondItem="ybH-Ve-CIH" secondAttribute="trailing" id="Lfa-fJ-6Bk"/>
+                            <constraint firstItem="q7t-OX-mQt" firstAttribute="top" secondItem="a7M-Gx-bDn" secondAttribute="bottom" constant="5" id="Scl-Aa-uba"/>
+                            <constraint firstItem="ybH-Ve-CIH" firstAttribute="trailing" secondItem="a7M-Gx-bDn" secondAttribute="trailing" id="X96-th-FQX"/>
+                            <constraint firstItem="a7M-Gx-bDn" firstAttribute="top" secondItem="ybH-Ve-CIH" secondAttribute="top" id="cmL-gh-a74"/>
+                            <constraint firstItem="ybH-Ve-CIH" firstAttribute="bottom" secondItem="q7t-OX-mQt" secondAttribute="bottom" id="p4q-A4-jS6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alamTableView" destination="q7t-OX-mQt" id="pFQ-Yr-ovj"/>
+                        <outlet property="backButton" destination="5n7-8i-a8k" id="w1R-Xs-SfK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZuT-mN-iC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2237.5999999999999" y="93.842364532019715"/>
         </scene>
         <!--Mission Room First View Controller-->
         <scene sceneID="3Vx-0H-aod">
@@ -481,7 +543,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미션 시작일까지 합류한 사람들끼리 미션을 수행하게 됩니다." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxI-8W-wcS">
-                                        <rect key="frame" x="16" y="303" width="303.66666666666669" height="16"/>
+                                        <rect key="frame" x="16" y="303" width="306.66666666666669" height="16"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="13"/>
                                         <color key="textColor" name="CoolGray3"/>
                                         <nil key="highlightedColor"/>
@@ -1802,7 +1864,7 @@
             <size key="intrinsicContentSize" width="275.66666666666669" height="61"/>
         </designable>
         <designable name="Xmu-9C-1TL">
-            <size key="intrinsicContentSize" width="234" height="61"/>
+            <size key="intrinsicContentSize" width="235.66666666666666" height="60.333333333333336"/>
         </designable>
         <designable name="YG7-Lk-iOW">
             <size key="intrinsicContentSize" width="198.66666666666666" height="61"/>
