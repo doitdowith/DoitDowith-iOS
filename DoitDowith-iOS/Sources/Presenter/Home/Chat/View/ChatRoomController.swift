@@ -123,6 +123,8 @@ extension ChatRoomController {
     self.bindKeyboard()
     self.bindLifeCycle()
     self.bindMessageField()
+    self.bindTextFieldView()
+    self.bindCertificateButton()
   }
   
   func applyShadow() {
@@ -223,7 +225,12 @@ extension ChatRoomController {
       })
       .disposed(by: rx.disposeBag)
   }
-  
+  func bindCertificateButton() {
+    Observable.just(card.section)
+      .map { $0 != 1 }
+      .bind(to: certificateButton.rx.isHidden)
+      .disposed(by: rx.disposeBag)
+  }
   func bindChatView() {
     self.chatView.rx
       .setDelegate(self)
@@ -253,7 +260,12 @@ extension ChatRoomController {
       .emit(onNext: { _ in })
       .disposed(by: rx.disposeBag)
   }
-  
+  func bindTextFieldView() {
+    Observable.just(card.section)
+      .map { $0 != 1 }
+      .bind(to: textfieldView.rx.isHidden)
+      .disposed(by: rx.disposeBag)
+  }
   func bindMessageField() {
     self.textfield.rx
       .controlEvent(.editingDidEndOnExit)
@@ -404,11 +416,12 @@ extension ChatRoomController: PHPickerViewControllerDelegate {
             let name = UserDefaults.standard.string(forKey: "name"),
             let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
       let base64 = data.base64EncodedString()
-      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
-                                                        profileImage: profileImage,
-                                                        name: name,
-                                                        message: base64,
-                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+      print(base64)
+//      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
+//                                                        profileImage: profileImage,
+//                                                        name: name,
+//                                                        message: base64,
+//                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
     }
   }
 }
