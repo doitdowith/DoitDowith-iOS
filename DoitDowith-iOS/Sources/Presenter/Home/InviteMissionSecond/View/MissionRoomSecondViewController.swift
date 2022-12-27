@@ -76,9 +76,14 @@ final class MissionRoomSecondViewController: UIViewController {
         print("roomdId: ", response.roomId)
         return response.roomId
       }
+      .catchAndReturn("error")
       .withUnretained(self)
       .bind(onNext: { (owner, id: String) in
-        owner.navigateChat(roomId: id)
+        if id == "error" {
+          owner.view.showToast(message: "하루에 4개 이상의 미션을 만들 수 없습니다.", width: 250)
+        } else {
+          owner.navigateChat(roomId: id)
+        }
       })
       .disposed(by: rx.disposeBag)
   }

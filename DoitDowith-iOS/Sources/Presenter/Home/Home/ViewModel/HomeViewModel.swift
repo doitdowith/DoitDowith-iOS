@@ -52,9 +52,9 @@ final class HomeViewModel: HomeViewModelInput,
   let doneButtonColor: Driver<UIColor>
   
   init() {
-    let emptyCards: [HomeSectionModel] = [.init(model: 0, items: [.init(type: .none, data: [], identity: "\(Date.now.timeIntervalSince1970)1"),
-                                                                  .init(type: .none, data: [], identity: "\(Date.now.timeIntervalSince1970)2"),
-                                                                  .init(type: .none, data: [], identity: "\(Date.now.timeIntervalSince1970)3")])
+    let emptyCards: [HomeSectionModel] = [.init(model: 0, items: [.init(type: .none, data: [], identity: "\(Date.now)"),
+                                                                  .init(type: .none, data: [], identity: "\(Date.now.addingTimeInterval(100))"),
+                                                                  .init(type: .none, data: [], identity: "\(Date.now.addingTimeInterval(200))")])
     ]
     let fetching = PublishRelay<Void>()
     let indicatorIndexing = BehaviorRelay<Int>(value: 0)
@@ -78,10 +78,11 @@ final class HomeViewModel: HomeViewModelInput,
         let doing = cards.filter { $0.section == 1 }
         let willdo = cards.filter { $0.section == 2 }
         let done = cards.filter { $0.section == 3 }
-        let sectionModel: [HomeSectionModel] = [ .init(model: 0,
-                                                       items: [doing.isEmpty ? none : CardList(type: .doing, data: doing, identity: "\(Date.now.timeIntervalSince1970)5"),
-                                                               willdo.isEmpty ? none : CardList(type: .willdo, data: willdo, identity: "\(Date.now.timeIntervalSince1970)6"),
-                                                               done.isEmpty ? none : CardList(type: .done, data: done, identity: "\(Date.now.timeIntervalSince1970)7")])
+        let sectionModel: [HomeSectionModel] = [
+          .init(model: 0,
+                items: [doing.isEmpty ? none : CardList(type: .doing, data: doing, identity: "\(Date.now)"),
+                        willdo.isEmpty ? none : CardList(type: .willdo, data: willdo, identity: "\(Date.now.addingTimeInterval(100))"),
+                        done.isEmpty ? none : CardList(type: .done, data: done, identity: "\(Date.now.addingTimeInterval(200))")])
         ]
         sectionCards.accept(sectionModel)
       })
