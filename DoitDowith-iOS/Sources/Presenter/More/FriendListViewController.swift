@@ -112,7 +112,7 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell: FriendListTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendListTableViewCell)!
                 
         cell.friendNameLabel?.text = model[indexPath.row].name
-        cell.numLabel?.text = model[indexPath.row].memberID
+        cell.numLabel?.text = String(indexPath.row + 1)
         cell.friendImage.setImage(with: "http://117.17.198.38:8080/images/\(model[indexPath.row].profileImage)")
         
         return cell

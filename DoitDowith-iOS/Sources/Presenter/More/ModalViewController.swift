@@ -40,11 +40,12 @@ class ModalViewController: UIViewController {
     }
     
     func postTest() {
+            guard let token = UserDefaults.standard.string(forKey: "token") else { return }
             let url = "http://117.17.198.38:8080/api/v1/friends"
             var request = URLRequest(url: URL(string: url)!)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.headers = ["Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0YzA3YmUyOS1lZTQzLTQyOGYtYTk1My1iNjM1ODFmZjJmMDgiLCJleHAiOjE2NzE1MTg3MzV9.8SpAo2ZE7QaiWIEO7xJc1hYwnPDkXYZ9FL5iXX8RoqPVJtS3xJGBJFqFgzbYwOODS6hnyTD7GULh7cnYR-3Myw"]
+            request.headers = ["Authorization": "Bearer \(token)"]
             // POST 로 보낼 정보
         let queryString : Parameters = [
             "dowithCode" : codeTF.text

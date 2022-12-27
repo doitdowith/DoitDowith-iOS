@@ -84,7 +84,6 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "otherCell", for: indexPath) as? OtherTableViewCell else { return UITableViewCell() }
-            // 셀에 넣을 text을 정하고
         
         switch indexPath.row {
         case 0: cell.setOtherLabelCell(text: "공지사항")
@@ -92,8 +91,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         case 2: cell.setOtherLabelCell(text: "앱 설정")
         default: cell.setOtherLabelCell(text: "공지사항")
         }
-        // 셀에 text를 넣어준다.
-        // 셀을 리턴한다.
+
         return cell
     }
     
