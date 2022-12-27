@@ -232,6 +232,13 @@ extension ChatRoomController {
       .disposed(by: rx.disposeBag)
   }
   func bindChatView() {
+    self.chatView.rx.tapGesture()
+      .when(.recognized)
+      .bind(onNext: { _ in
+        self.view.endEditing(true)
+      })
+      .disposed(by: rx.disposeBag)
+    
     self.chatView.rx
       .setDelegate(self)
       .disposed(by: rx.disposeBag)
@@ -286,6 +293,11 @@ extension ChatRoomController {
   }
   
   func bindKeyboard() {
+    RxKeyboard.instance.visibleHeight
+      .map { $0 > 0 }
+      .drive(self.modalButton.rx.isHidden)
+      .disposed(by: rx.disposeBag)
+    
     RxKeyboard.instance.visibleHeight
       .map { height in
         if height > 0 {
