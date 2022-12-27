@@ -78,7 +78,7 @@ final class MisionRoomSecondViewModel: MissionRoomSecondViewModelType,
     let enable = Observable
       .combineLatest(startDate, count, select)
       .map { (date, count, select) -> Bool in
-        return !date.isEmpty && !count.isEmpty && select.count >= 2 }
+        return !date.isEmpty && !count.isEmpty && select.count >= 1 }
     
     self.fetchFriends = fetching
     self.missionStartDate = startDate
