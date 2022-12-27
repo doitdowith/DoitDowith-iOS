@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmCell" id="KGk-i7-Jjw" customClass="AlarmCell" customModule="DoitDowith_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBB-ba-VI9" userLabel="Background VIew">
+                        <rect key="frame" x="16" y="6" width="343" height="88"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="눈알가글님이 [특별한 한 끼 만들어 먹기] 미션에 초대했어요!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glP-N2-hCo">
+                                <rect key="frame" x="14" y="15.999999999999996" width="315" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="Black1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021.08.13.(금)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBv-ck-ysE">
+                                <rect key="frame" x="14" y="57.666666666666657" width="75" height="14"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="11"/>
+                                <color key="textColor" name="CoolGray2"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="LightGray"/>
+                        <constraints>
+                            <constraint firstItem="lBv-ck-ysE" firstAttribute="leading" secondItem="glP-N2-hCo" secondAttribute="leading" id="1CP-GD-Yqm"/>
+                            <constraint firstAttribute="trailing" secondItem="glP-N2-hCo" secondAttribute="trailing" constant="14" id="K2T-uo-ftN"/>
+                            <constraint firstItem="glP-N2-hCo" firstAttribute="top" secondItem="oBB-ba-VI9" secondAttribute="top" constant="16" id="LnN-cy-S3q"/>
+                            <constraint firstItem="lBv-ck-ysE" firstAttribute="top" secondItem="glP-N2-hCo" secondAttribute="bottom" constant="8" id="ODW-o9-HPx"/>
+                            <constraint firstItem="glP-N2-hCo" firstAttribute="leading" secondItem="oBB-ba-VI9" secondAttribute="leading" constant="14" id="ajG-uz-bFD"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lBv-ck-ysE" secondAttribute="bottom" constant="16" id="eUP-Uh-XyL"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="oBB-ba-VI9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="82L-3d-u5x"/>
+                    <constraint firstAttribute="trailing" secondItem="oBB-ba-VI9" secondAttribute="trailing" constant="16" id="8xd-fK-oIQ"/>
+                    <constraint firstItem="oBB-ba-VI9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="E9S-C1-UQn"/>
+                    <constraint firstAttribute="bottom" secondItem="oBB-ba-VI9" secondAttribute="bottom" constant="6" id="nX4-C7-pbC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="alarmBackgroundView" destination="oBB-ba-VI9" id="K7B-mk-BT9"/>
+                <outlet property="dateLabel" destination="lBv-ck-ysE" id="OZC-ne-bOx"/>
+                <outlet property="titleLabel" destination="glP-N2-hCo" id="sZ3-oL-1jT"/>
+            </connections>
+            <point key="canvasLocation" x="138.1679389312977" y="19.718309859154932"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Black1">
+            <color red="0.11400000005960464" green="0.11400000005960464" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CoolGray2">
+            <color red="0.66299998760223389" green="0.68599998950958252" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightGray">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
