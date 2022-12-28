@@ -87,9 +87,19 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
         return totalcertificateCount - certificateCount
       }
     
-    let isHide = Observable.combineLatest(allMessages, certificateCount)
+    let chatRecord = allMessages.scan([ChatModel](),
+                                        accumulator: { prev, new in
+      if prev != new {
+        return prev + new
+      } else {
+        return prev
+      }
+    })
+    
+    let isHide = Observable.combineLatest(chatRecord, certificateCount)
+      .debug()
       .map { (messages, count) -> Bool in
-          guard let name = name else { return false }
+        guard let name = name else { return false }
         let today = Date.now.formatted(format: "yyyy-MM-dd")
         let message = messages.filter { $0.name == name && !$0.message.isEmpty && $0.image != nil && $0.time.prefix(10).description == today }
         return !(message.isEmpty && count > 0)
@@ -129,14 +139,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
     self.sendMessage = send
     self.recevieMessage = receive
-    self.messageList = allMessages
-        .scan([ChatModel](), accumulator: { prev, new in
-          if prev != new {
-            return prev + new
-          } else {
-            return prev
-          }
-        })
+    self.messageList = chatRecord
         .map { (chats: [ChatModel]) -> [SectionOfChatModel] in
           var section: [SectionOfChatModel] = []
           var row: [ChatModel] = []
