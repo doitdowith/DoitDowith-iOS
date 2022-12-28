@@ -33,13 +33,13 @@ class MoreViewController: UIViewController {
                     })
                     .disposed(by: rx.disposeBag)
         
-        getTest()
+        getMypage()
         self.friendCount.addTarget(self, action: #selector(moveFriendVC), for: .touchUpInside)
         self.friend.addTarget(self, action: #selector(moveFriendVC), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
     
-    func getTest() {
+    func getMypage() {
         guard let token = UserDefaults.standard.string(forKey: "token") else { return }
         let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/members/mypage",
                                         method: .get,

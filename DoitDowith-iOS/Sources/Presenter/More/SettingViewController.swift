@@ -22,7 +22,6 @@ class SettingViewController: UIViewController {
                     else {
                         print("logout() success.")
 
-                        // ✅ 로그아웃 시 메인으로 보냄
                         UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             exit(0)

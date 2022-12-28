@@ -39,7 +39,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     var model: [Datumm] = []
     
     private func scrollCurrentPage(isPrev: Bool) {
-        getTest()
+        getCalendar()
         let cal = Calendar.current
         var dateComponents = DateComponents()
         dateComponents.month = isPrev ? -1 : 1
@@ -53,7 +53,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         return Date()
     }()
     
-    func getTest() {
+    func getCalendar() {
         guard let token = UserDefaults.standard.string(forKey: "token") else { return }
         let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/calendar/my",
                                         method: .get,
@@ -112,7 +112,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendarView.calendarHeaderView.backgroundColor = UIColor.white
         calendarView.calendarWeekdayView.backgroundColor = UIColor.white
         
-        getTest()
+        getCalendar()
     }
 }
 

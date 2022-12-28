@@ -36,17 +36,17 @@ class ModalViewController: UIViewController {
     }
     
     @IBAction func sendBtn(_ sender: UIButton) {
-        postTest()
+        postDowithCode()
     }
     
-    func postTest() {
+    func postDowithCode() {
             guard let token = UserDefaults.standard.string(forKey: "token") else { return }
             let url = "http://117.17.198.38:8080/api/v1/friends"
             var request = URLRequest(url: URL(string: url)!)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.headers = ["Authorization": "Bearer \(token)"]
-            // POST 로 보낼 정보
+            
         let queryString : Parameters = [
             "dowithCode" : codeTF.text
                 ] as Dictionary
