@@ -79,11 +79,11 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.dowithCode.text = doitcode
         self.userName.text = username
         self.userImage.setImage(with: self.userimageurl!)
-        getTest()
+        getFriendList()
         // Do any additional setup after loading the view.
     }
     
-    func getTest() {
+    func getFriendList() {
         guard let token = UserDefaults.standard.string(forKey: "token") else { return }
         let requestModel = RequestModel(url: "http://117.17.198.38:8080/api/v1/friends/my",
                                         method: .get,
@@ -125,6 +125,6 @@ class FriendListViewController: UIViewController, UITableViewDelegate, UITableVi
 
 extension FriendListViewController: ModalViewControllerDelegate {
     func modalDismissed() {
-        self.getTest()
+        self.getFriendList()
     }
 }
