@@ -97,7 +97,6 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     })
     
     let isHide = Observable.combineLatest(chatRecord, certificateCount)
-      .debug()
       .map { (messages, count) -> Bool in
         guard let name = name else { return false }
         let today = Date.now.formatted(format: "yyyy-MM-dd")

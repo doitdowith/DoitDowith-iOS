@@ -1479,10 +1479,6 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.2627450980392157" green="0.53333333333333333" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="completeButtomDidTap:" destination="qYw-VF-laV" eventType="touchUpInside" id="lg5-cU-FMe"/>
-                                            <action selector="didTapNextPageButton:" destination="WcS-PO-9kK" eventType="touchUpInside" id="0Wa-oT-YYi"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
