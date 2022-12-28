@@ -35,16 +35,6 @@ class LoginViewController: UIViewController {
     $0.translatesAutoresizingMaskIntoConstraints = false
   }
   
-  private let appleLoginButton = UIButton().then {
-    $0.setTitle("Apple 로그인", for: .normal)
-    $0.setTitleColor(.white, for: .normal)
-    $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.buttonFontSize)
-    $0.backgroundColor = UIColor(hex: 0x000000)
-    $0.layer.cornerRadius = 2
-    $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-    $0.translatesAutoresizingMaskIntoConstraints = false
-  }
-  
   private let stackView = UIStackView().then {
     $0.axis = .vertical
     $0.alignment = .fill
@@ -61,8 +51,6 @@ class LoginViewController: UIViewController {
     view.addSubview(stackView)
     stackView.addArrangedSubview(kakaoLoginButton)
     kakaoLoginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
-    stackView.addArrangedSubview(appleLoginButton)
-    appleLoginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
     
     setConstraints()
   }
@@ -72,9 +60,7 @@ extension LoginViewController {
     kakaoLoginButton.snp.makeConstraints { make in
       make.height.equalTo(48)
     }
-    appleLoginButton.snp.makeConstraints { make in
-      make.height.equalTo(48)
-    }
+
     stackView.snp.makeConstraints { make in
       make.leading.equalToSuperview().offset(16)
       make.bottom.equalToSuperview().offset(-50)
