@@ -81,26 +81,7 @@ class CertificationViewController: UIViewController {
   }
   
   @IBAction func completeButtomDidTap(_ sender: UIButton) {
-    guard let image = selectedImage,
-          let message = certificateText,
-          let data = image.pngData(),
-          let roomId = self.roomId,
-          let name = UserDefaults.standard.string(forKey: "name"),
-          let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
-    APIService.shared.upload(with: CertificateRequest(image: data,
-                                                      message: message,
-                                                      roomId: roomId)) { success in
-      if success {
-        self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
-                                                             profileImage: profileImage,
-                                                             name: name,
-                                                             message: message,
-                                                             time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
-        self.navigationController?.popViewController(animated: true)
-      } else {
-        self.view.showToast(message: "업로드에 실패했습니다", width: 150)
-      }
-    }
+   
   }
   
   func resignTextViewResponder() {
@@ -108,6 +89,28 @@ class CertificationViewController: UIViewController {
       certificationTextView.resignFirstResponder()
     }
   }
+  func uploadCertificate() {
+        guard let image = selectedImage,
+              let message = certificateText,
+              let data = image.pngData(),
+              let roomId = self.roomId,
+              let name = UserDefaults.standard.string(forKey: "name"),
+              let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
+        APIService.shared.upload(with: CertificateRequest(image: data,
+                                                          message: message,
+                                                          roomId: roomId)) { success in
+          if success {
+            self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
+                                                                 profileImage: profileImage,
+                                                                 name: name,
+                                                                 message: message,
+                                                                 time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+            self.navigationController?.popViewController(animated: true)
+          } else {
+            self.view.showToast(message: "업로드에 실패했습니다", width: 150)
+          }
+        }
+    }
 }
 
 // MARK: Bind function
@@ -116,11 +119,20 @@ extension CertificationViewController {
     self.bindLifeCycle()
     self.bindBackButton()
     self.bindKeyboard()
+    self.bindCompleteButton()
     self.bindImageCollectionView()
     self.bindBackgroundView()
     self.bindCertificationTextView()
   }
-  
+    func bindCompleteButton() {
+        self.completeButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind(onNext: { (owner, _) in
+                owner.uploadCertificate()
+            })
+            .disposed(by: rx.disposeBag)
+    }
   func bindLifeCycle() {
     Observable
       .merge([rx.viewWillAppear.map { _ in true },

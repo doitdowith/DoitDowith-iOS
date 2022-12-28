@@ -15,7 +15,7 @@ protocol ReceiveImageMessageCellDelegate: AnyObject {
 }
 
 class ReceiveImageMessageCell: UITableViewCell {
-  static let identifier: String = "ReceiveImagemessageCell"
+  static let identifier: String = "ReceiveImageMessageCell"
   
   weak var delegate: ReceiveImageMessageCellDelegate?
   

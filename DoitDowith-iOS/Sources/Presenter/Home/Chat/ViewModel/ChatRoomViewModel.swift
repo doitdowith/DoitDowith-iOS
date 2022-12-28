@@ -89,8 +89,9 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     
     let isHide = Observable.combineLatest(allMessages, certificateCount)
       .map { (messages, count) -> Bool in
+          guard let name = name else { return false }
         let today = Date.now.formatted(format: "yyyy-MM-dd")
-        let message = messages.filter { !$0.message.isEmpty && $0.image != nil && $0.time.prefix(10).description == today }
+        let message = messages.filter { $0.name == name && !$0.message.isEmpty && $0.image != nil && $0.time.prefix(10).description == today }
         return !(message.isEmpty && count > 0)
       }
     
