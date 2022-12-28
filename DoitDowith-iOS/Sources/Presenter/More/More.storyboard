@@ -548,39 +548,20 @@
                                                         <constraint firstAttribute="width" constant="40" id="j7C-0t-Rsc"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufN-d0-Uve">
-                                                    <rect key="frame" x="130" y="16.5" width="138.5" height="14.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="함께한 미션 0번 / " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjl-U7-OMN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="86" height="14.5"/>
-                                                            <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
-                                                            <color key="textColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="달성률 0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nf8-hc-4F7">
-                                                            <rect key="frame" x="86" y="0.0" width="52.5" height="14.5"/>
-                                                            <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
-                                                            <color key="textColor" red="0.66666668650000005" green="0.68627452850000004" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBd-lZ-Ssn">
-                                                    <rect key="frame" x="130" y="34" width="38" height="18"/>
+                                                    <rect key="frame" x="139" y="25" width="38" height="18"/>
                                                     <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="15"/>
                                                     <color key="textColor" red="0.19215688110000001" green="0.20784312490000001" blue="0.2352941036" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SBd-lZ-Ssn" firstAttribute="top" secondItem="49Z-98-PYj" secondAttribute="topMargin" constant="23" id="9Jn-s0-LX2"/>
                                                 <constraint firstItem="4Xe-uJ-OpF" firstAttribute="centerY" secondItem="49d-DT-n57" secondAttribute="centerY" id="KVl-jQ-U9q"/>
-                                                <constraint firstItem="ufN-d0-Uve" firstAttribute="leading" secondItem="49d-DT-n57" secondAttribute="trailing" constant="5" id="LAa-pJ-gUW"/>
                                                 <constraint firstItem="4Xe-uJ-OpF" firstAttribute="centerY" secondItem="49Z-98-PYj" secondAttribute="centerY" id="Qk7-GN-sHu"/>
                                                 <constraint firstItem="4Xe-uJ-OpF" firstAttribute="top" secondItem="49Z-98-PYj" secondAttribute="topMargin" constant="16.5" id="Vsm-XZ-gz2"/>
-                                                <constraint firstItem="SBd-lZ-Ssn" firstAttribute="leading" secondItem="49d-DT-n57" secondAttribute="trailing" constant="5" id="ebg-5b-k6A"/>
+                                                <constraint firstItem="SBd-lZ-Ssn" firstAttribute="centerY" secondItem="49d-DT-n57" secondAttribute="centerY" id="Y3K-PL-BGT"/>
+                                                <constraint firstItem="SBd-lZ-Ssn" firstAttribute="leading" secondItem="49d-DT-n57" secondAttribute="trailing" constant="14" id="ebg-5b-k6A"/>
                                                 <constraint firstItem="49d-DT-n57" firstAttribute="leading" secondItem="4Xe-uJ-OpF" secondAttribute="trailing" constant="20" id="mJA-33-vsu"/>
-                                                <constraint firstItem="ufN-d0-Uve" firstAttribute="top" secondItem="49Z-98-PYj" secondAttribute="topMargin" constant="5.5" id="mxh-jd-anu"/>
                                                 <constraint firstItem="4Xe-uJ-OpF" firstAttribute="leading" secondItem="49Z-98-PYj" secondAttribute="leadingMargin" constant="20" id="xNS-RZ-9UL"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -588,9 +569,7 @@
                                         <connections>
                                             <outlet property="friendImage" destination="49d-DT-n57" id="RnT-e5-7QK"/>
                                             <outlet property="friendNameLabel" destination="SBd-lZ-Ssn" id="JFz-QF-bih"/>
-                                            <outlet property="missionNumberLabel" destination="Tjl-U7-OMN" id="HX8-Xy-qbu"/>
                                             <outlet property="numLabel" destination="4Xe-uJ-OpF" id="2sT-kP-7iy"/>
-                                            <outlet property="percentLabel" destination="Nf8-hc-4F7" id="sKB-tg-Tw4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
