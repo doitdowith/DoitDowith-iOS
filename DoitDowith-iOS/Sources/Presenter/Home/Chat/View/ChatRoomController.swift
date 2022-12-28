@@ -87,7 +87,7 @@ final class ChatRoomController: UIViewController {
     let vm: CertificationViewModelType = CertificationViewModel()
     let vc = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(
       identifier: "CertificationVC") { coder in
-        CertificationViewController(coder: coder, viewModel: vm)
+        CertificationViewController(coder: coder, roomId: self.card.roomId, viewModel: vm)
       }
     vc.delegate = self
     navigationController?.pushViewController(vc, animated: true)

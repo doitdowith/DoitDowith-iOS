@@ -22,12 +22,13 @@ class CertificationViewController: UIViewController {
   weak var delegate: CertificationViewControllerDelegate?
   var selectedImage: UIImage?
   var certificateText: String?
-  
+  private var roomId: String?
   private let safeAreaBottomSize = UIApplication.safeAreaEdgeInsets.bottom
   private let viewModel: CertificationViewModelType
   
   // MARK: Initializer
-  init?(coder: NSCoder, viewModel: CertificationViewModelType) {
+  init?(coder: NSCoder, roomId: String, viewModel: CertificationViewModelType) {
+    self.roomId = roomId
     self.viewModel = viewModel
     super.init(coder: coder)
   }
@@ -83,17 +84,24 @@ class CertificationViewController: UIViewController {
     guard let image = selectedImage,
           let message = certificateText,
           let data = image.pngData(),
+          let roomId = self.roomId,
           let name = UserDefaults.standard.string(forKey: "name"),
           let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
-    
-    let base64 = data.base64EncodedString()
-    self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
-                                                         profileImage: profileImage,
-                                                         name: name,
-                                                         message: message,
-                                                         image: base64,
-                                                         time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
-    self.navigationController?.popViewController(animated: true)
+    print(data)
+    APIService.shared.upload(with: CertificateRequest(image: data,
+                                                      message: message,
+                                                      roomId: roomId)) { success in
+      if success {
+        self.delegate?.certificationViewController(ChatModel(type: .sendImageMessage,
+                                                             profileImage: profileImage,
+                                                             name: name,
+                                                             message: message,
+                                                             time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+        self.navigationController?.popViewController(animated: true)
+      } else {
+        self.view.showToast(message: "업로드에 실패했습니다", width: 150)
+      }
+    }
   }
   
   func resignTextViewResponder() {

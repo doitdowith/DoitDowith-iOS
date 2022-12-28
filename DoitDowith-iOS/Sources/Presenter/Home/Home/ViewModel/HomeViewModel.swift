@@ -73,11 +73,13 @@ final class HomeViewModel: HomeViewModelInput,
       }
       .do(onNext: { _ in activating.accept(false) })
       .filter { !$0.isEmpty }
+      .catchAndReturn([])
       .bind(onNext: { cards in
         let doing = cards.filter { $0.section == 1 }
         let willdo = cards.filter { $0.section == 2 }
         let done = cards.filter { $0.section == 3 }
         let current = Date.now
+        print(cards)
         let sectionModel: [HomeSectionModel] = [
           .init(model: 0,
                 items: [doing.isEmpty ? CardList(type: .none, data: [], identity: "\(current)") :

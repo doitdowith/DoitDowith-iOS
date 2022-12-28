@@ -76,7 +76,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     let allMessages = BehaviorRelay<[ChatModel]>(value: [])
     let activating = BehaviorRelay<Bool>(value: false)
     let error = PublishRelay<Error>()
-    let roomid = card.roomId.hash
+    let roomid = card.roomId
     
     let certificateCount = Observable.combineLatest(cardInfo, allMessages)
       .map { (cards, messages) -> Int in
@@ -87,23 +87,24 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     
     receive
       .filter { $0.name != name! }
-      .do(onNext: { chatService.sendMessage(roomId: roomid, message: $0) })
       .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
     
     send
       .observe(on: MainScheduler.instance)
-      .do(onNext: { chatService.sendMessage(roomId: roomid, message: $0) })
       .do(onNext: { stompManager.sendMessage(meesage: $0.message) })
       .bind(onNext: { allMessages.accept([$0]) })
       .disposed(by: disposeBag)
     
     fetching
-      .take(1)
       .do(onNext: { _ in activating.accept(true) })
       .do(onNext: { _ in stompManager.registerSocket() })
       .flatMap { _ -> Observable<[ChatModel]> in
-        return chatService.fetchChatList(roomId: roomid)
+        APIService.shared.request(request: RequestType(endpoint: "chats/\(roomid)",
+                                                       method: .get))
+        .map { (response: ChatResponse) -> [ChatModel] in
+          return response.toDomain
+        }
       }
       .do(onNext: { _ in activating.accept(false) })
       .bind(onNext: { allMessages.accept($0) })
@@ -112,7 +113,8 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     disconnect
       .bind(onNext: { _ in stompManager.disconnect() })
       .disposed(by: disposeBag)
-        
+    
+      
     self.viewWillAppear = fetching
     self.viewWillDisappear = disconnect
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()

@@ -137,6 +137,7 @@
 		EEC949E828F8083300A9661F /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEC949E628F8083300A9661F /* FriendCell.xib */; };
 		EEC9EAED28E49D07002918EA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAEC28E49D07002918EA /* Date+Extension.swift */; };
 		EEC9EAF428E52B66002918EA /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */; };
+		EECCF9B8295C2EE700262D36 /* CertificateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECCF9B7295C2EE700262D36 /* CertificateRequest.swift */; };
 		EED13238292F8B9700EA38CA /* CertificationPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED13236292F8B9700EA38CA /* CertificationPostCell.xib */; };
 		EED13239292F8B9700EA38CA /* CertificationPostWithImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED13237292F8B9700EA38CA /* CertificationPostWithImageCell.xib */; };
 		EEE063D62942140100D45493 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE063D52942140100D45493 /* LoginViewController.swift */; };
@@ -285,6 +286,7 @@
 		EEC949E628F8083300A9661F /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		EEC9EAEC28E49D07002918EA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		EEC9EAF328E52B66002918EA /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		EECCF9B7295C2EE700262D36 /* CertificateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateRequest.swift; sourceTree = "<group>"; };
 		EED13236292F8B9700EA38CA /* CertificationPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificationPostCell.xib; sourceTree = "<group>"; };
 		EED13237292F8B9700EA38CA /* CertificationPostWithImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificationPostWithImageCell.xib; sourceTree = "<group>"; };
 		EEE063D52942140100D45493 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		EE1F590528F68AFF0046ED09 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				EECCF9B6295C2EDA00262D36 /* Certificate */,
 				EE083369295AE82900C0C1EC /* Alarm */,
 				EE7F4024294DBBAA002AD53F /* CreateRoom */,
 				EE300D78293A378800842742 /* VoteMemberList */,
@@ -931,6 +934,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		EECCF9B6295C2EDA00262D36 /* Certificate */ = {
+			isa = PBXGroup;
+			children = (
+				EECCF9B7295C2EE700262D36 /* CertificateRequest.swift */,
+			);
+			path = Certificate;
+			sourceTree = "<group>";
+		};
 		EEE063D4294213B800D45493 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1173,6 +1184,7 @@
 				EE7857FF28EDB3DF00F8C309 /* MissionRoomFirstViewController.swift in Sources */,
 				EE0C687A295590B100581B33 /* ChatMemberCell.swift in Sources */,
 				EE300D7E293A3C3000842742 /* VoteResultViewModel.swift in Sources */,
+				EECCF9B8295C2EE700262D36 /* CertificateRequest.swift in Sources */,
 				18F863CB2947345700EC96A7 /* NetworkService.swift in Sources */,
 				EE4F4D6928EAE73C000C2FE7 /* CardCell.swift in Sources */,
 				EE8F28FE294DB616006E6F96 /* APIService.swift in Sources */,

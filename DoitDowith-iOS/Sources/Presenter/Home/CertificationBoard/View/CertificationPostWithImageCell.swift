@@ -62,11 +62,8 @@ extension CertificationPostWithImageCell {
       self.profileImage.setImage(with: "http://117.17.198.38:8080/images/\(profileImageUrl)",
                                  processor: processor)
     }
-    
-    if let certificateImageUrl = model.certificateImageUrl,
-       let data = Data(base64Encoded: certificateImageUrl, options: .ignoreUnknownCharacters) {
-      let certificateImage = UIImage(data: data)
-      self.certificateImage.image = certificateImage
+    if let certificateImageUrl = model.certificateImageUrl {
+      self.certificateImage.setImage(with: "http://117.17.198.38:8080/images/\(certificateImageUrl)")
     }
   }
 }

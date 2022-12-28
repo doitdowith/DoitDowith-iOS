@@ -14,37 +14,36 @@ struct ChatResponse: Codable {
 }
 
 struct ChatData: Codable {
-  var memberId: Int
   var profileImage: String
   var name: String
-  var message: String
+  var contents: String
+  var certificationImage: String?
   var time: String
+  var me: Bool
 }
 
 extension ChatResponse {
   var toDomain: [ChatModel] {
     return data.map { data in
       let type: MessageType
-      var currentMemberId = 0
-      if data.memberId == 0 {
-        if currentMemberId == data.memberId {
-          type = .sendMessage
+      if data.me {
+        if data.certificationImage != nil {
+          type = .sendImageMessage
         } else {
-          type = .sendMessageWithTip
-          currentMemberId = data.memberId
+          type = .sendMessage
         }
       } else {
-        if currentMemberId == data.memberId {
-          type = .receiveMessage
+        if data.certificationImage != nil {
+          type = .receiveImageMessage
         } else {
-          type = .receiveMessageWithProfile
-          currentMemberId = data.memberId
+          type = .receiveMessage
         }
       }
       return ChatModel(type: type,
                        profileImage: data.profileImage,
                        name: data.name,
-                       message: data.message,
+                       message: data.contents,
+                       image: data.certificationImage,
                        time: data.time)
     }
   }

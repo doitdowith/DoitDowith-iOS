@@ -51,13 +51,18 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
     fetching
       .do(onNext: { _ in activating.accept(true) })
       .flatMap { _ -> Observable<[ChatModel]> in
-        return chatService.fetchChatList(roomId: card.roomId.hash)
-      }
+        APIService.shared.request(request: RequestType(endpoint: "chats/\(card.roomId)",
+                                                         method: .get))
+          .map { (response: ChatResponse) -> [ChatModel] in
+            return response.toDomain
+          }
+        }
       .do(onNext: { _ in activating.accept(false) })
       .map { (chatList: [ChatModel]) -> [ChatModel] in
           return chatList.filter { $0.type == .receiveImageMessage || $0.type == .sendImageMessage }
       }
       .map { (posts: [ChatModel]) -> [CertificationPost] in
+        print(posts)
         return posts.map { CertificationPost(postType: .ImagePost,
                                              profileImageUrl: $0.profileImage,
                                              nickName: $0.name,
