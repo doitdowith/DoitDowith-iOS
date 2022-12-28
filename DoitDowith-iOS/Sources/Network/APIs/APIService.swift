@@ -33,9 +33,9 @@ class APIService: ReactiveCompatible {
       .responseData()
       .observe(on: MainScheduler.instance)
       .map { (response, data) -> T in
-        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-             print(json)
-        }
+//        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
+//             print(json)
+//        }
         let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)
       }
@@ -53,10 +53,8 @@ class APIService: ReactiveCompatible {
               to: URL(string: "http://117.17.198.38:8080/api/v1/chats/certification")!,
               headers: HTTPHeaders(headers))
     .responseJSON { response in
-      print(response.response)
       guard let statusCode = response.response?.statusCode else { return }
       if statusCode >= 200 && statusCode < 300 {
-        print("success")
         completion(true)
       } else {
         completion(false)

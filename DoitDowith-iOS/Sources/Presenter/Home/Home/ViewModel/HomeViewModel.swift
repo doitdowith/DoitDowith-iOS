@@ -79,7 +79,6 @@ final class HomeViewModel: HomeViewModelInput,
         let willdo = cards.filter { $0.section == 2 }
         let done = cards.filter { $0.section == 3 }
         let current = Date.now
-        print(cards)
         let sectionModel: [HomeSectionModel] = [
           .init(model: 0,
                 items: [doing.isEmpty ? CardList(type: .none, data: [], identity: "\(current)") :

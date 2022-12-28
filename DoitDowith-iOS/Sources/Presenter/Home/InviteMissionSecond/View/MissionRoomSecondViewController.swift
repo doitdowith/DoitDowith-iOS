@@ -255,8 +255,13 @@ extension MissionRoomSecondViewController {
       .map { $0! }
       .withUnretained(self)
       .bind(onNext: { owner, text in
-        owner.viewModel.input.missionCertificateCount.accept(text)
-        owner.certificateCount = text
+        if let count = Int(text.description), count > 7 {
+          owner.view.showToast(message: "인증은 7개 이하만 가능합니다.", width: 190)
+          owner.certificateCountTextField.text = ""
+        } else {
+          owner.viewModel.input.missionCertificateCount.accept(text)
+          owner.certificateCount = text
+        }
       })
       .disposed(by: rx.disposeBag)
   }

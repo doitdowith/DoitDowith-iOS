@@ -74,7 +74,6 @@ extension LoginViewController {
                                     method: .post,
                                     parameters: ["accessToken": token]))
       .bind(onNext: { (response: LoginResponse) in
-        print(response)
         UserDefaults.standard.set(response.accessToken, forKey: "token")
         UserDefaults.standard.set(response.email, forKey: "email")
         UserDefaults.standard.set(response.memberId, forKey: "memberId")
@@ -90,26 +89,29 @@ extension LoginViewController {
     present(vc, animated: true)
   }
   
+  func showFailMessage() {
+    DispatchQueue.main.async {
+      self.view.showToast(message: "로그인에 실패했습니다.", width: 150)
+    }
+  }
   @objc func didTapLogin() {
     if UserApi.isKakaoTalkLoginAvailable() {
       UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
-        guard let self = self,
-              let token = oauthToken,
-              error == nil else {
-          return
+        if let token = oauthToken, error == nil {
+          self?.postToken(token: token.accessToken)
+          self?.navigateHome()
+        } else {
+          self?.showFailMessage()
         }
-        self.postToken(token: token.accessToken)
-        self.navigateHome()
       }
     } else {
       UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
-        guard let self = self,
-              let token = oauthToken,
-              error == nil else {
-          return
+        if let token = oauthToken, error == nil {
+          self?.postToken(token: token.accessToken)
+          self?.navigateHome()
+        } else {
+          self?.showFailMessage()
         }
-        self.postToken(token: token.accessToken)
-        self.navigateHome()
       }
     }
   }

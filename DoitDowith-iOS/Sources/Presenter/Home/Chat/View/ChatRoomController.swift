@@ -230,6 +230,10 @@ extension ChatRoomController {
       .map { $0 != 1 }
       .bind(to: certificateButton.rx.isHidden)
       .disposed(by: rx.disposeBag)
+    
+    self.viewModel.output.hideCertificateButton
+      .drive(certificateButton.rx.isHidden)
+      .disposed(by: rx.disposeBag)      
   }
   func bindChatView() {
     self.chatView.rx.tapGesture()
@@ -427,13 +431,15 @@ extension ChatRoomController: PHPickerViewControllerDelegate {
             let data = image.pngData(),
             let name = UserDefaults.standard.string(forKey: "name"),
             let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
-      let base64 = data.base64EncodedString()
-      print(base64)
+//      let base64 = data.base64EncodedString()
 //      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
 //                                                        profileImage: profileImage,
 //                                                        name: name,
 //                                                        message: base64,
 //                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+      DispatchQueue.main.async {
+        self.view.showToast(message: "사진 전송 기능은 아직 지원되지 않습니다.", width: 250)
+      }
     }
   }
 }
@@ -447,12 +453,15 @@ extension ChatRoomController: UIImagePickerControllerDelegate,
        let data = image.pngData(),
        let name = UserDefaults.standard.string(forKey: "name"),
        let profileImage = UserDefaults.standard.string(forKey: "profileImage") {
-      let base64 = data.base64EncodedString()
-      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
-                                                        profileImage: profileImage,
-                                                        name: name,
-                                                        message: base64,
-                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+//      let base64 = data.base64EncodedString()
+//      self.viewModel.input.sendMessage.accept(ChatModel(type: .sendImage,
+//                                                        profileImage: profileImage,
+//                                                        name: name,
+//                                                        message: base64,
+//                                                        time: Date.now.formatted(format: "yyyy-MM-dd hh:mm")))
+      DispatchQueue.main.async {
+        self.view.showToast(message: "사진 전송 기능은 아직 지원되지 않습니다.", width: 250)
+      }
     }
     picker.dismiss(animated: true)
     modalButtonDidTap()

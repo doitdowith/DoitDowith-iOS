@@ -42,11 +42,8 @@ class SendImageMessageCell: UITableViewCell {
 
 extension SendImageMessageCell {
   func configure(model: ChatModel) {
-    if let image = model.image,
-       let data = Data(base64Encoded: image, options: .ignoreUnknownCharacters) {
-      let decodedImg = UIImage(data: data)
-      self.sendImageView.image = decodedImg
-    }
+    self.sendImageView.image = UIImage(named: "confirm")
+    
     self.sendMessage.text = "\(model.name)님의 인증 메세지"
     
     self.dateLabel.text = model.time.suffix(5).description

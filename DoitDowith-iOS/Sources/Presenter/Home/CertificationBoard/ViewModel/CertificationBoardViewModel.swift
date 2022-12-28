@@ -57,12 +57,12 @@ class CertificationBoardViewModel: CertificationBoardViewModelInput,
             return response.toDomain
           }
         }
+      .catchAndReturn([])
       .do(onNext: { _ in activating.accept(false) })
       .map { (chatList: [ChatModel]) -> [ChatModel] in
           return chatList.filter { $0.type == .receiveImageMessage || $0.type == .sendImageMessage }
       }
       .map { (posts: [ChatModel]) -> [CertificationPost] in
-        print(posts)
         return posts.map { CertificationPost(postType: .ImagePost,
                                              profileImageUrl: $0.profileImage,
                                              nickName: $0.name,

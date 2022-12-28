@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import RxDataSources
 
-struct ChatModel {
+struct ChatModel: Equatable {
   var type: MessageType
   var profileImage: String
   var name: String

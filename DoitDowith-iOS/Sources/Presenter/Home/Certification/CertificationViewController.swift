@@ -87,7 +87,6 @@ class CertificationViewController: UIViewController {
           let roomId = self.roomId,
           let name = UserDefaults.standard.string(forKey: "name"),
           let profileImage = UserDefaults.standard.string(forKey: "profileImage") else { return }
-    print(data)
     APIService.shared.upload(with: CertificateRequest(image: data,
                                                       message: message,
                                                       roomId: roomId)) { success in

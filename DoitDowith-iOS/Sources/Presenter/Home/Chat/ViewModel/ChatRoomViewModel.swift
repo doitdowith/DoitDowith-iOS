@@ -32,6 +32,7 @@ protocol ChatRoomViewModelOutput {
   var title: Driver<String> { get }
   var ddayCount: Driver<String> { get }
   var leftCertificateCount: Driver<String> { get }
+  var hideCertificateButton: Driver<Bool> { get}
 }
 
 protocol ChatRoomViewModelType {
@@ -65,6 +66,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
   let title: Driver<String>
   let ddayCount: Driver<String>
   let leftCertificateCount: Driver<String>
+  let hideCertificateButton: Driver<Bool>
   
   init(card: Card, stompManager: StompManagerProtocol, chatService: ChatServiceProtocol) {
     let name = UserDefaults.standard.string(forKey: "name")
@@ -83,6 +85,13 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
         let totalcertificateCount = cards.count
         let certificateCount = messages.filter { $0.type == .sendImageMessage }.count
         return totalcertificateCount - certificateCount
+      }
+    
+    let isHide = Observable.combineLatest(allMessages, certificateCount)
+      .map { (messages, count) -> Bool in
+        let today = Date.now.formatted(format: "yyyy-MM-dd")
+        let message = messages.filter { !$0.message.isEmpty && $0.image != nil && $0.time.prefix(10).description == today }
+        return !(message.isEmpty && count > 0)
       }
     
     receive
@@ -114,7 +123,6 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
       .bind(onNext: { _ in stompManager.disconnect() })
       .disposed(by: disposeBag)
     
-      
     self.viewWillAppear = fetching
     self.viewWillDisappear = disconnect
     self.chatroomInfo = PublishRelay<MissionRoomRequest>()
@@ -122,7 +130,12 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     self.recevieMessage = receive
     self.messageList = allMessages
         .scan([ChatModel](), accumulator: { prev, new in
-          return prev + new })
+          if prev != new {
+            return prev + new
+          } else {
+            return prev
+          }
+        })
         .map { (chats: [ChatModel]) -> [SectionOfChatModel] in
           var section: [SectionOfChatModel] = []
           var row: [ChatModel] = []
@@ -187,5 +200,7 @@ final class ChatRommViewModel: ChatRoomViewModelInput,
     self.leftCertificateCount = certificateCount
       .map { "남은 인증 횟수 \($0)회" }
       .asDriver(onErrorJustReturn: "")
+    
+    self.hideCertificateButton = isHide.asDriver(onErrorJustReturn: false)
   }
 }
